@@ -35,17 +35,19 @@ export default function Top3() {
         {/* 강의 리스트 Start */}
         <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
           {[0, 1, 2].map((i) => (
-            <div key={i}>
-              <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+            <Link key={i} href='/'>
+              <a>
+                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
 
-              <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
-                카테고리 · 강사 이름
-              </div>
+                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                  카테고리 · 강사 이름
+                </div>
 
-              <div className='text-lg font-medium'>
-                수익률 20% 달성하는 주식 투자 전략
-              </div>
-            </div>
+                <div className='text-lg font-medium'>
+                  수익률 20% 달성하는 주식 투자 전략
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
         {/* 강의 리스트 End */}
@@ -82,17 +84,19 @@ export default function Top3() {
         {/* 강의 리스트 Start */}
         <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
           {[0, 1, 2].map((i) => (
-            <div key={i}>
-              <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+            <Link key={i} href='/'>
+              <a>
+                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
 
-              <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
-                카테고리 · 강사 이름
-              </div>
+                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                  카테고리 · 강사 이름
+                </div>
 
-              <div className='text-lg font-medium'>
-                수익률 20% 달성하는 주식 투자 전략
-              </div>
-            </div>
+                <div className='text-lg font-medium'>
+                  수익률 20% 달성하는 주식 투자 전략
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
         {/* 강의 리스트 End */}
@@ -130,17 +134,19 @@ export default function Top3() {
         {/* 강의 리스트 Start */}
         <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
           {[0, 1, 2].map((i) => (
-            <div key={i}>
-              <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+            <Link key={i} href='/'>
+              <a>
+                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
 
-              <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
-                카테고리 · 강사 이름
-              </div>
+                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                  카테고리 · 강사 이름
+                </div>
 
-              <div className='text-lg font-medium'>
-                수익률 20% 달성하는 주식 투자 전략
-              </div>
-            </div>
+                <div className='text-lg font-medium'>
+                  수익률 20% 달성하는 주식 투자 전략
+                </div>
+              </a>
+            </Link>
           ))}
         </div>
         {/* 강의 리스트 End */}
