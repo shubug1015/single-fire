@@ -1,6 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Image from 'next/image';
 
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -64,12 +65,12 @@ export default function Banner() {
   };
 
   return (
-    <div className='w-screen h-[calc(100vh-160px)] bg-[#2f436de0]'>
+    <div className='w-screen h-[51.625rem] bg-[#2f436de0] bg-[url("/home/banner-bg.png")] bg-no-repeat bg-center bg-cover'>
       <Slider className='!flex items-center h-full' {...settings}>
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i}>
-            <div className='max-w-[1180px] mx-auto'>
-              <div className='text-[3.25rem] font-bold'>
+            <div className='relative flex flex-col pt-36 h-[51.625rem] max-w-[1180px] mx-auto'>
+              <div className='text-[3.25rem] font-bold z-[1]'>
                 Lorem ipsum
                 <br />
                 dolor sit amet,
@@ -77,7 +78,7 @@ export default function Banner() {
                 adipiscing elit.
               </div>
 
-              <div className='font-light mt-[3.75rem]'>
+              <div className='font-light mt-[3.75rem] z-[1]'>
                 Sed sollicitudin erat ac eleifend,
                 <br />
                 accumsan. Donec finibus
@@ -85,6 +86,17 @@ export default function Banner() {
                 vestibulum urna, ultrices dictum
                 <br />
                 diam auctor sit amet.
+              </div>
+
+              <div className='absolute top-1/2 -translate-y-1/2 right-0'>
+                <div className='relative w-[55rem] h-[38.375rem] rounded-md shadow-sm'>
+                  <Image
+                    src='/home/banner-img-1.png'
+                    alt='Banner Image'
+                    layout='fill'
+                    objectFit='cover'
+                  />
+                </div>
               </div>
             </div>
           </div>
