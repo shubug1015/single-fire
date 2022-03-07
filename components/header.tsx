@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className='fixed top-0 left-0 w-screen h-40 bg-[#282e38] shadow-md'>
+    <header className='fixed top-0 left-0 w-screen h-40 bg-[#282e38] shadow-md z-[9999]'>
       <div className='max-w-[1180px] mx-auto'>
         {/* 헤더 상단 Start */}
         <div className='flex justify-between items-center h-[6.25rem]'>
