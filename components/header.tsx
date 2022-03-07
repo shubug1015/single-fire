@@ -8,7 +8,7 @@ export default function Header() {
         {/* 헤더 상단 Start */}
         <div className='flex justify-between items-center h-[6.25rem]'>
           {/* 좌측 메뉴 Start */}
-          <nav className='flex text-lg font-medium'>
+          <nav className='flex items-center text-lg font-medium'>
             <Link href='/'>
               <a className='relative w-[11.125rem] h-[1.313rem]'>
                 <Image
