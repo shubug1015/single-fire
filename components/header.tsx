@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import Logo from '@public/logo.png';
 
 export default function Header() {
   return (
@@ -12,7 +13,7 @@ export default function Header() {
             <Link href='/'>
               <a className='relative w-[11.125rem] h-[1.313rem]'>
                 <Image
-                  src='/logo.png'
+                  src={Logo}
                   alt='Logo'
                   layout='fill'
                   objectFit='cover'

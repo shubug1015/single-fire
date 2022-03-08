@@ -1,6 +1,7 @@
 import Layout from '@layouts/sectionLayout';
 import Image from 'next/image';
 import Link from 'next/link';
+import Logo from '@public/logo.png';
 
 export default function Footer() {
   return (
@@ -12,7 +13,7 @@ export default function Footer() {
             <a>
               <div className='relative w-[11.125rem] h-[1.313rem]'>
                 <Image
-                  src='/logo.png'
+                  src={Logo}
                   alt='Logo'
                   layout='fill'
                   objectFit='cover'

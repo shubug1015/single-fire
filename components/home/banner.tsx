@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
+import BannerImg from '@public/home/banner-img-1.png';
 
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -91,8 +92,9 @@ export default function Banner() {
               <div className='absolute top-1/2 -translate-y-1/2 right-0'>
                 <div className='relative w-[55rem] h-[38.375rem] rounded-md shadow-sm'>
                   <Image
-                    src='/home/banner-img-1.png'
+                    src={BannerImg}
                     alt='Banner Image'
+                    placeholder='blur'
                     layout='fill'
                     objectFit='cover'
                   />
