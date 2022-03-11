@@ -1,7 +1,5 @@
 import Layout from '@layouts/sectionLayout';
-import Image from 'next/image';
 import Link from 'next/link';
-import ArrowImg from '@public/home/customized-arrow.png';
 
 export default function Customized() {
   return (
@@ -64,7 +62,7 @@ export default function Customized() {
                     </div>
                   )}
                 </div>
-                {/* <div className='relative aspect-square w-3 opacity-70 transition-all group-hover:opacity-100'> */}
+
                 <svg
                   className='aspect-square w-[14px] text-[#9e9e9e] group-hover:text-[#14161a]'
                   viewBox='0 0 14 14'
@@ -76,7 +74,6 @@ export default function Customized() {
                     fill='currentColor'
                   />
                 </svg>
-                {/* </div> */}
               </a>
             </Link>
           ))}
