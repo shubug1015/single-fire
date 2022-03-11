@@ -15,7 +15,7 @@ export default function Layout({
 }: LayoutProps) {
   return (
     <div className={cls(bgColor, bgImg ? bgImg : '', padding, 'w-full')}>
-      <div className='w-full max-w-[1180px] mx-auto'>{children}</div>
+      <div className='mx-auto w-full max-w-[1180px]'>{children}</div>
     </div>
   );
 }

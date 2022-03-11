@@ -12,7 +12,7 @@ export default function Banner() {
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
-      className='absolute top-1/2 -translate-y-1/2 left-12 flex justify-center items-center w-9 aspect-square border border-white rounded-full z-[1] cursor-pointer'
+      className='absolute top-1/2 left-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -34,7 +34,7 @@ export default function Banner() {
   const NextArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
-      className='absolute top-1/2 -translate-y-1/2 right-12 flex justify-center items-center w-9 aspect-square border border-white rounded-full z-[1] cursor-pointer'
+      className='absolute top-1/2 right-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -61,17 +61,17 @@ export default function Banner() {
     nextArrow: <NextArrow />,
     appendDots: (dots: any) => <ul style={{ bottom: '4.25rem' }}>{dots}</ul>,
     customPaging: () => (
-      <div className='w-1.5 aspect-square bg-[#ffffff80] rounded-full'></div>
+      <div className='aspect-square w-1.5 rounded-full bg-[#ffffff80]'></div>
     ),
   };
 
   return (
-    <div className='w-screen h-[51.625rem] bg-[#2f436de0] bg-[url("/home/banner-bg.png")] bg-no-repeat bg-center bg-cover'>
-      <Slider className='!flex items-center h-full' {...settings}>
+    <div className='h-[51.625rem] w-screen bg-[#2f436de0] bg-[url("/home/banner-bg.png")] bg-cover bg-center bg-no-repeat'>
+      <Slider className='!flex h-full items-center' {...settings}>
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i}>
-            <div className='relative flex flex-col pt-36 h-[51.625rem] max-w-[1180px] mx-auto'>
-              <div className='text-[3.25rem] font-bold z-[1]'>
+            <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
+              <div className='z-[1] text-[3.25rem] font-bold'>
                 Lorem ipsum
                 <br />
                 dolor sit amet,
@@ -79,7 +79,7 @@ export default function Banner() {
                 adipiscing elit.
               </div>
 
-              <div className='font-light mt-[3.75rem] z-[1]'>
+              <div className='z-[1] mt-[3.75rem] font-light'>
                 Sed sollicitudin erat ac eleifend,
                 <br />
                 accumsan. Donec finibus
@@ -89,8 +89,8 @@ export default function Banner() {
                 diam auctor sit amet.
               </div>
 
-              <div className='absolute top-1/2 -translate-y-1/2 right-0'>
-                <div className='relative w-[55rem] h-[38.375rem] rounded-md shadow-sm'>
+              <div className='absolute top-1/2 right-0 -translate-y-1/2'>
+                <div className='relative h-[38.375rem] w-[55rem] rounded-md shadow-sm'>
                   <Image
                     src={BannerImg}
                     alt='Banner Image'

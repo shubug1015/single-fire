@@ -5,13 +5,13 @@ import Logo from '@public/logo.png';
 
 export default function Footer() {
   return (
-    <Layout bgColor='#282e38' padding='pt-[6.5rem] pb-[7.5rem]'>
+    <Layout bgColor='bg-[#14161a]' padding='pt-[6.5rem] pb-[7.5rem]'>
       <div className='flex justify-between'>
         {/* 좌측 섹션 Start */}
         <div>
           <Link href='/'>
             <a>
-              <div className='relative w-[11.125rem] h-[1.313rem]'>
+              <div className='relative h-[1.313rem] w-[11.125rem]'>
                 <Image
                   src={Logo}
                   alt='Logo'
@@ -23,7 +23,7 @@ export default function Footer() {
             </a>
           </Link>
 
-          <nav className='flex font-medium space-x-7 mt-10'>
+          <nav className='mt-10 flex space-x-7 font-medium'>
             <Link href='/'>
               <a className='text-[#c0c0c0]'>회사소개</a>
             </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
 
           <Link href='/'>
             <a>
-              <div className='bg-white rounded-sm py-3 px-[3.75rem] text-black text-sm mt-5'>
+              <div className='mt-5 rounded-sm bg-white py-3 px-[3.75rem] text-sm text-black'>
                 고객센터 채널톡
               </div>
             </a>

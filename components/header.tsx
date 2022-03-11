@@ -4,14 +4,14 @@ import Logo from '@public/logo.png';
 
 export default function Header() {
   return (
-    <header className='fixed top-0 left-0 w-screen h-40 bg-[#282e38] shadow-md z-[9999]'>
-      <div className='max-w-[1180px] mx-auto'>
+    <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md'>
+      <div className='mx-auto max-w-[1180px]'>
         {/* 헤더 상단 Start */}
-        <div className='flex justify-between items-center h-[6.25rem]'>
+        <div className='flex h-[6.25rem] items-center justify-between'>
           {/* 좌측 메뉴 Start */}
           <nav className='flex items-center text-lg font-medium'>
             <Link href='/'>
-              <a className='relative w-[11.125rem] h-[1.313rem]'>
+              <a className='relative h-[1.313rem] w-[11.125rem]'>
                 <Image
                   src={Logo}
                   alt='Logo'
@@ -35,13 +35,13 @@ export default function Header() {
           {/* 우측 메뉴 Start */}
           <nav className='flex text-sm font-medium'>
             <Link href='/'>
-              <a className='flex justify-center items-center w-[6.25rem] h-[2.625rem] bg-[#ffffff2b] rounded-sm mr-4'>
+              <a className='mr-4 flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#ffffff2b]'>
                 로그인
               </a>
             </Link>
 
             <Link href='/'>
-              <a className='flex justify-center items-center w-[6.25rem] h-[2.625rem] bg-[#0097a7] rounded-sm leading-3'>
+              <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
                 회원가입
               </a>
             </Link>
@@ -51,7 +51,7 @@ export default function Header() {
         {/* 헤더 상단 End */}
 
         {/* 헤더 하단 Start */}
-        <div className='flex items-center h-[3.75rem] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]'>
+        <div className='flex h-[3.75rem] items-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]'>
           <nav className='flex space-x-10 font-medium'>
             <Link href='/'>
               <a>BEST</a>

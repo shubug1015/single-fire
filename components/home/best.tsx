@@ -7,7 +7,7 @@ export default function Best() {
       {/* 상단 배너 Start */}
       <Link href='/'>
         <a>
-          <div className='flex justify-between items-center w-full h-[5.875rem] px-[3.75rem] bg-[url("/home/best-banner.png")]'>
+          <div className='flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a]'>
             <div className='text-lg font-medium'>
               경제적 자유 얻고 파이어족 도전! 대체 얼마가 필요할까? 🔥
             </div>
@@ -16,7 +16,7 @@ export default function Best() {
               <span className='font-medium'>계산기 바로가기</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='w-4 mb-0.5 ml-3'
+                className='mb-0.5 ml-3 w-4'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
@@ -35,7 +35,7 @@ export default function Best() {
       {/* 상단 배너 End */}
 
       {/* 제목 & 더보기 Start */}
-      <div className='flex justify-between items-center w-full mt-[6.625rem]'>
+      <div className='mt-[6.625rem] flex w-full items-center justify-between'>
         <div className='text-2xl font-bold'>
           [100만뷰] 경제적 자유를 이뤄낸 BEST 클래스
         </div>
@@ -45,11 +45,11 @@ export default function Best() {
             <span className='font-medium text-[#cfcfcf]'>더 보기</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='w-3 mb-0.5 ml-2 text-[#cfcfcf]'
+              className='mt-0.5 ml-2 w-3 text-[#cfcfcf]'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
-              strokeWidth={2}
+              strokeWidth={3}
             >
               <path
                 strokeLinecap='round'
@@ -63,13 +63,13 @@ export default function Best() {
       {/* 제목 & 더보기 End */}
 
       {/* 강의 리스트 Start */}
-      <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
+      <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12'>
         {[0, 1, 2, 3, 4, 5].map((i) => (
           <Link key={i} href='/'>
             <a>
-              <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+              <div className='h-60 w-[23.75rem] rounded-md bg-[#020202]'></div>
 
-              <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+              <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
                 카테고리 · 강사 이름
               </div>
 

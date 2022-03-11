@@ -7,7 +7,7 @@ export default function Top3() {
       {/* 코인 Top3 강의 Start */}
       <div>
         {/* 제목 & 더보기 Start */}
-        <div className='flex justify-between items-center w-full'>
+        <div className='flex w-full items-center justify-between'>
           <div className='text-2xl font-bold'>코인 TOP3 강의</div>
 
           <Link href='/'>
@@ -15,11 +15,11 @@ export default function Top3() {
               <span className='font-medium text-[#cfcfcf]'>더 보기</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='w-3 mb-0.5 ml-2 text-[#cfcfcf]'
+                className='mt-0.5 ml-2 w-3 text-[#cfcfcf]'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
-                strokeWidth={2}
+                strokeWidth={3}
               >
                 <path
                   strokeLinecap='round'
@@ -33,13 +33,13 @@ export default function Top3() {
         {/* 제목 & 더보기 End */}
 
         {/* 강의 리스트 Start */}
-        <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
+        <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12'>
           {[0, 1, 2].map((i) => (
             <Link key={i} href='/'>
               <a>
-                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+                <div className='h-60 w-[23.75rem] rounded-md bg-[#020202]'></div>
 
-                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
                   카테고리 · 강사 이름
                 </div>
 
@@ -57,18 +57,18 @@ export default function Top3() {
       {/* 부동산 Top3 강의 Start */}
       <div className='mt-[9.5rem]'>
         {/* 제목 & 더보기 Start */}
-        <div className='flex justify-between items-center w-full'>
+        <div className='flex w-full items-center justify-between'>
           <div className='text-2xl font-bold'>부동산 TOP3 강의</div>
           <Link href='/'>
             <a className='flex items-center'>
               <span className='font-medium text-[#cfcfcf]'>더 보기</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='w-3 mb-0.5 ml-2 text-[#cfcfcf]'
+                className='mt-0.5 ml-2 w-3 text-[#cfcfcf]'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
-                strokeWidth={2}
+                strokeWidth={3}
               >
                 <path
                   strokeLinecap='round'
@@ -82,13 +82,13 @@ export default function Top3() {
         {/* 제목 & 더보기 End */}
 
         {/* 강의 리스트 Start */}
-        <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
+        <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12'>
           {[0, 1, 2].map((i) => (
             <Link key={i} href='/'>
               <a>
-                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+                <div className='h-60 w-[23.75rem] rounded-md bg-[#020202]'></div>
 
-                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
                   카테고리 · 강사 이름
                 </div>
 
@@ -106,7 +106,7 @@ export default function Top3() {
       {/* 주식 Top3 강의 Start */}
       <div className='mt-[9.5rem]'>
         {/* 제목 & 더보기 Start */}
-        <div className='flex justify-between items-center w-full mt-[9.5rem]'>
+        <div className='mt-[9.5rem] flex w-full items-center justify-between'>
           <div className='text-2xl font-bold'>주식 TOP3 강의</div>
 
           <Link href='/'>
@@ -114,11 +114,11 @@ export default function Top3() {
               <span className='font-medium text-[#cfcfcf]'>더 보기</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                className='w-3 mb-0.5 ml-2 text-[#cfcfcf]'
+                className='mt-0.5 ml-2 w-3 text-[#cfcfcf]'
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
-                strokeWidth={2}
+                strokeWidth={3}
               >
                 <path
                   strokeLinecap='round'
@@ -132,13 +132,13 @@ export default function Top3() {
         {/* 제목 & 더보기 End */}
 
         {/* 강의 리스트 Start */}
-        <div className='grid grid-cols-3 gap-x-5 gap-y-12 mt-8'>
+        <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12'>
           {[0, 1, 2].map((i) => (
             <Link key={i} href='/'>
               <a>
-                <div className='w-[23.75rem] h-60 bg-[#020202] rounded-md'></div>
+                <div className='h-60 w-[23.75rem] rounded-md bg-[#020202]'></div>
 
-                <div className='text-sm text-[#b1b1b1] font-medium mt-4 mb-1.5'>
+                <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
                   카테고리 · 강사 이름
                 </div>
 
