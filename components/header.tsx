@@ -34,13 +34,13 @@ export default function Header() {
 
           {/* 우측 메뉴 Start */}
           <nav className='flex text-sm font-medium'>
-            <Link href='/'>
+            <Link href='/login'>
               <a className='mr-4 flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#ffffff2b]'>
                 로그인
               </a>
             </Link>
 
-            <Link href='/'>
+            <Link href='/signup'>
               <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
                 회원가입
               </a>
