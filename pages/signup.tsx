@@ -6,17 +6,29 @@ import React, { useState } from 'react';
 import { signUpApi } from '@libs/api';
 
 const SignUp: NextPage = () => {
+  //   const [infos, setInfos] = useState({
+  //     name: '',
+  //     nickname: '',
+  //     phoneNum: '',
+  //     username: '',
+  //     password: '',
+  //     passwordCheck: '',
+  //     service: false,
+  //     privacy: false,
+  //     ageOver: false,
+  //     marketing: false,
+  //   });
   const [infos, setInfos] = useState({
-    name: '',
-    nickname: '',
-    phoneNum: '',
-    username: '',
-    password: '',
-    passwordCheck: '',
-    service: false,
-    privacy: false,
-    ageOver: false,
-    marketing: false,
+    name: '이동현',
+    nickname: '슈벅',
+    phoneNum: '01085941267',
+    username: 'shubug',
+    password: '123',
+    passwordCheck: '123',
+    service: true,
+    privacy: true,
+    ageOver: true,
+    marketing: true,
   });
   const [code, setCode] = useState({
     loading: false,
