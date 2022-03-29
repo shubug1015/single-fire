@@ -7,7 +7,8 @@ const api = axios.create({
 export const signUpApi = {
   // checkId: (data) => api.get('users/signup/check_id/', { params: data }),
 
-  getCode: (phoneNum: string) => api.post('users/code_gen/', phoneNum),
+  getCode: (phoneNum: string) =>
+    api.post('users/code_gen/', { phone_number: phoneNum }),
 
   // checkCertification: (data) =>
   //   api.get('users/signup/sms_authentication/', { params: data }),
