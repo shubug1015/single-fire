@@ -5,7 +5,7 @@ export default function Customized() {
   return (
     <Layout bgColor='bg-[#e5e5e514]' padding='py-20'>
       <div className='flex justify-between'>
-        {/* 좌측 섹션 Start */}
+        {/* 좌측 섹션 */}
         <div>
           <div className='text-xl font-bold'>
             주식의 “주”자도 모르는 분을 위한,
@@ -37,9 +37,9 @@ export default function Customized() {
             </div>
           </div>
         </div>
-        {/* 좌측 섹션 End */}
+        {/* 좌측 섹션 */}
 
-        {/* 우측 섹션 Start */}
+        {/* 우측 섹션 */}
         <div className='space-y-2'>
           {[0, 1, 2, 3, 4].map((i) => (
             <Link key={i} href='/'>
@@ -78,7 +78,7 @@ export default function Customized() {
             </Link>
           ))}
         </div>
-        {/* 우측 섹션 End */}
+        {/* 우측 섹션 */}
       </div>
     </Layout>
   );

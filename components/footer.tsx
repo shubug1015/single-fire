@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <Layout bgColor='bg-[#14161a]' padding='pt-[6.5rem] pb-[7.5rem]'>
       <div className='flex justify-between'>
-        {/* 좌측 섹션 Start */}
+        {/* 좌측 섹션 */}
         <div>
           <Link href='/'>
             <a>
@@ -51,9 +51,9 @@ export default function Footer() {
             porttitor.
           </div>
         </div>
-        {/* 좌측 섹션 End */}
+        {/* 좌측 섹션 */}
 
-        {/* 우측 섹션 Start */}
+        {/* 우측 섹션 */}
         <div className='font-medium'>
           <div>고객센터</div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
             </a>
           </Link>
         </div>
-        {/* 우측 섹션 End */}
+        {/* 우측 섹션 */}
       </div>
     </Layout>
   );

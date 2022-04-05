@@ -1,42 +1,112 @@
 import SEO from '@components/seo';
-import Input from '@components/signup/input';
-import Checkbox from '@components/signup/checkbox';
-import type { NextPage } from 'next';
-import React, { useState } from 'react';
-import { signUpApi } from '@libs/api';
+import Input from '@components/input';
+import Checkbox from '@components/checkbox';
+import type { GetServerSideProps, NextPage } from 'next';
+import React, { useEffect, useState } from 'react';
+import { usersApi } from '@libs/api';
+import { getToken, setToken } from '@libs/token';
+import useMutation from '@libs/client/useMutation';
 
-const SignUp: NextPage = () => {
-  //   const [infos, setInfos] = useState({
-  //     name: '',
-  //     nickname: '',
-  //     phoneNum: '',
-  //     username: '',
-  //     password: '',
-  //     passwordCheck: '',
-  //     service: false,
-  //     privacy: false,
-  //     ageOver: false,
-  //     marketing: false,
-  //   });
-  const [infos, setInfos] = useState({
-    name: '이동현',
-    nickname: '슈벅',
-    phoneNum: '01085941267',
-    username: 'shubug',
-    password: '123',
-    passwordCheck: '123',
-    service: true,
-    privacy: true,
-    ageOver: true,
-    marketing: true,
+interface IProps {
+  token: string | null;
+}
+
+interface IInfos {
+  [key: string]: any;
+}
+
+interface MutationResult {
+  ok: boolean;
+}
+
+const SignUp: NextPage<IProps> = ({ token }) => {
+  setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
+
+  const [infos, setInfos] = useState<IInfos>({
+    name: { value: '', checked: -1 },
+    nickname: { value: '', checked: -1 },
+    phoneNum: { value: '', checked: -1 },
+    code: {
+      loading: false,
+      value: '',
+      notSended: true,
+      checked: -1,
+    },
+    username: { value: '', checked: -1 },
+    password: { value: '', checked: -1 },
+    passwordCheck: { value: '', checked: -1 },
+    service: { value: false, checked: -1 },
+    privacy: { value: false, checked: -1 },
+    ageOver: { value: false, checked: -1 },
+    marketing: { value: false, checked: -1 },
   });
-  const [code, setCode] = useState({
-    loading: false,
-    number: '',
-    notSended: true,
-    checked: false,
-  });
-  const [signupLoading, setSignupLoading] = useState(false);
+  const {
+    name,
+    nickname,
+    phoneNum,
+    code,
+    username,
+    password,
+    passwordCheck,
+    service,
+    privacy,
+    ageOver,
+    marketing,
+  } = infos;
+  const [signup, { loading, error }] = useMutation<MutationResult>(
+    usersApi.signupNextApi
+  );
+
+  // 인증번호 코드 전송
+  const sendCode = async () => {
+    setInfos((prev) => ({ ...prev, code: { ...prev.code, loading: true } }));
+    if (phoneNum.value.length > 0) {
+      try {
+        await usersApi.getCode(phoneNum.value);
+        setInfos((prev) => ({
+          ...prev,
+          code: { ...prev.code, notSended: false },
+        }));
+      } catch {
+        alert('Server Error');
+      } finally {
+        setInfos((prev) => ({
+          ...prev,
+          code: { ...prev.code, loading: false },
+        }));
+      }
+    }
+  };
+
+  // 인증번호 검사
+  useEffect(() => {
+    const checkCode = async () => {
+      const { data: checked } = await usersApi.checkCode(
+        phoneNum.value,
+        +code.value
+      );
+
+      if (checked === 'wrong_code') {
+        setInfos((prev) => ({
+          ...prev,
+          code: { ...prev.code, checked: false },
+        }));
+      } else {
+        setInfos((prev) => ({
+          ...prev,
+          code: { ...prev.code, checked: true },
+        }));
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if (code.value.length > 0) {
+        checkCode();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [code.value]);
 
   // Input 필드 입력
   const handleInput = (
@@ -47,22 +117,15 @@ const SignUp: NextPage = () => {
       target: { value },
     } = e;
 
-    if (kind === 'code') {
-      //  인증번호 필드 입력
-      setCode((prev) => ({ ...prev, number: value }));
-    } else {
-      // 나머지 필드 입력
-      if (kind === 'phoneNum') {
-        // 전화번호 필드 변경 시 인증번호 필드 초기화
-        setCode((prev) => ({
-          ...prev,
-          number: '',
-          notSended: true,
-          checked: false,
-        }));
-      }
-      setInfos((prev) => ({ ...prev, [kind]: value }));
+    // 나머지 필드 입력
+    if (kind === 'phoneNum') {
+      // 전화번호 필드 변경 시 인증번호 필드 초기화
+      setInfos((prev) => ({
+        ...prev,
+        code: { ...prev.code, value: '', notSended: true, checked: -1 },
+      }));
     }
+    setInfos((prev) => ({ ...prev, [kind]: { ...prev[kind], value } }));
   };
 
   // Checkbox 필드 입력
@@ -74,71 +137,57 @@ const SignUp: NextPage = () => {
       target: { checked },
     } = e;
 
-    if (checked) {
-      setInfos((prev) => ({ ...prev, [kind]: true }));
-    } else {
-      setInfos((prev) => ({ ...prev, [kind]: false }));
-    }
+    setInfos((prev) => ({
+      ...prev,
+      [kind]: { ...prev[kind], value: checked },
+    }));
   };
 
-  // 인증번호 코드 전송
-  const sendCode = async () => {
-    setCode((prev) => ({ ...prev, loading: true }));
-    if (infos.phoneNum.length > 0) {
-      try {
-        await signUpApi.getCode(infos.phoneNum);
-        setCode((prev) => ({ ...prev, notSended: false }));
-      } catch {
-        alert('Server Error');
-      } finally {
-        setCode((prev) => ({ ...prev, loading: false }));
-      }
-    }
+  // 회원가입 진행
+  const handleSubmit = () => {
+    const req = {
+      name: name.value,
+      nickname: nickname.value,
+      phoneNum: phoneNum.value,
+      username: username.value,
+      password: password.value,
+      marketing: marketing.value,
+    };
+
+    signup({ req, redirect: true });
   };
-
-  const handleSubmit = async () => {
-    setSignupLoading(true);
-
-    try {
-      await signUpApi.signup(infos);
-    } catch {
-      alert('Server Error');
-    } finally {
-      setSignupLoading(true);
-    }
-  };
-
   return (
     <>
       <SEO title='회원가입' />
       <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem]'>
         <h1 className='text-2xl font-medium'>회원가입</h1>
 
+        {/* Input 필드 */}
         <div className='mt-12 w-full space-y-8'>
           <Input
             label='이름'
-            type='text'
-            placeholder='이름'
-            value={infos.name}
             kind='name'
+            type='text'
+            value={name.value}
+            checked={name.checked}
             handleInput={handleInput}
           />
 
           <Input
             label='닉네임'
-            type='text'
-            placeholder='닉네임'
-            value={infos.nickname}
             kind='nickname'
+            type='text'
+            value={nickname.value}
+            checked={nickname.checked}
             handleInput={handleInput}
           />
 
           <Input
             label='전화번호'
-            type='tel'
-            placeholder='전화번호'
-            value={infos.phoneNum}
             kind='phoneNum'
+            type='tel'
+            value={phoneNum.value}
+            checked={phoneNum.checked}
             handleInput={handleInput}
             codeLoading={code.loading}
             sendCode={sendCode}
@@ -147,50 +196,60 @@ const SignUp: NextPage = () => {
           <Input
             disabled={code.notSended}
             label='인증번호'
-            type='tel'
-            placeholder='인증번호'
-            value={code.number}
             kind='code'
+            type='tel'
+            value={code.value}
+            checked={code.checked}
             handleInput={handleInput}
           />
 
           <Input
             label='아이디'
-            type='text'
-            placeholder='아이디'
-            value={infos.username}
             kind='username'
+            type='text'
+            value={username.value}
+            checked={username.checked}
             handleInput={handleInput}
           />
 
           <Input
             label='비밀번호'
-            type='password'
-            placeholder='비밀번호'
-            value={infos.password}
             kind='password'
+            type='password'
+            value={password.value}
+            checked={password.checked}
             handleInput={handleInput}
           />
 
           <Input
             label='비밀번호 확인'
-            type='password'
-            placeholder='비밀번호 확인'
-            value={infos.passwordCheck}
             kind='passwordCheck'
+            type='password'
+            value={passwordCheck.value}
+            checked={passwordCheck.checked}
             handleInput={handleInput}
           />
         </div>
+        {/* Input 필드 */}
 
+        {/* Checkbox 필드 */}
         <div className='mt-6 w-full space-y-[0.875rem]'>
-          <Checkbox kind='service' handleCheckbox={handleCheckbox}>
+          <Checkbox
+            kind='service'
+            checked={service.checked}
+            handleCheckbox={handleCheckbox}
+          >
             <div className='text-[#cfcfcf]'>
               <span className='text-[#ff8a00] underline'>서비스이용약관</span>에
               동의합니다. (필수)
             </div>
           </Checkbox>
 
-          <Checkbox kind='privacy' handleCheckbox={handleCheckbox}>
+          <Checkbox
+            kind='privacy'
+            checked={privacy.checked}
+            handleCheckbox={handleCheckbox}
+          >
             <div className='text-[#cfcfcf]'>
               <span className='text-[#ff8a00] underline'>
                 개인정보 수집 및 이용동의
@@ -199,7 +258,11 @@ const SignUp: NextPage = () => {
             </div>
           </Checkbox>
 
-          <Checkbox kind='ageOver' handleCheckbox={handleCheckbox}>
+          <Checkbox
+            kind='ageOver'
+            checked={ageOver.checked}
+            handleCheckbox={handleCheckbox}
+          >
             <div className='text-[#cfcfcf]'>만 14세 이상 입니다. (필수)</div>
           </Checkbox>
 
@@ -209,12 +272,14 @@ const SignUp: NextPage = () => {
             </div>
           </Checkbox>
         </div>
+        {/* Checkbox 필드 */}
 
+        {/* 회원가입 버튼 */}
         <div
           onClick={handleSubmit}
           className='mt-12 flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90'
         >
-          {signupLoading ? (
+          {loading ? (
             <svg
               role='status'
               className='h-6 w-6 animate-spin fill-[#373c46] text-[#02cce2]'
@@ -235,9 +300,14 @@ const SignUp: NextPage = () => {
             '회원가입 완료'
           )}
         </div>
+        {/* 회원가입 버튼 */}
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return getToken(ctx);
 };
 
 export default SignUp;

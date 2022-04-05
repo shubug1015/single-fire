@@ -4,10 +4,10 @@ import React from 'react';
 interface IProps {
   disabled?: boolean;
   label: string;
-  type: 'text' | 'tel' | 'password';
-  placeholder: string;
-  value: string;
   kind: string;
+  type: 'text' | 'tel' | 'password';
+  value: string;
+  checked?: boolean | number;
   handleInput: (e: React.ChangeEvent<HTMLInputElement>, kind: string) => void;
   codeLoading?: boolean;
   sendCode?: () => void;
@@ -16,10 +16,10 @@ interface IProps {
 export default function Input({
   disabled,
   label,
-  type,
-  placeholder,
-  value,
   kind,
+  type,
+  value,
+  checked,
   handleInput,
   codeLoading,
   sendCode,
@@ -32,19 +32,22 @@ export default function Input({
         <input
           disabled={disabled || false}
           type={type}
-          placeholder={placeholder}
+          placeholder={label}
           value={value}
           onChange={(e) => handleInput(e, kind)}
           className={cls(
             label === '전화번호' ? 'w-[calc(100%-8.5rem)]' : 'w-full',
-            'h-full rounded border border-[rgba(255,255,255,0.38)] bg-transparent pl-4 outline-none'
+            checked || checked === -1
+              ? 'border-[rgba(255,255,255,0.38)]'
+              : 'border-red-500',
+            'h-full rounded border bg-transparent pl-4 outline-none placeholder:text-sm'
           )}
         />
 
         {label === '전화번호' && (
           <div
             onClick={sendCode}
-            className='ml-4 flex h-full w-[7.5rem] cursor-pointer items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] transition-all hover:opacity-70'
+            className='ml-4 flex h-full w-[7.5rem] cursor-pointer items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm transition-all hover:opacity-70'
           >
             {codeLoading ? (
               <svg

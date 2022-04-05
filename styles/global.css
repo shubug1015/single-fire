@@ -62,9 +62,9 @@ a {
 }
 
 /* react-slick dots 커스텀 */
-.slick-dots {
+/* .slick-dots {
   margin-left: -236px !important;
-}
+} */
 
 .slick-dots li {
   width: 0.375rem !important;

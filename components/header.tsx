@@ -1,88 +1,145 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@public/logo.png';
+import { useRecoilValue } from 'recoil';
+import { tokenAtom } from '@libs/atom';
+import useMutation from '@libs/client/useMutation';
+import { usersApi } from '@libs/api';
+import { navList } from './navList';
+import { useRouter } from 'next/router';
+import { cls } from '@libs/utils';
+
+interface MutationResult {
+  ok: boolean;
+}
 
 export default function Header() {
+  const token = useRecoilValue<string | null>(tokenAtom);
+  const [logout, { loading }] = useMutation<MutationResult>(
+    usersApi.logoutNextApi
+  );
+
+  const router = useRouter();
+  const pathname = router.pathname;
+
   return (
     <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md'>
       <div className='mx-auto max-w-[1180px]'>
-        {/* 헤더 상단 Start */}
+        {/* 헤더 상단 */}
         <div className='flex h-[6.25rem] items-center justify-between'>
-          {/* 좌측 메뉴 Start */}
+          {/* 좌측 메뉴 */}
           <nav className='flex items-center text-lg font-medium'>
             <Link href='/'>
               <a className='relative h-[1.313rem] w-[11.125rem]'>
-                <Image
-                  src={Logo}
-                  alt='Logo'
-                  layout='fill'
-                  objectFit='cover'
-                  priority
-                />
+                <Image src={Logo} alt='Logo' layout='fill' objectFit='cover' />
               </a>
             </Link>
 
-            <Link href='/'>
-              <a className='ml-20 mr-10'>클래스</a>
-            </Link>
-
-            <Link href='/'>
-              <a>커뮤니티</a>
-            </Link>
-          </nav>
-          {/* 좌측 메뉴 End */}
-
-          {/* 우측 메뉴 Start */}
-          <nav className='flex text-sm font-medium'>
-            <Link href='/login'>
-              <a className='mr-4 flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#ffffff2b]'>
-                로그인
+            <Link href='/lecture'>
+              <a
+                className={cls(
+                  pathname.includes('lecture') ? 'text-[#00e7ff]' : '',
+                  'ml-20 mr-10'
+                )}
+              >
+                클래스
               </a>
             </Link>
 
-            <Link href='/signup'>
-              <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
-                회원가입
+            <Link href='/community'>
+              <a
+                className={cls(
+                  pathname.includes('community') ? 'text-[#00e7ff]' : ''
+                )}
+              >
+                커뮤니티
               </a>
             </Link>
           </nav>
-          {/* 우측 메뉴 End */}
+          {/* 좌측 메뉴 */}
+
+          {/* 우측 메뉴 */}
+          <nav className='flex space-x-4 text-sm font-medium'>
+            {token && token.length > 0 ? (
+              <>
+                <Link href='/mypage/lecture/1'>
+                  <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm border border-[#00e7ff] leading-3 text-[#00e7ff]'>
+                    내 강의보기
+                  </a>
+                </Link>
+
+                <Link href='/mypage'>
+                  <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
+                    마이페이지
+                  </a>
+                </Link>
+
+                <div
+                  onClick={() => logout({ req: {}, redirect: true })}
+                  className='flex h-[2.625rem] w-[6.25rem] cursor-pointer items-center justify-center rounded-sm bg-[#ffffff2b]'
+                >
+                  {loading ? (
+                    <svg
+                      role='status'
+                      className='h-4 w-4 animate-spin fill-[#373c46] text-[#02cce2]'
+                      viewBox='0 0 100 101'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
+                        fill='currentColor'
+                      />
+                      <path
+                        d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
+                        fill='currentFill'
+                      />
+                    </svg>
+                  ) : (
+                    '로그아웃'
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <Link href='/login'>
+                  <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#ffffff2b]'>
+                    로그인
+                  </a>
+                </Link>
+
+                <Link href='/signup'>
+                  <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
+                    회원가입
+                  </a>
+                </Link>
+              </>
+            )}
+          </nav>
+          {/* 우측 메뉴 */}
         </div>
-        {/* 헤더 상단 End */}
+        {/* 헤더 상단 */}
 
-        {/* 헤더 하단 Start */}
+        {/* 헤더 하단 */}
         <div className='flex h-[3.75rem] items-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]'>
           <nav className='flex space-x-10 font-medium'>
-            <Link href='/'>
-              <a>BEST</a>
-            </Link>
-
-            <Link href='/'>
-              <a>코인</a>
-            </Link>
-
-            <Link href='/'>
-              <a>부동산</a>
-            </Link>
-
-            <Link href='/'>
-              <a>주식</a>
-            </Link>
-
-            <Link href='/'>
-              <a>라이프&커리어</a>
-            </Link>
-
-            <Link href='/'>
-              <a>강사소개</a>
-            </Link>
-
-            <Link href='/'>
-              <a>이벤트</a>
-            </Link>
+            {navList.map((nav) => (
+              <Link key={nav.id} href={nav.url}>
+                <a
+                  className={cls(
+                    pathname.replace('/[page]', '') ===
+                      nav.url.replace('/1', '')
+                      ? 'text-[#00e7ff]'
+                      : ''
+                  )}
+                >
+                  {nav.label}
+                </a>
+              </Link>
+            ))}
           </nav>
         </div>
-        {/* 헤더 하단 End */}
+        {/* 헤더 하단 */}
       </div>
     </header>
   );

@@ -1,4 +1,6 @@
 import Layout from '@layouts/sectionLayout';
+import Image from 'next/image';
+import BgImg from '@public/home/community-bg.png';
 
 export default function Community() {
   return (
@@ -7,7 +9,7 @@ export default function Community() {
       bgImg='bg-[url("/home/community-bg.png")]'
       padding='py-[5.5rem]'
     >
-      <div className='w-[41.25rem] bg-[url("/home/community-blur.png")] bg-no-repeat pt-[3.75rem] pb-[7.438rem] pl-[3.75rem]'>
+      <div className='relative w-[41.25rem] bg-[url("/home/community-blur.png")] bg-no-repeat pt-[3.75rem] pb-[7.438rem] pl-[3.75rem]'>
         <div className='inline-block rounded-sm bg-[#ffffff29] py-1.5 px-3 text-sm font-medium'>
           커뮤니티
         </div>
@@ -18,6 +20,19 @@ export default function Community() {
         </div>
         <div className='mt-12 text-lg'>
           장기투자를 위해서, 반드시 포트폴리오 관리는 필요합니다.
+        </div>
+
+        <div className='absolute top-0 left-0 -z-[1] h-full w-full'>
+          <div className='relative h-full w-full'>
+            <Image
+              src={BgImg}
+              alt='Community Banner Image'
+              layout='fill'
+              objectFit='cover'
+              placeholder='blur'
+              quality={100}
+            />
+          </div>
         </div>
       </div>
     </Layout>

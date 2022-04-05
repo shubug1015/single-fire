@@ -2,13 +2,16 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-import BannerImg from '@public/home/banner-img-1.png';
+
+interface IProps {
+  data: any[];
+}
 
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export default function Banner() {
+export default function Banner({ data }: IProps) {
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
@@ -59,7 +62,7 @@ export default function Banner() {
     autoplaySpeed: 5000,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    appendDots: (dots: any) => <ul style={{ bottom: '4.25rem' }}>{dots}</ul>,
+    appendDots: (dots: any) => <ul>{dots}</ul>,
     customPaging: () => (
       <div className='aspect-square w-1.5 rounded-full bg-[#ffffff80]'></div>
     ),
@@ -67,43 +70,34 @@ export default function Banner() {
 
   return (
     <div className='h-[51.625rem] w-screen bg-[#2f436de0] bg-[url("/home/banner-bg.png")] bg-cover bg-center bg-no-repeat'>
-      <Slider className='!flex h-full items-center' {...settings}>
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i}>
-            <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
-              <div className='z-[1] text-[3.25rem] font-bold'>
-                Lorem ipsum
-                <br />
-                dolor sit amet,
-                <br />
-                adipiscing elit.
-              </div>
+      {data && data.length > 0 && (
+        <Slider
+          className='!flex h-full items-center'
+          {...settings}
+          dotsClass='slick-dots absolute !right-[calc((100vw-1180px)/2)] !bottom-[4.25rem] !flex justify-start !w-[55rem]'
+        >
+          {data.map((i) => (
+            <div key={i.order}>
+              <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
+                <div className='z-[1] text-[3.25rem] font-bold'>{i.title}</div>
 
-              <div className='z-[1] mt-[3.75rem] font-light'>
-                Sed sollicitudin erat ac eleifend,
-                <br />
-                accumsan. Donec finibus
-                <br />
-                vestibulum urna, ultrices dictum
-                <br />
-                diam auctor sit amet.
-              </div>
+                <div className='z-[1] mt-[3.75rem] font-light'>{i.text}</div>
 
-              <div className='absolute top-1/2 right-0 -translate-y-1/2'>
-                <div className='relative h-[38.375rem] w-[55rem] rounded-md shadow-sm'>
-                  <Image
-                    src={BannerImg}
-                    alt='Banner Image'
-                    placeholder='blur'
-                    layout='fill'
-                    objectFit='cover'
-                  />
+                <div className='absolute top-1/2 right-0 -translate-y-1/2'>
+                  <div className='relative h-[38.375rem] w-[55rem] rounded-md shadow-sm'>
+                    <Image
+                      src={i.img}
+                      alt='Banner Image'
+                      layout='fill'
+                      objectFit='cover'
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }
