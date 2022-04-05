@@ -78,7 +78,7 @@ export const usersApi = {
     }),
 
   myLectureDetail: ({ id, token }: IProps) =>
-    api.get(`/lectures/registered_lecture?registered_pk=${id}`, {
+    api.get(`/lectures/registered_lecture/${id}`, {
       headers: {
         Authorization: token,
         'Content-Type': 'application/json',
