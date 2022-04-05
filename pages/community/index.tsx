@@ -2,9 +2,9 @@ import SEO from '@components/seo';
 import { getToken, setToken } from '@libs/token';
 import type { GetServerSideProps, NextPage } from 'next';
 import Ecomony from '@public/community/ecomony.png';
-import Nft from '@public/community/Nft.png';
-import Stock from '@public/community/Stock.png';
-import Coin from '@public/community/Coin.png';
+import Nft from '@public/community/nft.png';
+import Stock from '@public/community/stock.png';
+import Coin from '@public/community/coin.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
