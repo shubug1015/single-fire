@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 
 export default function Navigator() {
   const router = useRouter();
-  const pathname = router.pathname;
+  const { category, page } = router.query;
 
   return (
     <div className='w-screen border-b-2 border-[#464c59]'>
@@ -18,8 +18,9 @@ export default function Navigator() {
                 <a>
                   <div
                     className={cls(
-                      pathname.replace('/[page]', '') ===
-                        nav.url.replace('/1', '')
+                      (category && page
+                        ? `/lecture/${category}/${page}`
+                        : '/lecture') === nav.url
                         ? 'border-[#009fb0] bg-[#00e7ff] text-[#282e38]'
                         : 'border-[#4a4e57]',
                       'rounded-full border py-2 px-8'

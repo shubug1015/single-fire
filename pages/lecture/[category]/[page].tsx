@@ -14,18 +14,29 @@ interface IProps {
   token: string | null;
 }
 
-const OnlineBusiness: NextPage<IProps> = ({ token }) => {
+const Lectures: NextPage<IProps> = ({ token }) => {
   setToken({ token });
 
   const router = useRouter();
-  const { page } = router.query;
+  const { category, page } = router.query;
+  console.log(router.query);
+  const categoryReq =
+    category === 'real-estate'
+      ? '부동산'
+      : category === 'stock'
+      ? '주식'
+      : category === 'coin'
+      ? '코인'
+      : category === 'online-business'
+      ? '온라인창업'
+      : '';
   const [getData, { loading, data, error }] = useMutation(
     page ? lecturesApi.lectures : null
   );
 
   useEffect(() => {
-    getData({ req: { category: '온라인창업', page } });
-  }, []);
+    getData({ req: { category: categoryReq, page } });
+  }, [category, page]);
   return (
     <>
       <SEO title='클래스' />
@@ -37,7 +48,7 @@ const OnlineBusiness: NextPage<IProps> = ({ token }) => {
             <CategoryBanner />
             <Navigator />
             <LectureList
-              title='온라인창업'
+              title={categoryReq}
               data={data.results}
               count={data.count}
             />
@@ -52,4 +63,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return getToken(ctx);
 };
 
-export default OnlineBusiness;
+export default Lectures;

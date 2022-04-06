@@ -79,7 +79,7 @@ const LectureDetail: NextPage<IProps> = ({ token }) => {
               </div>
             </Layout>
             {section === '강의정보' && <Info data={data.lecture_detail} />}
-            {section === '커리큘럼' && <Curriculum data={[]} />}
+            {section === '커리큘럼' && <Curriculum data={data.curriculum} />}
             {section === '수강후기' && <Review data={[]} />}
             {section === '커뮤니티' && <Community data={[]} />}
           </>

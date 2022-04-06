@@ -54,13 +54,13 @@ export const usersApi = {
     }),
 
   // 로그인(NextJS api)
-  loginNextApi: ({ username, password }: IProps, type?: string) =>
+  loginNextApi: ({ username, password }: IProps) =>
     axios.post('/api/login/', {
       username,
       password,
     }),
   // 로그인
-  login: ({ username, password }: IProps, type?: string) =>
+  login: ({ username, password }: IProps) =>
     api.post('users/login/', {
       username,
       password,
