@@ -1,4 +1,5 @@
 import Input from '@components/input';
+import KakaoBtn from '@components/login/kakaoBtn';
 import SEO from '@components/seo';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
@@ -47,8 +48,8 @@ const Login: NextPage<IProps> = ({ token }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const req = { username, password };
-    login({ req, redirect: true });
+    const req = { type: 'normal', username, password };
+    login({ req, redirectUrl: 'back' });
   };
   return (
     <>
@@ -141,6 +142,10 @@ const Login: NextPage<IProps> = ({ token }) => {
             <a>비밀번호 찾기</a>
           </Link>
         </div>
+
+        {/* <div className='mt-20 w-full space-y-4'>
+          <KakaoBtn />
+        </div> */}
       </div>
     </>
   );

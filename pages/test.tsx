@@ -7,12 +7,8 @@ const Test: NextPage = () => {
       <SEO title='Test' />
       <div className='px-12 pt-24 pb-36'>
         <div className='mt-10 flex space-x-5'>
-          {/* <video key='1' controls playsInline className='aspect-video w-3/4'>
-            <source src={'https://vimeo.com/662170319'} />
-          </video> */}
-
           <div className='relative aspect-video w-3/4'>
-            <iframe
+            {/* <iframe
               src='https://player.vimeo.com/video/662170319?h=02989620f1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479'
               frameBorder='0'
               allow='autoplay; fullscreen; picture-in-picture'
@@ -25,9 +21,9 @@ const Test: NextPage = () => {
                 height: '100%',
               }}
               title='3강_1부.mp4'
-            ></iframe>
+            ></iframe> */}
           </div>
-          <script src='https://player.vimeo.com/api/player.js'></script>
+          {/* <script src='https://player.vimeo.com/api/player.js'></script> */}
         </div>
 
         <div className='mt-8 flex w-3/4 space-x-7 rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48'>

@@ -72,7 +72,7 @@ const FindId: NextPage<IProps> = ({ token }) => {
     e.preventDefault();
 
     const req = { phoneNum: phoneNum.value, code: code.value };
-    login({ req, redirect: true });
+    login({ req, redirectUrl: 'back' });
   };
   return (
     <>

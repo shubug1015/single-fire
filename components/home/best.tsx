@@ -10,7 +10,7 @@ export default function Best({ data }: IProps) {
   return (
     <Layout bgColor='#282e38' padding='py-[6.25rem]'>
       {/* 상단 배너 */}
-      <Link href='/'>
+      <Link href='/calculator'>
         <a>
           <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a]'>
             <div className='text-lg font-medium'>

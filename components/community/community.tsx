@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 interface IProps {
   id: number;
+  category: string;
   type?: string;
   num?: number;
   subject: string;
@@ -15,6 +16,7 @@ interface IProps {
 
 export default function Community({
   id,
+  category,
   type,
   num,
   subject,
@@ -25,7 +27,7 @@ export default function Community({
   view,
 }: IProps) {
   return (
-    <Link href={`/community/${id}`}>
+    <Link href={`/community/detail/${category}/${id}`}>
       <a>
         <div
           className={cls(

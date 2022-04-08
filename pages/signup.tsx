@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { usersApi } from '@libs/api';
 import { getToken, setToken } from '@libs/token';
 import useMutation from '@libs/client/useMutation';
+import { useRouter } from 'next/router';
 
 interface IProps {
   token: string | null;
@@ -22,6 +23,8 @@ interface MutationResult {
 const SignUp: NextPage<IProps> = ({ token }) => {
   setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
 
+  const router = useRouter();
+  console.log(router.query);
   const [infos, setInfos] = useState<IInfos>({
     name: { value: '', checked: -1 },
     nickname: { value: '', checked: -1 },
@@ -154,7 +157,7 @@ const SignUp: NextPage<IProps> = ({ token }) => {
       marketing: marketing.value,
     };
 
-    signup({ req, redirect: true });
+    signup({ req, redirectUrl: 'back' });
   };
   return (
     <>

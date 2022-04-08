@@ -54,19 +54,57 @@ export const usersApi = {
     }),
 
   // 로그인(NextJS api)
-  loginNextApi: ({ username, password }: IProps) =>
-    axios.post('/api/login/', {
-      username,
-      password,
-    }),
+  loginNextApi: (req: IProps) => axios.post('/api/login/', req),
   // 로그인
   login: ({ username, password }: IProps) =>
     api.post('users/login/', {
+      login_method: 'normal',
       username,
       password,
     }),
+  // 카카오 로그인
+  kakaoLogin: ({ id }: IProps) =>
+    api.post('users/login/', {
+      login_method: 'kakao',
+      kakao_id: id,
+    }),
   // 로그아웃(NextJS api)
   logoutNextApi: () => axios.post('/api/logout'),
+
+  // 마이페이지 내 정보
+  myInfos: (token: string) =>
+    api.get('/mypage/', {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+  // 마이페이지 회원 정보 수정
+  editInfos: ({
+    name,
+    nickname,
+    phoneNum,
+    password,
+    marketing,
+    token,
+  }: IProps) =>
+    api.post(
+      '/mypage/',
+      {
+        name,
+        nickname,
+        phone_number: phoneNum,
+        password,
+        ad_agree: marketing,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
 
   // 마이페이지 내 강의 리스트
   myLectureList: ({ page, token }: IProps) =>
@@ -77,8 +115,45 @@ export const usersApi = {
       },
     }),
 
+  // 마이페이지 내 강의 수강
   myLectureDetail: ({ id, token }: IProps) =>
     api.get(`/lectures/registered_lecture/${id}`, {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+  // 마이페이지 커뮤니티 리스트
+  myCommunityList: ({ page, token }: IProps) =>
+    api.get(`/mypage/community?page=${page}`, {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+  // 마이페이지 쿠폰 리스트
+  myPurchaseList: (token: string) =>
+    api.get(`/mypage/payment/`, {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+  // 마이페이지 쿠폰 리스트
+  myCouponList: (token: string) =>
+    api.get(`/mypage/coupon/`, {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+
+  // 마이페이지 포인트 리스트
+  myPointList: (token: string) =>
+    api.get(`/mypage/point/`, {
       headers: {
         Authorization: token,
         'Content-Type': 'application/json',
@@ -106,17 +181,29 @@ export const lecturesApi = {
 
 export const communityApi = {
   communities: ({
-    community,
+    category,
     page,
     orderType,
     searchType,
     searchTerm,
   }: IProps) =>
     api.get(
-      `community/${community}?page=${page}&filter_keyword=${orderType}&search_keyword=${searchType}&search=${
+      `community/${category}?page=${page}&filter_keyword=${orderType}&search_keyword=${searchType}&search=${
         searchTerm || ''
       }`
     ),
 
-  detail: (id: string) => api.get(`community/${id}/`),
+  detail: ({ category, id }: IProps) => api.get(`community/${category}/${id}/`),
 };
+
+export const purchaseApi = {
+  myData: (token: string) =>
+    api.get('payment/user/', {
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
+};
+
+// payment/user/

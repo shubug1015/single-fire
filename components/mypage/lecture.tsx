@@ -3,14 +3,16 @@ import Link from 'next/link';
 
 interface IProps {
   id: number;
+  thumbnail: string;
   name: string;
   created: string;
   expiration: string;
-  progress: string;
+  progress: number;
 }
 
 export default function Lecture({
   id,
+  thumbnail,
   name,
   created,
   expiration,
@@ -18,10 +20,17 @@ export default function Lecture({
 }: IProps) {
   return (
     <div>
-      <Link href={`/lecture/${id}`}>
+      <Link href={`/lecture/my/${id}`}>
         <a>
           <div className='flex w-full items-center space-x-6 rounded bg-[#4a4e57] p-8'>
-            <div className='relative h-40 w-72 rounded bg-gray-800'></div>
+            <div className='relative h-40 w-72 rounded bg-gray-700'>
+              <Image
+                src={thumbnail}
+                alt='Lecture Thumbnail'
+                layout='fill'
+                objectFit='cover'
+              />
+            </div>
 
             <div className='flex h-40 flex-col justify-between'>
               <div className='text-lg font-bold'>{name}</div>
@@ -54,7 +63,7 @@ export default function Lecture({
 
                 <div className='flex space-x-4 font-medium'>
                   <div className='text-[rgba(255,255,255,0.6)]'>강의 현황</div>
-                  <div>수강중</div>
+                  <div>{progress === 100 ? '수강완료' : '수강중'}</div>
                 </div>
               </div>
             </div>

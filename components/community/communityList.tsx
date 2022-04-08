@@ -11,7 +11,10 @@ interface IProps {
 
 export default function CommunityList({ notice, data, count }: IProps) {
   const router = useRouter();
-  const [page] = router.query.slug as string[];
+  const { category, slug } = router.query;
+  const [page] = slug as string[];
+
+  console.log(data);
 
   return (
     <Layout bgColor='#282e38' padding='pb-44'>
@@ -28,6 +31,7 @@ export default function CommunityList({ notice, data, count }: IProps) {
         <Community
           key={i.id}
           id={i.id}
+          category={category as string}
           type={'notice'}
           subject={'공지'}
           title={i.title}
@@ -41,7 +45,8 @@ export default function CommunityList({ notice, data, count }: IProps) {
         <Community
           key={i.id}
           id={i.id}
-          num={count - index * (+page * 12)}
+          category={category as string}
+          num={(+page - 1) * 12 + index + 1}
           subject={i.subject}
           title={i.title}
           created={i.created}

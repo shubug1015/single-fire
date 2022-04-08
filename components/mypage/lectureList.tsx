@@ -14,6 +14,7 @@ export default function LectureList({ data, count }: IProps) {
           <Lecture
             key={i.id}
             id={i.id}
+            thumbnail={i.lecture_thumbnail}
             name={i.lecture_name}
             created={i.created.split('T')[0].slice(0, 10)}
             expiration={i.expiration}
@@ -23,7 +24,7 @@ export default function LectureList({ data, count }: IProps) {
       </div>
 
       <div className='mt-20 flex justify-center'>
-        <Pagebar count={1} />
+        <Pagebar count={count} />
       </div>
     </div>
   );

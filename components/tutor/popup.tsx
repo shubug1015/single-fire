@@ -59,17 +59,15 @@ export default function Popup({
         exit='exit'
         className='h-[40rem] w-[52rem] rounded bg-[#282e38]'
       >
-        <div
-          onClick={closePopup}
-          className='mt-6 mr-6 flex cursor-pointer justify-end'
-        >
+        <div className='mt-6 mr-6 flex justify-end'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
+            className='h-6 w-6 cursor-pointer'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
             strokeWidth={2}
+            onClick={closePopup}
           >
             <path
               strokeLinecap='round'

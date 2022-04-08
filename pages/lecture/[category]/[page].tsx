@@ -19,7 +19,6 @@ const Lectures: NextPage<IProps> = ({ token }) => {
 
   const router = useRouter();
   const { category, page } = router.query;
-  console.log(router.query);
   const categoryReq =
     category === 'real-estate'
       ? '부동산'

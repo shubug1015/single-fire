@@ -20,7 +20,6 @@ export default function Header() {
   );
 
   const router = useRouter();
-  const pathname = router.pathname;
 
   return (
     <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md'>
@@ -38,7 +37,10 @@ export default function Header() {
             <Link href='/lecture'>
               <a
                 className={cls(
-                  pathname.includes('lecture') ? 'text-[#00e7ff]' : '',
+                  router.pathname === '/lecture' ||
+                    router.pathname === '/lecture/[category]/[page]'
+                    ? 'text-[#00e7ff]'
+                    : '',
                   'ml-20 mr-10'
                 )}
               >
@@ -49,7 +51,10 @@ export default function Header() {
             <Link href='/community'>
               <a
                 className={cls(
-                  pathname.includes('community') ? 'text-[#00e7ff]' : ''
+                  router.pathname === '/community' ||
+                    router.pathname === '/community/[category]/[...slug]'
+                    ? 'text-[#00e7ff]'
+                    : ''
                 )}
               >
                 커뮤니티
@@ -68,14 +73,14 @@ export default function Header() {
                   </a>
                 </Link>
 
-                <Link href='/mypage'>
+                <Link href='/mypage/edit'>
                   <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] leading-3 text-[#14161a]'>
                     마이페이지
                   </a>
                 </Link>
 
                 <div
-                  onClick={() => logout({ req: {}, redirect: true })}
+                  onClick={() => logout({ req: {}, redirectUrl: '/' })}
                   className='flex h-[2.625rem] w-[6.25rem] cursor-pointer items-center justify-center rounded-sm bg-[#ffffff2b]'
                 >
                   {loading ? (
@@ -127,8 +132,10 @@ export default function Header() {
               <Link key={nav.id} href={nav.url}>
                 <a
                   className={cls(
-                    pathname.replace('/[page]', '') ===
-                      nav.url.replace('/1', '')
+                    router.asPath ===
+                      `${nav.baseUrl}${
+                        router.query.page ? `/${router.query.page}` : ''
+                      }`
                       ? 'text-[#00e7ff]'
                       : ''
                   )}

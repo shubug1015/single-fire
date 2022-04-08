@@ -11,13 +11,10 @@ type UseMutationResult<T> = [(req?: any) => void, UseMutationState<T>];
 
 interface UseMutationProps {
   req?: any;
-  redirect?: boolean;
+  redirectUrl?: string;
 }
 
-export default function useMutation<T = any>(
-  // url: string,
-  fn?: any
-): UseMutationResult<T> {
+export default function useMutation<T = any>(fn?: any): UseMutationResult<T> {
   const [state, setState] = useState<UseMutationState<T>>({
     loading: false,
     data: undefined,
@@ -25,15 +22,18 @@ export default function useMutation<T = any>(
   });
   const router = useRouter();
 
-  const mutation = async ({ req, redirect }: UseMutationProps) => {
+  const mutation = async ({ req, redirectUrl }: UseMutationProps) => {
     setState((prev) => ({ ...prev, loading: true }));
 
     try {
       const { data } = await fn(req);
       setState((prev) => ({ ...prev, data }));
-      if (redirect) {
-        router.back();
-        // router.push('/');
+      if (redirectUrl) {
+        if (redirectUrl === 'back') {
+          router.back();
+        } else {
+          router.push(redirectUrl);
+        }
       }
     } catch {
       setState((prev) => ({ ...prev, error: true }));
