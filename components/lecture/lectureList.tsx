@@ -10,7 +10,7 @@ interface IProps {
 
 export default function LectureList({ title, data, count }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='pt-24 pb-44'>
+    <Layout padding='pt-24 pb-44'>
       <h1 className='text-2xl font-bold'>{title}</h1>
 
       <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-20'>

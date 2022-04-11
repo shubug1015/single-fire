@@ -15,7 +15,7 @@ export default function Best({
   business_class,
 }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='pt-24 pb-44'>
+    <Layout padding='pt-24 pb-44'>
       <div className='space-y-28'>
         {/* 부동산 Top3 강의 */}
         <TopLectureList

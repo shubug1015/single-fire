@@ -8,7 +8,7 @@ interface IProps {
 
 export default function Best({ data }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='py-[6.25rem]'>
+    <Layout padding='py-[6.25rem]'>
       {/* 상단 배너 */}
       <Link href='/calculator'>
         <a>

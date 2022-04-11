@@ -25,7 +25,7 @@ export default function Detail({
   };
 
   return (
-    <Layout bgColor='#282e38' padding='pt-24'>
+    <Layout padding='pt-24'>
       <div className='flex justify-between'>
         {/* 썸네일 */}
         <div className='relative h-[30.625rem] w-[43.75rem]'>

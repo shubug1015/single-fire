@@ -1,4 +1,4 @@
-import { gradeImg } from '@components/grade';
+import { grade, gradeImg } from '@components/grade';
 import { usersApi } from '@libs/api';
 import { tokenAtom } from '@libs/atom';
 import useMutation from '@libs/client/useMutation';
@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil';
 export default function Header() {
   const token = useRecoilValue<string | null>(tokenAtom);
 
-  const [getData, { loading, data, error }] = useMutation(
+  const [getData, { loading, data }] = useMutation(
     token ? usersApi.myInfos : null
   );
 
@@ -51,7 +51,7 @@ export default function Header() {
             <div className='relative mr-1 aspect-square w-4'>
               {gradeImg(data?.grade)}
             </div>{' '}
-            불꽃 등급
+            {grade(data?.grade)} 등급
           </div>
         </div>
 

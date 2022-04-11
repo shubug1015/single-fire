@@ -9,13 +9,30 @@ interface IProps {
 }
 
 export const usersApi = {
+  // 인증번호 확인
+  checkId: (username: string) => api.get(`users/check_id?username=${username}`),
+
+  // 회원가입 인증번호 발급
+  getSignupCode: (phoneNum: string) =>
+    api.post('users/signup_code_gen/', {
+      phone_number: phoneNum,
+    }),
+
   // 인증번호 발급
-  getCode: (phoneNum: string) =>
-    api.post('users/code_gen/', { phone_number: phoneNum }),
+  getCode: (phone_number: string, username?: string) =>
+    api.post('users/code_gen/', {
+      phone_number,
+      ...(username && { username }),
+    }),
 
   // 인증번호 확인
-  checkCode: (phoneNum: string, code: number) =>
-    api.get(`users/code_auth/`, { params: { phone_number: phoneNum, code } }),
+  checkCode: (phone_number: string, code: string) =>
+    api.get('users/code_auth/', {
+      params: {
+        phone_number,
+        code,
+      },
+    }),
 
   // 회원가입(NextJS api)
   signupNextApi: ({
@@ -24,7 +41,7 @@ export const usersApi = {
     phoneNum,
     username,
     password,
-    marketing,
+    adAgree,
   }: IProps) =>
     api.post('users/signup/', {
       name,
@@ -32,25 +49,18 @@ export const usersApi = {
       phone_number: phoneNum,
       username,
       password,
-      ad_agree: marketing,
+      ad_agree: adAgree,
     }),
 
   // 회원가입
-  signup: ({
-    name,
-    nickname,
-    phoneNum,
-    username,
-    password,
-    marketing,
-  }: IProps) =>
+  signup: ({ name, nickname, phoneNum, username, password, adAgree }: IProps) =>
     api.post('users/signup/', {
       name,
       nickname,
       phone_number: phoneNum,
       username,
       password,
-      ad_agree: marketing,
+      ad_agree: adAgree,
     }),
 
   // 로그인(NextJS api)
@@ -71,6 +81,14 @@ export const usersApi = {
   // 로그아웃(NextJS api)
   logoutNextApi: () => axios.post('/api/logout'),
 
+  // 아이디 찾기
+  findId: (phoneNum: string) =>
+    api.get(`users/find_username/?phone_number=${phoneNum}`),
+
+  // 비밀번호 재설정
+  resetPw: (username: string, password: string) =>
+    api.post('users/change_password/', { username, password }),
+
   // 마이페이지 내 정보
   myInfos: (token: string) =>
     api.get('/mypage/', {
@@ -81,22 +99,15 @@ export const usersApi = {
     }),
 
   // 마이페이지 회원 정보 수정
-  editInfos: ({
-    name,
-    nickname,
-    phoneNum,
-    password,
-    marketing,
-    token,
-  }: IProps) =>
+  editInfos: ({ name, nickname, phoneNum, password, adAgree, token }: IProps) =>
     api.post(
       '/mypage/',
       {
-        name,
-        nickname,
-        phone_number: phoneNum,
-        password,
-        ad_agree: marketing,
+        ...(name && { name }),
+        ...(nickname && { nickname }),
+        ...(phoneNum && { phone_number: phoneNum }),
+        ...(password && { password }),
+        ad_agree: adAgree,
       },
       {
         headers: {
@@ -197,6 +208,7 @@ export const communityApi = {
 };
 
 export const purchaseApi = {
+  // 결제페이지 내 정보
   myData: (token: string) =>
     api.get('payment/user/', {
       headers: {
@@ -204,6 +216,35 @@ export const purchaseApi = {
         'Content-Type': 'application/json',
       },
     }),
+
+  // 결제
+  purchase: ({
+    type,
+    lectureId,
+    totalPrice,
+    point,
+    coupon,
+    orderId,
+    token,
+  }: IProps) =>
+    api.post(
+      '/payment/',
+      {
+        type,
+        lecture_pk: lectureId,
+        payment: totalPrice,
+        ...(point && point > 0 && { point }),
+        ...(coupon && { coupon_pk: coupon }),
+        payment_id: orderId,
+        token,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
 };
 
 // payment/user/

@@ -3,10 +3,10 @@ import Layout from '@layouts/sectionLayout';
 export default function Loader() {
   return (
     <Layout>
-      <div className='flex h-[40rem] w-full items-center justify-center'>
+      <div className='flex h-[50rem] w-full items-center justify-center'>
         <svg
           role='status'
-          className='h-6 w-6 animate-spin fill-[#373c46] text-[#02cce2]'
+          className='h-7 w-7 animate-spin fill-[#373c46] text-[#02cce2]'
           viewBox='0 0 100 101'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'

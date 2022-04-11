@@ -30,7 +30,7 @@ export default function Search() {
   };
 
   return (
-    <Layout bgColor='#282e38' padding='pt-28 pb-6'>
+    <Layout padding='pt-28 pb-6'>
       <div className='flex justify-between'>
         <div className='flex space-x-4'>
           <Select

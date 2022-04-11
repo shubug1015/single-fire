@@ -2,6 +2,7 @@ import Layout from '@layouts/sectionLayout';
 import { getToken, setToken } from '@libs/token';
 import type { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface IProps {
   token: string | null;
@@ -10,6 +11,8 @@ interface IProps {
 const Finish: NextPage<IProps> = ({ token }) => {
   setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
 
+  const router = useRouter();
+  const { name, payMethod, price, discount, point, totalPrice } = router.query;
   return (
     <Layout padding='pt-24 pb-48'>
       <div className='flex justify-center text-[2.5rem] font-bold'>
@@ -34,12 +37,20 @@ const Finish: NextPage<IProps> = ({ token }) => {
       </div>
 
       <div className='flex items-center border-b-2 border-[#4a4e57] py-14 text-lg'>
-        <div className='flex w-1/6 justify-center'>상품명</div>
-        <div className='flex w-1/6 justify-center'>결제 방법</div>
-        <div className='flex w-1/6 justify-center'>상품 금액</div>
-        <div className='flex w-1/6 justify-center'>할인 금액</div>
-        <div className='flex w-1/6 justify-center'>포인트 사용</div>
-        <div className='flex w-1/6 justify-center'>총 결제 금액</div>
+        <div className='flex w-1/6 justify-center'>{name}</div>
+        <div className='flex w-1/6 justify-center'>{payMethod}</div>
+        <div className='flex w-1/6 justify-center'>
+          {price && (+price).toLocaleString()}
+        </div>
+        <div className='flex w-1/6 justify-center'>
+          {discount && (+discount).toLocaleString()}
+        </div>
+        <div className='flex w-1/6 justify-center'>
+          {point ? (+point).toLocaleString() : '-'}
+        </div>
+        <div className='flex w-1/6 justify-center'>
+          {totalPrice && (+totalPrice).toLocaleString()}
+        </div>
       </div>
 
       <div className='mt-20 flex justify-center'>

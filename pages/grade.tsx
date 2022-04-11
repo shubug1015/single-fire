@@ -13,7 +13,7 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
 
   return (
     <>
-      <SEO title='등급 안내' />
+      <SEO title='등급안내' />
       <Layout padding='pt-20 pb-36'>
         <div className='text-2xl font-bold'>등급 안내</div>
 

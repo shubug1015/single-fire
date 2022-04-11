@@ -63,7 +63,7 @@ const Purchase: NextPage<IProps> = ({ token }) => {
       target: { value },
     } = e;
 
-    if (+value > point) {
+    if (+value > myData.point) {
       setPoint(myData.point);
     } else {
       setPoint(+value);
@@ -87,12 +87,32 @@ const Purchase: NextPage<IProps> = ({ token }) => {
       ), // 전화번호
     };
 
-    const callback = (res: any) => {
+    const callback = async (res: any) => {
       const { success, merchant_uid, error_msg, imp_uid, error_code } = res;
       if (success) {
-        console.log(res);
+        await purchaseApi.purchase({
+          type: 'lecture',
+          lectureId: lectureData.id,
+          totalPrice,
+          point,
+          coupon: coupon.id,
+          orderId,
+          token,
+        });
+
+        router.push({
+          pathname: '/purchase/finish',
+          query: {
+            name: res.name,
+            payMethod: res.card_name,
+            price: lectureData.price,
+            discount: totalDiscount,
+            point,
+            totalPrice,
+          },
+        });
       } else {
-        console.log('error');
+        console.log('error', error_code);
       }
     };
 

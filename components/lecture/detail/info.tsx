@@ -7,7 +7,7 @@ interface IProps {
 
 export default function Info({ data }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='pb-80'>
+    <Layout padding='pb-80'>
       {data.map((i) => (
         <div key={i.id} className='relative w-full'>
           <Image

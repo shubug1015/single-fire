@@ -14,10 +14,8 @@ export default function CommunityList({ notice, data, count }: IProps) {
   const { category, slug } = router.query;
   const [page] = slug as string[];
 
-  console.log(data);
-
   return (
-    <Layout bgColor='#282e38' padding='pb-44'>
+    <Layout padding='pb-44'>
       <div className='flex h-[3.75rem] items-center bg-[rgba(229,229,229,0.08)]'>
         <div className='flex w-[8.5%] justify-center'>번호</div>
         <div className='flex w-[8.5%] justify-center'>주제</div>

@@ -1,6 +1,6 @@
 import Loader from '@components/loader';
 import Header from '@components/mypage/header';
-import LectureList from '@components/mypage/lectureList';
+import Input from '@components/mypage/input';
 import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
@@ -8,96 +8,92 @@ import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
 import { getToken, setToken } from '@libs/token';
 import type { GetServerSideProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { FieldErrors, useForm } from 'react-hook-form';
 
 interface IProps {
   token: string | null;
 }
 
+interface IForm {
+  name: string;
+  nickname: string;
+  phoneNum: string;
+  password: string;
+  passwordCheck: string;
+  adAgree: boolean;
+}
+
 const EditProfile: NextPage<IProps> = ({ token }) => {
   setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
 
-  const [getData, { loading, data, error }] = useMutation(
-    token ? usersApi.myInfos : null
-  );
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [editMyInfos, { loading: editLoading }] = useMutation(
     token ? usersApi.editInfos : null
   );
   const [pwTabOpen, setPwTabOpen] = useState(false);
-  const [myInfos, setMyInfos] = useState({
-    name: '',
-    nickname: '',
-    phoneNum: '',
-    password: '',
-    passwordCheck: '',
-    marketing: false,
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useForm<IForm>({
+    mode: 'onChange',
   });
-
-  const handleInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    kind: string
-  ) => {
-    const {
-      target: { value },
-    } = e;
-
-    setMyInfos((prev) => ({ ...prev, [kind]: value }));
-  };
-
-  const handleCheckbox = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    kind: string
-  ) => {
-    const {
-      target: { checked },
-    } = e;
-
-    setMyInfos((prev) => ({
-      ...prev,
-      [kind]: checked,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    const req = {
-      name: myInfos.name,
-      nickname: myInfos.nickname,
-      phoneNum: myInfos.phoneNum,
-      password: myInfos.password,
-      marketing: myInfos.marketing,
-      token,
-    };
-
+  const onValid = (data: IForm) => {
     try {
+      const req = {
+        ...(data.name && { name: data.name }),
+        ...(data.nickname && { nickname: data.nickname }),
+        ...(data.phoneNum && { phoneNum: data.phoneNum }),
+        ...(data.password && { password: data.password }),
+        adAgree: data.adAgree,
+        token,
+      };
       editMyInfos({ req });
-    } catch (e) {
-      console.log(e);
-    } finally {
+
+      router.push('/mypage/edit');
+    } catch {
+      alert('Error');
+    }
+  };
+  const onInvalid = (errors: FieldErrors) => {
+    console.log(errors);
+  };
+
+  const getData = async () => {
+    if (token) {
+      try {
+        const { data } = await usersApi.myInfos(token);
+
+        setValue('name', data.name);
+        setValue('nickname', data.nickname);
+        setValue('phoneNum', data.phone_number);
+        setValue('adAgree', data.ad_agree);
+        setValue('password', '');
+        setValue('passwordCheck', '');
+      } catch {
+        alert('Error');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
-    getData({ req: token });
+    getData();
   }, []);
-
-  useEffect(() => {
-    setMyInfos({
-      name: data?.name,
-      nickname: data?.nickname,
-      phoneNum: data?.phone_number,
-      password: '',
-      passwordCheck: '',
-      marketing: data?.ad_agree,
-    });
-  }, [data]);
   return (
     <>
       <SEO title='마이페이지' />
-      {/* {loading ? (
+
+      {loading ? (
         <Loader />
       ) : (
-        data && ( */}
-      <>
         <Layout padding='pt-20 pb-44'>
           <Header />
 
@@ -112,40 +108,60 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
               <div className='divide-y divide-[#575b64] rounded-sm bg-[rgba(229,229,229,0.08)] p-10'>
                 {!pwTabOpen ? (
                   <>
-                    <div className='flex h-20 items-center'>
-                      <div className='w-44 font-medium opacity-60'>이름</div>
-                      <input
-                        type='text'
-                        placeholder='이름'
-                        value={myInfos.name || ''}
-                        onChange={(e) => handleInput(e, 'name')}
-                        className='bg-transparent outline-none'
-                      />
-                    </div>
+                    <Input
+                      type='text'
+                      label='이름'
+                      register={register('name', {
+                        required: '이름을 입력해주세요',
+                        minLength: {
+                          message: '이름은 2글자 이상이어야 합니다',
+                          value: 2,
+                        },
+                        maxLength: {
+                          message: '이름은 5글자 이하여야 합니다',
+                          value: 5,
+                        },
+                      })}
+                      error={errors?.name?.message}
+                    />
 
-                    <div className='flex h-20 items-center'>
-                      <div className='w-44 font-medium opacity-60'>닉네임</div>
-                      <input
-                        type='text'
-                        placeholder='닉네임'
-                        value={myInfos.nickname || ''}
-                        onChange={(e) => handleInput(e, 'nickname')}
-                        className='bg-transparent outline-none'
-                      />
-                    </div>
+                    <Input
+                      type='text'
+                      label='닉네임'
+                      register={register('nickname', {
+                        required: '닉네임을 입력해주세요',
+                        minLength: {
+                          message: '닉네임은 2글자 이상이어야 합니다',
+                          value: 2,
+                        },
+                        maxLength: {
+                          message: '닉네임은 8글자 이하여야 합니다',
+                          value: 8,
+                        },
+                      })}
+                      error={errors?.nickname?.message}
+                    />
 
-                    <div className='flex h-20 items-center'>
-                      <div className='w-44 font-medium opacity-60'>
-                        전화번호
-                      </div>
-                      <input
-                        type='text'
-                        placeholder='전화번호'
-                        value={myInfos.phoneNum || ''}
-                        onChange={(e) => handleInput(e, 'phoneNum')}
-                        className='bg-transparent outline-none'
-                      />
-                    </div>
+                    <Input
+                      type='tel'
+                      label='전화번호'
+                      register={register('phoneNum', {
+                        required: '전화번호를 입력해주세요',
+                        validate: {
+                          notPhoneNum: (value) => {
+                            const regPhoneNum =
+                              /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+                            if (regPhoneNum.test(value)) {
+                              return true;
+                            } else {
+                              return '올바른 전화번호를 입력해주세요';
+                            }
+                          },
+                        },
+                      })}
+                      error={errors?.phoneNum?.message}
+                      readOnly
+                    />
 
                     <div className='flex h-20 items-center'>
                       <div className='w-44 font-medium opacity-60'>
@@ -165,7 +181,7 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
                       </div>
                       <input
                         type='checkbox'
-                        onChange={(e) => handleCheckbox(e, 'marketing')}
+                        {...register('adAgree')}
                         className='mr-2.5 h-4 w-4 cursor-pointer appearance-none rounded-sm border bg-cover bg-center transition-all checked:border-none checked:bg-[url("/icons/check.png")]'
                       />
                       <div>이벤트 수신 동의</div>
@@ -177,34 +193,42 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
                       <div className='w-44 font-medium opacity-60'>
                         현재 비밀번호
                       </div>
-                      <div>******</div>
+                      <div>**********</div>
                     </div>
 
-                    <div className='flex h-20 items-center'>
-                      <div className='w-44 font-medium opacity-60'>
-                        새 비밀번호
-                      </div>
-                      <input
-                        type='text'
-                        placeholder='새 비밀번호'
-                        value={myInfos.password || ''}
-                        onChange={(e) => handleInput(e, 'password')}
-                        className='bg-transparent outline-none'
-                      />
-                    </div>
+                    <Input
+                      type='password'
+                      label='새 비밀번호'
+                      register={register('password', {
+                        required: '비밀번호를 입력해주세요',
+                        validate: {
+                          notPw: (value) => {
+                            const regPw =
+                              /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+                            if (regPw.test(value)) {
+                              return true;
+                            } else {
+                              return '비밀번호는 8자리 이상 / 1개 이상의 문자, 숫자, 특수문자가 포함되어야 합니다';
+                            }
+                          },
+                        },
+                      })}
+                      error={errors?.password?.message}
+                    />
 
-                    <div className='flex h-20 items-center'>
-                      <div className='w-44 font-medium opacity-60'>
-                        새 비밀번호 확인
-                      </div>
-                      <input
-                        type='text'
-                        placeholder='새 비밀번호 확인'
-                        value={myInfos.passwordCheck || ''}
-                        onChange={(e) => handleInput(e, 'passwordCheck')}
-                        className='bg-transparent outline-none'
-                      />
-                    </div>
+                    <Input
+                      type='password'
+                      label='새 비밀번호 확인'
+                      register={register('passwordCheck', {
+                        required: '비밀번호를 입력해주세요',
+                        validate: {
+                          notPwCheck: (value) =>
+                            value === watch('password') ||
+                            '비밀번호가 일치하지 않습니다',
+                        },
+                      })}
+                      error={errors?.passwordCheck?.message}
+                    />
                   </>
                 )}
               </div>
@@ -215,7 +239,7 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
                 </div> */}
 
                 <div
-                  onClick={handleSubmit}
+                  onClick={handleSubmit(onValid, onInvalid)}
                   className='cursor-pointer rounded-sm bg-[#00e7ff] py-3 px-10 font-medium text-[#282e38]'
                 >
                   {editLoading ? (
@@ -243,9 +267,7 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
             </div>
           </div>
         </Layout>
-      </>
-      {/* )
-      )} */}
+      )}
     </>
   );
 };

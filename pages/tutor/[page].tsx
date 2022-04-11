@@ -27,7 +27,7 @@ const Tutor: NextPage<IProps> = ({ token }) => {
   }, []);
   return (
     <>
-      <SEO title='클래스' />
+      <SEO title='강사소개' />
       {loading ? (
         <Loader />
       ) : (

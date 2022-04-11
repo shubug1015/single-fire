@@ -32,56 +32,56 @@ const Coupon: NextPage<IProps> = ({ token }) => {
   return (
     <>
       <SEO title='마이페이지' />
-      {/* {loading ? (
+      {loading ? (
         <Loader />
       ) : (
-        data && ( */}
-      <>
-        <Layout padding='pt-20 pb-44'>
-          <Header />
+        data && (
+          <>
+            <Layout padding='pt-20 pb-44'>
+              <Header />
 
-          <div className='mt-[4.5rem] flex space-x-10'>
-            <Navigator />
+              <div className='mt-[4.5rem] flex space-x-10'>
+                <Navigator />
 
-            <div className='grow space-y-10'>
-              <div className='space-y-6'>
-                <div className='flex space-x-5'>
-                  <Link href='/mypage/coupon/1'>
-                    <a>
-                      <div className='text-lg font-medium text-[#afafaf]'>
-                        쿠폰
+                <div className='grow space-y-10'>
+                  <div className='space-y-6'>
+                    <div className='flex space-x-5'>
+                      <Link href='/mypage/coupon/1'>
+                        <a>
+                          <div className='text-lg font-medium text-[#afafaf]'>
+                            쿠폰
+                          </div>
+                        </a>
+                      </Link>
+
+                      <div className='text-lg font-medium'>포인트</div>
+                    </div>
+
+                    <div className='flex justify-between space-x-4'>
+                      <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
+                        <div className='font-medium'>보유 포인트</div>
+                        <div className='font-bold'>200 P</div>
                       </div>
-                    </a>
-                  </Link>
 
-                  <div className='text-lg font-medium'>포인트</div>
-                </div>
-
-                <div className='flex justify-between space-x-4'>
-                  <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
-                    <div className='font-medium'>보유 포인트</div>
-                    <div className='font-bold'>200 P</div>
+                      <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
+                        <div className='font-medium'>사용한 포인트</div>
+                        <div className='font-bold'>30,000 P</div>
+                      </div>
+                    </div>
+                    {/* <CouponList data={[0, 1]} count={2} /> */}
                   </div>
 
-                  <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
-                    <div className='font-medium'>사용한 포인트</div>
-                    <div className='font-bold'>30,000 P</div>
+                  <div className='space-y-6'>
+                    <div className='text-lg font-medium'>사용내역</div>
+
+                    <PointList data={data.results} count={data.count} />
                   </div>
                 </div>
-                {/* <CouponList data={[0, 1]} count={2} /> */}
               </div>
-
-              <div className='space-y-6'>
-                <div className='text-lg font-medium'>사용내역</div>
-
-                <PointList data={[0, 1]} count={2} />
-              </div>
-            </div>
-          </div>
-        </Layout>
-      </>
-      {/* )
-      )} */}
+            </Layout>
+          </>
+        )
+      )}
     </>
   );
 };

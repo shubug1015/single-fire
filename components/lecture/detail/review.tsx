@@ -7,7 +7,7 @@ interface IProps {
 
 export default function Review({ data }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='pb-80'>
+    <Layout padding='pb-80'>
       <div className='w-full space-y-4'>
         <div className='w-full rounded bg-[#373c46] p-10'>
           <div className='text-lg font-medium'>닉네임🔥</div>

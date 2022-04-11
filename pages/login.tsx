@@ -8,74 +8,73 @@ import { cls } from '@libs/utils';
 import type { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { FieldErrors, useForm } from 'react-hook-form';
 
 interface IProps {
   token: string | null;
-}
-
-interface IInfos {
-  [key: string]: any;
 }
 
 interface MutationResult {
   ok: boolean;
 }
 
+interface IForm {
+  username: string;
+  password: string;
+}
+
 const Login: NextPage<IProps> = ({ token }) => {
   setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
 
-  const [infos, setInfos] = useState<IInfos>({
-    username: '',
-    password: '',
-  });
-  const { username, password } = infos;
   const [login, { loading, error }] = useMutation<MutationResult>(
     usersApi.loginNextApi
   );
 
-  // Input 필드 입력
-  const handleInput = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    kind: string
-  ) => {
-    const {
-      target: { value },
-    } = e;
-    setInfos((prev) => ({ ...prev, [kind]: value }));
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>({
+    mode: 'onChange',
+  });
+  const onValid = (data: IForm) => {
+    const req = {
+      type: 'normal',
+      username: data.username,
+      password: data.password,
+    };
 
-  // 회원가입 진행
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const req = { type: 'normal', username, password };
     login({ req, redirectUrl: 'back' });
   };
+  const onInvalid = (errors: FieldErrors) => {
+    console.log(errors);
+  };
+
   return (
     <>
       <SEO title='로그인' />
       <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem]'>
         <h1 className='text-2xl font-medium'>로그인</h1>
 
-        <form onSubmit={handleSubmit} className='w-full'>
+        <form onSubmit={handleSubmit(onValid, onInvalid)} className='w-full'>
           {/* Input 필드 */}
           <div className='mt-12 w-full space-y-8'>
             <Input
-              label='아이디'
-              kind='username'
               type='text'
-              value={username}
-              checked={-1}
-              handleInput={handleInput}
+              label='아이디'
+              register={register('username', {
+                required: '아이디를 입력해주세요',
+              })}
+              error={errors?.username?.message}
             />
 
             <Input
-              label='비밀번호'
-              kind='password'
               type='password'
-              value={password}
-              checked={-1}
-              handleInput={handleInput}
+              label='비밀번호'
+              register={register('password', {
+                required: '비밀번호 입력해주세요',
+              })}
+              error={errors?.password?.message}
             />
           </div>
 

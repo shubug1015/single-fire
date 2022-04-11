@@ -18,21 +18,25 @@ const Ecomony: NextPage<IProps> = ({ token }) => {
   setToken({ token });
 
   const router = useRouter();
-  console.log(router.query);
   const { category, slug } = router.query;
   const [page, orderType, searchType, searchTerm] = slug as string[];
   const [getData, { loading, data, error }] = useMutation(
     page ? communityApi.communities : null
   );
 
+  if (error) {
+    router.push('/');
+  }
+
   useEffect(() => {
     getData({
       req: { category, page, orderType, searchType, searchTerm },
     });
   }, [category, page, orderType, searchType, searchTerm]);
+
   return (
     <>
-      <SEO title='경제독서모임' />
+      <SEO title='커뮤니티' />
       {loading ? (
         <Loader />
       ) : (

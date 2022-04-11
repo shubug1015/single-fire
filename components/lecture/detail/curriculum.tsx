@@ -6,7 +6,7 @@ interface IProps {
 
 export default function Curriculum({ data }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='pb-80'>
+    <Layout padding='pb-80'>
       <div className='w-full rounded bg-[#373c46] py-12 px-16'>
         <div className='mb-12 text-xl font-bold'>커리큘럼</div>
 

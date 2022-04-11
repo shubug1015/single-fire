@@ -9,7 +9,7 @@ interface IProps {
 
 export default function Top3({ coin, realty, stock }: IProps) {
   return (
-    <Layout bgColor='#282e38' padding='py-24'>
+    <Layout padding='py-24'>
       <div className='space-y-28'>
         {/* 코인 Top3 강의 */}
         <TopLectureList title='코인 TOP3 강의' data={coin} url='/class/coin' />

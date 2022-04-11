@@ -31,30 +31,30 @@ const MyLectureList: NextPage<IProps> = ({ token }) => {
   return (
     <>
       <SEO title='마이페이지' />
-      {/* {loading ? (
+      {loading ? (
         <Loader />
       ) : (
-        data && ( */}
-      <>
-        <Layout padding='pt-20 pb-44'>
-          <Header />
+        data && (
+          <>
+            <Layout padding='pt-20 pb-44'>
+              <Header />
 
-          <div className='mt-[4.5rem] flex space-x-10'>
-            <Navigator />
+              <div className='mt-[4.5rem] flex space-x-10'>
+                <Navigator />
 
-            <div className='grow space-y-6'>
-              <div className='flex space-x-5 text-lg font-medium'>
-                <div>전체</div>
-                <div className='text-[#afafaf]'>환불 내역</div>
+                <div className='grow space-y-6'>
+                  <div className='flex space-x-5 text-lg font-medium'>
+                    <div>전체</div>
+                    <div className='text-[#afafaf]'>환불 내역</div>
+                  </div>
+
+                  <PurchaseList data={data.results} count={data.count} />
+                </div>
               </div>
-
-              <PurchaseList data={[0, 1]} count={2} />
-            </div>
-          </div>
-        </Layout>
-      </>
-      {/* )
-      )} */}
+            </Layout>
+          </>
+        )
+      )}
     </>
   );
 };
