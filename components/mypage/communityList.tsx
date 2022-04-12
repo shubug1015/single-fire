@@ -17,7 +17,7 @@ export default function CommunityList({ data, count }: IProps) {
             category={i.community.name}
             subject={i.subject}
             title={i.title}
-            created={i.created.split('T')[0].slice(5, 10)}
+            created={i.created}
           />
         ))}
       </div>

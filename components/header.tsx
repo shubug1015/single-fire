@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@public/logo.png';
-import { useRecoilValue } from 'recoil';
+import { SetterOrUpdater, useRecoilState, useRecoilValue } from 'recoil';
 import { tokenAtom } from '@libs/atom';
 import useMutation from '@libs/client/useMutation';
 import { usersApi } from '@libs/api';
@@ -14,12 +14,18 @@ interface MutationResult {
 }
 
 export default function Header() {
-  const token = useRecoilValue<string | null>(tokenAtom);
+  const router = useRouter();
+  const [token, setToken] = useRecoilState(tokenAtom);
   const [logout, { loading }] = useMutation<MutationResult>(
     usersApi.logoutNextApi
   );
 
-  const router = useRouter();
+  const handleLogout = () => {
+    setToken(null);
+    logout({ req: null, redirectUrl: '/' });
+  };
+
+  console.log('header', token);
 
   return (
     <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md'>
@@ -120,7 +126,7 @@ export default function Header() {
                 </Link>
 
                 <div
-                  onClick={() => logout({ req: {}, redirectUrl: '/' })}
+                  onClick={handleLogout}
                   className='flex h-[2.625rem] w-[6.25rem] cursor-pointer items-center justify-center rounded-sm bg-[#ffffff2b]'
                 >
                   {loading ? (

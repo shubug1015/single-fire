@@ -18,7 +18,7 @@ export default function PurchaseList({ data, count }: IProps) {
             category='카테고리'
             tutor='강사 이름'
             title='강의 제목'
-            date={i.created.split('T')[0].slice(0, 10)}
+            date={i.created}
             price={230000}
             discount={30000}
             payment='카드 결제'

@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const tokenAtom = atom({
+type Token = string | null;
+
+export const tokenAtom = atom<Token>({
   key: 'token',
   default: null,
 });

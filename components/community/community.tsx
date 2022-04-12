@@ -1,3 +1,4 @@
+import { trimDate } from '@libs/client/trim';
 import { cls } from '@libs/utils';
 import Link from 'next/link';
 
@@ -79,7 +80,7 @@ export default function Community({
           </div>
 
           <div className='flex w-[10%] justify-center'>
-            {created.split('T')[0].slice(5, 10)}
+            {trimDate(created, 5, 10)}
           </div>
 
           <div className='flex w-[10%] justify-center'>{view}</div>

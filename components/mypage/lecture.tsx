@@ -1,3 +1,4 @@
+import { trimDate } from '@libs/client/trim';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -38,7 +39,7 @@ export default function Lecture({
               <div className='space-y-1.5'>
                 <div className='flex space-x-4 font-medium'>
                   <div className='text-[rgba(255,255,255,0.6)]'>강의 시작</div>
-                  <div>{created}</div>
+                  <div>{trimDate(created, 0, 10)}</div>
                 </div>
 
                 <div className='flex items-center font-medium'>
@@ -57,7 +58,7 @@ export default function Lecture({
                 <div className='flex space-x-4 font-medium'>
                   <div className='text-[rgba(255,255,255,0.6)]'>강의 기간</div>
                   <div>
-                    {created} ~ {expiration}
+                    {trimDate(created, 0, 10)} ~ {expiration}
                   </div>
                 </div>
 

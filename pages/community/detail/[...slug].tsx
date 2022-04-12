@@ -28,11 +28,11 @@ const CommunityDetail: NextPage<IProps> = ({ token }) => {
   return (
     <>
       <SEO title={data?.title} />
-      {data && (
-        <>
-          <Detail {...data} />
-        </>
-      )}
+      {/* {data && ( */}
+      <>
+        <Detail {...data} />
+      </>
+      {/* )} */}
     </>
   );
 };

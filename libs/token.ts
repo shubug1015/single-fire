@@ -50,11 +50,13 @@ interface IProps {
 // 가져온 토큰값을 Recoil에 setState
 export const setToken = ({ token, redirectUrl }: IProps) => {
   const router = useRouter();
-  const [tokenState, setTokenState] = useRecoilState(tokenAtom);
+  const [prevToken, setPrevToken] = useRecoilState(tokenAtom);
+  // console.log(router.pathname, 'out', prevToken, token);
   useEffect(() => {
+    // console.log('in', prevToken, token);
     // 토큰값이 이전과 변경이 있을때만 setState
-    if (tokenState !== token) {
-      setTokenState(token);
+    if (prevToken !== token) {
+      setPrevToken(token);
     }
 
     // 토큰값이 있고 로그인 후 접근 불가능한 페이지는 리다이렉트
@@ -69,5 +71,5 @@ export const setToken = ({ token, redirectUrl }: IProps) => {
         router.replace(redirectUrl);
       }
     }
-  });
+  }, []);
 };

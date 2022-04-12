@@ -21,7 +21,7 @@ export default function PointList({ data, count }: IProps) {
             key={i.id}
             lecture='모든 강의'
             point={i.point}
-            period={i.created.split('T')[0].slice(0, 10)}
+            date={i.created}
           />
         ))}
       </div>

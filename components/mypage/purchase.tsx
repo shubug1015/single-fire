@@ -1,3 +1,4 @@
+import { trimDate } from '@libs/client/trim';
 import { useState } from 'react';
 import Popup from './popup';
 
@@ -92,7 +93,7 @@ export default function Purchase({
           <div className='space-y-1.5 pl-8 text-sm'>
             <div className='flex'>
               <div className='w-24 opacity-80'>결제 날짜</div>
-              <div>{date}</div>
+              <div>{trimDate(date, 0, 10)}</div>
             </div>
 
             <div className='flex'>

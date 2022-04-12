@@ -1,3 +1,4 @@
+import { trimDate } from '@libs/client/trim';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -26,7 +27,9 @@ export default function Community({
             </div>
             <div className='flex w-[6.25rem] justify-center'>{subject}주제</div>
             <div className='grow'>{title}</div>
-            <div className='flex w-[7.5rem] justify-center'>{created}</div>
+            <div className='flex w-[7.5rem] justify-center'>
+              {trimDate(created, 5, 10)}
+            </div>
           </div>
         </a>
       </Link>

@@ -16,7 +16,7 @@ export default function LectureList({ data, count }: IProps) {
             id={i.id}
             thumbnail={i.lecture_thumbnail}
             name={i.lecture_name}
-            created={i.created.split('T')[0].slice(0, 10)}
+            created={i.created}
             expiration={i.expiration}
             progress={i.total_progress}
           />

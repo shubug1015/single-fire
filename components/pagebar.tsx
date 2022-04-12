@@ -12,6 +12,7 @@ const Pagebar = ({ count }: IProps) => {
   const router = useRouter();
   const currentPage: number =
     +(router.query.page as string) || +(router.query.slug as string[])[0];
+
   const maxPage = Math.ceil(count / PAGE_LIST_LENGTH);
   const quo = Math.floor(currentPage / PAGE_LIST_LENGTH); // 몫
   const rem = currentPage % PAGE_LIST_LENGTH; // 나머지
@@ -19,7 +20,7 @@ const Pagebar = ({ count }: IProps) => {
     .map((_, i) => PAGE_LIST_LENGTH * (rem === 0 ? quo - 1 : quo) + i + 1) // 나머지가 0일 경우에는 quo-1 처리
     .filter((i) => i <= maxPage);
 
-  const [pageList, setPageList] = useState<any[]>([]);
+  const [pageList, setPageList] = useState<number[]>([]);
 
   const nextPage = () => {
     setPageList((prev) =>
