@@ -1,7 +1,29 @@
 import Layout from "@layouts/sectionLayout";
+import { cls } from "@libs/utils";
+import { useState } from "react";
 import TitleBtn from "./titleBtn";
 
 export default function Faq() {
+  const faqList = [
+    {
+      id: 0,
+      title: "타이틀1",
+      content: "content1",
+    },
+    {
+      id: 1,
+      title: "타이틀2",
+      content: "content2",
+    },
+    {
+      id: 2,
+      title: "타이틀3",
+      content: "content3",
+    },
+  ];
+  const [openedFaq, setOpenedFaq] = useState(0);
+  const toggleFaq = (id: number) => setOpenedFaq(id);
+
   return (
     <Layout bgColor="bg-[#2C2F34]" padding="pt-[6.25rem] pb-[12.58rem]">
       <div className="text-center">
@@ -9,56 +31,57 @@ export default function Faq() {
         <div className="mt-6 text-center text-4xl font-bold leading-normal text-white">
           자주 묻는 질문
         </div>
-        <div>
-          <div className="mt-20 flex items-center justify-between rounded bg-[#4a4e57] px-[3.75rem] py-8">
-            <div className="text-xl leading-10 text-white">타이틀</div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
+        <div className="mt-20">
+          {faqList.map((faq) => (
+            <div
+              onClick={() => toggleFaq(faq.id)}
+              className={cls(
+                faq.id === openedFaq ? "bg-black" : "bg-[#4a4e57]",
+                "mt-4 flex cursor-pointer justify-between rounded px-[3.75rem] py-8"
+              )}
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-          </div>
-          <div className="mt-4 flex justify-between rounded bg-black px-[3.75rem] pt-8 pb-20">
-            <div className="w-[58.75rem] text-left text-white">
-              <div className="text-xl leading-10">타이틀</div>
-              <div className="mt-10 text-base leading-[1.63rem]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                volutpat lobortis feugiat. Integer mollis, nulla vitae faucibus
-                varius, sem eros mattis nibh, eu ultricies tortor neque id diam.
-                Praesent interdum laoreet purus, vel porta nisi iaculis sed.
-                Nunc aliquam consequat condimentum. Morbi pretium ornare lectus.
-                Proin aliquam pulvinar vehicula. Donec ac sem sed massa auctor
-                venenatis vel quis dolor. Etiam a vestibulum dolor. Duis et
-                tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra
-                malesuada mattis. Pellentesque quis sagittis mi, vitae finibus
-                urna.
+              <div className="w-[58.75rem] text-left text-white">
+                <div className="text-xl leading-10">{faq.title}</div>
+                {faq.id === openedFaq && (
+                  <div className="mt-10 pb-12 text-base leading-[1.63rem]">
+                    {faq.content}
+                  </div>
+                )}
               </div>
+              {faq.id === openedFaq ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7 w-7 translate-y-[6px] text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M20 12H4"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-7 w-7 translate-y-[6px] text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              )}
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M20 12H4"
-              />
-            </svg>
-          </div>
-          <div className="mt-4 flex items-center justify-between rounded bg-[#4a4e57] px-[3.75rem] py-8">
+          ))}
+          {/* <div className="mt-4 flex items-center justify-between rounded bg-[#4a4e57] px-[3.75rem] py-8">
             <div className="text-xl leading-10 text-white">타이틀</div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +97,7 @@ export default function Faq() {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-[10rem] inline-block rounded-full border border-[#00E7FF] px-[1.375rem] py-[0.625rem] text-base font-bold text-[#00E7FF]">
