@@ -1,16 +1,36 @@
 import Layout from "@layouts/sectionLayout";
+import Image from "next/image";
 import TitleBtn from "./titleBtn";
+import ReviewProfile from "public/test/review-profile.png";
 
 export default function Review() {
   const reviewList = [
     {
       id: 0,
+      image: (
+        <Image
+          src={ReviewProfile}
+          alt="Review Section Profile Image"
+          objectFit="cover"
+          placeholder="blur"
+          quality={100}
+        />
+      ),
       name: "홍길동",
       community: "독서모임 n기",
       content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
     },
     {
+      image: (
+        <Image
+          src={ReviewProfile}
+          alt="Review Section Profile Image"
+          objectFit="cover"
+          placeholder="blur"
+          quality={100}
+        />
+      ),
       id: 1,
       name: "홍길동",
       community: "독서모임 n기",
@@ -18,6 +38,15 @@ export default function Review() {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
     },
     {
+      image: (
+        <Image
+          src={ReviewProfile}
+          alt="Review Section Profile Image"
+          objectFit="cover"
+          placeholder="blur"
+          quality={100}
+        />
+      ),
       id: 2,
       name: "홍길동",
       community: "독서모임 n기",
@@ -40,7 +69,7 @@ export default function Review() {
           {reviewList.map((review) => (
             <div className="flex space-x-20 bg-[#3d4044] py-[3.75rem] px-20">
               <div>
-                <div className="h-16 w-16 rounded bg-black" />
+                <div className="h-16 w-16 rounded">{review.image}</div>
                 <div className="mt-4 text-lg text-white">
                   {review.name}🔥 ·{" "}
                   <span className="text-[#979797]">{review.community}</span>

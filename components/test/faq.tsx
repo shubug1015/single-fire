@@ -1,24 +1,30 @@
 import Layout from "@layouts/sectionLayout";
 import { cls } from "@libs/utils";
+import Image from "next/image";
 import { useState } from "react";
 import TitleBtn from "./titleBtn";
+import MembershipTicket1 from "public/test/membership-ticket1.png";
+import MembershipTicket2 from "public/test/membership-ticket2.png";
 
 export default function Faq() {
   const faqList = [
     {
       id: 0,
       title: "타이틀1",
-      content: "content1",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nunc aliquam consequat condimentum. Morbi pretium ornare lectus. Proin aliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatis vel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
     },
     {
       id: 1,
       title: "타이틀2",
-      content: "content2",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nunc aliquam consequat condimentum. Morbi pretium ornare lectus. Proin aliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatis vel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
     },
     {
       id: 2,
       title: "타이틀3",
-      content: "content3",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nunc aliquam consequat condimentum. Morbi pretium ornare lectus. Proin aliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatis vel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
     },
   ];
   const [openedFaq, setOpenedFaq] = useState(0);
@@ -81,23 +87,6 @@ export default function Faq() {
               )}
             </div>
           ))}
-          {/* <div className="mt-4 flex items-center justify-between rounded bg-[#4a4e57] px-[3.75rem] py-8">
-            <div className="text-xl leading-10 text-white">타이틀</div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-          </div> */}
         </div>
 
         <div className="mt-[10rem] inline-block rounded-full border border-[#00E7FF] px-[1.375rem] py-[0.625rem] text-base font-bold text-[#00E7FF]">
@@ -109,9 +98,25 @@ export default function Faq() {
         <div className="mt-[0.625rem] text-5xl font-bold leading-normal text-white">
           경제를 보는 안목을 길러드립니다
         </div>
-
-        <div className="mt-[7.581rem] h-[358px] w-[1174px] bg-slate-500" />
-        <div className="mt-[7.661rem] h-[358px] w-[1174px] bg-slate-500" />
+        <div className="relative mt-[120px] h-[358px] w-[1174px]">
+          <Image
+            src={MembershipTicket1}
+            alt="Membership Section First Ticket Image"
+            objectFit="cover"
+            placeholder="blur"
+            layout="fill"
+            quality={100}
+          />
+        </div>
+        <div className="relative mt-[120px] h-[358px] w-[1174px]">
+          <Image
+            src={MembershipTicket2}
+            alt="Membership Section Second Ticket Image"
+            objectFit="cover"
+            placeholder="blur"
+            layout="fill"
+          />
+        </div>
       </div>
     </Layout>
   );

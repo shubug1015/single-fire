@@ -1,5 +1,7 @@
 import Layout from "@layouts/sectionLayout";
+import Image from "next/image";
 import TitleBtn from "./titleBtn";
+import PreviewIcon1 from "public/test/preview-icon1.png";
 
 export default function Preview() {
   const previewList = [
@@ -42,7 +44,13 @@ export default function Preview() {
           2주에 1번씩 여러분과 함께할 경제도서입니다.
         </div>
         <div className="mt-20 flex flex-col items-center rounded-[20px] bg-[#282e38] py-10">
-          <div className="h-[1.563rem] w-[9.188rem] bg-slate-400" />
+          <Image
+            src={PreviewIcon1}
+            alt="Preview Section First Icon"
+            objectFit="cover"
+            placeholder="blur"
+            quality={100}
+          />
           <div className="mt-8 text-xl leading-normal text-white">
             “혼자서는 손이 가지 않는 책들, 같이 읽으면 진짜 내 것이 된다”
           </div>

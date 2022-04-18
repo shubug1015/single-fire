@@ -1,5 +1,7 @@
 import Layout from "@layouts/sectionLayout";
 import TitleBtn from "./titleBtn";
+import Image from "next/image";
+import ProfessioanalProfile from "public/test/professional-profile.png";
 
 export default function Professional() {
   return (
@@ -11,8 +13,19 @@ export default function Professional() {
           <span className="text-[#00E7FF]">경제지식</span> 전수하겠습니다
         </div>
         <div className="mt-20 flex space-x-10">
-          <div className="h-[24.688rem] w-[39.063rem] bg-slate-500" />
-          <div className="bg-[#373C46] p-10 text-left text-white">
+          <div className="relative h-[24.688rem] w-[39.063rem]">
+            <Image
+              src={ProfessioanalProfile}
+              alt="Professional Section Profile Image"
+              layout="fill"
+              objectFit="cover"
+              placeholder="blur"
+              quality={100}
+              className="rounded"
+            />
+          </div>
+
+          <div className="rounded bg-[#373C46] p-10 text-left text-white">
             <div className="border-b-[0.125rem] border-b-[#505766] pb-8 text-[1.625rem] font-bold">
               노현우 경제전문가
             </div>
