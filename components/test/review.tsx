@@ -1,7 +1,7 @@
-import Layout from "@layouts/sectionLayout";
-import Image from "next/image";
-import TitleBtn from "./titleBtn";
-import ReviewProfile from "public/test/review-profile.png";
+import Layout from '@layouts/sectionLayout';
+import Image from 'next/image';
+import TitleBtn from './titleBtn';
+import ReviewProfile from 'public/test/review-profile.png';
 
 export default function Review() {
   const reviewList = [
@@ -10,72 +10,75 @@ export default function Review() {
       image: (
         <Image
           src={ReviewProfile}
-          alt="Review Section Profile Image"
-          objectFit="cover"
-          placeholder="blur"
+          alt='Review Section Profile Image'
+          objectFit='cover'
+          placeholder='blur'
           quality={100}
         />
       ),
-      name: "홍길동",
-      community: "독서모임 n기",
+      name: '홍길동',
+      community: '독서모임 n기',
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
     },
     {
       image: (
         <Image
           src={ReviewProfile}
-          alt="Review Section Profile Image"
-          objectFit="cover"
-          placeholder="blur"
+          alt='Review Section Profile Image'
+          objectFit='cover'
+          placeholder='blur'
           quality={100}
         />
       ),
       id: 1,
-      name: "홍길동",
-      community: "독서모임 n기",
+      name: '홍길동',
+      community: '독서모임 n기',
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
     },
     {
       image: (
         <Image
           src={ReviewProfile}
-          alt="Review Section Profile Image"
-          objectFit="cover"
-          placeholder="blur"
+          alt='Review Section Profile Image'
+          objectFit='cover'
+          placeholder='blur'
           quality={100}
         />
       ),
       id: 2,
-      name: "홍길동",
-      community: "독서모임 n기",
+      name: '홍길동',
+      community: '독서모임 n기',
       content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
     },
   ];
 
   return (
-    <Layout bgColor="bg-[#2C2F34]" padding="py-24">
-      <div className="flex flex-col items-center">
-        <TitleBtn title="Review" />
+    <Layout bgColor='bg-[#2C2F34]' padding='py-24'>
+      <div className='flex flex-col items-center'>
+        <TitleBtn title='Review' />
 
-        <div className="mt-6 text-4xl font-bold leading-normal text-white">
-          독서모임 선발대가 후발대에게 직접 전달하는{" "}
-          <span className="text-[#00E7FF]">솔직한 수강후기</span>
+        <div className='mt-6 text-4xl font-bold leading-normal text-white'>
+          독서모임 선발대가 후발대에게 직접 전달하는{' '}
+          <span className='text-[#00E7FF]'>솔직한 수강후기</span>
         </div>
 
-        <div className="mt-20 space-y-4">
+        <div className='mt-20 space-y-4'>
           {reviewList.map((review) => (
-            <div className="flex space-x-20 bg-[#3d4044] py-[3.75rem] px-20">
+            <div
+              key={review.id}
+              className='flex space-x-20 bg-[#3d4044] py-[3.75rem] px-20'
+            >
               <div>
-                <div className="h-16 w-16 rounded">{review.image}</div>
-                <div className="mt-4 text-lg text-white">
-                  {review.name}🔥 ·{" "}
-                  <span className="text-[#979797]">{review.community}</span>
+                <div className='h-16 w-16 rounded'>{review.image}</div>
+                <div className='mt-4 text-lg text-white'>
+                  {review.name}🔥 ·{' '}
+                  <span className='text-[#979797]'>{review.community}</span>
                 </div>
               </div>
-              <div className="w-[45.313rem] text-base leading-7 text-white">
+              <div className='w-[45.313rem] text-base leading-7 text-white'>
                 {review.content}
               </div>
             </div>
