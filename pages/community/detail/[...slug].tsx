@@ -11,7 +11,9 @@ const CommunityDetail: NextPage = () => {
   useAuth({ isPrivate: true });
 
   const router = useRouter();
-  const [category, id] = router.query.slug as string[];
+  const [category, id] = router.query.slug
+    ? (router.query.slug as string[])
+    : [null, null];
   const [getData, { loading, data, error }] = useMutation(
     category && id ? communityApi.detail : null
   );

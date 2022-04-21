@@ -15,7 +15,9 @@ const CommunityCategory: NextPage = () => {
 
   const router = useRouter();
   const { category, slug } = router.query;
-  const [page, orderType, searchType, searchTerm] = slug as string[];
+  const [page, orderType, searchType, searchTerm] = router.query.slug
+    ? (router.query.slug as string[])
+    : [null, null, null, null];
   const [getData, { loading, data, error }] = useMutation(
     page ? communityApi.communities : null
   );
