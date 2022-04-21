@@ -75,7 +75,27 @@ export default function Banner({ data }: IProps) {
         {...settings}
         dotsClass='slick-dots absolute !right-[calc((100vw-1180px)/2)] !bottom-[4.25rem] !flex justify-start !w-[55rem]'
       >
-        {data.map((i) => (
+        {[0, 1].map((i) => (
+          <div key={i}>
+            <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
+              <div className='z-[1] text-[3.25rem] font-bold'>Title</div>
+
+              <div className='z-[1] mt-[3.75rem] font-light'>text</div>
+
+              <div className='absolute top-1/2 right-0 -translate-y-1/2'>
+                <div className='relative h-[38.375rem] w-[55rem] rounded-md bg-slate-300 shadow-sm'>
+                  {/* <Image
+                    src={i.img}
+                    alt='Banner Image'
+                    layout='fill'
+                    objectFit='cover'
+                  /> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* {data.map((i) => (
           <div key={i.order}>
             <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
               <div className='z-[1] text-[3.25rem] font-bold'>{i.title}</div>
@@ -94,7 +114,7 @@ export default function Banner({ data }: IProps) {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </Slider>
     </div>
   );
