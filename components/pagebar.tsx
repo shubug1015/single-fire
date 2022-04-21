@@ -10,8 +10,10 @@ const PAGE_LIST_LENGTH = 5;
 
 const Pagebar = ({ count }: IProps) => {
   const router = useRouter();
+  console.log(router.query);
   const currentPage: number =
-    +(router.query.page as string) || +(router.query.slug as string[])[0];
+    // +(router.query.page as string) || +(router.query.slug as string[])[0] || 1;
+    +(router.query.page as string) || 1;
 
   const maxPage = Math.ceil(count / PAGE_LIST_LENGTH);
   const quo = Math.floor(currentPage / PAGE_LIST_LENGTH); // 몫
@@ -34,11 +36,11 @@ const Pagebar = ({ count }: IProps) => {
   };
 
   const firstPage = () => {
-    router.push('/class/real-estate/1');
+    router.push('/');
   };
 
   const lastPage = () => {
-    router.push(`/class/real-estate/${maxPage}`);
+    router.push(`/`);
   };
 
   useEffect(() => {
@@ -94,7 +96,7 @@ const Pagebar = ({ count }: IProps) => {
       {pageList.map((page) => (
         <div
           key={page}
-          onClick={() => router.push(`/real-estate/${page}`)}
+          onClick={() => router.push(`/`)}
           className={cls(
             page === currentPage
               ? 'bg-[#009fb0] text-black'
