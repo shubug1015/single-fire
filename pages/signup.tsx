@@ -1,21 +1,14 @@
 import SEO from '@components/seo';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import React, { useState } from 'react';
 import { usersApi } from '@libs/api';
-import { getToken, setToken } from '@libs/token';
 import useMutation from '@libs/client/useMutation';
 import { FieldErrors, useForm } from 'react-hook-form';
 import Input from '@components/input';
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import Checkbox from '@components/checkbox';
-
-interface IProps {
-  token: string | null;
-}
-
-interface MutationResult {
-  ok: boolean;
-}
+import axios from 'axios';
+import { useAuth } from '@libs/client/useAuth';
 
 interface IForm {
   name: string;
@@ -31,16 +24,15 @@ interface IForm {
   adAgree: string;
 }
 
-const SignUp: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
-
+const SignUp: NextPage = () => {
+  const { mutate } = useAuth({
+    isPrivate: false,
+  });
+  const [signup, { loading }] = useMutation(usersApi.signupNextApi);
   const [code, setCode] = useState({
     loading: false,
     sended: false,
   });
-  const [signup, { loading }] = useMutation<MutationResult>(
-    usersApi.signupNextApi
-  );
 
   const {
     register,
@@ -52,7 +44,7 @@ const SignUp: NextPage<IProps> = ({ token }) => {
   } = useForm<IForm>({
     mode: 'onChange',
   });
-  const onValid = (data: IForm) => {
+  const onValid = async (data: IForm) => {
     const req = {
       name: data.name,
       nickname: data.nickname,
@@ -62,7 +54,11 @@ const SignUp: NextPage<IProps> = ({ token }) => {
       adAgree: data.adAgree,
     };
 
-    signup({ req, redirectUrl: 'back' });
+    await signup({ req });
+    const {
+      data: { token, profile },
+    } = await axios.get('/api/auth');
+    mutate({ ok: true, token, profile });
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
@@ -145,8 +141,6 @@ const SignUp: NextPage<IProps> = ({ token }) => {
               validate: {
                 unavailable: async (value) => {
                   const { data } = await usersApi.checkId(value);
-
-                  console.log(data);
                   if (data === 'available') {
                     return true;
                   } else {
@@ -348,10 +342,6 @@ const SignUp: NextPage<IProps> = ({ token }) => {
       </div>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default SignUp;

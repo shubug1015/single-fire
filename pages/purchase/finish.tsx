@@ -1,15 +1,11 @@
 import Layout from '@layouts/sectionLayout';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
+import { useAuth } from '@libs/client/useAuth';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-interface IProps {
-  token: string | null;
-}
-
-const Finish: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
+const Finish: NextPage = () => {
+  useAuth({ isPrivate: true });
 
   const router = useRouter();
   const { name, payMethod, price, discount, point, totalPrice } = router.query;
@@ -64,10 +60,6 @@ const Finish: NextPage<IProps> = ({ token }) => {
       </div>
     </Layout>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default Finish;

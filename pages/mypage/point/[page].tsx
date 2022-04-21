@@ -6,7 +6,7 @@ import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
+import withAuth from '@libs/server/withAuth';
 import type { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -17,18 +17,15 @@ interface IProps {
 }
 
 const Coupon: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
-
   const router = useRouter();
   const { page } = router.query;
-  const [getData, { loading, data, error }] = useMutation(
+  const [getData, { loading, data }] = useMutation(
     page ? usersApi.myPointList : null
   );
 
   useEffect(() => {
-    getData({ req: token });
-  }, []);
-  console.log(data);
+    getData({ req: { page, token } });
+  }, [page]);
   return (
     <>
       <SEO title='마이페이지' />
@@ -60,12 +57,16 @@ const Coupon: NextPage<IProps> = ({ token }) => {
                     <div className='flex justify-between space-x-4'>
                       <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
                         <div className='font-medium'>보유 포인트</div>
-                        <div className='font-bold'>200 P</div>
+                        <div className='font-bold'>
+                          {data.point.toLocaleString()} P
+                        </div>
                       </div>
 
                       <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
                         <div className='font-medium'>사용한 포인트</div>
-                        <div className='font-bold'>30,000 P</div>
+                        <div className='font-bold'>
+                          {data.used_point.toLocaleString()} P
+                        </div>
                       </div>
                     </div>
                     {/* <CouponList data={[0, 1]} count={2} /> */}
@@ -87,7 +88,7 @@ const Coupon: NextPage<IProps> = ({ token }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
+  return withAuth({ ctx, isPrivate: true });
 };
 
 export default Coupon;

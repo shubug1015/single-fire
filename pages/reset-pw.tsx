@@ -2,16 +2,12 @@ import Popup from '@components/find/pwPopup';
 import Input from '@components/input';
 import SEO from '@components/seo';
 import { usersApi } from '@libs/api';
-import { getToken, setToken } from '@libs/token';
-import { cls } from '@libs/utils';
-import type { GetServerSideProps, NextPage } from 'next';
+import { cls } from '@libs/client/utils';
+import type { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
-
-interface IProps {
-  token: string | null;
-}
+import { useAuth } from '@libs/client/useAuth';
 
 interface IForm {
   username: string;
@@ -19,9 +15,10 @@ interface IForm {
   code: string;
 }
 
-const ResetPw: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
-
+const ResetPw: NextPage = () => {
+  useAuth({
+    isPrivate: false,
+  });
   const [popup, setPopup] = useState(false);
   const closePopup = () => setPopup(false);
 
@@ -225,10 +222,6 @@ const ResetPw: NextPage<IProps> = ({ token }) => {
       )}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default ResetPw;

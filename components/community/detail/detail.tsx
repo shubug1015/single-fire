@@ -1,5 +1,5 @@
 import Layout from '@layouts/sectionLayout';
-import { trimDate } from '@libs/client/trim';
+import { trimDate } from '@libs/client/utils';
 
 interface IProps {
   subject: string;

@@ -1,5 +1,5 @@
-import { trimDate } from '@libs/client/trim';
-import { cls } from '@libs/utils';
+import { trimDate } from '@libs/client/utils';
+import { cls } from '@libs/client/utils';
 import Link from 'next/link';
 
 interface IProps {

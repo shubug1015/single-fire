@@ -5,52 +5,52 @@ import Customized from '@components/home/customized';
 import Top3 from '@components/home/top3';
 import Loader from '@components/loader';
 import SEO from '@components/seo';
-import { lecturesApi } from '@libs/api';
-import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
-import { useEffect } from 'react';
+import { API_URL, lecturesApi } from '@libs/api';
+import type { GetServerSidePropsContext, NextPage } from 'next';
+import useSWR, { SWRConfig } from 'swr';
 
-interface IProps {
-  token: string | null;
+interface IFallback {
+  data: any[];
 }
 
-const Home: NextPage<IProps> = ({ token }) => {
-  setToken({ token });
-
-  const [getData, { loading, data, error }] = useMutation(
-    lecturesApi.mainLectureList
-  );
-
-  useEffect(() => {
-    getData({ req: {} });
-  }, []);
+const Home: NextPage = () => {
+  const { data } = useSWR(`${API_URL}/cms/main`);
   return (
     <>
       <SEO title='홈' />
-      {loading ? (
-        <Loader />
-      ) : (
-        data && (
-          <>
-            <Banner data={data.main_banner} />
-            <Best data={data.best_class.map((i: any) => i.lecture)} />
-            <Customized />
-            <Top3
-              coin={data.coin_class.map((i: any) => i.lecture)}
-              realty={data.realty_class.map((i: any) => i.lecture)}
-              stock={data.stock_class.map((i: any) => i.lecture)}
-            />
-            <Community />
-          </>
-        )
-      )}
+      <Banner data={data.main_banner} />
+      <Best data={data.best_class.map((i: any) => i.lecture)} />
+      <Customized />
+      <Top3
+        coin={data.coin_class.map((i: any) => i.lecture)}
+        realty={data.realty_class.map((i: any) => i.lecture)}
+        stock={data.stock_class.map((i: any) => i.lecture)}
+      />
+      <Community />
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
+const Page: NextPage<{ fallback: IFallback }> = ({ fallback }) => (
+  <SWRConfig
+    value={{
+      fallback,
+    }}
+  >
+    <Home />
+  </SWRConfig>
+);
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const { data } = await lecturesApi.mainLectureList();
+
+  return {
+    props: {
+      fallback: {
+        [`${API_URL}/cms/main`]: data,
+      },
+    },
+  };
 };
 
-export default Home;
+export default Page;

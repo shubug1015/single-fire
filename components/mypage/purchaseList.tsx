@@ -13,15 +13,15 @@ export default function PurchaseList({ data, count }: IProps) {
         {data?.map((i) => (
           <Purchase
             key={i.id}
-            state='결제완료'
+            state={i.refund}
             type='강의'
-            category='카테고리'
-            tutor='강사 이름'
-            title='강의 제목'
+            category={i.lecture.category}
+            tutor={i.lecture.tutor.name}
+            title={i.lecture.name}
             date={i.created}
-            price={230000}
-            discount={30000}
-            payment='카드 결제'
+            price={i.lecture.price}
+            discount={i.lecture.discount}
+            payment={i.method}
           />
         ))}
       </div>

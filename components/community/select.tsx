@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import { Fragment } from 'react';
 
 interface IProps {

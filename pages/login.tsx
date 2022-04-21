@@ -3,32 +3,23 @@ import KakaoBtn from '@components/login/kakaoBtn';
 import SEO from '@components/seo';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import { cls } from '@libs/utils';
-import type { GetServerSideProps, NextPage } from 'next';
+import { cls } from '@libs/client/utils';
+import type { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
-
-interface IProps {
-  token: string | null;
-}
-
-interface MutationResult {
-  ok: boolean;
-}
+import { useAuth } from '@libs/client/useAuth';
+import axios from 'axios';
 
 interface IForm {
   username: string;
   password: string;
 }
 
-const Login: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
-
-  const [login, { loading, error }] = useMutation<MutationResult>(
-    usersApi.loginNextApi
-  );
+const Login: NextPage = () => {
+  const { mutate } = useAuth({
+    isPrivate: false,
+  });
+  const [login, { loading, error }] = useMutation(usersApi.loginNextApi);
 
   const {
     register,
@@ -37,19 +28,22 @@ const Login: NextPage<IProps> = ({ token }) => {
   } = useForm<IForm>({
     mode: 'onChange',
   });
-  const onValid = (data: IForm) => {
+  const onValid = async (data: IForm) => {
     const req = {
       type: 'normal',
       username: data.username,
       password: data.password,
     };
 
-    login({ req, redirectUrl: 'back' });
+    await login({ req });
+    const {
+      data: { token, profile },
+    } = await axios.get('/api/auth');
+    mutate({ ok: true, token, profile });
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
   };
-
   return (
     <>
       <SEO title='로그인' />
@@ -148,10 +142,6 @@ const Login: NextPage<IProps> = ({ token }) => {
       </div>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default Login;

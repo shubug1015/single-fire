@@ -1,4 +1,4 @@
-import { trimDate } from '@libs/client/trim';
+import { trimDate } from '@libs/client/utils';
 
 interface IProps {
   lecture: string;

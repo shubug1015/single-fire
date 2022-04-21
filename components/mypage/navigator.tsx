@@ -1,6 +1,6 @@
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

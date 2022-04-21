@@ -1,4 +1,4 @@
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import React from 'react';
 
 interface IProps {

@@ -1,21 +1,19 @@
 import { grade, gradeImg } from '@components/grade';
-import { usersApi } from '@libs/api';
-import { tokenAtom } from '@libs/atom';
-import useMutation from '@libs/client/useMutation';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import useSWR from 'swr';
+
+interface IProfile {
+  [key: string]: any;
+}
+
+interface AuthResponse {
+  ok: boolean;
+  token: string | null;
+  profile: IProfile | null;
+}
 
 export default function Header() {
-  const token = useRecoilValue<string | null>(tokenAtom);
-
-  const [getData, { loading, data }] = useMutation(
-    token ? usersApi.myInfos : null
-  );
-
-  useEffect(() => {
-    getData({ req: token });
-  }, [token]);
+  const { data } = useSWR<AuthResponse>('/api/auth');
   return (
     <>
       <div className='text-2xl font-bold'>마이페이지</div>
@@ -43,15 +41,15 @@ export default function Header() {
           </Link>
 
           <div className='text-2xl font-medium'>
-            {data?.name}
+            {data?.profile?.name}
             <span className='opacity-60'>님</span>
           </div>
 
           <div className='mt-3 flex items-center text-sm'>
             <div className='relative mr-1 aspect-square w-4'>
-              {gradeImg(data?.grade)}
+              {gradeImg(data?.profile?.grade)}
             </div>{' '}
-            {grade(data?.grade)} 등급
+            {grade(data?.profile?.grade)} 등급
           </div>
         </div>
 
@@ -59,21 +57,21 @@ export default function Header() {
           <div className='flex w-1/3 flex-col items-center space-y-4'>
             <div className='text-sm'>강의</div>
             <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.registered_lecture} 개
+              {data?.profile?.registered_lecture} 개
             </div>
           </div>
 
           <div className='flex w-1/3 flex-col items-center space-y-4'>
             <div className='text-sm'>쿠폰</div>
             <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.coupon} 개
+              {data?.profile?.coupon.length} 개
             </div>
           </div>
 
           <div className='flex w-1/3 flex-col items-center space-y-4'>
             <div className='text-sm'>포인트</div>
             <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.point} P
+              {data?.profile?.point} P
             </div>
           </div>
         </div>

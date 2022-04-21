@@ -3,19 +3,12 @@ import TutorList from '@components/tutor/tutorList';
 import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Loader from '@components/loader';
 
-interface IProps {
-  token: string | null;
-}
-
-const Tutor: NextPage<IProps> = ({ token }) => {
-  setToken({ token });
-
+const Tutor: NextPage = () => {
   const router = useRouter();
   const { page } = router.query;
   const [getData, { loading, data, error }] = useMutation(
@@ -24,7 +17,7 @@ const Tutor: NextPage<IProps> = ({ token }) => {
 
   useEffect(() => {
     getData({ req: page });
-  }, []);
+  }, [page]);
   return (
     <>
       <SEO title='강사소개' />
@@ -44,10 +37,6 @@ const Tutor: NextPage<IProps> = ({ token }) => {
       )}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default Tutor;

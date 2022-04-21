@@ -1,4 +1,4 @@
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';

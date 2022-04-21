@@ -2,11 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['127.0.0.1'],
-  },
-
-  devIndicators: {
-    buildActivity: false,
+    domains: ['127.0.0.1', 'single-fire.s3.ap-northeast-2.amazonaws.com'],
   },
 };
 

@@ -1,6 +1,6 @@
 import { navList } from '@components/navList';
 import Layout from '@layouts/sectionLayout';
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 

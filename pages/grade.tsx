@@ -1,16 +1,9 @@
 import { gradeImg } from '@components/grade';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 
-interface IProps {
-  token: string | null;
-}
-
-const EditProfile: NextPage<IProps> = ({ token }) => {
-  setToken({ token });
-
+const EditProfile: NextPage = () => {
   return (
     <>
       <SEO title='등급안내' />
@@ -100,10 +93,6 @@ const EditProfile: NextPage<IProps> = ({ token }) => {
       </Layout>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default EditProfile;

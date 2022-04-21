@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { cls } from '@libs/utils';
+import { cls } from '@libs/client/utils';
 
 interface IProps {
   count: number;

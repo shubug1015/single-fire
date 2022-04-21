@@ -27,13 +27,13 @@ export default function useMutation<T = any>(fn?: any): UseMutationResult<T> {
     try {
       const { data } = await fn(req);
       setState((prev) => ({ ...prev, data }));
-      if (redirectUrl) {
-        if (redirectUrl === 'back') {
-          router.back();
-        } else {
-          router.push(redirectUrl);
-        }
-      }
+      // if (redirectUrl) {
+      //   if (redirectUrl === 'back') {
+      //     router.back();
+      //   } else {
+      //     router.push(redirectUrl);
+      //   }
+      // }
     } catch {
       setState((prev) => ({ ...prev, error: true }));
     } finally {

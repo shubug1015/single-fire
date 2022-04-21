@@ -6,7 +6,7 @@ import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
+import withAuth from '@libs/server/withAuth';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -16,8 +16,6 @@ interface IProps {
 }
 
 const MyCommunityList: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
-
   const router = useRouter();
   const { page } = router.query;
   const [getData, { loading, data, error }] = useMutation(
@@ -26,7 +24,7 @@ const MyCommunityList: NextPage<IProps> = ({ token }) => {
 
   useEffect(() => {
     getData({ req: { page, token } });
-  }, []);
+  }, [page]);
   return (
     <>
       <SEO title='마이페이지' />
@@ -69,7 +67,7 @@ const MyCommunityList: NextPage<IProps> = ({ token }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
+  return withAuth({ ctx, isPrivate: true });
 };
 
 export default MyCommunityList;

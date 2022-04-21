@@ -82,9 +82,9 @@ export default function Popup({
 
           <div className='mt-4 text-2xl font-medium'>{name}</div>
 
-          <div className='mt-2 text-[#cfcfcf]'>{text}123</div>
+          <div className='mt-2 text-[#cfcfcf]'>{text}</div>
 
-          <div className='mt-6 text-[#cfcfcf]'>{tag}123</div>
+          <div className='mt-6 text-[#cfcfcf]'>{tag}</div>
 
           <div className='mt-10 text-xl font-medium'>상세 이력</div>
 

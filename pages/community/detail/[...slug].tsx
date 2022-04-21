@@ -1,19 +1,14 @@
 import Detail from '@components/community/detail/detail';
 import SEO from '@components/seo';
-import Layout from '@layouts/sectionLayout';
 import { communityApi } from '@libs/api';
+import { useAuth } from '@libs/client/useAuth';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-interface IProps {
-  token: string | null;
-}
-
-const CommunityDetail: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
+const CommunityDetail: NextPage = () => {
+  useAuth({ isPrivate: true });
 
   const router = useRouter();
   const [category, id] = router.query.slug as string[];
@@ -23,7 +18,7 @@ const CommunityDetail: NextPage<IProps> = ({ token }) => {
 
   useEffect(() => {
     getData({ req: { category, id } });
-  }, []);
+  }, [category, id]);
   console.log(data);
   return (
     <>
@@ -35,10 +30,6 @@ const CommunityDetail: NextPage<IProps> = ({ token }) => {
       {/* )} */}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default CommunityDetail;

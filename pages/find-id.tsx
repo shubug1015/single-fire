@@ -2,25 +2,22 @@ import Popup from '@components/find/idPopup';
 import Input from '@components/input';
 import SEO from '@components/seo';
 import { usersApi } from '@libs/api';
-import { getToken, setToken } from '@libs/token';
-import { cls } from '@libs/utils';
-import type { GetServerSideProps, NextPage } from 'next';
+import { cls } from '@libs/client/utils';
+import type { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
-
-interface IProps {
-  token: string | null;
-}
+import { useAuth } from '@libs/client/useAuth';
 
 interface IForm {
   phoneNum: string;
   code: string;
 }
 
-const FindId: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? '/' : null });
-
+const FindId: NextPage = () => {
+  useAuth({
+    isPrivate: false,
+  });
   const [popup, setPopup] = useState(false);
   const closePopup = () => setPopup(false);
 
@@ -187,10 +184,6 @@ const FindId: NextPage<IProps> = ({ token }) => {
       {popup && <Popup username={username} closePopup={closePopup} />}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default FindId;

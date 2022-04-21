@@ -6,8 +6,8 @@ import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import { cls } from '@libs/utils';
+import withAuth from '@libs/server/withAuth';
+import { cls } from '@libs/client/utils';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -17,18 +17,16 @@ interface IProps {
 }
 
 const MyLectureList: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
-
   const router = useRouter();
   const { page } = router.query;
   const [getData, { loading, data, error }] = useMutation(
     page ? usersApi.myLectureList : null
   );
-  const [category, setCategory] = useState('전체');
+  const [category, setCategory] = useState('수강중');
 
   useEffect(() => {
     getData({ req: { page, token } });
-  }, []);
+  }, [page]);
   return (
     <>
       <SEO title='마이페이지' />
@@ -45,17 +43,6 @@ const MyLectureList: NextPage<IProps> = ({ token }) => {
 
                 <div className='grow space-y-6'>
                   <div className='flex space-x-5 text-lg font-medium'>
-                    <div
-                      onClick={() => setCategory('전체')}
-                      className={cls(
-                        category === '전체'
-                          ? ''
-                          : 'cursor-pointer text-[#afafaf]',
-                        'transition-all'
-                      )}
-                    >
-                      전체
-                    </div>
                     <div
                       onClick={() => setCategory('수강중')}
                       className={cls(
@@ -81,18 +68,17 @@ const MyLectureList: NextPage<IProps> = ({ token }) => {
                   </div>
 
                   <LectureList
+                    category={category}
                     data={
-                      category === '전체'
-                        ? data.results
-                        : category === '수강중'
-                        ? data.results.filter(
-                            (i: any) => i.total_progress !== 100
-                          )
-                        : data.results.filter(
-                            (i: any) => i.total_progress === 100
-                          )
+                      category === '수강중'
+                        ? data.registered.results
+                        : data.expired.results
                     }
-                    count={data.count}
+                    count={
+                      category === '수강중'
+                        ? data.registered.count
+                        : data.expired.count
+                    }
                   />
                 </div>
               </div>
@@ -105,7 +91,7 @@ const MyLectureList: NextPage<IProps> = ({ token }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
+  return withAuth({ ctx, isPrivate: true });
 };
 
 export default MyLectureList;

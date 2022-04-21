@@ -1,4 +1,4 @@
-import { trimDate } from '@libs/client/trim';
+import { trimDate } from '@libs/client/utils';
 import { useState } from 'react';
 import Popup from './popup';
 
@@ -34,7 +34,9 @@ export default function Purchase({
     <>
       <div className='flex w-full flex-col space-y-6 rounded bg-[#4a4e57] p-8'>
         <div className='flex w-full items-center justify-between'>
-          <div className='text-lg font-bold'>{state}</div>
+          <div className='text-lg font-bold'>
+            {state ? '결제취소' : '결제완료'}
+          </div>
 
           <div className='flex space-x-6'>
             <div

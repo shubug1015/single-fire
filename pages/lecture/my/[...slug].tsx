@@ -1,45 +1,56 @@
 import Loader from '@components/loader';
 import SEO from '@components/seo';
-import { usersApi } from '@libs/api';
+import { lecturesApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import { cls } from '@libs/utils';
+import withAuth from '@libs/server/withAuth';
+import { cls } from '@libs/client/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface IProps {
   token: string | null;
 }
 
 const MyLectureDetail: NextPage<IProps> = ({ token }) => {
-  setToken({ token, redirectUrl: token && token.length > 0 ? null : '/login' });
-
   const router = useRouter();
-  const { id } = router.query;
+  const [id, order] = router.query.slug as string[];
   const [getData, { loading, data, error }] = useMutation(
-    id ? usersApi.myLectureDetail : null
+    id ? lecturesApi.myLectureDetail : null
   );
   const [chapterOpen, setChapterOpen] = useState(null);
 
-  const videoUrl = id
-    ? data?.index.flatMap((i: any) =>
-        i.video.filter((j: any) => j.order === +id)
-      )[0].url
-    : null;
+  const currentVideo = data?.index.flatMap((i: any) =>
+    i.video.filter((j: any) => j.order === +order)
+  )[0];
+  const videoUrl = currentVideo?.url;
+  const videoTitle = currentVideo?.title;
+  const lastChapter = data?.index[data?.index.length - 1].video;
+  const isLastLecture =
+    lastChapter && lastChapter[lastChapter.length - 1].order === +order;
+
+  const finishLecture = async () => {
+    try {
+      await lecturesApi.finishLecture({ id, order, token });
+      router.push(
+        isLastLecture ? '/mypage/lecture/1' : `/lecture/my/${id}/${+order + 1}`
+      );
+    } catch {
+      alert('Error');
+    }
+  };
 
   useEffect(() => {
     getData({ req: { id, token } });
-  }, []);
+  }, [id, order]);
 
   useEffect(() => {
     setChapterOpen(
-      id
-        ? data?.index.map((i: any) =>
-            i.video.map((j: any) => j.order === +id).includes(true)
-          )
-        : null
+      data?.index.map((i: any) =>
+        i.video.map((j: any) => j.order === +order).includes(true)
+      )
     );
   }, [data]);
 
@@ -78,18 +89,26 @@ const MyLectureDetail: NextPage<IProps> = ({ token }) => {
               </div>
 
               <div className='mt-10 flex space-x-5'>
-                <video
-                  key='1'
-                  controls
-                  playsInline
-                  className='aspect-video w-3/4'
-                >
-                  {/* <source src={videoUrl} /> */}
-                </video>
+                <div className='relative aspect-video w-3/4'>
+                  <iframe
+                    src={videoUrl}
+                    frameBorder='0'
+                    allow='autoplay; fullscreen; picture-in-picture'
+                    allowFullScreen
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    title={videoTitle}
+                  ></iframe>
+                </div>
 
                 <div className='grow space-y-4 font-medium'>
                   {data.index.map((i: any, chapterId: number) => (
-                    <div key={i.order}>
+                    <div key={i.id}>
                       <div
                         onClick={() =>
                           setChapterOpen((prev: any) =>
@@ -145,20 +164,28 @@ const MyLectureDetail: NextPage<IProps> = ({ token }) => {
                             className='divide-y-2 divide-[rgba(229,229,229,0.08)]'
                           >
                             {i.video.map((j: any, index: any) => (
-                              <div
+                              <Link
                                 key={j.order}
-                                className={cls(
-                                  j.order === +id
-                                    ? 'text-[#00e7ff]'
-                                    : 'text-[rgba(255,255,255,0.8)]',
-                                  i.video.length === index + 1
-                                    ? 'rounded-b-md'
-                                    : '',
-                                  'flex h-[4.5rem] items-center bg-[#373c46] px-6 text-lg'
-                                )}
+                                href={`/lecture/my/${id}/${j.order}`}
                               >
-                                {j.title}
-                              </div>
+                                <a>
+                                  <div
+                                    key={j.order}
+                                    className={cls(
+                                      j.watched ? 'opacity-50' : '',
+                                      j.order === +order
+                                        ? 'text-[#00e7ff]'
+                                        : 'text-[rgba(255,255,255,0.8)]',
+                                      i.video.length === index + 1
+                                        ? 'rounded-b-md'
+                                        : '',
+                                      'flex h-[4.5rem] items-center bg-[#373c46] px-6 text-lg transition-all hover:opacity-70'
+                                    )}
+                                  >
+                                    {j.title}
+                                  </div>
+                                </a>
+                              </Link>
                             ))}
                           </motion.div>
                         )}
@@ -179,6 +206,19 @@ const MyLectureDetail: NextPage<IProps> = ({ token }) => {
                   magna sed porttitor.
                 </div>
               </div>
+
+              <div className='mt-14 flex flex-col items-center space-y-8'>
+                <div className='text-sm font-medium text-[#cfcfcf]'>
+                  *진도율 체크를 위해 수강완료 버튼을 반드시 클릭하세요.
+                </div>
+
+                <div
+                  onClick={finishLecture}
+                  className='flex h-16 w-96 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-opacity hover:opacity-90'
+                >
+                  수강완료
+                </div>
+              </div>
             </div>
           </>
         )
@@ -188,7 +228,7 @@ const MyLectureDetail: NextPage<IProps> = ({ token }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
+  return withAuth({ ctx, isPrivate: true });
 };
 
 export default MyLectureDetail;

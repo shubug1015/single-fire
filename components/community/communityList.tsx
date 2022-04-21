@@ -22,7 +22,7 @@ export default function CommunityList({ notice, data, count }: IProps) {
         <div className='flex grow justify-center'>제목</div>
         <div className='flex w-[10%] justify-center'>작성자</div>
         <div className='flex w-[10%] justify-center'>작성일</div>
-        <div className='flex w-[10%] justify-center'>조회순</div>
+        <div className='flex w-[10%] justify-center'>조회수</div>
       </div>
 
       {notice?.map((i) => (

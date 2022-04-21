@@ -1,24 +1,10 @@
 import EventList from '@components/event/eventList';
-import Loader from '@components/loader';
-import CommunityList from '@components/mypage/communityList';
-import Header from '@components/mypage/header';
-import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
-import { getToken, setToken } from '@libs/token';
-import type { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import type { NextPage } from 'next';
 
-interface IProps {
-  token: string | null;
-}
-
-const Event: NextPage<IProps> = ({ token }) => {
-  setToken({ token });
-
+const Event: NextPage = () => {
   //   const router = useRouter();
   //   const { page } = router.query;
   //   const [getData, { loading, data, error }] = useMutation(
@@ -27,7 +13,7 @@ const Event: NextPage<IProps> = ({ token }) => {
 
   //   useEffect(() => {
   //     getData({ req: { page, token } });
-  //   }, []);
+  //   }, [page]);
   //   console.log(data);
   return (
     <>
@@ -46,10 +32,6 @@ const Event: NextPage<IProps> = ({ token }) => {
       )} */}
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return getToken(ctx);
 };
 
 export default Event;
