@@ -3,17 +3,18 @@ import SEO from '@components/seo';
 import { communityApi } from '@libs/api';
 import { useAuth } from '@libs/client/useAuth';
 import useMutation from '@libs/client/useMutation';
-import type { NextPage } from 'next';
+import type { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-const CommunityDetail: NextPage = () => {
+interface IProps {
+  params: any;
+}
+
+const CommunityDetail: NextPage<IProps> = ({ params }) => {
   useAuth({ isPrivate: true });
 
-  const router = useRouter();
-  const [category, id] = router.query.slug
-    ? (router.query.slug as string[])
-    : [null, null];
+  const [category, id] = params.slug;
   const [getData, { loading, data, error }] = useMutation(
     category && id ? communityApi.detail : null
   );
@@ -32,6 +33,14 @@ const CommunityDetail: NextPage = () => {
       {/* )} */}
     </>
   );
+};
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {
+      params: ctx.params,
+    },
+  };
 };
 
 export default CommunityDetail;

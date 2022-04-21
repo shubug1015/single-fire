@@ -1,5 +1,5 @@
 import SEO from '@components/seo';
-import type { NextPage } from 'next';
+import type { GetServerSidePropsContext, NextPage } from 'next';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { communityApi } from '@libs/api';
@@ -10,14 +10,16 @@ import Search from '@components/community/search';
 import Loader from '@components/loader';
 import { useAuth } from '@libs/client/useAuth';
 
-const CommunityCategory: NextPage = () => {
+interface IProps {
+  params: any;
+}
+
+const CommunityCategory: NextPage<IProps> = ({ params }) => {
   useAuth({ isPrivate: true });
 
   const router = useRouter();
-  const { category, slug } = router.query;
-  const [page, orderType, searchType, searchTerm] = router.query.slug
-    ? (router.query.slug as string[])
-    : [null, null, null, null];
+  const { category, slug } = params;
+  const [page, orderType, searchType, searchTerm] = slug;
   const [getData, { loading, data, error }] = useMutation(
     page ? communityApi.communities : null
   );
@@ -52,6 +54,15 @@ const CommunityCategory: NextPage = () => {
       )}
     </>
   );
+};
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  console.log(ctx.params);
+  return {
+    props: {
+      params: ctx.params,
+    },
+  };
 };
 
 export default CommunityCategory;
