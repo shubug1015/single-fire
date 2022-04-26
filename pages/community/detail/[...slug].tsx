@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 interface IProps {
-  params: any;
+  params: { slug: string[] };
 }
 
 const CommunityDetail: NextPage<IProps> = ({ params }) => {

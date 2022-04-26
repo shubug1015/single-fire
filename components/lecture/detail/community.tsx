@@ -38,18 +38,22 @@ export default function Community({ tutor, lecture_community }: IProps) {
             <div className='font-bold'>커뮤니티</div>
 
             <div className='mt-10 whitespace-pre-wrap'>
-              {lecture_community.text}
+              {lecture_community.text.length > 0
+                ? lecture_community.text
+                : '커뮤니티가 존재하지 않습니다.'}
             </div>
           </div>
 
-          <div className='flex justify-end'>
-            <div
-              onClick={() => window.open(lecture_community.url)}
-              className='flex h-14 w-48 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'
-            >
-              커뮤니티 바로가기 →
+          {lecture_community.lecture && (
+            <div className='flex justify-end'>
+              <div
+                onClick={() => window.open(lecture_community.url)}
+                className='flex h-14 w-48 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'
+              >
+                커뮤니티 바로가기 →
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </Layout>

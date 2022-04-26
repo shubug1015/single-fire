@@ -10,7 +10,6 @@ const PAGE_LIST_LENGTH = 5;
 
 const Pagebar = ({ count }: IProps) => {
   const router = useRouter();
-  console.log(router.query);
   const currentPage: number =
     // +(router.query.page as string) || +(router.query.slug as string[])[0] || 1;
     +(router.query.page as string) || 1;

@@ -9,13 +9,11 @@ export default function Info({ data }: IProps) {
   return (
     <Layout padding='pb-80'>
       {data.map((i) => (
-        <div key={i.id} className='relative w-full'>
+        <div key={i.id} className='relative h-[1600rem] w-full'>
           <Image
             src={i.detail_image}
             alt='Lecture Detail Image'
-            layout='responsive'
-            width='100%'
-            height='100%'
+            layout='fill'
             objectFit='contain'
           />
         </div>

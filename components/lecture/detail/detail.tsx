@@ -1,4 +1,5 @@
 import Layout from '@layouts/sectionLayout';
+import { cls } from '@libs/client/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,8 +8,10 @@ interface IProps {
   thumbnail: string;
   category: string;
   name: string;
+  text: string;
   price: number;
   discount: number;
+  discount_period: string;
 }
 
 export default function Detail({
@@ -16,9 +19,12 @@ export default function Detail({
   thumbnail,
   category,
   name,
+  text,
   price,
   discount,
+  discount_period,
 }: IProps) {
+  console.log();
   const copyUrl = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
@@ -50,10 +56,8 @@ export default function Detail({
           {/* 강의명 */}
 
           {/* 간략 설명 */}
-          <div className='mt-12 border-y-2 border-[#464c59] py-6 text-[#cfcfcf]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            sapien nibh, varius a mattis vitaeLorem ipsum dolor sit amet,
-            consectetur adipiscing elit.
+          <div className='border-y-2 border-[#464c59] py-6 text-[#cfcfcf]'>
+            {text}
           </div>
           {/* 간략 설명 */}
 
@@ -66,21 +70,30 @@ export default function Detail({
             <div className='flex items-center justify-between'>
               <div className='flex text-xl text-[#cfcfcf]'>
                 {/* 정상가 */}
-                <div className='mr-[0.375rem] line-through'>
+                <div
+                  className={cls(
+                    discount > 0 ? 'line-through' : '',
+                    'mr-[0.375rem]'
+                  )}
+                >
                   {price.toLocaleString()}원
                 </div>
                 {/* 정상가 */}
 
                 {/* 할인가 */}
-                <div>{(price - discount).toLocaleString()}원</div>
+                {discount > 0 && (
+                  <div>{(price - discount).toLocaleString()}원</div>
+                )}
                 {/* 할인가 */}
               </div>
 
               <div className='flex text-2xl'>
                 {/* 할인율 */}
-                <div className='mr-2 text-[#00e7ff]'>
-                  {Math.round((discount / price) * 100)}%
-                </div>
+                {discount > 0 && (
+                  <div className='mr-2 text-[#00e7ff]'>
+                    {Math.round((discount / price) * 100)}%
+                  </div>
+                )}
                 {/* 할인율 */}
 
                 {/* 6개월 할부시 1달 가격 */}
@@ -96,9 +109,12 @@ export default function Detail({
           {/* 가격 */}
 
           {/* 할인 기간 */}
-          <div className='mt-3 text-sm font-medium text-[#cfcfcf]'>
-            *할인기간 01/01 ~ 03/21
-          </div>
+          {discount > 0 && (
+            <div className='mt-3 text-sm font-medium text-[#cfcfcf]'>
+              *할인기간: ~ {discount_period.split('-')[1]}/
+              {discount_period.split('-')[2]}
+            </div>
+          )}
           {/* 할인 기간 */}
 
           {/* 복사 & 구매 버튼 */}

@@ -1,73 +1,89 @@
-import Loader from '@components/loader';
 import CouponList from '@components/mypage/couponList';
 import Header from '@components/mypage/header';
 import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import useMutation from '@libs/client/useMutation';
-import withAuth from '@libs/server/withAuth';
-import type { GetServerSideProps, NextPage } from 'next';
+import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import type { GetServerSidePropsContext, NextPage } from 'next';
+import cookies from 'next-cookies';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import useSWR, { SWRConfig } from 'swr';
 
-interface IProps {
-  token: string | null;
-}
-
-const Coupon: NextPage<IProps> = ({ token }) => {
-  const router = useRouter();
-  const { page } = router.query;
-  const [getData, { loading, data, error }] = useMutation(
-    page ? usersApi.myCouponList : null
+const Coupon: NextPage<{ page: string }> = ({ page }) => {
+  const { token } = useAuth({
+    isPrivate: true,
+  });
+  const { data, error } = useSWR('myCouponList', () =>
+    token ? usersApi.myCouponList(page, token) : null
   );
+  const router = useRouter();
 
-  useEffect(() => {
-    getData({ req: token });
-  }, [page]);
+  if (error) {
+    router.push('/');
+  }
   return (
     <>
       <SEO title='마이페이지' />
-      {loading ? (
-        <Loader />
-      ) : (
-        data && (
-          <>
-            <Layout padding='pt-20 pb-44'>
-              <Header />
 
-              <div className='mt-[4.5rem] flex space-x-10'>
-                <Navigator />
+      <Layout padding='pt-20 pb-44'>
+        <Header />
 
-                <div className='grow'>
-                  <div className='space-y-6'>
-                    <div className='flex space-x-5'>
-                      <div className='text-lg font-medium'>쿠폰</div>
+        <div className='mt-[4.5rem] flex space-x-10'>
+          <Navigator />
 
-                      <Link href='/mypage/point/1'>
-                        <a>
-                          <div className='text-lg font-medium text-[#afafaf]'>
-                            포인트
-                          </div>
-                        </a>
-                      </Link>
+          <div className='grow'>
+            <div className='space-y-6'>
+              <div className='flex space-x-5'>
+                <div className='text-lg font-medium'>쿠폰</div>
+
+                <Link href='/mypage/point/1'>
+                  <a>
+                    <div className='text-lg font-medium text-[#afafaf]'>
+                      포인트
                     </div>
-
-                    <CouponList data={data.results} count={data.count} />
-                  </div>
-                </div>
+                  </a>
+                </Link>
               </div>
-            </Layout>
-          </>
-        )
-      )}
+
+              <CouponList data={data?.data.results} count={data?.data.count} />
+            </div>
+          </div>
+        </div>
+      </Layout>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return withAuth({ ctx, isPrivate: true });
+const Page: NextPage<{ fallback: AuthResponse; page: string }> = ({
+  fallback,
+  page,
+}) => (
+  <SWRConfig
+    value={{
+      fallback,
+    }}
+  >
+    <Coupon page={page} />
+  </SWRConfig>
+);
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  const { token } = cookies(ctx);
+  const data = token ? await usersApi.myInfos(token) : null;
+  return {
+    props: {
+      page: ctx.params?.page,
+      fallback: {
+        '/api/auth': {
+          ok: true,
+          token: token || null,
+          profile: data?.data || null,
+        },
+      },
+    },
+  };
 };
 
-export default Coupon;
+export default Page;

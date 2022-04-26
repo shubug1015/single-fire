@@ -21,7 +21,6 @@ export default function Review({ id, review }: IProps) {
     id ? `${API_URL}/lectures/${id}/` : null
   );
 
-  console.log(lectureData);
   const {
     register,
     handleSubmit,

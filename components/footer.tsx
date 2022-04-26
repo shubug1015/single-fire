@@ -64,31 +64,33 @@ export default function Footer() {
           </Link>
 
           <nav className='mt-10 flex space-x-7 font-medium'>
-            <Link href='/'>
-              <a className='text-[#c0c0c0]'>회사소개</a>
-            </Link>
-
-            <Link href='/'>
+            <Link href='/terms-of-service'>
               <a className='text-[#c0c0c0]'>이용약관</a>
             </Link>
 
-            <Link href='/'>
+            <Link href='/refund-policy'>
+              <a className='text-[#c0c0c0]'>환불규정</a>
+            </Link>
+
+            <Link href='/privacy-policy'>
               <a>개인정보처리방침</a>
             </Link>
           </nav>
 
-          <div className='mt-[3.75rem]'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            egestas auctor
-            <br />
-            sapien ac tristique. Sed commodo pretium neque vitae venenatis. Nam
-            sagittis
-            <br />
-            mauris velit, nec tempor risus lobortis a. Phasellus faucibus eros a
-            arcu hendrerit,
-            <br />
-            quis aliquet sapien congue. Nulla elementum quis magna sed
-            porttitor.
+          <div className='mt-[3.75rem] space-y-2 text-[#c0c0c0]'>
+            <div>
+              대표이사 <span className='font-bold text-white'>신동은</span>
+            </div>
+
+            <div>
+              상호 : 주식회사 행복한컴퍼니｜사업자 등록번호 :
+              716-87-02517｜연락처 : 010-4399-0068｜통신판매업신고 :
+              2022-서울종로-0586
+            </div>
+            <div>
+              이메일 : foryourfreedom2023@naver.com｜사업장 주소 : 서울 종로구
+              삼봉로81 두산위브파빌리온 1동 632호
+            </div>
           </div>
         </div>
         {/* 좌측 섹션 */}

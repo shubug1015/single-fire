@@ -11,7 +11,7 @@ import Loader from '@components/loader';
 import { useAuth } from '@libs/client/useAuth';
 
 interface IProps {
-  params: any;
+  params: { category: string; slug: string[] };
 }
 
 const CommunityCategory: NextPage<IProps> = ({ params }) => {
@@ -57,7 +57,6 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
 };
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  console.log(ctx.params);
   return {
     props: {
       params: ctx.params,

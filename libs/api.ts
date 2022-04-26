@@ -107,7 +107,7 @@ export const usersApi = {
     ),
 
   // 마이페이지 내 강의 리스트
-  myLectureList: ({ page, token }: IProps) =>
+  myLectureList: (page: string, token: string) =>
     api.get(`/mypage/registered_lecture?page=${page}`, {
       headers: {
         Authorization: token,
@@ -116,7 +116,7 @@ export const usersApi = {
     }),
 
   // 마이페이지 커뮤니티 리스트
-  myCommunityList: ({ page, token }: IProps) =>
+  myCommunityList: (page: string, token: string) =>
     api.get(`/mypage/community?page=${page}`, {
       headers: {
         Authorization: token,
@@ -124,8 +124,8 @@ export const usersApi = {
       },
     }),
 
-  // 마이페이지 쿠폰 리스트
-  myPurchaseList: ({ page, token }: IProps) =>
+  // 마이페이지 구매 리스트
+  myPurchaseList: (page: string, token: string) =>
     api.get(`/mypage/payment?page=${page}`, {
       headers: {
         Authorization: token,
@@ -134,8 +134,8 @@ export const usersApi = {
     }),
 
   // 마이페이지 쿠폰 리스트
-  myCouponList: (token: string) =>
-    api.get(`/mypage/coupon/`, {
+  myCouponList: (page: string, token: string) =>
+    api.get(`/mypage/coupon?page=${page}`, {
       headers: {
         Authorization: token,
         'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export const usersApi = {
     }),
 
   // 마이페이지 포인트 리스트
-  myPointList: ({ page, token }: IProps) =>
+  myPointList: (page: string, token: string) =>
     api.get(`/mypage/point?page=${page}`, {
       headers: {
         Authorization: token,
@@ -186,7 +186,7 @@ export const lecturesApi = {
   tutorList: (page: string) => api.get(`/lectures/tutor?page=${page}`),
 
   // 마이페이지 내 강의 수강
-  myLectureDetail: ({ id, token }: IProps) =>
+  myLectureDetail: (id: string, token: string) =>
     api.get(`/lectures/registered_lecture/${id}/`, {
       headers: {
         Authorization: token,
