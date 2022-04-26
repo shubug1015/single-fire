@@ -15,6 +15,7 @@ export default function Info({ data }: IProps) {
             alt='Lecture Detail Image'
             layout='fill'
             objectFit='contain'
+            quality={100}
           />
         </div>
       ))}
