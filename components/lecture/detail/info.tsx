@@ -7,14 +7,16 @@ interface IProps {
 }
 
 export default function Info({ data }: IProps) {
-  const [imgHeight, setImgHeight] = useState(0);
+  const [imgHeight, setImgHeight] = useState(
+    [...Array(data.length)].map((i, index) => ({ id: index, height: 0 }))
+  );
   return (
     <Layout padding='pb-80'>
-      {data.map((i) => (
+      {data.map((i, index) => (
         <div
           key={i.id}
           className='relative w-full'
-          style={{ height: imgHeight }}
+          style={{ height: imgHeight[index].height }}
         >
           <Image
             src={i.detail_image}
@@ -24,7 +26,15 @@ export default function Info({ data }: IProps) {
             onLoad={({ target }) => {
               const { clientWidth, naturalWidth, naturalHeight } =
                 target as HTMLImageElement;
-              setImgHeight((naturalHeight / naturalWidth) * clientWidth);
+              setImgHeight((prev) =>
+                prev.map((j) => ({
+                  id: j.id,
+                  height:
+                    j.id === index
+                      ? (naturalHeight / naturalWidth) * clientWidth
+                      : j.height,
+                }))
+              );
             }}
           />
         </div>
