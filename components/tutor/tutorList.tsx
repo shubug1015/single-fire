@@ -1,14 +1,17 @@
 import Layout from '@layouts/sectionLayout';
 import Pagebar from '@components/pagebar';
 import Tutor from './tutor';
+import { useRouter } from 'next/router';
 
 interface IProps {
   title: string;
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function TutorList({ title, data, count }: IProps) {
+export default function TutorList({ title, data, totalItems }: IProps) {
+  const router = useRouter();
+  const currentPage = router.query.page as string;
   return (
     <Layout padding='pt-24 pb-44'>
       <h1 className='text-2xl font-bold'>{title}</h1>
@@ -31,7 +34,11 @@ export default function TutorList({ title, data, count }: IProps) {
       </div>
 
       <div className='mt-24 flex justify-center'>
-        <Pagebar count={count} />
+        <Pagebar
+          totalItems={totalItems}
+          currentPage={+currentPage}
+          url={(page: number) => router.push(`/tutor/${page}`)}
+        />
       </div>
     </Layout>
   );

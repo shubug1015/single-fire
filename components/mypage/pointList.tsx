@@ -1,12 +1,15 @@
 import Pagebar from '@components/pagebar';
+import { useRouter } from 'next/router';
 import Point from './point';
 
 interface IProps {
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function PointList({ data, count }: IProps) {
+export default function PointList({ data, totalItems }: IProps) {
+  const router = useRouter();
+  const currentPage = router.query.page as string;
   return (
     <div>
       <div className='space-y-0.5'>
@@ -16,7 +19,7 @@ export default function PointList({ data, count }: IProps) {
           <div className='flex w-[28%] justify-center'>사용날짜</div>
         </div>
 
-        {data.map((i) => (
+        {data?.map((i) => (
           <Point
             key={i.id}
             lecture='모든 강의'
@@ -27,7 +30,11 @@ export default function PointList({ data, count }: IProps) {
       </div>
 
       <div className='mt-24 flex justify-center'>
-        <Pagebar count={count} />
+        <Pagebar
+          totalItems={totalItems}
+          currentPage={+currentPage}
+          url={(page: number) => router.push(`/mypage/point/${page}`)}
+        />
       </div>
     </div>
   );

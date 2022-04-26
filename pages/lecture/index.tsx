@@ -1,35 +1,27 @@
 import Navigator from '@components/lecture/navigator';
 import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
-import useMutation from '@libs/client/useMutation';
 import type { NextPage } from 'next';
-import { useEffect } from 'react';
-import Loader from '@components/loader';
 import Banner from '@components/lecture/banner';
 import Best from '@components/lecture/best';
+import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 const Lecture: NextPage = () => {
-  const [getData, { loading, data, error }] = useMutation(
-    lecturesApi.topLectureList
+  const { data, error } = useSWR('bestLectureList', () =>
+    lecturesApi.topLectureList()
   );
+  const router = useRouter();
 
-  useEffect(() => {
-    getData({ req: {} });
-  }, []);
+  if (error) {
+    router.push('/');
+  }
   return (
     <>
       <SEO title='BEST 클래스' />
-      {loading ? (
-        <Loader />
-      ) : (
-        data && (
-          <>
-            <Banner />
-            <Navigator />
-            <Best {...data} />
-          </>
-        )
-      )}
+      <Banner />
+      <Navigator />
+      <Best {...(data && data.data)} />
     </>
   );
 };

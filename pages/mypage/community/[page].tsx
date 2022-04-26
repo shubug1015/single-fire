@@ -48,7 +48,7 @@ const MyCommunityList: NextPage<{ page: string }> = ({ page }) => {
               <div className='text-lg font-medium'>게시글</div>
               <CommunityList
                 data={data?.data.results}
-                count={data?.data.count}
+                totalItems={data?.data.count}
               />
             </div>
           </div>

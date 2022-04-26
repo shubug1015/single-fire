@@ -4,12 +4,12 @@ import Coupon from './coupon';
 
 interface IProps {
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function CouponList({ data, count }: IProps) {
+export default function CouponList({ data, totalItems }: IProps) {
   const router = useRouter();
-  const { page } = router.query as any;
+  const currentPage = router.query.page as string;
 
   return (
     <div>
@@ -21,10 +21,10 @@ export default function CouponList({ data, count }: IProps) {
           <div className='flex grow justify-center'>적용상품</div>
         </div>
 
-        {data.map((i, index) => (
+        {data?.map((i, index) => (
           <Coupon
             key={i}
-            num={(+page - 1) * 12 + index + 1}
+            num={(+currentPage - 1) * 12 + index + 1}
             name={i.name}
             discount={i.price}
           />
@@ -32,7 +32,11 @@ export default function CouponList({ data, count }: IProps) {
       </div>
 
       <div className='mt-24 flex justify-center'>
-        <Pagebar count={count} />
+        <Pagebar
+          totalItems={totalItems}
+          currentPage={+currentPage}
+          url={(page: number) => router.push(`/mypage/coupon/${page}`)}
+        />
       </div>
     </div>
   );

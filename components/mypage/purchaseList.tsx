@@ -1,12 +1,15 @@
 import Pagebar from '@components/pagebar';
+import { useRouter } from 'next/router';
 import Purchase from './purchase';
 
 interface IProps {
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function PurchaseList({ data, count }: IProps) {
+export default function PurchaseList({ data, totalItems }: IProps) {
+  const router = useRouter();
+  const currentPage = router.query.page as string;
   return (
     <div>
       <div className='space-y-2'>
@@ -27,7 +30,11 @@ export default function PurchaseList({ data, count }: IProps) {
       </div>
 
       <div className='mt-20 flex justify-center'>
-        <Pagebar count={count} />
+        <Pagebar
+          totalItems={totalItems}
+          currentPage={+currentPage}
+          url={(page: number) => router.push(`/mypage/purchase/${page}`)}
+        />
       </div>
     </div>
   );

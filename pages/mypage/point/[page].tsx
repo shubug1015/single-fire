@@ -68,7 +68,10 @@ const Point: NextPage<{ page: string }> = ({ page }) => {
             <div className='space-y-6'>
               <div className='text-lg font-medium'>사용내역</div>
 
-              <PointList data={data?.data.results} count={data?.data.count} />
+              <PointList
+                data={data?.data.results}
+                totalItems={data?.data.count}
+              />
             </div>
           </div>
         </div>

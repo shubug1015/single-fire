@@ -3,15 +3,15 @@ import Navigator from '@components/lecture/navigator';
 import LectureList from '@components/lecture/lectureList';
 import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
-import useMutation from '@libs/client/useMutation';
-import type { NextPage } from 'next';
-import { useEffect } from 'react';
+import type { GetServerSidePropsContext, NextPage } from 'next';
+import useSWR from 'swr';
 import { useRouter } from 'next/router';
-import Loader from '@components/loader';
 
-const Lectures: NextPage = () => {
+const Lectures: NextPage<{ category: string; page: string }> = ({
+  category,
+  page,
+}) => {
   const router = useRouter();
-  const { category, page } = router.query;
   const categoryReq =
     category === 'real-estate'
       ? '부동산'
@@ -22,33 +22,36 @@ const Lectures: NextPage = () => {
       : category === 'online-business'
       ? '온라인창업'
       : '';
-  const [getData, { loading, data, error }] = useMutation(
-    page ? lecturesApi.lectures : null
+  const { data, error } = useSWR(`lectureList-${category}`, () =>
+    lecturesApi.lectureList(categoryReq, page)
   );
 
-  useEffect(() => {
-    getData({ req: { category: categoryReq, page } });
-  }, [category, page]);
+  console.log(data);
+
+  if (error) {
+    router.push('/');
+  }
   return (
     <>
       <SEO title='클래스' />
-      {loading ? (
-        <Loader />
-      ) : (
-        data && (
-          <>
-            <CategoryBanner />
-            <Navigator />
-            <LectureList
-              title={categoryReq}
-              data={data.results}
-              count={data.count}
-            />
-          </>
-        )
-      )}
+      <CategoryBanner />
+      <Navigator />
+      {/* <LectureList
+        title={categoryReq}
+        data={data?.data.results}
+        totalItems={data?.data.count}
+      /> */}
     </>
   );
+};
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  return {
+    props: {
+      category: ctx.params?.category,
+      page: ctx.params?.page,
+    },
+  };
 };
 
 export default Lectures;

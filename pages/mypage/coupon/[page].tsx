@@ -47,7 +47,10 @@ const Coupon: NextPage<{ page: string }> = ({ page }) => {
                 </Link>
               </div>
 
-              <CouponList data={data?.data.results} count={data?.data.count} />
+              <CouponList
+                data={data?.data.results}
+                totalItems={data?.data.count}
+              />
             </div>
           </div>
         </div>

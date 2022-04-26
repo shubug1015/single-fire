@@ -27,10 +27,12 @@ export default function Lecture({
   return (
     <div
       onClick={() =>
-        category === '수강중' ? router.push(`/lecture/my/${id}/${order}`) : null
+        category === 'ongoing'
+          ? router.push(`/lecture/my/${id}/${order}`)
+          : null
       }
       className={cls(
-        category === '수강중' ? 'cursor-pointer' : 'opacity-70',
+        category === 'ongoing' ? 'cursor-pointer' : 'opacity-70',
         'flex w-full items-center space-x-6 rounded bg-[#4a4e57] p-8'
       )}
     >

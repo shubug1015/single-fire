@@ -160,14 +160,16 @@ export const lecturesApi = {
   topLectureList: () => api.get('/cms/class/'),
 
   // 카테고리별 강의 리스트
-  lectures: ({ category, page }: IProps) =>
-    api.get(`/lectures?category=${category}&page=${page}`),
+  lectureList: (category: string, page: string) =>
+    api
+      .get(`/lectures?category=${category}&page=${page}`)
+      .then((res) => res.data),
 
   // 강의 상세
   detail: (id: string) => api.get(`/lectures/${id}/`),
 
   // 강의 상세 리뷰쓰기
-  writeReview: (id: number, text: string, token: string) =>
+  writeReview: (id: string, text: string, token: string) =>
     api.post(
       '/lectures/review/',
       {

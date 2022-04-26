@@ -97,7 +97,7 @@ export default function Popup({
             ))}
           </div>
 
-          <Link href={`/lecture/${lectureId}`}>
+          <Link href={`/lecture/detail/${lectureId}`}>
             <a>
               <div className='flex h-14 w-40 items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'>
                 강의 보러가기 →

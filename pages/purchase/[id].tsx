@@ -1,6 +1,6 @@
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { API_URL, lecturesApi, purchaseApi, usersApi } from '@libs/api';
+import { lecturesApi, purchaseApi, usersApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Image from 'next/image';
@@ -21,8 +21,8 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
   const { token, profile } = useAuth({
     isPrivate: true,
   });
-  const { data: lectureData } = useSWR(
-    id ? `${API_URL}/lectures/${id}/` : null
+  const { data: lectureData } = useSWR(`lectureDetail-${id}`, () =>
+    lecturesApi.detail(id)
   );
   const router = useRouter();
 
@@ -43,11 +43,11 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
     2,
     '0'
   )}-${date.getTime()}`;
-  const totalDiscount = lectureData.discount + +point + coupon.price;
+  const totalDiscount = lectureData?.data.discount + +point + coupon.price;
   const totalPrice =
-    lectureData.price - totalDiscount < 0
+    lectureData?.data.price - totalDiscount < 0
       ? 0
-      : lectureData.price - totalDiscount;
+      : lectureData?.data.price - totalDiscount;
 
   const handlePayMethod = (method: string) => {
     setPayMethod(method);
@@ -71,7 +71,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
     const params = {
       pg: payMethod, // pg사
       merchant_uid: orderId, // 주문번호
-      name: lectureData.name, // 상품명
+      name: lectureData?.data.name, // 상품명
       amount: totalPrice, // 금액
       buyer_email: profile?.email, // 이메일
       buyer_name: profile?.name, // 이름
@@ -87,8 +87,8 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
         await purchaseApi.purchase({
           type: 'lecture',
           method: payMethod,
-          lectureId: lectureData.id,
-          price: lectureData.price - lectureData.discount,
+          lectureId: lectureData?.data.id,
+          price: lectureData?.data.price - lectureData?.data.discount,
           totalPrice,
           point,
           coupon: coupon.id,
@@ -101,7 +101,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
           query: {
             name: res.name,
             payMethod,
-            price: lectureData.price,
+            price: lectureData?.data.price,
             discount: totalDiscount,
             point,
             totalPrice,
@@ -159,19 +159,21 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
             <div className='flex items-center py-8 text-lg'>
               <div className='flex w-1/5 justify-center'>
                 <div className='relative h-32 w-36'>
-                  <Image
-                    src={lectureData.thumbnail}
-                    alt='Lecture Thumbnail'
-                    layout='fill'
-                    objectFit='cover'
-                    className='rounded'
-                  />
+                  {lectureData && (
+                    <Image
+                      src={lectureData?.data.thumbnail}
+                      alt='Lecture Thumbnail'
+                      layout='fill'
+                      objectFit='cover'
+                      className='rounded'
+                    />
+                  )}
                 </div>
               </div>
-              <div className='flex grow'>{lectureData.name}</div>
+              <div className='flex grow'>{lectureData?.data.name}</div>
               <div className='flex w-1/5 justify-center'>-</div>
               <div className='flex w-1/5 justify-center'>
-                {lectureData.price.toLocaleString()} 원
+                {lectureData?.data.price.toLocaleString()} 원
               </div>
             </div>
             {/* 상품정보 Data */}
@@ -316,7 +318,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
           <div className='space-y-4 py-8 text-lg'>
             <div className='flex items-center'>
               <div className='w-40'>상품 금액</div>
-              <div>{lectureData.price.toLocaleString()}</div>
+              <div>{lectureData?.data.price.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center'>
@@ -326,7 +328,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
 
             <div className='flex items-center opacity-60'>
               <div className='w-40'>이벤트</div>
-              <div>-{lectureData.discount.toLocaleString()}</div>
+              <div>-{lectureData?.data.discount.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center opacity-60'>
@@ -418,10 +420,9 @@ const Page: NextPage<{ fallback: AuthResponse; id: string }> = ({
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { token } = cookies(ctx);
-  const id = ctx.params?.id as string;
+  const id = ctx.params?.id;
 
   const myData = token ? await usersApi.myInfos(token) : null;
-  const lectureData = id ? await lecturesApi.detail(id) : null;
   return {
     props: {
       id,
@@ -431,7 +432,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
           token: token || null,
           profile: myData?.data || null,
         },
-        [`${API_URL}/lectures/${id}/`]: lectureData?.data,
       },
     },
   };

@@ -20,7 +20,7 @@ export default function Best({
         {/* 부동산 Top3 강의 */}
         <TopLectureList
           title='부동산 TOP3 강의'
-          data={realty_class.map((i) => i.lecture)}
+          data={realty_class?.map((i) => i.lecture)}
           url='/lecture/real-estate/1'
         />
         {/* 부동산 Top3 강의 */}
@@ -28,7 +28,7 @@ export default function Best({
         {/* 주식 Top3 강의 */}
         <TopLectureList
           title='주식 TOP3 강의'
-          data={stock_class.map((i) => i.lecture)}
+          data={stock_class?.map((i) => i.lecture)}
           url='/lecture/stock/1'
         />
         {/* 주식 Top3 강의 */}
@@ -36,7 +36,7 @@ export default function Best({
         {/* 코인 Top3 강의 */}
         <TopLectureList
           title='코인 TOP3 강의'
-          data={coin_class.map((i) => i.lecture)}
+          data={coin_class?.map((i) => i.lecture)}
           url='/lecture/coin/1'
         />
         {/* 코인 Top3 강의 */}
@@ -44,7 +44,7 @@ export default function Best({
         {/* 온라인창업 Top3 강의 */}
         <TopLectureList
           title='온라인창업 TOP3 강의'
-          data={business_class.map((i) => i.lecture)}
+          data={business_class?.map((i) => i.lecture)}
           url='/lecture/online-business/1'
         />
         {/* 온라인창업 Top3 강의 */}

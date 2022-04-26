@@ -1,13 +1,13 @@
 import { gradeImg } from '@components/grade';
 import Layout from '@layouts/sectionLayout';
-import { API_URL, lecturesApi } from '@libs/api';
+import { lecturesApi } from '@libs/api';
 import { AuthResponse } from '@libs/client/useAuth';
 import { trimDate } from '@libs/client/utils';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
 interface IProps {
-  id: number;
+  id: string;
   review: any[];
 }
 
@@ -17,8 +17,8 @@ interface IForm {
 
 export default function Review({ id, review }: IProps) {
   const { data } = useSWR<AuthResponse>('/api/auth');
-  const { data: lectureData, mutate } = useSWR(
-    id ? `${API_URL}/lectures/${id}/` : null
+  const { data: lectureData, mutate } = useSWR(`lectureDetail-${id}`, () =>
+    lecturesApi.detail(id)
   );
 
   const {
@@ -44,20 +44,25 @@ export default function Review({ id, review }: IProps) {
           setError('review', { message: '이미 리뷰를 작성한 강의입니다.' });
         } else {
           setValue('review', '');
-          mutate({
-            ...lectureData,
-            review: [
-              ...lectureData.review,
-              {
-                user: {
-                  nickname: data?.profile?.nickname,
-                  grade: data?.profile?.nickname,
-                },
-                text: values.review,
-                created: new Date().toISOString(),
+          if (lectureData) {
+            mutate({
+              ...lectureData,
+              data: {
+                ...lectureData.data,
+                review: [
+                  ...lectureData.data.review,
+                  {
+                    user: {
+                      nickname: data?.profile?.nickname,
+                      grade: data?.profile?.nickname,
+                    },
+                    text: values.review,
+                    created: new Date().toISOString(),
+                  },
+                ],
               },
-            ],
-          });
+            });
+          }
         }
       } catch {
         alert('Error');

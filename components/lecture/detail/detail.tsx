@@ -35,13 +35,15 @@ export default function Detail({
       <div className='flex justify-between'>
         {/* 썸네일 */}
         <div className='relative h-[30.625rem] w-[43.75rem]'>
-          <Image
-            src={thumbnail}
-            alt='Detail Thumbnail'
-            layout='fill'
-            objectFit='cover'
-            className='rounded-md'
-          />
+          {thumbnail && (
+            <Image
+              src={thumbnail}
+              alt='Detail Thumbnail'
+              layout='fill'
+              objectFit='cover'
+              className='rounded-md'
+            />
+          )}
         </div>
         {/* 썸네일 */}
 
@@ -76,7 +78,7 @@ export default function Detail({
                     'mr-[0.375rem]'
                   )}
                 >
-                  {price.toLocaleString()}원
+                  {price?.toLocaleString()}원
                 </div>
                 {/* 정상가 */}
 

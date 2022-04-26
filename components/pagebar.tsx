@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { cls } from '@libs/client/utils';
 
 interface IProps {
-  count: number;
+  totalItems: number;
+  currentPage: number;
+  url: (page: number) => void;
 }
 
 const PAGE_LIST_LENGTH = 5;
 
-const Pagebar = ({ count }: IProps) => {
-  const router = useRouter();
-  const currentPage: number =
-    // +(router.query.page as string) || +(router.query.slug as string[])[0] || 1;
-    +(router.query.page as string) || 1;
-
-  const maxPage = Math.ceil(count / PAGE_LIST_LENGTH);
+const Pagebar = ({ totalItems, currentPage, url }: IProps) => {
+  const maxPage = Math.ceil(totalItems / PAGE_LIST_LENGTH); // 마지막 페이지
   const quo = Math.floor(currentPage / PAGE_LIST_LENGTH); // 몫
   const rem = currentPage % PAGE_LIST_LENGTH; // 나머지
   const pageArray = [...Array(5)]
@@ -34,19 +30,15 @@ const Pagebar = ({ count }: IProps) => {
     setPageList([...Array(5)].map((_, index) => index + tmp));
   };
 
-  const firstPage = () => {
-    router.push('/');
-  };
+  const firstPage = () => url(1);
 
-  const lastPage = () => {
-    router.push(`/`);
-  };
+  const lastPage = () => url(maxPage);
 
   useEffect(() => {
     setPageList(pageArray);
   }, [maxPage]);
 
-  return count > 0 ? (
+  return totalItems > 0 ? (
     <div className='flex space-x-2'>
       {currentPage !== 1 && (
         <div
@@ -95,7 +87,7 @@ const Pagebar = ({ count }: IProps) => {
       {pageList.map((page) => (
         <div
           key={page}
-          onClick={() => router.push(`/`)}
+          onClick={() => url(page)}
           className={cls(
             page === currentPage
               ? 'bg-[#009fb0] text-black'

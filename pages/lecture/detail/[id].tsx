@@ -5,7 +5,8 @@ import Info from '@components/lecture/detail/info';
 import Review from '@components/lecture/detail/review';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { API_URL, lecturesApi, usersApi } from '@libs/api';
+import { lecturesApi, usersApi } from '@libs/api';
+import { AuthResponse } from '@libs/client/useAuth';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import cookies from 'next-cookies';
@@ -17,7 +18,7 @@ interface IFallback {
 }
 
 const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
-  const { data } = useSWR(id ? `${API_URL}/lectures/${id}/` : null);
+  const { data } = useSWR(`lectureDetail-${id}`, () => lecturesApi.detail(id));
   const [section, setSection] = useState('강의정보');
   const sectionList = [
     {
@@ -39,9 +40,9 @@ const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
   ];
   return (
     <>
-      <SEO title={data.name} />
+      <SEO title={data?.data.name} />
 
-      <Detail {...data} />
+      <Detail {...(data && data.data)} />
       <Layout>
         <div className='mt-32 mb-[3.75rem] flex text-lg font-medium'>
           {sectionList.map((i) => (
@@ -61,15 +62,15 @@ const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
           <div className='mt-2 grow border-b-2 border-[rgba(255,255,255,0.16)]' />
         </div>
       </Layout>
-      {section === '강의정보' && <Info data={data.lecture_detail} />}
-      {section === '커리큘럼' && <Curriculum data={data.curriculum} />}
-      {section === '수강후기' && <Review {...data} />}
-      {section === '커뮤니티' && <Community {...data} />}
+      {section === '강의정보' && <Info data={data?.data.lecture_detail} />}
+      {section === '커리큘럼' && <Curriculum data={data?.data.curriculum} />}
+      {section === '수강후기' && <Review {...(data && data.data)} />}
+      {section === '커뮤니티' && <Community {...(data && data.data)} />}
     </>
   );
 };
 
-const Page: NextPage<{ fallback: IFallback; id: string }> = ({
+const Page: NextPage<{ fallback: AuthResponse; id: string }> = ({
   fallback,
   id,
 }) => (
@@ -87,7 +88,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const id = ctx.params?.id as string;
 
   const myData = token ? await usersApi.myInfos(token) : null;
-  const lectureData = id ? await lecturesApi.detail(id) : null;
   return {
     props: {
       id,
@@ -97,7 +97,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
           token: token || null,
           profile: myData?.data || null,
         },
-        [`${API_URL}/lectures/${id}/`]: lectureData?.data,
       },
     },
   };

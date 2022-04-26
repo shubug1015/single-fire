@@ -23,13 +23,13 @@ export default function Navigator() {
     },
     {
       id: 1,
-      url: '/mypage/lecture/1',
+      url: '/mypage/lecture/ongoing/1',
       active:
-        router.pathname === '/mypage/lecture/[page]' ||
+        router.pathname === '/mypage/lecture/[...slug]' ||
         router.pathname === '/mypage/community/[page]',
       label: '내 강의실',
       subMenus: [
-        { label: '강의 목록', url: '/mypage/lecture/1' },
+        { label: '강의 목록', url: '/mypage/lecture/ongoing/1' },
         { label: '커뮤니티 활동', url: '/mypage/community/1' },
       ],
     },
@@ -89,8 +89,10 @@ export default function Navigator() {
                   <Link key={index} href={j.url}>
                     <a
                       className={cls(
-                        router.pathname.replace('/[page]', '') ===
-                          j.url.replace('/1', '')
+                        router.pathname
+                          .replace('/[page]', '')
+                          .replace('/[...slug]', '') ===
+                          j.url.replace('/1', '').replace('/ongoing', '')
                           ? 'text-[#00e7ff]'
                           : 'text-[rgba(255,255,255,0.6)]',
                         'flex h-12 w-[13.625rem] items-center justify-center rounded-sm font-medium transition-all hover:opacity-70'

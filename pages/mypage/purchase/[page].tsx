@@ -38,7 +38,10 @@ const MyPurchaseList: NextPage<{ page: string }> = ({ page }) => {
               <div className='text-[#afafaf]'>환불 내역</div>
             </div>
 
-            <PurchaseList data={data?.data.results} count={data?.data.count} />
+            <PurchaseList
+              data={data?.data.results}
+              totalItems={data?.data.count}
+            />
           </div>
         </div>
       </Layout>

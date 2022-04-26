@@ -1,13 +1,15 @@
 import Lecture from '@components/mypage/lecture';
 import Pagebar from '@components/pagebar';
+import { useRouter } from 'next/router';
 
 interface IProps {
-  category: string;
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function LectureList({ category, data, count }: IProps) {
+export default function LectureList({ data, totalItems }: IProps) {
+  const router = useRouter();
+  const [category, currentPage] = router.query.slug as string[];
   return (
     <div>
       <div className='space-y-2'>
@@ -27,7 +29,13 @@ export default function LectureList({ category, data, count }: IProps) {
       </div>
 
       <div className='mt-20 flex justify-center'>
-        <Pagebar count={count} />
+        <Pagebar
+          totalItems={totalItems}
+          currentPage={+currentPage}
+          url={(page: number) =>
+            router.push(`/mypage/lecture/${category}/${page}`)
+          }
+        />
       </div>
     </div>
   );
