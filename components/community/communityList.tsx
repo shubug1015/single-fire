@@ -55,7 +55,7 @@ export default function CommunityList({ notice, data, count }: IProps) {
       ))}
 
       <div className='mt-24 flex justify-center'>
-        <Pagebar count={count} />
+        {/* <Pagebar count={count} /> */}
       </div>
     </Layout>
   );
