@@ -161,9 +161,7 @@ export const lecturesApi = {
 
   // 카테고리별 강의 리스트
   lectureList: (category: string, page: string) =>
-    api
-      .get(`/lectures?category=${category}&page=${page}`)
-      .then((res) => res.data),
+    api.get(`/lectures?category=${category}&page=${page}`),
 
   // 강의 상세
   detail: (id: string) => api.get(`/lectures/${id}/`),

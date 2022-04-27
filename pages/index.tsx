@@ -19,12 +19,12 @@ const Home: NextPage = () => {
       <SEO title='홈' />
       <Banner data={data?.data.main_banner} />
       <Best data={data?.data.best_class.map((i: any) => i.lecture)} />
-      <Customized />
-      <Top3
+      {/* <Customized /> */}
+      {/* <Top3
         coin={data?.data.coin_class.map((i: any) => i.lecture)}
         realty={data?.data.realty_class.map((i: any) => i.lecture)}
         stock={data?.data.stock_class.map((i: any) => i.lecture)}
-      />
+      /> */}
       <Community />
     </>
   );

@@ -111,7 +111,7 @@ export default function Header() {
           <nav className='flex space-x-4 text-sm font-medium'>
             {data?.token ? (
               <>
-                <Link href='/mypage/lecture/1'>
+                <Link href='/mypage/lecture/ongoing/1'>
                   <a className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm border border-[#00e7ff] leading-3 text-[#00e7ff]'>
                     내 강의보기
                   </a>

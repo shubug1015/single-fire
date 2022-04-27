@@ -26,8 +26,6 @@ const Lectures: NextPage<{ category: string; page: string }> = ({
     lecturesApi.lectureList(categoryReq, page)
   );
 
-  console.log(data);
-
   if (error) {
     router.push('/');
   }
@@ -36,11 +34,11 @@ const Lectures: NextPage<{ category: string; page: string }> = ({
       <SEO title='클래스' />
       <CategoryBanner />
       <Navigator />
-      {/* <LectureList
+      <LectureList
         title={categoryReq}
         data={data?.data.results}
         totalItems={data?.data.count}
-      /> */}
+      />
     </>
   );
 };

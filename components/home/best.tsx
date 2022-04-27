@@ -12,7 +12,7 @@ export default function Best({ data }: IProps) {
       {/* 상단 배너 */}
       <Link href='/calculator'>
         <a>
-          <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a]'>
+          <div className='mb-[6.625rem] mb-0 flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a]'>
             <div className='text-lg font-medium'>
               경제적 자유 얻고 파이어족 도전! 대체 얼마가 필요할까? 🔥
             </div>
@@ -40,11 +40,11 @@ export default function Best({ data }: IProps) {
       {/* 상단 배너 */}
 
       {/* Best 클래스 */}
-      <TopLectureList
+      {/* <TopLectureList
         title='[100만뷰] 경제적 자유를 이뤄낸 BEST 클래스'
         data={data}
         url='/class'
-      />
+      /> */}
       {/* Best 클래스 */}
     </Layout>
   );
