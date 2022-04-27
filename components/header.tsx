@@ -78,7 +78,7 @@ export default function Header() {
               </a>
             </Link>
 
-            <Link href='/lecture'>
+            {/* <Link href='/lecture'>
               <a
                 className={cls(
                   router.pathname === '/lecture' ||
@@ -103,7 +103,7 @@ export default function Header() {
               >
                 커뮤니티
               </a>
-            </Link>
+            </Link> */}
           </nav>
           {/* 좌측 메뉴 */}
 
