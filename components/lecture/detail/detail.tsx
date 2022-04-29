@@ -58,7 +58,7 @@ export default function Detail({
           {/* 강의명 */}
 
           {/* 간략 설명 */}
-          <div className='border-y-2 border-[#464c59] py-6 text-[#cfcfcf]'>
+          <div className='whitespace-pre-wrap border-y-2 border-[#464c59] py-6 text-[#cfcfcf]'>
             {text}
           </div>
           {/* 간략 설명 */}

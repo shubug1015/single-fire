@@ -13,10 +13,6 @@ import cookies from 'next-cookies';
 import { useState } from 'react';
 import useSWR, { SWRConfig } from 'swr';
 
-interface IFallback {
-  data: any[];
-}
-
 const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
   const { data } = useSWR(`lectureDetail-${id}`, () => lecturesApi.detail(id));
   const [section, setSection] = useState('강의정보');

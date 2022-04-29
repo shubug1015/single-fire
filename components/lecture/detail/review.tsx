@@ -54,7 +54,7 @@ export default function Review({ id, review }: IProps) {
                   {
                     user: {
                       nickname: data?.profile?.nickname,
-                      grade: data?.profile?.nickname,
+                      grade: data?.profile?.grade,
                     },
                     text: values.review,
                     created: new Date().toISOString(),

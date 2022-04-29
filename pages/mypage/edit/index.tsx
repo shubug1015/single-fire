@@ -50,6 +50,7 @@ const EditProfile: NextPage = () => {
         token,
       };
       editMyInfos({ req });
+      alert('회원 정보 수정이 완료되었습니다.');
     } catch {
       alert('Error');
     }

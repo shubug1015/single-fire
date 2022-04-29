@@ -89,14 +89,8 @@ const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
               frameBorder='0'
               allow='autoplay; fullscreen; picture-in-picture'
               allowFullScreen
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
               title={videoTitle}
+              className='absolute top-0 left-0 h-full w-full'
             ></iframe>
           </div>
 

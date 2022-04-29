@@ -22,7 +22,6 @@ export default function Popup({ username, closePopup }: IProps) {
     handleSubmit,
     formState: { errors },
     watch,
-    getValues,
   } = useForm<IForm>({
     mode: 'onChange',
   });

@@ -1,16 +1,9 @@
-import { usersApi } from '@libs/api';
 import { AuthResponse } from '@libs/client/useAuth';
-import useMutation from '@libs/client/useMutation';
 import { cls } from '@libs/client/utils';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import useSWR from 'swr';
-
-interface MutationResult {
-  ok: boolean;
-}
 
 export default function Navigator() {
   const router = useRouter();
