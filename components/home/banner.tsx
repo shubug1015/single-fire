@@ -12,7 +12,6 @@ interface ArrowProps {
 }
 
 export default function Banner({ data }: IProps) {
-  console.log(data);
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}

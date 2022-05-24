@@ -7,7 +7,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 
 interface IForm {
   phoneNum: string;
@@ -15,7 +15,7 @@ interface IForm {
 }
 
 const FindId: NextPage = () => {
-  useAuth({
+  useUser({
     isPrivate: false,
   });
   const [popup, setPopup] = useState(false);

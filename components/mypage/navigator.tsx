@@ -1,4 +1,3 @@
-import { AuthResponse } from '@libs/client/useAuth';
 import { cls } from '@libs/client/utils';
 import axios from 'axios';
 import Link from 'next/link';
@@ -55,7 +54,7 @@ export default function Navigator() {
     },
   ];
 
-  const { mutate } = useSWR<AuthResponse>('/api/auth');
+  const { mutate } = useSWR('/api/user');
 
   const handleLogout = async () => {
     await axios.post('/api/logout');

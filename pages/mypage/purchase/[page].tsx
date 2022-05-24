@@ -4,18 +4,23 @@ import PurchaseList from '@components/mypage/purchaseList';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import cookies from 'next-cookies';
 import { useRouter } from 'next/router';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 
-const MyPurchaseList: NextPage<{ page: string }> = ({ page }) => {
-  const { token } = useAuth({
+interface IProps {
+  page: string;
+}
+
+const MyPurchaseList: NextPage<IProps> = ({ page }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
-  const { data, error } = useSWR('myPurchaseList', () =>
-    token ? usersApi.myPurchaseList(page, token) : null
+  const { data, error } = useSWR(
+    token ? `/mypage/payment?page=${page}` : null,
+    () => usersApi.myPurchaseList(page, token as string)
   );
   const router = useRouter();
 
@@ -34,14 +39,11 @@ const MyPurchaseList: NextPage<{ page: string }> = ({ page }) => {
 
           <div className='grow space-y-6'>
             <div className='flex space-x-5 text-lg font-medium'>
-              <div>전체</div>
-              <div className='text-[#afafaf]'>환불 내역</div>
+              <div>결제 내역</div>
+              {/* <div className='text-[#afafaf]'>환불 내역</div> */}
             </div>
 
-            <PurchaseList
-              data={data?.data.results}
-              totalItems={data?.data.count}
-            />
+            <PurchaseList data={data?.results} totalItems={data?.count} />
           </div>
         </div>
       </Layout>
@@ -49,34 +51,14 @@ const MyPurchaseList: NextPage<{ page: string }> = ({ page }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; page: string }> = ({
-  fallback,
-  page,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <MyPurchaseList page={page} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { token } = cookies(ctx);
   const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       page: ctx.params?.page,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default MyPurchaseList;

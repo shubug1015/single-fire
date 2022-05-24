@@ -1,24 +1,12 @@
-// import Image from 'next/image';
 import Link from 'next/link';
-// import Logo from '@public/logo.png';
 import { navList } from './navList';
 import { useRouter } from 'next/router';
 import { cls } from '@libs/client/utils';
 import axios from 'axios';
 import useSWR from 'swr';
 
-interface IProfile {
-  [key: string]: any;
-}
-
-interface AuthResponse {
-  ok: boolean;
-  token: string | null;
-  profile: IProfile | null;
-}
-
 export default function Header() {
-  const { data, mutate } = useSWR<AuthResponse>('/api/auth');
+  const { data, mutate } = useSWR('/api/user');
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -32,9 +20,9 @@ export default function Header() {
         <div className='flex h-[6.25rem] items-center justify-between'>
           {/* 좌측 메뉴 */}
           <nav className='flex items-center text-lg font-medium'>
+            {/* 로고 */}
             <Link href='/'>
-              <a className=''>
-                {/* <Image src={Logo} alt='Logo' layout='fill' objectFit='cover' /> */}
+              <a>
                 <svg
                   width='178'
                   height='22'
@@ -77,8 +65,10 @@ export default function Header() {
                 </svg>
               </a>
             </Link>
+            {/* 로고 */}
 
-            {/* <Link href='/lecture'>
+            {/* 클래스 */}
+            <Link href='/lecture'>
               <a
                 className={cls(
                   router.pathname === '/lecture' ||
@@ -91,7 +81,9 @@ export default function Header() {
                 클래스
               </a>
             </Link>
+            {/* 클래스 */}
 
+            {/* 커뮤니티 */}
             <Link href='/community'>
               <a
                 className={cls(
@@ -103,7 +95,8 @@ export default function Header() {
               >
                 커뮤니티
               </a>
-            </Link> */}
+            </Link>
+            {/* 커뮤니티 */}
           </nav>
           {/* 좌측 메뉴 */}
 

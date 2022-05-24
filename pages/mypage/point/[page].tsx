@@ -4,19 +4,23 @@ import PointList from '@components/mypage/pointList';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import cookies from 'next-cookies';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 
-const Point: NextPage<{ page: string }> = ({ page }) => {
-  const { token } = useAuth({
+interface IProps {
+  page: string;
+}
+
+const Point: NextPage<IProps> = ({ page }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
-  const { data, error } = useSWR('myPointList', () =>
-    token ? usersApi.myPointList(page, token) : null
+  const { data, error } = useSWR(
+    token ? `/mypage/point?page=${page}` : null,
+    () => usersApi.myPointList(page, token as string)
   );
   const router = useRouter();
 
@@ -52,14 +56,14 @@ const Point: NextPage<{ page: string }> = ({ page }) => {
                 <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
                   <div className='font-medium'>보유 포인트</div>
                   <div className='font-bold'>
-                    {data?.data.point.toLocaleString()} P
+                    {data?.point.toLocaleString()} P
                   </div>
                 </div>
 
                 <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
                   <div className='font-medium'>사용한 포인트</div>
                   <div className='font-bold'>
-                    {data?.data.used_point.toLocaleString()} P
+                    {data?.used_point.toLocaleString()} P
                   </div>
                 </div>
               </div>
@@ -68,10 +72,7 @@ const Point: NextPage<{ page: string }> = ({ page }) => {
             <div className='space-y-6'>
               <div className='text-lg font-medium'>사용내역</div>
 
-              <PointList
-                data={data?.data.results}
-                totalItems={data?.data.count}
-              />
+              <PointList data={data?.results} totalItems={data?.count} />
             </div>
           </div>
         </div>
@@ -80,34 +81,12 @@ const Point: NextPage<{ page: string }> = ({ page }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; page: string }> = ({
-  fallback,
-  page,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <Point page={page} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       page: ctx.params?.page,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default Point;

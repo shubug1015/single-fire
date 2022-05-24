@@ -4,19 +4,23 @@ import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import cookies from 'next-cookies';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 
-const Coupon: NextPage<{ page: string }> = ({ page }) => {
-  const { token } = useAuth({
+interface IProps {
+  page: string;
+}
+
+const Coupon: NextPage<IProps> = ({ page }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
-  const { data, error } = useSWR('myCouponList', () =>
-    token ? usersApi.myCouponList(page, token) : null
+  const { data, error } = useSWR(
+    token ? `/mypage/coupon?page=${page}` : null,
+    () => usersApi.myCouponList(page, token as string)
   );
   const router = useRouter();
 
@@ -47,10 +51,7 @@ const Coupon: NextPage<{ page: string }> = ({ page }) => {
                 </Link>
               </div>
 
-              <CouponList
-                data={data?.data.results}
-                totalItems={data?.data.count}
-              />
+              <CouponList data={data?.results} totalItems={data?.count} />
             </div>
           </div>
         </div>
@@ -59,34 +60,12 @@ const Coupon: NextPage<{ page: string }> = ({ page }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; page: string }> = ({
-  fallback,
-  page,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <Coupon page={page} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       page: ctx.params?.page,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default Coupon;

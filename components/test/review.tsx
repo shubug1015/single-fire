@@ -2,8 +2,13 @@ import Layout from '@layouts/sectionLayout';
 import Image from 'next/image';
 import TitleBtn from './titleBtn';
 import ReviewProfile from 'public/test/review-profile.png';
+import { cls } from '@libs/client/utils';
 
-export default function Review() {
+interface IProps {
+  clsFilter: (cls1: string, cls2: string, cls3: string, cls4: string) => string;
+}
+
+export default function Review({ clsFilter }: IProps) {
   const reviewList = [
     {
       id: 0,
@@ -58,11 +63,33 @@ export default function Review() {
   return (
     <Layout bgColor='bg-[#2C2F34]' padding='py-24'>
       <div className='flex flex-col items-center'>
-        <TitleBtn title='Review' />
+        {/* <TitleBtn title='Review' /> */}
+        <div
+          className={cls(
+            clsFilter(
+              'border-[#00e7ff] text-[#00e7ff]',
+              'border-[#a966ff] text-[#a966ff]',
+              'border-[#a2ff69] text-[#a2ff69]',
+              'border-[#ff8a00] text-[#ff8a00]'
+            ),
+            'inline-block rounded-full border px-[1.375rem] py-[0.625rem] font-bold'
+          )}
+        >
+          Review
+        </div>
 
         <div className='mt-6 text-4xl font-bold leading-normal text-white'>
           독서모임 선발대가 후발대에게 직접 전달하는{' '}
-          <span className='text-[#00E7FF]'>솔직한 수강후기</span>
+          <span
+            className={clsFilter(
+              'text-[#00e7ff]',
+              'text-[#a966ff]',
+              'text-[#a2ff69]',
+              'text-[#ff8a00]'
+            )}
+          >
+            솔직한 수강후기
+          </span>
         </div>
 
         <div className='mt-20 space-y-4'>

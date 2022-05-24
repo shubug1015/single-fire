@@ -13,7 +13,7 @@ interface AuthResponse {
 }
 
 export default function Header() {
-  const { data } = useSWR<AuthResponse>('/api/auth');
+  const { data } = useSWR<AuthResponse>('/api/user');
   return (
     <>
       <div className='text-2xl font-bold'>마이페이지</div>

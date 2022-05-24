@@ -18,7 +18,7 @@ export default function Layout({ children }: LayoutProps) {
   //   try {
   //     const {
   //       data: { token },
-  //     } = await axios.get('/api/auth');
+  //     } = await axios.get('/api/user');
 
   //     // 토큰값이 이전과 변경이 있을때만 setState
   //     if (prevToken !== token) {

@@ -1,32 +1,36 @@
 import SEO from '@components/seo';
-import { lecturesApi, usersApi } from '@libs/api';
+import { lecturesApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
-import useSWR, { SWRConfig } from 'swr';
-import cookies from 'next-cookies';
+import { useUser } from '@libs/client/useUser';
+import useSWR from 'swr';
 
-const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
-  const { token } = useAuth({
+interface IProps {
+  slug: string[];
+}
+
+const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
   const router = useRouter();
   const [id, order] = slug;
   const [chapterOpen, setChapterOpen] = useState(null);
-  const { data, error } = useSWR('myLectureDetail', () =>
-    token ? lecturesApi.myLectureDetail(id, token) : null
+  const { data, error } = useSWR(
+    token ? `/lectures/registered_lecture/${id}` : null,
+    () => lecturesApi.myLectureDetail(id, token as string)
   );
 
-  const currentVideo = data?.data.index.flatMap((i: any) =>
+  const currentVideo = data?.index.flatMap((i: any) =>
     i.video.filter((j: any) => j.order === +order)
   )[0];
   const videoUrl = currentVideo?.url;
   const videoTitle = currentVideo?.title;
-  const lastChapter = data?.data.index[data?.data.index.length - 1].video;
+  const lastChapter = data?.index[data?.index.length - 1].video;
   const isLastLecture =
     lastChapter && lastChapter[lastChapter.length - 1].order === +order;
 
@@ -43,7 +47,7 @@ const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
 
   useEffect(() => {
     setChapterOpen(
-      data?.data.index.map((i: any) =>
+      data?.index.map((i: any) =>
         i.video.map((j: any) => j.order === +order).includes(true)
       )
     );
@@ -75,11 +79,11 @@ const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
   }
   return (
     <>
-      <SEO title={data?.data.name} />
+      <SEO title={data?.name} />
 
       <div className='px-12 pt-24 pb-36'>
         <div className='border-b-2 border-[rgba(229,229,229,0.08)] pb-6 text-[1.75rem] font-bold'>
-          {data?.data.name}
+          {data?.name}
         </div>
 
         <div className='mt-10 flex space-x-5'>
@@ -95,7 +99,7 @@ const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
           </div>
 
           <div className='grow space-y-4 font-medium'>
-            {data?.data.index.map((i: any, chapterId: number) => (
+            {data?.index.map((i: any, chapterId: number) => (
               <div key={i.id}>
                 <div
                   onClick={() =>
@@ -211,34 +215,12 @@ const MyLectureDetail: NextPage<{ slug: string[] }> = ({ slug }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; slug: string[] }> = ({
-  fallback,
-  slug,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <MyLectureDetail slug={slug} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       slug: ctx.params?.slug,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default MyLectureDetail;

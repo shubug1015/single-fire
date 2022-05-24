@@ -1,7 +1,6 @@
 import { gradeImg } from '@components/grade';
 import Layout from '@layouts/sectionLayout';
 import { lecturesApi } from '@libs/api';
-import { AuthResponse } from '@libs/client/useAuth';
 import { trimDate } from '@libs/client/utils';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useSWR from 'swr';
@@ -16,10 +15,8 @@ interface IForm {
 }
 
 export default function Review({ id, review }: IProps) {
-  const { data } = useSWR<AuthResponse>('/api/auth');
-  const { data: lectureData, mutate } = useSWR(`lectureDetail-${id}`, () =>
-    lecturesApi.detail(id)
-  );
+  const { data: myData } = useSWR('/api/user');
+  const { mutate } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
 
   const {
     register,
@@ -31,12 +28,12 @@ export default function Review({ id, review }: IProps) {
     mode: 'onSubmit',
   });
   const onValid = async (values: IForm) => {
-    if (data?.token) {
+    if (myData?.token) {
       try {
         const { data: message } = await lecturesApi.writeReview(
           id,
           values.review,
-          data.token
+          myData.token
         );
         if (message === 'unregistered lecture') {
           setError('review', { message: '구매하지 않은 강의입니다.' });
@@ -44,25 +41,8 @@ export default function Review({ id, review }: IProps) {
           setError('review', { message: '이미 리뷰를 작성한 강의입니다.' });
         } else {
           setValue('review', '');
-          if (lectureData) {
-            mutate({
-              ...lectureData,
-              data: {
-                ...lectureData.data,
-                review: [
-                  ...lectureData.data.review,
-                  {
-                    user: {
-                      nickname: data?.profile?.nickname,
-                      grade: data?.profile?.grade,
-                    },
-                    text: values.review,
-                    created: new Date().toISOString(),
-                  },
-                ],
-              },
-            });
-          }
+          const updatedData = await lecturesApi.detail(id);
+          mutate(updatedData);
         }
       } catch {
         alert('Error');
@@ -90,19 +70,19 @@ export default function Review({ id, review }: IProps) {
           </div>
         ))}
 
-        {data?.token && (
+        {myData?.token && (
           <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10'>
             <div className='flex items-center'>
-              <div>{data?.profile?.name}</div>
+              <div>{myData?.profile?.name}</div>
               <div className='relative ml-1 aspect-square h-4 w-4'>
-                {gradeImg(data?.profile?.grade)}
+                {gradeImg(myData?.profile?.grade)}
               </div>
             </div>
 
             <div className='grow'>
               <div className='flex'>
                 <div className='ml-14 h-24 rounded-l-sm bg-[#282e38] p-4'>
-                  {data?.profile?.nickname} |
+                  {myData?.profile?.nickname} |
                 </div>
                 <textarea
                   {...register('review', {

@@ -1,15 +1,14 @@
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { lecturesApi, purchaseApi, usersApi } from '@libs/api';
+import { lecturesApi, purchaseApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import useSWR, { SWRConfig } from 'swr';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
-import cookies from 'next-cookies';
+import useSWR from 'swr';
+import { useUser } from '@libs/client/useUser';
 
 declare global {
   interface Window {
@@ -17,13 +16,15 @@ declare global {
   }
 }
 
-const Purchase: NextPage<{ id: string }> = ({ id }) => {
-  const { token, profile } = useAuth({
+interface IProps {
+  id: string;
+}
+
+const Purchase: NextPage<IProps> = ({ id }) => {
+  const { token, profile } = useUser({
     isPrivate: true,
   });
-  const { data: lectureData } = useSWR(`lectureDetail-${id}`, () =>
-    lecturesApi.detail(id)
-  );
+  const { data } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
   const router = useRouter();
 
   const [payMethod, setPayMethod] = useState<string | null>(null);
@@ -43,11 +44,9 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
     2,
     '0'
   )}-${date.getTime()}`;
-  const totalDiscount = lectureData?.data.discount + +point + coupon.price;
+  const totalDiscount = data?.discount + +point + coupon.price;
   const totalPrice =
-    lectureData?.data.price - totalDiscount < 0
-      ? 0
-      : lectureData?.data.price - totalDiscount;
+    data?.price - totalDiscount < 0 ? 0 : data?.price - totalDiscount;
 
   const handlePayMethod = (method: string) => {
     setPayMethod(method);
@@ -71,7 +70,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
     const params = {
       pg: payMethod, // pg사
       merchant_uid: orderId, // 주문번호
-      name: lectureData?.data.name, // 상품명
+      name: data?.name, // 상품명
       amount: totalPrice, // 금액
       buyer_email: profile?.email, // 이메일
       buyer_name: profile?.name, // 이름
@@ -87,8 +86,8 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
         await purchaseApi.purchase({
           type: 'lecture',
           method: payMethod,
-          lectureId: lectureData?.data.id,
-          price: lectureData?.data.price - lectureData?.data.discount,
+          lectureId: data?.id,
+          price: data?.price - data?.discount,
           totalPrice,
           point,
           coupon: coupon.id,
@@ -101,14 +100,14 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
           query: {
             name: res.name,
             payMethod,
-            price: lectureData?.data.price,
+            price: data?.price,
             discount: totalDiscount,
             point,
             totalPrice,
           },
         });
       } else {
-        console.log('error', error_code);
+        console.log('error', error_code, error_msg);
       }
     };
 
@@ -159,9 +158,9 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
             <div className='flex items-center py-8 text-lg'>
               <div className='flex w-1/5 justify-center'>
                 <div className='relative h-32 w-36'>
-                  {lectureData && (
+                  {data && (
                     <Image
-                      src={lectureData?.data.thumbnail}
+                      src={data?.thumbnail}
                       alt='Lecture Thumbnail'
                       layout='fill'
                       objectFit='cover'
@@ -170,10 +169,10 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
                   )}
                 </div>
               </div>
-              <div className='flex grow'>{lectureData?.data.name}</div>
+              <div className='flex grow'>{data?.name}</div>
               <div className='flex w-1/5 justify-center'>-</div>
               <div className='flex w-1/5 justify-center'>
-                {lectureData?.data.price.toLocaleString()} 원
+                {data?.price.toLocaleString()} 원
               </div>
             </div>
             {/* 상품정보 Data */}
@@ -318,7 +317,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
           <div className='space-y-4 py-8 text-lg'>
             <div className='flex items-center'>
               <div className='w-40'>상품 금액</div>
-              <div>{lectureData?.data.price.toLocaleString()}</div>
+              <div>{data?.price.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center'>
@@ -328,7 +327,7 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
 
             <div className='flex items-center opacity-60'>
               <div className='w-40'>이벤트</div>
-              <div>-{lectureData?.data.discount.toLocaleString()}</div>
+              <div>-{data?.discount.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center opacity-60'>
@@ -405,36 +404,12 @@ const Purchase: NextPage<{ id: string }> = ({ id }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; id: string }> = ({
-  fallback,
-  id,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <Purchase id={id} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const id = ctx.params?.id;
-
-  const myData = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
-      id,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: myData?.data || null,
-        },
-      },
+      id: ctx.params?.id,
     },
   };
 };
 
-export default Page;
+export default Purchase;

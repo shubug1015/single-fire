@@ -7,10 +7,12 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 const Tutor: NextPage<{ page: string }> = ({ page }) => {
-  const { data, error } = useSWR('tutorList', () =>
+  const { data, error } = useSWR(`/lectures/tutor?page=${page}`, () =>
     lecturesApi.tutorList(page)
   );
   const router = useRouter();
+
+  console.log(data);
 
   if (error) {
     router.push('/');
@@ -21,8 +23,8 @@ const Tutor: NextPage<{ page: string }> = ({ page }) => {
       <Banner />
       <TutorList
         title='강사소개'
-        data={data?.data.results}
-        totalItems={data?.data.count}
+        data={data?.results}
+        totalItems={data?.count}
       />
     </>
   );

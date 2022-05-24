@@ -108,63 +108,75 @@ export const usersApi = {
 
   // 마이페이지 내 강의 리스트
   myLectureList: (page: string, token: string) =>
-    api.get(`/mypage/registered_lecture?page=${page}`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/mypage/registered_lecture?page=${page}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 마이페이지 커뮤니티 리스트
   myCommunityList: (page: string, token: string) =>
-    api.get(`/mypage/community?page=${page}`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/mypage/community?page=${page}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 마이페이지 구매 리스트
   myPurchaseList: (page: string, token: string) =>
-    api.get(`/mypage/payment?page=${page}`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/mypage/payment?page=${page}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 마이페이지 쿠폰 리스트
   myCouponList: (page: string, token: string) =>
-    api.get(`/mypage/coupon?page=${page}`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/mypage/coupon?page=${page}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 마이페이지 포인트 리스트
   myPointList: (page: string, token: string) =>
-    api.get(`/mypage/point?page=${page}`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/mypage/point?page=${page}`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 };
 
 export const lecturesApi = {
   // 메인페이지
-  mainLectureList: () => api.get('/cms/main/'),
+  mainLectureList: () => api.get('/cms/main/').then((res) => res.data),
 
   // 클래스 Best 페이지 Top3 강의 리스트
-  topLectureList: () => api.get('/cms/class/'),
+  topLectureList: () => api.get('/cms/class/').then((res) => res.data),
 
   // 카테고리별 강의 리스트
   lectureList: (category: string, page: string) =>
-    api.get(`/lectures?category=${category}&page=${page}`),
+    api
+      .get(`/lectures?category=${category}&page=${page}`)
+      .then((res) => res.data),
 
   // 강의 상세
-  detail: (id: string) => api.get(`/lectures/${id}/`),
+  detail: (id: string) => api.get(`/lectures/${id}/`).then((res) => res.data),
 
   // 강의 상세 리뷰쓰기
   writeReview: (id: string, text: string, token: string) =>
@@ -183,16 +195,19 @@ export const lecturesApi = {
     ),
 
   // 강사 리스트
-  tutorList: (page: string) => api.get(`/lectures/tutor?page=${page}`),
+  tutorList: (page: string) =>
+    api.get(`/lectures/tutor?page=${page}`).then((res) => res.data),
 
   // 마이페이지 내 강의 수강
   myLectureDetail: (id: string, token: string) =>
-    api.get(`/lectures/registered_lecture/${id}/`, {
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    }),
+    api
+      .get(`/lectures/registered_lecture/${id}/`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 강의 수강완료
   finishLecture: ({ id, order, token }: IProps) =>
@@ -209,21 +224,32 @@ export const lecturesApi = {
 };
 
 export const communityApi = {
-  communities: ({
+  communityList: () => api.get('/community/').then((res) => res.data),
+
+  communityBoard: ({
     category,
     page,
     orderType,
     searchType,
     searchTerm,
+    token,
   }: IProps) =>
-    api.get(
-      `/community/${category}?page=${page}&filter_keyword=${orderType}&search_keyword=${searchType}&search=${
-        searchTerm || ''
-      }`
-    ),
+    api
+      .get(
+        `/community/${category}?page=${page}&filter_keyword=${orderType}&search_keyword=${searchType}&search=${
+          searchTerm || ''
+        }`,
+        {
+          headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((res) => res.data),
 
   detail: ({ category, id }: IProps) =>
-    api.get(`/community/${category}/${id}/`),
+    api.get(`/community/${category}/${id}/`).then((res) => res.data),
 };
 
 export const purchaseApi = {

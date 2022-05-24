@@ -13,18 +13,18 @@ interface IFallback {
 }
 
 const Home: NextPage = () => {
-  const { data } = useSWR('mainCmsList', () => lecturesApi.mainLectureList());
+  const { data } = useSWR('/cms/main', () => lecturesApi.mainLectureList());
   return (
     <>
       <SEO title='홈' />
-      <Banner data={data?.data.main_banner} />
-      <Best data={data?.data.best_class.map((i: any) => i.lecture)} />
-      {/* <Customized /> */}
-      {/* <Top3
-        coin={data?.data.coin_class.map((i: any) => i.lecture)}
-        realty={data?.data.realty_class.map((i: any) => i.lecture)}
-        stock={data?.data.stock_class.map((i: any) => i.lecture)}
-      /> */}
+      <Banner data={data?.main_banner} />
+      <Best data={data?.best_class.map((i: any) => i.lecture)} />
+      <Customized />
+      <Top3
+        coin={data?.coin_class.map((i: any) => i.lecture)}
+        realty={data?.realty_class.map((i: any) => i.lecture)}
+        stock={data?.stock_class.map((i: any) => i.lecture)}
+      />
       <Community />
     </>
   );

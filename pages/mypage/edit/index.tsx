@@ -1,17 +1,14 @@
-import Loader from '@components/loader';
 import Header from '@components/mypage/header';
 import Input from '@components/mypage/input';
 import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import useMutation from '@libs/client/useMutation';
-import type { GetServerSidePropsContext, NextPage } from 'next';
-import cookies from 'next-cookies';
-import { useState } from 'react';
+import type { NextPage } from 'next';
+import { useEffect, useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { SWRConfig } from 'swr';
 
 interface IForm {
   name: string;
@@ -23,7 +20,7 @@ interface IForm {
 }
 
 const EditProfile: NextPage = () => {
-  const { token, profile } = useAuth({
+  const { token, profile } = useUser({
     isPrivate: true,
   });
   const [editMyInfos, { loading: editLoading }] = useMutation(
@@ -36,6 +33,7 @@ const EditProfile: NextPage = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<IForm>({
     mode: 'onChange',
   });
@@ -58,6 +56,13 @@ const EditProfile: NextPage = () => {
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
   };
+
+  useEffect(() => {
+    setValue('name', profile?.name);
+    setValue('nickname', profile?.nickname);
+    setValue('phoneNum', profile?.phone_number);
+    setValue('adAgree', profile?.ad_agree);
+  }, [profile]);
   return (
     <>
       <SEO title='마이페이지' />
@@ -243,30 +248,4 @@ const EditProfile: NextPage = () => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse }> = ({ fallback }) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <EditProfile />
-  </SWRConfig>
-);
-
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
-  return {
-    props: {
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
-    },
-  };
-};
-
-export default Page;
+export default EditProfile;

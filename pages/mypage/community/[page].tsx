@@ -4,18 +4,22 @@ import Navigator from '@components/mypage/navigator';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import cookies from 'next-cookies';
 import { useRouter } from 'next/router';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 
-const MyCommunityList: NextPage<{ page: string }> = ({ page }) => {
-  const { token } = useAuth({
+interface IProps {
+  page: string;
+}
+
+const MyCommunityList: NextPage<IProps> = ({ page }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
-  const { data, error } = useSWR('myCommunityList', () =>
-    token ? usersApi.myCommunityList(page, token) : null
+  const { data, error } = useSWR(
+    token ? `/mypage/community?page=${page}` : null,
+    () => usersApi.myCommunityList(page, token as string)
   );
   const router = useRouter();
 
@@ -46,10 +50,7 @@ const MyCommunityList: NextPage<{ page: string }> = ({ page }) => {
 
             <div className='space-y-6'>
               <div className='text-lg font-medium'>게시글</div>
-              <CommunityList
-                data={data?.data.results}
-                totalItems={data?.data.count}
-              />
+              <CommunityList data={data?.results} totalItems={data?.count} />
             </div>
           </div>
         </div>
@@ -58,34 +59,12 @@ const MyCommunityList: NextPage<{ page: string }> = ({ page }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; page: string }> = ({
-  fallback,
-  page,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <MyCommunityList page={page} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       page: ctx.params?.page,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default MyCommunityList;

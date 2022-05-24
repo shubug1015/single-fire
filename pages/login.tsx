@@ -7,7 +7,7 @@ import { cls } from '@libs/client/utils';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { FieldErrors, useForm } from 'react-hook-form';
-import { useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import axios from 'axios';
 
 interface IForm {
@@ -16,7 +16,7 @@ interface IForm {
 }
 
 const Login: NextPage = () => {
-  const { mutate } = useAuth({
+  const { mutate } = useUser({
     isPrivate: false,
   });
   const [login, { loading, error }] = useMutation(usersApi.loginNextApi);
@@ -38,7 +38,7 @@ const Login: NextPage = () => {
     await login({ req });
     const {
       data: { token, profile },
-    } = await axios.get('/api/auth');
+    } = await axios.get('/api/user');
     mutate({ ok: true, token, profile });
   };
   const onInvalid = (errors: FieldErrors) => {

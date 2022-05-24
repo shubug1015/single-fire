@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
 const Lecture: NextPage = () => {
-  const { data, error } = useSWR('bestLectureList', () =>
+  const { data, error } = useSWR('/cms/class', () =>
     lecturesApi.topLectureList()
   );
   const router = useRouter();
@@ -21,7 +21,7 @@ const Lecture: NextPage = () => {
       <SEO title='BEST 클래스' />
       <Banner />
       <Navigator />
-      <Best {...(data && data.data)} />
+      <Best {...data} />
     </>
   );
 };

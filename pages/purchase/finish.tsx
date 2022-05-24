@@ -1,11 +1,11 @@
 import Layout from '@layouts/sectionLayout';
-import { useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Finish: NextPage = () => {
-  useAuth({ isPrivate: true });
+  useUser({ isPrivate: true });
 
   const router = useRouter();
   const { name, payMethod, price, discount, point, totalPrice } = router.query;

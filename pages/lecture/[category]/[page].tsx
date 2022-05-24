@@ -7,10 +7,12 @@ import type { GetServerSidePropsContext, NextPage } from 'next';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
-const Lectures: NextPage<{ category: string; page: string }> = ({
-  category,
-  page,
-}) => {
+interface IProps {
+  category: string;
+  page: string;
+}
+
+const Lectures: NextPage<IProps> = ({ category, page }) => {
   const router = useRouter();
   const categoryReq =
     category === 'real-estate'
@@ -22,7 +24,7 @@ const Lectures: NextPage<{ category: string; page: string }> = ({
       : category === 'online-business'
       ? '온라인창업'
       : '';
-  const { data, error } = useSWR(`lectureList-${category}`, () =>
+  const { data, error } = useSWR(`/lectures/${category}/${page}`, () =>
     lecturesApi.lectureList(categoryReq, page)
   );
 
@@ -36,8 +38,8 @@ const Lectures: NextPage<{ category: string; page: string }> = ({
       <Navigator />
       <LectureList
         title={categoryReq}
-        data={data?.data.results}
-        totalItems={data?.data.count}
+        data={data?.results}
+        totalItems={data?.count}
       />
     </>
   );

@@ -6,19 +6,23 @@ import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import { AuthResponse, useAuth } from '@libs/client/useAuth';
-import useSWR, { SWRConfig } from 'swr';
-import cookies from 'next-cookies';
+import { useUser } from '@libs/client/useUser';
+import useSWR from 'swr';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const MyLectureList: NextPage<{ slug: string[] }> = ({ slug }) => {
-  const { token } = useAuth({
+interface IProps {
+  slug: string[];
+}
+
+const MyLectureList: NextPage<IProps> = ({ slug }) => {
+  const { token } = useUser({
     isPrivate: true,
   });
   const [category, page] = slug;
-  const { data, error } = useSWR('myLectureList', () =>
-    token ? usersApi.myLectureList(page, token) : null
+  const { data, error } = useSWR(
+    token ? `/mypage/registered_lecture?page=${page}` : null,
+    () => usersApi.myLectureList(page, token as string)
   );
   const router = useRouter();
 
@@ -70,13 +74,13 @@ const MyLectureList: NextPage<{ slug: string[] }> = ({ slug }) => {
             <LectureList
               data={
                 category === 'ongoing'
-                  ? data?.data.registered.results
-                  : data?.data.expired.results
+                  ? data?.registered.results
+                  : data?.expired.results
               }
               totalItems={
                 category === 'completed'
-                  ? data?.data.registered.count
-                  : data?.data.expired.count
+                  ? data?.registered.count
+                  : data?.expired.count
               }
             />
           </div>
@@ -86,34 +90,12 @@ const MyLectureList: NextPage<{ slug: string[] }> = ({ slug }) => {
   );
 };
 
-const Page: NextPage<{ fallback: AuthResponse; slug: string[] }> = ({
-  fallback,
-  slug,
-}) => (
-  <SWRConfig
-    value={{
-      fallback,
-    }}
-  >
-    <MyLectureList slug={slug} />
-  </SWRConfig>
-);
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { token } = cookies(ctx);
-  const data = token ? await usersApi.myInfos(token) : null;
   return {
     props: {
       slug: ctx.params?.slug,
-      fallback: {
-        '/api/auth': {
-          ok: true,
-          token: token || null,
-          profile: data?.data || null,
-        },
-      },
     },
   };
 };
 
-export default Page;
+export default MyLectureList;

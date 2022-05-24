@@ -8,7 +8,7 @@ import Input from '@components/input';
 import { cls } from '@libs/client/utils';
 import Checkbox from '@components/checkbox';
 import axios from 'axios';
-import { useAuth } from '@libs/client/useAuth';
+import { useUser } from '@libs/client/useUser';
 
 interface IForm {
   name: string;
@@ -25,7 +25,7 @@ interface IForm {
 }
 
 const SignUp: NextPage = () => {
-  const { mutate } = useAuth({
+  const { mutate } = useUser({
     isPrivate: false,
   });
   const [signup, { loading }] = useMutation(usersApi.signupNextApi);
@@ -57,7 +57,7 @@ const SignUp: NextPage = () => {
     await signup({ req });
     const {
       data: { token, profile },
-    } = await axios.get('/api/auth');
+    } = await axios.get('/api/user');
     mutate({ ok: true, token, profile });
   };
   const onInvalid = (errors: FieldErrors) => {
