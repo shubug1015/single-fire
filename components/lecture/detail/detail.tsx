@@ -139,7 +139,7 @@ export default function Detail({
               </svg>
             </div>
 
-            <Link href={`/purchase/${id}`}>
+            <Link href={`/purchase/lecture/${id}`}>
               <a className='ml-3 flex grow cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-all hover:opacity-90'>
                 구매하기
               </a>

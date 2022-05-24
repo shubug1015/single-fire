@@ -17,13 +17,14 @@ declare global {
 }
 
 interface IProps {
-  id: string;
+  slug: string[];
 }
 
-const Purchase: NextPage<IProps> = ({ id }) => {
+const Purchase: NextPage<IProps> = ({ slug }) => {
   const { token, profile } = useUser({
     isPrivate: true,
   });
+  const [type, id] = slug;
   const { data } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
   const router = useRouter();
 
@@ -34,7 +35,7 @@ const Purchase: NextPage<IProps> = ({ id }) => {
     name: '-',
     price: 0,
   });
-  const [point, setPoint] = useState<number | string>('');
+  const [point, setPoint] = useState<string | number>('');
   const date = new Date();
   const orderId = `MID${date.getFullYear()}${(
     date.getMonth() +
@@ -84,7 +85,7 @@ const Purchase: NextPage<IProps> = ({ id }) => {
       const { success, merchant_uid, error_msg, imp_uid, error_code } = res;
       if (success) {
         await purchaseApi.purchase({
-          type: 'lecture',
+          type,
           method: payMethod,
           lectureId: data?.id,
           price: data?.price - data?.discount,
@@ -407,7 +408,7 @@ const Purchase: NextPage<IProps> = ({ id }) => {
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   return {
     props: {
-      id: ctx.params?.id,
+      slug: ctx.params?.slug,
     },
   };
 };
