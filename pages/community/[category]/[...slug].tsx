@@ -34,7 +34,7 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
   );
 
   if (data?.msg === 'need to register' || error) {
-    router.push(`/community/detail/${category}`);
+    router.replace(`/community/detail/${category}`);
   }
   return (
     <>

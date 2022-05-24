@@ -1,15 +1,15 @@
 import SEO from '@components/seo';
-import BeforeScroll from '@components/test/beforeScroll';
-import Hero from '@components/test/hero';
-import Review from '@components/test/review';
-import WithPro from '@components/test/withPro';
+import BeforeScroll from '@components/community/detail/beforeScroll';
+import Hero from '@components/community/detail/hero';
+import Review from '@components/community/detail/review';
+import WithPro from '@components/community/detail/withPro';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import Preview from '@components/test/preview';
-import Faq from '@components/test/faq';
-import Precaution from '@components/test/precaution';
-import Point from '@components/test/point';
-import Process from '@components/test/process';
-import Professional from '@components/test/professional';
+import Preview from '@components/community/detail/preview';
+import Faq from '@components/community/detail/faq';
+import Precaution from '@components/community/detail/precaution';
+import Point from '@components/community/detail/point';
+import Process from '@components/community/detail/process';
+import Professional from '@components/community/detail/professional';
 
 interface IProps {
   id: string;
