@@ -5,8 +5,13 @@ import ProcessIcon2 from 'public/test/process-icon2.png';
 import ProcessIcon3 from 'public/test/process-icon3.png';
 import ProcessIcon4 from 'public/test/process-icon4.png';
 import ProcessIcon5 from 'public/test/process-icon5.png';
+import { cls } from '@libs/client/utils';
 
-export default function Process() {
+interface IProps {
+  clsFilter: (cls1: string, cls2: string, cls3: string, cls4: string) => string;
+}
+
+export default function Process({ clsFilter }: IProps) {
   const processList = [
     {
       id: 0,
@@ -80,34 +85,67 @@ export default function Process() {
     },
   ];
   return (
-    <div className='bg-[#2c2f34] pt-[6.25rem] pb-[7.5rem]'>
-      <div className='mx-auto w-full max-w-[1322px] text-center'>
-        <TitleBtn title='Process' />
-        <div className='mt-6 text-4xl font-bold leading-normal text-white'>
-          시간은 최대한 아끼고, <span className='text-[#00e7ff]'>핵심</span>만
-          깊게 배울수 있도록
-        </div>
-        <div className='mt-2.5 text-5xl font-bold leading-normal text-white'>
-          <span className='text-[#00e7ff]'>경제 독서모임 운영방식</span>을
-          소개합니다
+    <div className='bg-[#2c2f34] pt-[6.25rem] pb-[7.5rem] md:py-10'>
+      <div className='mx-auto w-full max-w-[1322px] text-center font-bold text-white'>
+        {/* <TitleBtn title='Process' /> */}
+        <div
+          className={cls(
+            clsFilter(
+              'border-[#00e7ff] text-[#00e7ff]',
+              'border-[#a966ff] text-[#a966ff]',
+              'border-[#a2ff69] text-[#a2ff69]',
+              'border-[#ff8a00] text-[#ff8a00]'
+            ),
+            'inline-block rounded-full border px-[1.375rem] py-[0.625rem] md:px-4 md:text-sm'
+          )}
+        >
+          Process
         </div>
 
-        <div className='mt-[6.25rem] space-y-4'>
+        <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-sm'>
+          시간은 최대한 아끼고,{' '}
+          <span
+            className={clsFilter(
+              'text-[#00e7ff]',
+              'text-[#a966ff]',
+              'text-[#a2ff69]',
+              'text-[#ff8a00]'
+            )}
+          >
+            핵심
+          </span>
+          만 깊게 배울수 있도록
+        </div>
+        <div className='mt-2.5 text-5xl leading-normal md:mt-[0.125rem] md:text-lg'>
+          <span
+            className={clsFilter(
+              'text-[#00e7ff]',
+              'text-[#a966ff]',
+              'text-[#a2ff69]',
+              'text-[#ff8a00]'
+            )}
+          >
+            경제 독서모임 운영방식
+          </span>
+          을 소개합니다
+        </div>
+
+        <div className='mt-[6.25rem] space-y-4 md:mt-10 md:space-y-2'>
           {processList.map((process) => (
             <div
               key={process.id}
-              className='flex items-center rounded bg-[#4a4E57] px-[5.479rem] py-[3.125rem]'
+              className='flex items-center rounded bg-[#4a4E57] px-[5.479rem] py-[3.125rem] md:p-6'
             >
               <div>{process.image}</div>
-              <div className='ml-[3.8rem] flex h-20 items-center border-l-[0.125rem] border-l-[#ffffff13] pl-10 text-left text-2xl font-medium text-white'>
+              <div className='ml-[3.8rem] flex h-20 items-center border-l-[0.125rem] border-l-[#ffffff13] pl-10 text-left text-2xl font-medium text-white md:ml-4 md:h-8 md:pl-4 md:text-sm'>
                 {process.content}
               </div>
             </div>
           ))}
         </div>
 
-        <div className='mt-4 rounded bg-black py-8'>
-          <div className='text-xl font-medium text-white'>
+        <div className='mt-4 rounded bg-black py-8 md:mt-2 md:p-6'>
+          <div className='text-xl font-medium text-white md:text-sm'>
             <span className='h-2 w-2'>🎁</span> 매달 챌린지를 성공적으로
             마무리한 멤버에게 밀머스에서 제작한 고급 책갈피 굿즈를 선물로
             배송드립니다.

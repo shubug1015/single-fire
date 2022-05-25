@@ -2,8 +2,13 @@ import Image from 'next/image';
 import Point1 from 'public/test/point1.png';
 import Point2 from 'public/test/point2.png';
 import Point3 from 'public/test/point3.png';
+import { cls } from '@libs/client/utils';
 
-export default function Point() {
+interface IProps {
+  clsFilter: (cls1: string, cls2: string, cls3: string, cls4: string) => string;
+}
+
+export default function Point({ clsFilter }: IProps) {
   const pointList = [
     {
       id: 0,
@@ -64,32 +69,67 @@ export default function Point() {
   ];
 
   return (
-    <div className='bg-black pt-[6.25rem] pb-[7.5rem]'>
-      <div className='mx-auto w-full max-w-[1528px] text-center'>
-        <div className='inline-block rounded-full border border-[#00E7FF] px-[1.938rem] py-[0.625rem] text-base font-bold text-[#00E7FF]'>
+    <div className='bg-black pt-[6.25rem] pb-[7.5rem] md:py-10'>
+      <div className='mx-auto w-full max-w-[1528px] text-center font-bold text-white'>
+        <div
+          className={cls(
+            clsFilter(
+              'border-[#00e7ff] text-[#00e7ff]',
+              'border-[#a966ff] text-[#a966ff]',
+              'border-[#a2ff69] text-[#a2ff69]',
+              'border-[#ff8a00] text-[#ff8a00]'
+            ),
+            'inline-block rounded-full border px-[1.938rem] py-[0.625rem] text-base md:px-4 md:text-sm'
+          )}
+        >
           Point
         </div>
-        <div className='mt-6 text-4xl font-bold leading-normal text-white'>
+        <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-sm'>
           전문가와 함께라면 왜 좋은걸까요?
         </div>
-        <div className='mt-2.5 text-4xl font-bold leading-normal text-white'>
-          <span className='text-[#00e7ff]'>밀머스 스터디</span>만 가질 수 있는{' '}
-          <span className='text-[#00e7ff]'>차별 Point</span>
+        <div className='mt-2.5 text-4xl leading-normal md:mb-10 md:mt-[0.125rem] md:text-lg'>
+          <span
+            className={cls(
+              clsFilter(
+                'text-[#00e7ff]',
+                'text-[#a966ff]',
+                'text-[#a2ff69]',
+                'text-[#ff8a00]'
+              ),
+              ''
+            )}
+          >
+            밀머스 스터디
+          </span>
+          만 가질 수 있는{' '}
+          <span
+            className={cls(
+              clsFilter(
+                'text-[#00e7ff]',
+                'text-[#a966ff]',
+                'text-[#a2ff69]',
+                'text-[#ff8a00]'
+              ),
+              ''
+            )}
+          >
+            차별 Point
+          </span>
         </div>
         {pointList.map((point) => (
           <div
             key={point.id}
-            className='mt-[6.25rem] flex justify-center space-x-10'
+            className='mt-[6.25rem] flex justify-center space-x-10 font-bold md:mt-2 md:block md:space-x-0'
           >
-            <div className='relative w-[655px]'>{point.image}</div>
-            <div className='w-[52.063rem] whitespace-pre-wrap rounded-[20px] bg-[#4a4e57] px-20 py-[6.25rem] text-left text-white'>
-              <div className='text-[2.5rem] font-bold'>
+            <div className='relative w-[655px] md:hidden'>{point.image}</div>
+            <div className='w-[52.063rem] whitespace-pre-wrap rounded-[20px] bg-[#4a4e57] px-20 py-[6.25rem] text-left text-white md:w-full md:rounded md:px-6 md:py-10'>
+              <div className='text-[2.5rem] font-bold md:text-xl'>
                 POINT {point.pointNum}
               </div>
-              <div className='mt-[3.75rem] text-[2.125rem] font-bold'>
+              <div className='mt-[3.75rem] text-[2.125rem] md:mt-8 md:text-base'>
                 {point.title}
               </div>
-              <div className='mt-8 text-2xl leading-[2.5rem] tracking-[-0.72px]'>
+              <div className='mt-8 text-2xl leading-[2.5rem] tracking-[-0.72px] md:mt-3 md:text-sm md:font-normal md:opacity-80'>
                 {point.content}
               </div>
             </div>

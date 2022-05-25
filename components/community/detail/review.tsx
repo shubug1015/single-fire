@@ -61,8 +61,8 @@ export default function Review({ clsFilter }: IProps) {
   ];
 
   return (
-    <Layout bgColor='bg-[#2C2F34]' padding='py-24'>
-      <div className='flex flex-col items-center'>
+    <Layout bgColor='bg-[#2C2F34]' padding='py-24 md:py-10'>
+      <div className='flex flex-col items-center font-bold text-white'>
         {/* <TitleBtn title='Review' /> */}
         <div
           className={cls(
@@ -72,14 +72,15 @@ export default function Review({ clsFilter }: IProps) {
               'border-[#a2ff69] text-[#a2ff69]',
               'border-[#ff8a00] text-[#ff8a00]'
             ),
-            'inline-block rounded-full border px-[1.375rem] py-[0.625rem] font-bold'
+            'inline-block rounded-full border px-5 py-2 md:px-4 md:text-sm'
           )}
         >
           Review
         </div>
 
-        <div className='mt-6 text-4xl font-bold leading-normal text-white'>
-          독서모임 선발대가 후발대에게 직접 전달하는{' '}
+        <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-center md:text-lg'>
+          독서모임 선발대가 후발대에게 <br className='hidden md:block' />
+          직접 전달하는{' '}
           <span
             className={clsFilter(
               'text-[#00e7ff]',
@@ -92,20 +93,22 @@ export default function Review({ clsFilter }: IProps) {
           </span>
         </div>
 
-        <div className='mt-20 space-y-4'>
+        <div className='mt-20 space-y-4 md:mt-10'>
           {reviewList.map((review) => (
             <div
               key={review.id}
-              className='flex space-x-20 bg-[#3d4044] py-[3.75rem] px-20'
+              className='flex space-x-20 rounded bg-[#3d4044] py-[3.75rem] px-20 text-white md:block md:w-[21.438rem] md:space-x-0 md:p-6'
             >
               <div>
-                <div className='h-16 w-16 rounded'>{review.image}</div>
-                <div className='mt-4 text-lg text-white'>
+                <div className='h-16 w-16 rounded md:h-10 md:w-10'>
+                  {review.image}
+                </div>
+                <div className='mt-4 text-lg md:mt-2 md:text-sm md:font-medium'>
                   {review.name}🔥 ·{' '}
                   <span className='text-[#979797]'>{review.community}</span>
                 </div>
               </div>
-              <div className='w-[45.313rem] text-base leading-7 text-white'>
+              <div className='w-[45.313rem] text-base leading-7 md:mt-6 md:w-[18.438rem] md:text-xs md:font-normal md:leading-5'>
                 {review.content}
               </div>
             </div>

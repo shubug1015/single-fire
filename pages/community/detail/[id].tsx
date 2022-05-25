@@ -32,13 +32,13 @@ const CommunityDetail: NextPage<IProps> = ({ id }) => {
       <SEO title='커뮤니티' />
       <Hero />
       <Review clsFilter={clsFilter} />
-      <BeforeScroll />
+      <BeforeScroll clsFilter={clsFilter} />
       <WithPro />
-      <Professional />
-      <Point />
-      <Process />
-      <Preview />
-      <Faq />
+      <Professional clsFilter={clsFilter} />
+      <Point clsFilter={clsFilter} />
+      <Process clsFilter={clsFilter} />
+      <Preview clsFilter={clsFilter} />
+      <Faq clsFilter={clsFilter} />
       <Precaution />
     </>
   );
