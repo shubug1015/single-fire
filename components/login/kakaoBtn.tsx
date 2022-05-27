@@ -19,20 +19,22 @@ export default function KakaoBtn() {
     }
 
     Kakao.Auth.login({
-      success: () => {
+      success: async (res: any) => {
+        console.log('a', res);
         Kakao.API.request({
           url: '/v2/user/me',
           success: async (res: any) => {
-            const req = { type: 'kakao', id: res.id };
-            const {
-              data: {
-                data: { msg },
-              },
-            } = await axios.post('/api/login', req);
+            console.log('b', res);
+            // const req = { type: 'kakao', id: res.id };
+            // const {
+            //   data: {
+            //     data: { msg },
+            //   },
+            // } = await axios.post('/api/login', req);
 
-            if (msg === 'need to signup') {
-              console.log(res);
-            }
+            // if (msg === 'need to signup') {
+            //   console.log(res);
+            // }
           },
           fail: (e: any) => {
             console.log(e);

@@ -21,8 +21,10 @@ const MyLectureList: NextPage<IProps> = ({ slug }) => {
   });
   const [category, page] = slug;
   const { data, error } = useSWR(
-    token ? `/mypage/registered_lecture?page=${page}` : null,
-    () => usersApi.myLectureList(page, token as string)
+    token
+      ? `/mypage/registered_lecture?category=${category}&page=${page}`
+      : null,
+    () => usersApi.myLectureList(category !== 'ongoing', page, token as string)
   );
   const router = useRouter();
 
