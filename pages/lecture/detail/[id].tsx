@@ -5,12 +5,11 @@ import Info from '@components/lecture/detail/info';
 import Review from '@components/lecture/detail/review';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { lecturesApi, usersApi } from '@libs/api';
+import { lecturesApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import cookies from 'next-cookies';
 import { useState } from 'react';
-import useSWR, { SWRConfig } from 'swr';
+import useSWR from 'swr';
 
 const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
   const { data } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
@@ -36,7 +35,6 @@ const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
   return (
     <>
       <SEO title={data?.name} />
-
       <Detail {...data} />
       <Layout>
         <div className='mt-32 mb-[3.75rem] flex text-lg font-medium'>

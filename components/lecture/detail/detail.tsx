@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface IProps {
   id: number;
-  thumbnail: string;
+  image: string;
   category: string;
   name: string;
   text: string;
@@ -16,7 +16,7 @@ interface IProps {
 
 export default function Detail({
   id,
-  thumbnail,
+  image,
   category,
   name,
   text,
@@ -28,15 +28,14 @@ export default function Detail({
     const url = window.location.href;
     navigator.clipboard.writeText(url);
   };
-
   return (
     <Layout padding='pt-24'>
       <div className='flex justify-between'>
         {/* 썸네일 */}
         <div className='relative h-[30.625rem] w-[43.75rem]'>
-          {thumbnail && (
+          {image && (
             <Image
-              src={thumbnail}
+              src={image}
               alt='Detail Thumbnail'
               layout='fill'
               objectFit='cover'

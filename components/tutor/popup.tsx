@@ -115,7 +115,7 @@ export default function Popup({
               alt='Tutor'
               layout='fill'
               objectFit='cover'
-              className='rounded-r-md'
+              className='rounded-md'
             />
           </div>
           {/* 강사 이미지 */}

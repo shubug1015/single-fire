@@ -23,11 +23,11 @@ const Home: NextPage = () => {
       />
       <Customized data={data?.custom_class} />
       <Top3
-        coin={data?.coin_class.map((i: { [key: string]: any }) => i.lecture)}
         realty={data?.realty_class.map(
           (i: { [key: string]: any }) => i.lecture
         )}
         stock={data?.stock_class.map((i: { [key: string]: any }) => i.lecture)}
+        coin={data?.coin_class.map((i: { [key: string]: any }) => i.lecture)}
       />
       <Community />
     </>
