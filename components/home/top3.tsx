@@ -15,7 +15,7 @@ export default function Top3({ realty, stock, coin }: IProps) {
         <TopLectureList
           title='부동산 TOP3 강의'
           data={realty}
-          url='/class/real-estate'
+          url='/lecture/real-estate/1'
         />
         {/* 부동산 Top3 강의 */}
 
@@ -23,12 +23,16 @@ export default function Top3({ realty, stock, coin }: IProps) {
         <TopLectureList
           title='주식 TOP3 강의'
           data={stock}
-          url='/class/stock'
+          url='/lecture/stock/1'
         />
         {/* 주식 Top3 강의 */}
 
         {/* 코인 Top3 강의 */}
-        <TopLectureList title='코인 TOP3 강의' data={coin} url='/class/coin' />
+        <TopLectureList
+          title='코인 TOP3 강의'
+          data={coin}
+          url='/lecture/coin/1'
+        />
         {/* 코인 Top3 강의 */}
       </div>
     </Layout>

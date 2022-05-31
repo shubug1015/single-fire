@@ -43,7 +43,7 @@ export default function Best({ data }: IProps) {
       <TopLectureList
         title='[100만뷰] 경제적 자유를 이뤄낸 BEST 클래스'
         data={data}
-        url='/class'
+        url='/lecture'
       />
       {/* Best 클래스 */}
     </Layout>
