@@ -2,6 +2,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface IProps {
   data: any[];
@@ -90,24 +91,28 @@ export default function Banner({ data }: IProps) {
               </div>
 
               <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
-                <div className='z-[1] whitespace-pre-wrap text-[3.25rem] font-bold'>
+                <div className='z-[1] w-fit whitespace-pre-wrap text-[3.25rem] font-bold'>
                   {i.title}
                 </div>
 
-                <div className='z-[1] mt-[3.75rem] whitespace-pre-wrap font-light'>
+                <div className='z-[1] mt-[3.75rem] w-fit whitespace-pre-wrap font-light'>
                   {i.text}
                 </div>
 
-                <div className='absolute top-1/2 right-0 -translate-y-1/2'>
-                  <div className='relative h-[38.375rem] w-[55rem] rounded-md shadow-sm'>
-                    <Image
-                      src={i.img}
-                      alt='Banner Image'
-                      layout='fill'
-                      objectFit='cover'
-                    />
-                  </div>
-                </div>
+                <Link href={i.url}>
+                  <a>
+                    <div className='absolute top-1/2 right-0 h-[38.375rem] w-[55rem] -translate-y-1/2'>
+                      <div className='relative h-full w-full rounded-md shadow-sm'>
+                        <Image
+                          src={i.img}
+                          alt='Banner Image'
+                          layout='fill'
+                          objectFit='cover'
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </Link>
               </div>
             </div>
           ))}

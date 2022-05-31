@@ -3,25 +3,24 @@ import { cls } from '@libs/client/utils';
 
 interface IProps {
   totalItems: number;
+  itemsPerPage: number;
   currentPage: number;
   url: (page: number) => void;
 }
 
-const PAGE_LIST_LENGTH = 5;
-
-const Pagebar = ({ totalItems, currentPage, url }: IProps) => {
-  const maxPage = Math.ceil(totalItems / PAGE_LIST_LENGTH); // 마지막 페이지
-  const quo = Math.floor(currentPage / PAGE_LIST_LENGTH); // 몫
-  const rem = currentPage % PAGE_LIST_LENGTH; // 나머지
+const Pagebar = ({ totalItems, itemsPerPage, currentPage, url }: IProps) => {
+  const maxPage = Math.ceil(totalItems / itemsPerPage); // 마지막 페이지
+  const quo = Math.floor(currentPage / itemsPerPage); // 몫
+  const rem = currentPage % itemsPerPage; // 나머지
   const pageArray = [...Array(5)]
-    .map((_, i) => PAGE_LIST_LENGTH * (rem === 0 ? quo - 1 : quo) + i + 1) // 나머지가 0일 경우에는 quo-1 처리
+    .map((_, i) => itemsPerPage * (rem === 0 ? quo - 1 : quo) + i + 1) // 나머지가 0일 경우에는 quo-1 처리
     .filter((i) => i <= maxPage);
 
   const [pageList, setPageList] = useState<number[]>([]);
 
   const nextPage = () => {
     setPageList((prev) =>
-      prev.map((i) => i + PAGE_LIST_LENGTH).filter((i) => i <= maxPage)
+      prev.map((i) => i + itemsPerPage).filter((i) => i <= maxPage)
     );
   };
 

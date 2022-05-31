@@ -1,18 +1,17 @@
-import Banner from '@components/tutor/banner';
+// import Banner from '@components/tutor/banner';
 import TutorList from '@components/tutor/tutorList';
 import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Banner from '@components/lecture/banner';
 
 const Tutor: NextPage<{ page: string }> = ({ page }) => {
   const { data, error } = useSWR(`/lectures/tutor?page=${page}`, () =>
     lecturesApi.tutorList(page)
   );
   const router = useRouter();
-
-  console.log(data);
 
   if (error) {
     router.push('/');

@@ -36,6 +36,7 @@ export default function TutorList({ title, data, totalItems }: IProps) {
       <div className='mt-24 flex justify-center'>
         <Pagebar
           totalItems={totalItems}
+          itemsPerPage={9}
           currentPage={+currentPage}
           url={(page: number) => router.push(`/tutor/${page}`)}
         />

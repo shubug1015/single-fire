@@ -3,12 +3,17 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 import BannerImg from '@public/lecture/banner-img-1.png';
+import useSWR from 'swr';
+import { lecturesApi } from '@libs/api';
+import Link from 'next/link';
 
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function Banner() {
+  const { data } = useSWR('/cms/main', () => lecturesApi.mainLectureList());
+
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
@@ -67,40 +72,53 @@ export default function Banner() {
 
   return (
     <div className='h-[35rem] w-screen bg-[#3d4147] bg-cover bg-center bg-no-repeat'>
-      <Slider
-        className='!flex h-full items-center'
-        {...settings}
-        dotsClass='slick-dots absolute left-1/2 !bottom-6 -translate-x-1/2 !flex justify-center'
-      >
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i}>
-            <div className='relative mx-auto flex h-[35rem] max-w-[1180px] flex-col pt-36'>
-              <div className='z-[1] text-[2.5rem] font-bold'>
-                Lorem ipsum dolor sit <br />
-                amet, adipiscing elit.
-              </div>
-
-              <div className='z-[1] mt-8 font-medium'>
-                Sed sollicitudin erat ac eleifend, accumsan. Donec finibus
-                <br />
-                vestibulum urna, ultrices dictum diam auctor sit amet.
-              </div>
-
-              <div className='absolute top-1/2 right-0 -translate-y-1/2'>
-                <div className='relative h-[21.75rem] w-[31rem] rounded-md shadow-sm'>
+      {data && (
+        <Slider
+          className='!flex h-full items-center'
+          {...settings}
+          dotsClass='slick-dots absolute left-1/2 !bottom-6 -translate-x-1/2 !flex justify-center'
+        >
+          {data?.main_banner.map((i: { [key: string]: any }) => (
+            <div key={i.order} className='relative'>
+              <div className='absolute top-0 left-0 z-[-1] h-full w-full'>
+                <div className='relative h-full w-full'>
                   <Image
-                    src={BannerImg}
+                    src={i.background}
                     alt='Banner Image'
-                    placeholder='blur'
                     layout='fill'
                     objectFit='cover'
                   />
                 </div>
               </div>
+
+              <div className='relative mx-auto flex h-[35rem] max-w-[1180px] flex-col pt-36'>
+                <div className='z-[1] w-fit whitespace-pre-wrap text-[2.5rem] font-bold'>
+                  {i.title}
+                </div>
+
+                <div className='z-[1] mt-8 w-fit whitespace-pre-wrap font-medium'>
+                  {i.text}
+                </div>
+
+                <Link href={i.url}>
+                  <a>
+                    <div className='absolute top-1/2 right-0 -translate-y-1/2'>
+                      <div className='relative h-[21.75rem] w-[31rem] rounded-md shadow-sm'>
+                        <Image
+                          src={i.img}
+                          alt='Banner Image'
+                          layout='fill'
+                          objectFit='cover'
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }

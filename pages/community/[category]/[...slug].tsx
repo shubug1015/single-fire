@@ -6,7 +6,7 @@ import Banner from '@components/community/banner';
 import Search from '@components/community/search';
 import { useUser } from '@libs/client/useUser';
 import useSWR from 'swr';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 interface IProps {

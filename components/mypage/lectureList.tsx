@@ -31,6 +31,7 @@ export default function LectureList({ data, totalItems }: IProps) {
       <div className='mt-20 flex justify-center'>
         <Pagebar
           totalItems={totalItems}
+          itemsPerPage={5}
           currentPage={+currentPage}
           url={(page: number) =>
             router.push(`/mypage/lecture/${category}/${page}`)

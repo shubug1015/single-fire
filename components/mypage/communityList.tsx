@@ -28,6 +28,7 @@ export default function CommunityList({ data, totalItems }: IProps) {
       <div className='mt-20 flex justify-center'>
         <Pagebar
           totalItems={totalItems}
+          itemsPerPage={12}
           currentPage={+currentPage}
           url={(page: number) => router.push(`/mypage/community/${page}`)}
         />

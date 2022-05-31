@@ -127,19 +127,19 @@ const Calculator: NextPage = () => {
             <>
               <div className='mt-[3.75rem] flex h-64 w-[54rem] flex-col items-center justify-center space-y-8 bg-[#373c46]'>
                 <div className='flex items-center'>
-                  <div>당신의 은퇴 후 자산은</div>
+                  <div>필요한 파이어 자금은</div>
                   <div className='mx-3 flex w-[28.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff]'>
-                    {result1.toLocaleString()}
+                    {result2.toLocaleString()}
                   </div>
-                  <div className='ml-3 font-medium opacity-60'>입니다.</div>
+                  <div className='ml-3 font-medium opacity-60'>원입니다.</div>
                 </div>
 
                 <div className='flex items-center'>
-                  <div>파이어 후 연 지출금액은 미래가치로</div>
+                  <div>파이어 후 연간 지출금액은 미래가치로</div>
                   <div className='mx-3 flex w-[22.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff]'>
-                    {result2.toLocaleString()}
+                    {result1.toLocaleString()}
                   </div>
-                  <div className='ml-3 font-medium opacity-60'>입니다.</div>
+                  <div className='ml-3 font-medium opacity-60'>원입니다.</div>
                 </div>
               </div>
 

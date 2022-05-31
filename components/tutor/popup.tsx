@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -57,9 +58,9 @@ export default function Popup({
         initial='invisible'
         animate='visible'
         exit='exit'
-        className='h-[40rem] w-[52rem] rounded bg-[#282e38]'
+        className='w-[52rem] rounded bg-[#282e38] pt-6 pb-12'
       >
-        <div className='mt-6 mr-6 flex justify-end'>
+        <div className='mr-6 flex justify-end'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6 cursor-pointer'
@@ -77,33 +78,47 @@ export default function Popup({
           </svg>
         </div>
 
-        <div className='mx-16 mt-8'>
-          <div className='font-medium'>{category}</div>
+        <div className='mx-16 mt-8 grid h-full grid-cols-2 gap-x-4'>
+          <div className='w-full'>
+            <div className='font-medium'>{category}</div>
 
-          <div className='mt-4 text-2xl font-medium'>{name}</div>
+            <div className='mt-4 text-2xl font-medium'>{name}</div>
 
-          <div className='mt-2 text-[#cfcfcf]'>{text}</div>
+            <div className='mt-2 text-[#cfcfcf]'>{text}</div>
 
-          <div className='mt-6 text-[#cfcfcf]'>{tag}</div>
+            <div className='mt-6 text-[#cfcfcf]'>{tag}</div>
 
-          <div className='mt-10 text-xl font-medium'>상세 이력</div>
+            <div className='mt-10 text-xl font-medium'>상세 이력</div>
 
-          <div className='mt-4 mb-24 text-[#cfcfcf]'>
-            {career.map((i) => (
-              <div key={i.id} className='flex items-center'>
-                <span className='mr-2 text-2xl'>·</span>
-                <span>{i.text}</span>
-              </div>
-            ))}
+            <div className='mt-4 mb-24 text-[#cfcfcf]'>
+              {career.map((i) => (
+                <div key={i.id} className='flex items-center'>
+                  <span className='mr-2 text-2xl'>·</span>
+                  <span>{i.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <Link href={`/lecture/detail/${lectureId}`}>
+              <a>
+                <div className='flex h-14 w-40 items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'>
+                  강의 보러가기 →
+                </div>
+              </a>
+            </Link>
           </div>
 
-          <Link href={`/lecture/detail/${lectureId}`}>
-            <a>
-              <div className='flex h-14 w-40 items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'>
-                강의 보러가기 →
-              </div>
-            </a>
-          </Link>
+          {/* 강사 이미지 */}
+          <div className='relative h-full w-full'>
+            <Image
+              src={bgImg}
+              alt='Tutor'
+              layout='fill'
+              objectFit='cover'
+              className='rounded-r-md'
+            />
+          </div>
+          {/* 강사 이미지 */}
         </div>
       </motion.div>
     </div>

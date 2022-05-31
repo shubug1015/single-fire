@@ -32,6 +32,7 @@ export default function PointList({ data, totalItems }: IProps) {
       <div className='mt-24 flex justify-center'>
         <Pagebar
           totalItems={totalItems}
+          itemsPerPage={5}
           currentPage={+currentPage}
           url={(page: number) => router.push(`/mypage/point/${page}`)}
         />

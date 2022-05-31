@@ -1,4 +1,4 @@
-import CategoryBanner from '@components/lecture/categoryBanner';
+// import CategoryBanner from '@components/lecture/categoryBanner';
 import Navigator from '@components/lecture/navigator';
 import LectureList from '@components/lecture/lectureList';
 import SEO from '@components/seo';
@@ -6,6 +6,7 @@ import { lecturesApi } from '@libs/api';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import Banner from '@components/lecture/banner';
 
 interface IProps {
   category: string;
@@ -34,7 +35,8 @@ const Lectures: NextPage<IProps> = ({ category, page }) => {
   return (
     <>
       <SEO title='클래스' />
-      <CategoryBanner />
+      {/* <CategoryBanner /> */}
+      <Banner />
       <Navigator />
       <LectureList
         title={categoryReq}

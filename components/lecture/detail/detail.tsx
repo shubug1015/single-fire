@@ -24,7 +24,6 @@ export default function Detail({
   discount,
   discount_period,
 }: IProps) {
-  console.log();
   const copyUrl = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url);

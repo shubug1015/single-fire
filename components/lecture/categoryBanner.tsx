@@ -1,12 +1,16 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import useSWR from 'swr';
+import { lecturesApi } from '@libs/api';
 
 interface ArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export default function CategoryBanner() {
+  const { data } = useSWR('/cms/main', () => lecturesApi.mainLectureList());
+
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
@@ -65,28 +69,23 @@ export default function CategoryBanner() {
 
   return (
     <div className='h-80 w-screen bg-[#3d4147] bg-cover bg-center bg-no-repeat'>
-      <Slider
-        className='!flex h-full items-center'
-        {...settings}
-        dotsClass='slick-dots absolute left-1/2 !bottom-6 -translate-x-1/2 !flex justify-center'
-      >
-        {[0, 1, 2, 3, 4].map((i) => (
-          <div key={i}>
-            <div className='relative mx-auto flex h-80 max-w-[1180px] flex-col justify-center'>
-              <div className='z-[1] text-[2.5rem] font-bold'>
-                Lorem ipsum dolor sit <br />
-                amet, adipiscing elit.
-              </div>
+      {data && (
+        <Slider
+          className='!flex h-full items-center'
+          {...settings}
+          dotsClass='slick-dots absolute left-1/2 !bottom-6 -translate-x-1/2 !flex justify-center'
+        >
+          {data?.main_banner.map((i: { [key: string]: any }) => (
+            <div key={i.order}>
+              <div className='relative mx-auto flex h-80 max-w-[1180px] flex-col justify-center'>
+                <div className='z-[1] text-[2.5rem] font-bold'>{i.title}</div>
 
-              <div className='z-[1] mt-8 font-medium'>
-                Sed sollicitudin erat ac eleifend, accumsan. Donec finibus
-                <br />
-                vestibulum urna, ultrices dictum diam auctor sit amet.
+                <div className='z-[1] mt-8 font-medium'>{i.text}</div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }

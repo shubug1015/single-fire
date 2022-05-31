@@ -1,7 +1,11 @@
 import Layout from '@layouts/sectionLayout';
 import Link from 'next/link';
 
-export default function Customized() {
+interface IProps {
+  data: any[];
+}
+
+export default function Customized({ data }: IProps) {
   return (
     <Layout bgColor='bg-[#e5e5e514]' padding='py-20'>
       <div className='flex justify-between'>
@@ -41,22 +45,22 @@ export default function Customized() {
 
         {/* 우측 섹션 */}
         <div className='space-y-2'>
-          {[0, 1, 2, 3, 4].map((i) => (
-            <Link key={i} href='/'>
+          {data?.map((i, index) => (
+            <Link key={i.order} href={`/lecture/detail/${i.lecture.id}`}>
               <a className='group flex h-20 w-[38.125rem] items-center justify-between rounded bg-[#282e38] px-10 transition-all hover:bg-[#00E7FF]'>
                 <div className='flex items-center'>
                   <div className='mr-2 text-[#9e9e9e] transition-all group-hover:text-[#14161a]'>
-                    {i + 1}.
+                    {index + 1}.
                   </div>
                   <div className='transition-all group-hover:text-[#14161a]'>
-                    가장 기본이 되는 주식 투자 전략
+                    {i.text}
                   </div>
-                  {i === 0 && (
+                  {index === 0 && (
                     <div className='ml-2 mt-1 rounded-sm bg-[#ff1414] px-2 pb-0.5 text-sm'>
                       HOT
                     </div>
                   )}
-                  {i === 1 && (
+                  {index === 1 && (
                     <div className='ml-2 rounded-sm bg-[#00cde2] px-2 pb-0.5 text-sm text-[#222222]'>
                       추천
                     </div>

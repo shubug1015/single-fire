@@ -8,9 +8,9 @@ import { lecturesApi } from '@libs/api';
 import type { NextPage } from 'next';
 import useSWR from 'swr';
 
-interface IFallback {
-  data: any[];
-}
+// interface IFallback {
+//   data: any[];
+// }
 
 const Home: NextPage = () => {
   const { data } = useSWR('/cms/main', () => lecturesApi.mainLectureList());
@@ -18,12 +18,16 @@ const Home: NextPage = () => {
     <>
       <SEO title='홈' />
       <Banner data={data?.main_banner} />
-      <Best data={data?.best_class.map((i: any) => i.lecture)} />
-      <Customized />
+      <Best
+        data={data?.best_class.map((i: { [key: string]: any }) => i.lecture)}
+      />
+      <Customized data={data?.custom_class} />
       <Top3
-        coin={data?.coin_class.map((i: any) => i.lecture)}
-        realty={data?.realty_class.map((i: any) => i.lecture)}
-        stock={data?.stock_class.map((i: any) => i.lecture)}
+        coin={data?.coin_class.map((i: { [key: string]: any }) => i.lecture)}
+        realty={data?.realty_class.map(
+          (i: { [key: string]: any }) => i.lecture
+        )}
+        stock={data?.stock_class.map((i: { [key: string]: any }) => i.lecture)}
       />
       <Community />
     </>

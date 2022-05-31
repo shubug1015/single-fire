@@ -82,14 +82,14 @@ export default function Footer() {
               대표이사 <span className='font-bold text-white'>신동은</span>
             </div>
 
+            <div>(주)행복한컴퍼니</div>
             <div>
-              상호 : 주식회사 행복한컴퍼니｜사업자 등록번호 :
-              716-87-02517｜연락처 : 010-4399-0068｜통신판매업신고 :
+              사업자 등록번호 : 716-87-02517ㅣ대표자 : 신동은ㅣ통신판매업신고 :
               2022-서울종로-0586
             </div>
             <div>
-              이메일 : foryourfreedom2023@naver.com｜사업장 주소 : 서울 종로구
-              삼봉로81 두산위브파빌리온 1동 632호
+              foryourfreedom2023@naver.comㅣ서울 종로구 삼봉로81
+              두산위브파빌리온 1동 632호
             </div>
           </div>
         </div>
