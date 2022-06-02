@@ -40,11 +40,13 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
           </div>
         )}
 
-        <Link href={data?.url}>
-          <a>
-            <div>강의 신청하기</div>
-          </a>
-        </Link>
+        {data?.url && (
+          <Link href={data?.url}>
+            <a>
+              <div>강의 신청하기</div>
+            </a>
+          </Link>
+        )}
       </Layout>
     </>
   );

@@ -1,10 +1,12 @@
 import { boot, loadScript } from '@components/channelService';
 import Footer from '@components/footer';
 import Header from '@components/header';
+import Loader from '@components/loader';
+import { useRouter } from 'next/router';
 // import { tokenAtom } from '@libs/client/atom';
 // import axios from 'axios';
 // import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import { useRecoilState } from 'recoil';
 
 interface LayoutProps {
@@ -12,6 +14,18 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => setIsLoading(true));
+    router.events.on('routeChangeComplete', () => setIsLoading(false));
+    return () => {
+      router.events.off('routeChangeStart', () => setIsLoading(true));
+      router.events.on('routeChangeComplete', () => setIsLoading(false));
+    };
+  }, []);
+
+  // 채널톡
   useEffect(() => {
     loadScript();
     boot({
@@ -45,6 +59,7 @@ export default function Layout({ children }: LayoutProps) {
       <Header />
       {children}
       <Footer />
+      {isLoading && <Loader />}
     </div>
   );
 }
