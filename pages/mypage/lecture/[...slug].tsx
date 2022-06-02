@@ -80,7 +80,7 @@ const MyLectureList: NextPage<IProps> = ({ slug }) => {
                   : data?.expired.results
               }
               totalItems={
-                category === 'completed'
+                category === 'ongoing'
                   ? data?.registered.count
                   : data?.expired.count
               }
