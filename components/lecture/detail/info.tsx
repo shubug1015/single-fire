@@ -1,5 +1,6 @@
 import Layout from '@layouts/sectionLayout';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 interface IProps {
@@ -7,6 +8,7 @@ interface IProps {
 }
 
 export default function Info({ data }: IProps) {
+  const router = useRouter();
   const [imgHeight, setImgHeight] = useState([{ id: 0, height: 0 }]);
 
   useEffect(() => {
@@ -19,6 +21,11 @@ export default function Info({ data }: IProps) {
       {data?.map((i, index) => (
         <div
           key={i.id}
+          onClick={
+            i.order === data.length
+              ? () => router.push(`/purchase/lecture/${i.lecture}`)
+              : () => null
+          }
           className='relative w-full'
           style={{ height: imgHeight[index]?.height }}
         >
