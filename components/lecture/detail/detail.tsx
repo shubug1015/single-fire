@@ -26,7 +26,9 @@ export default function Detail({
 }: IProps) {
   const copyUrl = () => {
     const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    navigator.clipboard
+      .writeText(url)
+      .then(() => alert('링크가 복사되었습니다.'));
   };
   return (
     <Layout padding='pt-24 md:pt-0'>

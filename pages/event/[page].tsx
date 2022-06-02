@@ -1,25 +1,21 @@
 import EventList from '@components/event/eventList';
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
+import { eventApi } from '@libs/api';
 import type { GetServerSidePropsContext, NextPage } from 'next';
+import useSWR from 'swr';
 
 const Event: NextPage<{ page: string }> = ({ page }) => {
-  //   const router = useRouter();
+  const { data } = useSWR(`/event?page=${page}`, () =>
+    eventApi.eventList(page)
+  );
   return (
     <>
       <SEO title='이벤트' />
-      {/* {loading ? (
-        <Loader />
-      ) : (
-        data && ( */}
-      <>
-        <Layout padding='pt-24 pb-44'>
-          <div className='mb-14 text-2xl font-bold'>이벤트</div>
-          <EventList data={[0, 1]} totalItems={2} />
-        </Layout>
-      </>
-      {/* )
-      )} */}
+      <Layout padding='pt-24 pb-44'>
+        <div className='mb-14 text-2xl font-bold'>이벤트</div>
+        <EventList data={data?.results} totalItems={data?.count} />
+      </Layout>
     </>
   );
 };

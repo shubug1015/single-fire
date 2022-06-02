@@ -1,16 +1,24 @@
+import { boot, loadScript } from '@components/channelService';
 import Footer from '@components/footer';
 import Header from '@components/header';
-import { tokenAtom } from '@libs/client/atom';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+// import { tokenAtom } from '@libs/client/atom';
+// import axios from 'axios';
+// import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+// import { useRecoilState } from 'recoil';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
+  useEffect(() => {
+    loadScript();
+    boot({
+      pluginKey: '12902098-1465-47de-a65c-766dc886bd48',
+    });
+  }, []);
+
   // const router = useRouter();
   // const [prevToken, setPrevToken] = useRecoilState(tokenAtom);
 

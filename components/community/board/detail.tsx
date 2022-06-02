@@ -25,11 +25,13 @@ export default function Detail({
       <div className='mt-10 flex justify-between'>
         <div className='flex space-x-3.5'>
           <div>
-            {user.name}
-            {user.grade}
+            {user?.name}
+            {user?.grade}
           </div>
 
-          <div className='opacity-60'>{trimDate(created, 0, 10)}</div>
+          <div className='opacity-60'>
+            {created && trimDate(created, 0, 10)}
+          </div>
         </div>
 
         <div>조회 {view_num}</div>

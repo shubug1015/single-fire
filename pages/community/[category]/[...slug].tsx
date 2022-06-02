@@ -33,9 +33,9 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
       })
   );
 
-  if (data?.msg === 'need to register' || error) {
-    router.replace(`/community/detail/${category}`);
-  }
+  // if (data?.msg === 'need to register' || error) {
+  //   router.replace(`/community/detail/${category}`);
+  // }
   return (
     <>
       <SEO title='커뮤니티' />

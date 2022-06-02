@@ -248,8 +248,39 @@ export const communityApi = {
       )
       .then((res) => res.data),
 
-  detail: ({ category, id }: IProps) =>
-    api.get(`/community/${category}/${id}/`).then((res) => res.data),
+  detail: (category: string, id: string, token: string) =>
+    api
+      .get(`/community/${category}/${id}/`, {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
+
+  toggleLike: (id: string, token: string) =>
+    api.post(
+      `/community/post/like/`,
+      { post_pk: id },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+
+  writeReview: (id: string, text: string, token: string) =>
+    api.post(
+      `/community/post/reply/`,
+      { post_pk: id, text },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
 };
 
 export const purchaseApi = {
@@ -296,4 +327,21 @@ export const purchaseApi = {
     ),
 };
 
-// payment/user/
+export const eventApi = {
+  eventList: (page: string) =>
+    api.get(`/event?page=${page}`).then((res) => res.data),
+
+  eventDetail: (id: string) => api.get(`/event/${id}`).then((res) => res.data),
+
+  getCoupon: (id: string, token: string) =>
+    api.post(
+      '/event/coupon/',
+      { event_pk: id },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+};

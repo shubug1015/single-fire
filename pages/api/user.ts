@@ -7,11 +7,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     cookies: { token },
   } = req;
 
-  if (!token)
-    return res.status(401).json({ ok: false, token: null, profile: null });
+  if (!token) return res.json({ ok: false, token: null, profile: null });
 
   const { data: profile } = await usersApi.myInfos(token);
-  return res.status(200).json({ ok: true, token, profile });
+  return res.json({ ok: true, token, profile });
 };
 
 export default withHandler({ method: 'GET', handler });

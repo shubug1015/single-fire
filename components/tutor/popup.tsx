@@ -115,8 +115,10 @@ export default function Popup({
               alt='Tutor'
               layout='fill'
               objectFit='cover'
-              className='rounded-md'
+              className='rounded-r-md'
             />
+
+            {/* <div className='absolute top-0 left-0 h-full w-full rounded-r-md bg-gradient-to-r from-[#282e38] to-transparent' /> */}
           </div>
           {/* 강사 이미지 */}
         </div>

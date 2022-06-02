@@ -28,7 +28,7 @@ export default function Community({
   view,
 }: IProps) {
   return (
-    <Link href={`/community/detail/${category}/${id}`}>
+    <Link href={`/community/${category}/detail/${id}`}>
       <a>
         <div
           className={cls(

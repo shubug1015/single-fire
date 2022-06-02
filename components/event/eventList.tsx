@@ -15,7 +15,9 @@ export default function EventList({ data, totalItems }: IProps) {
     <div>
       <div className='space-y-6'>
         {data?.map((i) => (
-          <Event key={i} />
+          <div key={i.id}>
+            <Event id={i.id} thumbnail={i.thumbnail} />
+          </div>
         ))}
       </div>
 
