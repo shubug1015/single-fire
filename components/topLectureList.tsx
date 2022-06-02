@@ -12,7 +12,7 @@ export default function TopLectureList({ title, data, url }: IProps) {
     <div>
       {/* 제목 & 더보기 */}
       <div className='flex w-full items-center justify-between'>
-        <div className='text-2xl font-bold'>{title}</div>
+        <div className='text-2xl font-bold md:text-lg'>{title}</div>
 
         <Link href={url}>
           <a className='flex items-center'>
@@ -37,7 +37,7 @@ export default function TopLectureList({ title, data, url }: IProps) {
       {/* 제목 & 더보기 */}
 
       {/* 강의 리스트 */}
-      <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12'>
+      <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12 md:mt-6 md:grid-cols-2 md:gap-x-1'>
         {data?.map((i) => (
           <Lecture
             key={i.id}

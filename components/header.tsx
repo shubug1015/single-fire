@@ -14,10 +14,10 @@ export default function Header() {
     mutate({ ok: false, token: null, profile: null });
   };
   return (
-    <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md'>
+    <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md md:h-[6.5rem]'>
       <div className='mx-auto max-w-[1180px]'>
         {/* 헤더 상단 */}
-        <div className='flex h-[6.25rem] items-center justify-between'>
+        <div className='flex h-[6.25rem] items-center justify-between md:h-14'>
           {/* 좌측 메뉴 */}
           <nav className='flex items-center text-lg font-medium'>
             {/* 로고 */}
@@ -75,7 +75,7 @@ export default function Header() {
                     router.pathname === '/lecture/[category]/[page]'
                     ? 'text-[#00e7ff]'
                     : '',
-                  'ml-20 mr-10'
+                  'ml-20 mr-10 md:ml-5 md:mr-4 md:whitespace-nowrap'
                 )}
               >
                 클래스
@@ -90,7 +90,7 @@ export default function Header() {
                   router.pathname === '/community' ||
                     router.pathname === '/community/[category]/[...slug]'
                     ? 'text-[#00e7ff]'
-                    : ''
+                    : 'md:whitespace-nowrap'
                 )}
               >
                 커뮤니티
@@ -101,7 +101,7 @@ export default function Header() {
           {/* 좌측 메뉴 */}
 
           {/* 우측 메뉴 */}
-          <nav className='flex space-x-4 text-sm font-medium'>
+          <nav className='flex space-x-4 text-sm font-medium md:hidden'>
             {data?.token ? (
               <>
                 <Link href='/mypage/lecture/ongoing/1'>
@@ -144,8 +144,8 @@ export default function Header() {
         {/* 헤더 상단 */}
 
         {/* 헤더 하단 */}
-        <div className='flex h-[3.75rem] items-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)]'>
-          <nav className='flex space-x-10 font-medium'>
+        <div className='flex h-[3.75rem] items-center shadow-[inset_0_1px_0_0_rgba(255,255,255,0.16)] md:h-12 md:shadow-none'>
+          <nav className='flex space-x-10 font-medium md:space-x-[1.25rem] md:whitespace-nowrap'>
             {navList.map((nav) => (
               <Link key={nav.id} href={nav.url}>
                 <a

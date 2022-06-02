@@ -70,7 +70,7 @@ export default function Banner({ data }: IProps) {
   };
 
   return (
-    <div className='h-[51.625rem] w-screen'>
+    <div className='h-[51.625rem] w-screen md:h-60'>
       {data && (
         <Slider
           className='!flex h-full items-center'
@@ -90,7 +90,7 @@ export default function Banner({ data }: IProps) {
                 </div>
               </div>
 
-              <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36'>
+              <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36 md:h-60'>
                 <div className='z-[1] w-fit whitespace-pre-wrap text-[3.25rem] font-bold'>
                   {i.title}
                 </div>

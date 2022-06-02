@@ -14,7 +14,7 @@ interface IProps {
 export default function Community({ tutor, lecture_community }: IProps) {
   return (
     <Layout bgColor='#282e38' padding='pb-80'>
-      <div className='flex w-full space-x-5'>
+      <div className='flex w-full space-x-5 md:block md:bg-[#373c46]'>
         <div className='w-[30rem] rounded bg-[#373c46] p-10'>
           <div className='font-bold'>강사소개</div>
 
@@ -33,7 +33,7 @@ export default function Community({ tutor, lecture_community }: IProps) {
           </div>
         </div>
 
-        <div className='flex w-[42.625rem] flex-col justify-between rounded bg-[#373c46] p-10'>
+        <div className='flex w-[42.625rem] flex-col justify-between rounded bg-[#373c46] p-10 md:w-full'>
           <div>
             <div className='font-bold'>커뮤니티</div>
 

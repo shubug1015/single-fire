@@ -11,6 +11,12 @@ body {
   padding-top: 160px;
 }
 
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 104px;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;

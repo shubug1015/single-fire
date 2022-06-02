@@ -15,19 +15,23 @@ const Community: NextPage = () => {
   return (
     <>
       <SEO title='커뮤니티' />
-      <div className='grid w-screen grid-cols-4'>
+      <div className='grid w-screen grid-cols-4 md:grid-cols-1'>
         {data?.map((i: { [key: string]: any }, index: number) => (
           <div key={i.id}>
-            <div className='flex flex-col items-center bg-[#373c46] pt-12 pb-44'>
+            <div className='flex flex-col items-center bg-[#373c46] pt-12 pb-44 md:pb-32'>
               <div className='rounded-full border border-[#00e7ff] py-2 px-4 text-sm text-[#00e7ff]'>
                 {i.type}
               </div>
 
-              <div className='mt-6 text-lg font-bold'>{i.tag}</div>
+              <div className='mt-6 text-lg font-bold md:mt-3 md:text-sm'>
+                {i.tag}
+              </div>
 
-              <div className='text-[2.5rem] font-bold'>{i.name}</div>
+              <div className='text-[2.5rem] font-bold md:text-[2rem]'>
+                {i.name}
+              </div>
 
-              <div className='relative mt-16 aspect-square w-40'>
+              <div className='relative mt-16 aspect-square w-40 md:hidden'>
                 <Image
                   src={imgList[index]}
                   alt='Community Image'
@@ -38,7 +42,7 @@ const Community: NextPage = () => {
             </div>
 
             <div className='flex flex-col items-center px-7 pb-7'>
-              <div className='-mt-24 whitespace-pre-wrap rounded-3xl bg-[#4a4e57] p-8 font-medium'>
+              <div className='-mt-24 whitespace-pre-wrap rounded-3xl bg-[#4a4e57] p-8 font-medium md:p-6 md:text-sm'>
                 {i.text}
               </div>
 

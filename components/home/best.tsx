@@ -8,17 +8,18 @@ interface IProps {
 
 export default function Best({ data }: IProps) {
   return (
-    <Layout padding='py-[6.25rem]'>
+    <Layout padding='py-[6.25rem] md:py-10'>
       {/* 상단 배너 */}
       <Link href='/calculator'>
         <a>
-          <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a]'>
-            <div className='text-lg font-medium'>
-              경제적 자유 얻고 파이어족 도전! 대체 얼마가 필요할까? 🔥
+          <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a] md:mb-10 md:p-4'>
+            <div className='text-lg font-medium md:text-sm'>
+              경제적 자유 얻고 파이어족 도전!
+              <br className='hidden md:block' /> 대체 얼마가 필요할까? 🔥
             </div>
 
             <div className='flex items-center'>
-              <span className='font-medium'>계산기 바로가기</span>
+              <span className='font-medium md:hidden'>계산기 바로가기</span>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='mb-0.5 ml-3 w-4'

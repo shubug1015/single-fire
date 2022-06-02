@@ -139,8 +139,10 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
     <>
       <SEO title='결제' />
 
-      <Layout padding='py-24'>
-        <div className='mb-14 text-2xl font-bold'>주문 결제</div>
+      <Layout padding='py-24 md:py-4'>
+        <div className='mb-14 text-2xl font-bold md:text-center md:text-lg md:font-medium'>
+          주문 결제
+        </div>
 
         <div className='divide-y-2 divide-[#4a4e57]'>
           <div>

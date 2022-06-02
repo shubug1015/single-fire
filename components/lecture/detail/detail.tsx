@@ -29,10 +29,10 @@ export default function Detail({
     navigator.clipboard.writeText(url);
   };
   return (
-    <Layout padding='pt-24'>
-      <div className='flex justify-between'>
+    <Layout padding='pt-24 md:pt-0'>
+      <div className='flex justify-between md:block'>
         {/* 썸네일 */}
-        <div className='relative h-[30.625rem] w-[43.75rem]'>
+        <div className='relative h-[30.625rem] w-[43.75rem] md:h-[16.25rem] md:w-full'>
           {image && (
             <Image
               src={image}
@@ -48,27 +48,29 @@ export default function Detail({
         {/* 강의 상세정보 */}
         <div className='flex h-[30.625rem] w-[26.75rem] flex-col justify-between'>
           {/* 카테고리 */}
-          <div className='text-sm font-medium'>{category}</div>
+          <div className='text-sm font-medium md:mt-6'>{category}</div>
           {/* 카테고리 */}
 
           {/* 강의명 */}
-          <div className='mt-[0.625rem] text-[1.75rem] font-medium'>{name}</div>
+          <div className='mt-[0.625rem] text-[1.75rem] font-medium md:mt-2 md:mb-6 md:text-xl'>
+            {name}
+          </div>
           {/* 강의명 */}
 
           {/* 간략 설명 */}
-          <div className='whitespace-pre-wrap border-y-2 border-[#464c59] py-6 text-[#cfcfcf]'>
+          <div className='whitespace-pre-wrap border-y-2 border-[#464c59] py-6 text-[#cfcfcf] md:py-4 md:text-sm'>
             {text}
           </div>
           {/* 간략 설명 */}
 
           {/* 가격 */}
           <div className='mt-6 flex h-20 w-full flex-col justify-center rounded bg-[#373c46] px-4'>
-            <div className='flex justify-end text-sm font-medium text-[#cfcfcf]'>
+            <div className='flex justify-end text-sm font-medium text-[#cfcfcf] md:text-xs'>
               6개월 할부시
             </div>
 
             <div className='flex items-center justify-between'>
-              <div className='flex text-xl text-[#cfcfcf]'>
+              <div className='flex text-xl text-[#cfcfcf] md:text-sm'>
                 {/* 정상가 */}
                 <div
                   className={cls(
@@ -87,7 +89,7 @@ export default function Detail({
                 {/* 할인가 */}
               </div>
 
-              <div className='flex text-2xl'>
+              <div className='flex text-2xl md:text-lg'>
                 {/* 할인율 */}
                 {discount > 0 && (
                   <div className='mr-2 text-[#00e7ff]'>
@@ -110,7 +112,7 @@ export default function Detail({
 
           {/* 할인 기간 */}
           {discount > 0 && (
-            <div className='mt-3 text-sm font-medium text-[#cfcfcf]'>
+            <div className='mt-3 text-sm font-medium text-[#cfcfcf] md:text-xs'>
               *할인기간: ~ {discount_period.split('-')[1]}/
               {discount_period.split('-')[2]}
             </div>

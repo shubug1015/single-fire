@@ -22,7 +22,9 @@ export default function Layout({
         'w-full'
       )}
     >
-      <div className='mx-auto w-full max-w-[1180px]'>{children}</div>
+      <div className='mx-auto w-full max-w-[1180px] md:max-w-[330px]'>
+        {children}
+      </div>
     </div>
   );
 }
