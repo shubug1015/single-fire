@@ -10,9 +10,9 @@ export default function Navigator() {
 
   return (
     <div className='w-screen border-b-2 border-[#464c59]'>
-      <Layout bgColor='#282e38' padding='py-6'>
+      <Layout bgColor='#282e38' padding='py-6 md:py-4'>
         <div className='flex items-center'>
-          <nav className='flex space-x-3 font-medium'>
+          <nav className='flex space-x-3 font-medium md:overflow-x-scroll'>
             {navList.map((nav) => (
               <Link key={nav.id} href={nav.url}>
                 <a>
@@ -23,7 +23,7 @@ export default function Navigator() {
                         : '/lecture') === nav.url
                         ? 'border-[#009fb0] bg-[#00e7ff] text-[#282e38]'
                         : 'border-[#4a4e57]',
-                      'rounded-full border py-2 px-8'
+                      'rounded-full border py-2 px-8 md:w-28 md:px-0 md:text-center md:text-sm'
                     )}
                   >
                     {nav.label}

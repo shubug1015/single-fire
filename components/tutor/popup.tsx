@@ -47,7 +47,7 @@ export default function Popup({
   return (
     <div
       onClick={closePopup}
-      className='fixed top-[150px] left-0 z-50 flex h-[calc(100vh-150px)] w-screen items-center justify-center bg-[rgba(0,0,0,0.6)]'
+      className='fixed top-[150px] left-0 z-50 flex h-[calc(100vh-150px)] w-screen items-center justify-center bg-[rgba(0,0,0,0.6)] md:top-[104px] md:h-[calc(100vh-104px)]'
     >
       <motion.div
         onClick={(e) => {
@@ -58,9 +58,9 @@ export default function Popup({
         initial='invisible'
         animate='visible'
         exit='exit'
-        className='w-[52rem] rounded bg-[#282e38] pt-6 pb-12'
+        className='w-[52rem] rounded bg-[#282e38] pt-6 pb-12 md:w-[330px] md:py-6'
       >
-        <div className='mr-6 flex justify-end'>
+        <div className='mr-6 flex justify-end md:mr-4'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6 cursor-pointer'
@@ -78,30 +78,32 @@ export default function Popup({
           </svg>
         </div>
 
-        <div className='mx-16 mt-8 grid h-full grid-cols-2 gap-x-4'>
+        <div className='mx-16 mt-8 grid h-full grid-cols-2 gap-x-4 md:mx-4 md:mt-1 md:grid-cols-1'>
           <div className='w-full'>
-            <div className='font-medium'>{category}</div>
+            <div className='font-medium md:text-sm'>{category}</div>
 
-            <div className='mt-4 text-2xl font-medium'>{name}</div>
+            <div className='mt-4 text-2xl font-medium md:text-xl'>{name}</div>
 
-            <div className='mt-2 text-[#cfcfcf]'>{text}</div>
+            <div className='mt-2 text-[#cfcfcf] md:text-sm'>{text}</div>
 
-            <div className='mt-6 text-[#cfcfcf]'>{tag}</div>
+            <div className='mt-6 text-[#cfcfcf] md:text-sm'>{tag}</div>
 
-            <div className='mt-10 text-xl font-medium'>상세 이력</div>
+            <div className='mt-10 text-xl font-medium md:text-sm'>
+              상세 이력
+            </div>
 
-            <div className='mt-4 mb-24 text-[#cfcfcf]'>
+            <div className='mt-4 mb-24 text-[#cfcfcf] md:mb-10'>
               {career.map((i) => (
                 <div key={i.id} className='flex items-center'>
                   <span className='mr-2 text-2xl'>·</span>
-                  <span>{i.text}</span>
+                  <span className='md:text-sm'>{i.text}</span>
                 </div>
               ))}
             </div>
 
             <Link href={`/lecture/detail/${lectureId}`}>
               <a>
-                <div className='flex h-14 w-40 items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'>
+                <div className='flex h-14 w-40 items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90 md:h-12 md:w-36 md:text-sm'>
                   강의 보러가기 →
                 </div>
               </a>
@@ -109,7 +111,7 @@ export default function Popup({
           </div>
 
           {/* 강사 이미지 */}
-          <div className='relative h-full w-full'>
+          <div className='relative h-full w-full md:hidden'>
             <Image
               src={bgImg}
               alt='Tutor'

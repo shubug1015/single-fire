@@ -24,11 +24,10 @@ export default function Header() {
             <Link href='/'>
               <a>
                 <svg
-                  width='178'
-                  height='20'
                   viewBox='0 0 178 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
+                  className='w-44 md:w-36'
                 >
                   <g clipPath='url(#clip0_1639_5043)'>
                     <path
@@ -90,7 +89,7 @@ export default function Header() {
                     router.pathname === '/lecture/[category]/[page]'
                     ? 'text-[#00e7ff]'
                     : '',
-                  'ml-20 mr-10 md:ml-5 md:mr-4 md:whitespace-nowrap'
+                  'ml-20 mr-10 md:ml-5 md:mr-3 md:whitespace-nowrap md:text-sm'
                 )}
               >
                 클래스
@@ -105,13 +104,32 @@ export default function Header() {
                   router.pathname === '/community' ||
                     router.pathname === '/community/[category]/[...slug]'
                     ? 'text-[#00e7ff]'
-                    : 'md:whitespace-nowrap'
+                    : 'md:whitespace-nowrap md:text-sm'
                 )}
               >
                 커뮤니티
               </a>
             </Link>
             {/* 커뮤니티 */}
+
+            {/* 햄버거 메뉴바 */}
+            <div className='flex grow bg-pink-200'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M4 6h16M4 12h16M4 18h16'
+                />
+              </svg>
+            </div>
+            {/* 햄버거 메뉴바 */}
           </nav>
           {/* 좌측 메뉴 */}
 
@@ -170,7 +188,8 @@ export default function Header() {
                         router.query.page ? `/${router.query.page}` : ''
                       }`
                       ? 'text-[#00e7ff]'
-                      : ''
+                      : '',
+                    'md:text-sm'
                   )}
                 >
                   {nav.label}

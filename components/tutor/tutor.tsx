@@ -33,7 +33,7 @@ export default function Tutor({
   return (
     <>
       <div onClick={openPopup}>
-        <div className='relative h-60 w-[23.75rem] cursor-pointer'>
+        <div className='relative h-60 w-[23.75rem] cursor-pointer md:h-[6.375rem] md:w-full'>
           <Image
             src={thumbnail}
             alt='Tutor Thumbnail'
@@ -43,13 +43,13 @@ export default function Tutor({
           />
         </div>
 
-        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
+        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1] md:mt-2 md:mb-0 md:text-[0.688rem]'>
           {category}
         </div>
 
-        <div className='text-lg font-medium'>{name}</div>
+        <div className='text-lg font-medium md:text-[0.812rem]'>{name}</div>
 
-        <div className='text-[#9e9e9e]'>{text}</div>
+        <div className='text-[#9e9e9e] md:text-xs'>{text}</div>
       </div>
 
       <AnimatePresence>

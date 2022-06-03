@@ -15,8 +15,8 @@ export default function Best({
   business_class,
 }: IProps) {
   return (
-    <Layout padding='pt-24 pb-44'>
-      <div className='space-y-28'>
+    <Layout padding='pt-24 pb-44 md:py-10'>
+      <div className='space-y-28 md:space-y-12'>
         {/* 부동산 Top3 강의 */}
         <TopLectureList
           title='부동산 TOP3 강의'
