@@ -48,7 +48,7 @@ export default function Detail({
         {/* 썸네일 */}
 
         {/* 강의 상세정보 */}
-        <div className='flex h-[30.625rem] w-[26.75rem] flex-col justify-between'>
+        <div className='flex h-[30.625rem] w-[26.75rem] flex-col justify-between md:w-full'>
           {/* 카테고리 */}
           <div className='text-sm font-medium md:mt-6'>{category}</div>
           {/* 카테고리 */}

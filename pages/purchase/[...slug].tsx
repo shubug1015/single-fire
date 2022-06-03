@@ -140,16 +140,16 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
       <SEO title='결제' />
 
       <Layout padding='py-24 md:py-4'>
-        <div className='mb-14 text-2xl font-bold md:text-center md:text-lg md:font-medium'>
+        <div className='mb-14 text-2xl font-bold md:mb-4 md:text-center md:text-lg md:font-medium'>
           주문 결제
         </div>
 
-        <div className='divide-y-2 divide-[#4a4e57]'>
+        <div className='divide-y-2 divide-[#4a4e57] md:divide-[#282e38] md:bg-[#4a4e57] md:p-4'>
           <div>
             <div className='text-lg font-medium'>주문상품</div>
 
             {/* 상품정보 헤더 */}
-            <div className='mt-6 flex h-[3.75rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] text-lg font-medium text-[rgba(255,255,255,0.6)]'>
+            <div className='mt-6 flex h-[3.75rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] text-lg font-medium text-[rgba(255,255,255,0.6)] md:hidden'>
               <div className='flex w-1/5 justify-center'>상품정보</div>
               <div className='flex grow'>상품명</div>
               <div className='flex w-1/5 justify-center'>옵션</div>
@@ -158,7 +158,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
             {/* 상품정보 헤더 */}
 
             {/* 상품정보 Data */}
-            <div className='flex items-center py-8 text-lg'>
+            <div className='flex items-center py-8 text-lg md:hidden'>
               <div className='flex w-1/5 justify-center'>
                 <div className='relative h-32 w-36'>
                   {data && (
@@ -179,10 +179,26 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               </div>
             </div>
             {/* 상품정보 Data */}
+
+            {/* 상품정보 Data 모바일*/}
+            <div className='hidden py-8 text-lg md:block'>
+              <div className='flex grow text-base'>{data?.name}</div>
+              <div className='mt-4 flex justify-between'>
+                <div className='text-sm text-[#cfcfcf]'>옵션</div>
+                <div className=''>-</div>
+              </div>
+              <div className='mt-1 flex justify-between'>
+                <div className='text-sm text-[#cfcfcf]'>상품금액</div>
+                <div className='text-sm'>{data?.price.toLocaleString()} 원</div>
+              </div>
+            </div>
+            {/* 상품정보 Data 모바일*/}
           </div>
 
-          <div className='pt-14 pb-6 text-lg font-medium'>할인 혜택</div>
-          <div className='flex items-start pt-6 pb-8'>
+          <div className='pt-14 pb-6 text-lg font-medium md:hidden'>
+            할인 혜택
+          </div>
+          <div className='flex items-start pt-6 pb-8 md:hidden'>
             <div className='mr-12 pt-1.5 text-lg'>적용 가능한 쿠폰</div>
 
             <div className='grow'>
@@ -208,6 +224,40 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               </div>
             </div>
           </div>
+          {/* 모바일 */}
+          <div className='hidden md:block'>
+            <div className='flex items-start justify-between pt-6 pb-8'>
+              <div>쿠폰</div>
+              <div>
+                <span className='font-bold'>{profile?.coupon.length}</span>장
+              </div>
+
+              <div className='grow'>
+                <div className='flex items-center space-x-4 border-b-2 border-[#676a72] pb-6'>
+                  <div className='text-lg'>
+                    <span className='font-bold'>{profile?.coupon.length}</span>
+                    장
+                  </div>
+
+                  <div
+                    onClick={() => setCouponPopup(true)}
+                    className='cursor-pointer rounded bg-[#4a4e57] py-2 px-4'
+                  >
+                    쿠폰적용
+                  </div>
+                </div>
+
+                <div className='pt-8'>
+                  <div className='text-lg text-[#00e7ff]'>{coupon.name}</div>
+
+                  <div className='mt-4 text-lg'>
+                    <span className='font-bold'>{coupon.price}</span>원 할인
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* 모바일 */}
           <div className='flex items-start py-8'>
             <div className='mr-12 text-lg'>적용 가능한 포인트</div>
 

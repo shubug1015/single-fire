@@ -96,9 +96,9 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
         {/* 좋아요 */}
 
         {/* 리뷰 */}
-        <div className='mt-24 w-full space-y-4'>
+        <div className='mt-24 w-full space-y-4 md:mt-14'>
           {data?.reply.map((i: { [key: string]: any }) => (
-            <div key={i.id} className='w-full rounded bg-[#373c46] p-10'>
+            <div key={i.id} className='w-full rounded bg-[#373c46] p-10 md:p-6'>
               <div className='flex items-center'>
                 <div className='text-lg font-medium'>{i.user.nickname}</div>
                 <div className='relative ml-1 aspect-square h-5 w-5'>
@@ -108,12 +108,12 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
 
               <div className='opacity-60'>{trimDate(i.created, 0, 10)}</div>
 
-              <div className='mt-7 text-lg'>{i.text}</div>
+              <div className='mt-7 text-lg md:mt-4'>{i.text}</div>
             </div>
           ))}
 
           {token && (
-            <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10'>
+            <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10 md:block md:p-4'>
               <div className='flex items-center'>
                 <div>{profile?.name}</div>
                 <div className='relative ml-1 aspect-square h-4 w-4'>
@@ -121,9 +121,9 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
                 </div>
               </div>
 
-              <div className='grow'>
+              <div className='grow md:mt-4'>
                 <div className='flex'>
-                  <div className='ml-14 h-24 rounded-l-sm bg-[#282e38] p-4'>
+                  <div className='ml-14 h-24 rounded-l-sm bg-[#282e38] p-4 md:ml-0'>
                     {profile?.nickname} |
                   </div>
                   <textarea
@@ -145,7 +145,7 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
 
               <div
                 onClick={handleSubmit(onValid, onInvalid)}
-                className='ml-4 flex h-10 w-24 cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] transition-all hover:opacity-90'
+                className='ml-4 flex h-10 w-24 cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] transition-all hover:opacity-90 md:mt-4 md:ml-0'
               >
                 저장
               </div>

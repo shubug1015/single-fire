@@ -56,7 +56,7 @@ export default function Search() {
               placeholder=''
               value={searchTerm}
               onChange={handleSearchTerm}
-              className='h-12 w-80 border border-[#c8c8c8] pl-3 text-black outline-none md:w-60'
+              className='h-12 w-80 border border-[#c8c8c8] pl-3 text-black outline-none md:w-40'
             />
 
             <div
