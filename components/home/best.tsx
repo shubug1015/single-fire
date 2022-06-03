@@ -12,7 +12,7 @@ export default function Best({ data }: IProps) {
       {/* 상단 배너 */}
       <Link href='/calculator'>
         <a>
-          <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a] md:mb-10 md:p-4'>
+          <div className='mb-[6.625rem] flex h-[5.875rem] w-full items-center justify-between rounded-md bg-[#00e7ff] px-[3.75rem] text-[#14161a] md:mb-10 md:h-[4.5rem] md:px-4'>
             <div className='text-lg font-medium md:text-sm'>
               경제적 자유 얻고 파이어족 도전!
               <br className='hidden md:block' /> 대체 얼마가 필요할까? 🔥
@@ -42,7 +42,7 @@ export default function Best({ data }: IProps) {
 
       {/* Best 클래스 */}
       <TopLectureList
-        title='[100만뷰] 경제적 자유를 이뤄낸 BEST 클래스'
+        title={'[100만뷰] 경제적 자유를 이뤄낸 \nBEST 클래스'}
         data={data}
         url='/lecture'
       />

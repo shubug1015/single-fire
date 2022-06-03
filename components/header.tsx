@@ -15,7 +15,7 @@ export default function Header() {
   };
   return (
     <header className='fixed top-0 left-0 z-[9999] h-40 w-screen bg-[#14161a] shadow-md md:h-[6.5rem]'>
-      <div className='mx-auto max-w-[1180px]'>
+      <div className='mx-auto max-w-[1180px] md:max-w-[330px]'>
         {/* 헤더 상단 */}
         <div className='flex h-[6.25rem] items-center justify-between md:h-14'>
           {/* 좌측 메뉴 */}

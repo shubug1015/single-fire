@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <Layout bgColor='bg-[#14161a]' padding='pt-[6.5rem] pb-[7.5rem]'>
+    <Layout bgColor='bg-[#14161a]' padding='pt-[6.5rem] pb-[7.5rem] md:py-10'>
       <div className='flex justify-between'>
         {/* 좌측 섹션 */}
         <div>

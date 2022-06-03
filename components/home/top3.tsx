@@ -9,8 +9,8 @@ interface IProps {
 
 export default function Top3({ realty, stock, coin }: IProps) {
   return (
-    <Layout padding='py-24'>
-      <div className='space-y-28'>
+    <Layout padding='py-24 md:py-10'>
+      <div className='space-y-28 md:space-y-12'>
         {/* 부동산 Top3 강의 */}
         <TopLectureList
           title='부동산 TOP3 강의'

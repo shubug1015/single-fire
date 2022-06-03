@@ -12,14 +12,18 @@ export default function TopLectureList({ title, data, url }: IProps) {
     <div>
       {/* 제목 & 더보기 */}
       <div className='flex w-full items-center justify-between'>
-        <div className='text-2xl font-bold md:text-lg'>{title}</div>
+        <div className='text-2xl font-bold md:whitespace-pre-wrap md:text-lg'>
+          {title}
+        </div>
 
         <Link href={url}>
           <a className='flex items-center'>
-            <span className='font-medium text-[#cfcfcf]'>더 보기</span>
+            <span className='font-medium text-[#cfcfcf] md:text-sm'>
+              더 보기
+            </span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='mt-0.5 ml-2 w-3 text-[#cfcfcf]'
+              className='mt-0.5 ml-2 w-3 text-[#cfcfcf] md:hidden'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -37,7 +41,7 @@ export default function TopLectureList({ title, data, url }: IProps) {
       {/* 제목 & 더보기 */}
 
       {/* 강의 리스트 */}
-      <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12 md:mt-6 md:grid-cols-2 md:gap-x-1'>
+      <div className='mt-8 grid grid-cols-3 gap-x-5 gap-y-12 md:mt-6 md:flex md:gap-x-4 md:overflow-x-scroll'>
         {data?.map((i) => (
           <Lecture
             key={i.id}

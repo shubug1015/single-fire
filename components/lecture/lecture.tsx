@@ -19,7 +19,7 @@ export default function Lecture({
   return (
     <Link href={`/lecture/detail/${id}`}>
       <a>
-        <div className='relative h-60 w-[23.75rem]'>
+        <div className='relative h-60 w-[23.75rem] md:h-[6.375rem] md:w-40'>
           <Image
             src={thumbnail}
             alt='Lecture Thumbnail'
@@ -29,11 +29,11 @@ export default function Lecture({
           />
         </div>
 
-        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1]'>
+        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1] md:mt-2 md:text-[0.688rem]'>
           {category} ˙ {tutor.name}
         </div>
 
-        <div className='text-lg font-medium'>{name}</div>
+        <div className='text-lg font-medium md:text-[0.812rem]'>{name}</div>
       </a>
     </Link>
   );

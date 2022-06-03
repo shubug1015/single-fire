@@ -7,24 +7,25 @@ interface IProps {
 
 export default function Customized({ data }: IProps) {
   return (
-    <Layout bgColor='bg-[#e5e5e514]' padding='py-20'>
-      <div className='flex justify-between'>
+    <Layout bgColor='bg-[#e5e5e514]' padding='py-20 md:py-8'>
+      <div className='flex justify-between md:flex-col'>
         {/* 좌측 섹션 */}
         <div>
-          <div className='text-xl font-bold'>
+          <div className='text-xl font-bold md:text-sm'>
             주식의 “주”자도 모르는 분을 위한,
           </div>
 
-          <div className='mt-2 text-[3.25rem] font-bold leading-[1.31]'>
-            <span className='text-[#00e7ff]'>맞춤형 CLASS</span>를<br />
-            제공합니다 ✏️
+          <div className='mt-2 text-[3.25rem] font-bold leading-[1.31] md:mt-0.5 md:text-2xl'>
+            <span className='text-[#00e7ff]'>맞춤형 CLASS</span>를{' '}
+            <br className='md:hidden' />
+            제공합니다. ✏️
           </div>
 
-          <div className='mt-[3.75rem] font-medium'>
+          <div className='mt-[3.75rem] font-medium md:hidden'>
             여러분의 수식어가 될 수 있습니다.
           </div>
 
-          <div className='mt-6 flex space-x-2 font-medium'>
+          <div className='mt-6 flex space-x-2 font-medium md:hidden'>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
               #유튜브 100만뷰의 신화
             </div>
@@ -32,7 +33,8 @@ export default function Customized({ data }: IProps) {
               #120억의 자산가
             </div>
           </div>
-          <div className='mt-2 flex space-x-2 font-medium'>
+
+          <div className='mt-2 flex space-x-2 font-medium md:hidden'>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
               #순수익 월 1200만원
             </div>
@@ -44,31 +46,34 @@ export default function Customized({ data }: IProps) {
         {/* 좌측 섹션 */}
 
         {/* 우측 섹션 */}
-        <div className='space-y-2'>
+        <div className='space-y-2 md:mt-6 md:flex md:space-x-4 md:space-y-0 md:overflow-x-scroll'>
           {data?.map((i, index) => (
             <Link key={i.order} href={`/lecture/detail/${i.lecture.id}`}>
-              <a className='group flex h-20 w-[38.125rem] items-center justify-between rounded bg-[#282e38] px-10 transition-all hover:bg-[#00E7FF]'>
-                <div className='flex items-center'>
-                  <div className='mr-2 text-[#9e9e9e] transition-all group-hover:text-[#14161a]'>
+              <a className='group flex h-20 w-[38.125rem] items-center justify-between rounded bg-[#282e38] px-10 transition-all hover:bg-[#00E7FF] md:h-[6.5rem] md:w-[14.5rem] md:px-4'>
+                <div className='flex items-center md:w-[14.5rem] md:flex-col-reverse md:items-start'>
+                  <div className='mr-2 text-[#9e9e9e] transition-all group-hover:text-[#14161a] md:hidden'>
                     {index + 1}.
                   </div>
-                  <div className='transition-all group-hover:text-[#14161a]'>
+
+                  <div className='transition-all group-hover:text-[#14161a] md:text-[0.812rem]'>
                     {i.text}
                   </div>
+
                   {index === 0 && (
-                    <div className='ml-2 mt-1 rounded-sm bg-[#ff1414] px-2 pb-0.5 text-sm'>
+                    <div className='ml-2 mt-1 rounded-sm bg-[#ff1414] px-2 pb-0.5 text-sm md:ml-0 md:mt-0 md:mb-2.5 md:text-xs'>
                       HOT
                     </div>
                   )}
+
                   {index === 1 && (
-                    <div className='ml-2 rounded-sm bg-[#00cde2] px-2 pb-0.5 text-sm text-[#222222]'>
+                    <div className='ml-2 rounded-sm bg-[#00cde2] px-2 pb-0.5 text-sm text-[#222222] md:ml-0 md:mt-0 md:mb-2.5 md:text-xs'>
                       추천
                     </div>
                   )}
                 </div>
 
                 <svg
-                  className='aspect-square w-[14px] text-[#9e9e9e] group-hover:text-[#14161a]'
+                  className='aspect-square w-[14px] text-[#9e9e9e] group-hover:text-[#14161a] md:hidden'
                   viewBox='0 0 14 14'
                   fill='red'
                   xmlns='http://www.w3.org/2000/svg'

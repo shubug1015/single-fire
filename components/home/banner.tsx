@@ -16,7 +16,7 @@ export default function Banner({ data }: IProps) {
   const PrevArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
-      className='absolute top-1/2 left-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white'
+      className='absolute top-1/2 left-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white md:!hidden'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -38,7 +38,7 @@ export default function Banner({ data }: IProps) {
   const NextArrow = ({ onClick }: ArrowProps) => (
     <div
       onClick={onClick}
-      className='absolute top-1/2 right-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white'
+      className='absolute top-1/2 right-12 z-[1] flex aspect-square w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white md:!hidden'
     >
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -75,7 +75,7 @@ export default function Banner({ data }: IProps) {
         <Slider
           className='!flex h-full items-center'
           {...settings}
-          dotsClass='slick-dots absolute !right-[calc((100vw-1180px)/2)] !bottom-[4.25rem] !flex justify-start !w-[55rem]'
+          dotsClass='slick-dots absolute !right-[calc((100vw-1180px)/2)] !bottom-[4.25rem] !flex justify-start !w-[55rem] md:!w-fit md:!left-1/2 md:!right-0 md:!-translate-x-1/2 md:!bottom-4'
         >
           {data?.map((i) => (
             <div key={i.order} className='relative'>
@@ -90,18 +90,18 @@ export default function Banner({ data }: IProps) {
                 </div>
               </div>
 
-              <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36 md:h-60'>
-                <div className='z-[1] w-fit whitespace-pre-wrap text-[3.25rem] font-bold'>
+              <div className='relative mx-auto flex h-[51.625rem] max-w-[1180px] flex-col pt-36 md:h-60 md:max-w-[330px] md:pt-10'>
+                <div className='z-[1] w-fit whitespace-pre-wrap text-[3.25rem] font-bold md:text-lg'>
                   {i.title}
                 </div>
 
-                <div className='z-[1] mt-[3.75rem] w-fit whitespace-pre-wrap font-light'>
+                <div className='z-[1] mt-[3.75rem] w-fit whitespace-pre-wrap font-light md:mt-2 md:text-xs'>
                   {i.text}
                 </div>
 
                 <Link href={i.url}>
                   <a>
-                    <div className='absolute top-1/2 right-0 h-[38.375rem] w-[55rem] -translate-y-1/2 md:h-60'>
+                    <div className='absolute top-1/2 right-0 h-[38.375rem] w-[55rem] -translate-y-1/2 md:h-40 md:w-56'>
                       <div className='relative h-full w-full rounded-md shadow-sm'>
                         <Image
                           src={i.img}
