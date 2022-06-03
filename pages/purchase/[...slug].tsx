@@ -198,71 +198,52 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           <div className='pt-14 pb-6 text-lg font-medium md:hidden'>
             할인 혜택
           </div>
-          <div className='flex items-start pt-6 pb-8 md:hidden'>
+          <div className='flex items-start pt-6 pb-8 md:block'>
             <div className='mr-12 pt-1.5 text-lg'>적용 가능한 쿠폰</div>
 
             <div className='grow'>
-              <div className='flex items-center space-x-4 border-b-2 border-[#4a4e57] pb-6'>
+              <div className='flex items-center space-x-4 border-b-2 border-[#4a4e57] pb-6 md:mt-4'>
                 <div className='text-lg'>
                   <span className='font-bold'>{profile?.coupon.length}</span>장
                 </div>
 
                 <div
                   onClick={() => setCouponPopup(true)}
-                  className='cursor-pointer rounded bg-[#4a4e57] py-2 px-4'
+                  className='cursor-pointer rounded bg-[#4a4e57] py-2 px-4 md:bg-[#676a72]'
                 >
                   쿠폰적용
                 </div>
               </div>
 
-              <div className='pt-8'>
+              <div className='pt-8 md:hidden'>
                 <div className='text-lg text-[#00e7ff]'>{coupon.name}</div>
 
                 <div className='mt-4 text-lg'>
                   <span className='font-bold'>{coupon.price}</span>원 할인
                 </div>
               </div>
-            </div>
-          </div>
-          {/* 모바일 */}
-          <div className='hidden md:block'>
-            <div className='flex items-start justify-between pt-6 pb-8'>
-              <div>쿠폰</div>
-              <div>
-                <span className='font-bold'>{profile?.coupon.length}</span>장
-              </div>
-
-              <div className='grow'>
-                <div className='flex items-center space-x-4 border-b-2 border-[#676a72] pb-6'>
-                  <div className='text-lg'>
-                    <span className='font-bold'>{profile?.coupon.length}</span>
-                    장
-                  </div>
-
-                  <div
-                    onClick={() => setCouponPopup(true)}
-                    className='cursor-pointer rounded bg-[#4a4e57] py-2 px-4'
-                  >
-                    쿠폰적용
-                  </div>
-                </div>
-
-                <div className='pt-8'>
+              {/* 모바일 */}
+              <div className='hidden pt-8 md:block md:pt-0'>
+                <div className='flex justify-between'>
+                  <div className='text-[#cfcfcf]'>쿠폰번호</div>
                   <div className='text-lg text-[#00e7ff]'>{coupon.name}</div>
-
-                  <div className='mt-4 text-lg'>
-                    <span className='font-bold'>{coupon.price}</span>원 할인
+                </div>
+                <div className='flex justify-between'>
+                  <div className='text-[#cfcfcf]'>할인금액</div>
+                  <div>
+                    <span className='font-bold'>{coupon.price}</span> 원
                   </div>
                 </div>
               </div>
+              {/* 모바일 */}
             </div>
           </div>
-          {/* 모바일 */}
-          <div className='flex items-start py-8'>
+
+          <div className='flex items-start py-8 md:block'>
             <div className='mr-12 text-lg'>적용 가능한 포인트</div>
 
-            <div className='space-y-6'>
-              <div className='text-lg'>
+            <div className='space-y-6 md:mt-4'>
+              <div className='text-lg md:text-base'>
                 총 <span className='font-bold'>{profile?.point}P</span> 보유
               </div>
 
@@ -272,12 +253,12 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                   placeholder='사용 포인트 입력'
                   value={point}
                   onChange={(e) => handlePoint(e)}
-                  className='h-10 w-36 rounded-l bg-[rgba(0,0,0,0.25)] pl-4 text-sm outline-none'
+                  className='h-10 w-36 rounded-l bg-[rgba(0,0,0,0.25)] pl-4 text-sm outline-none md:w-48'
                 />
 
                 <div
                   onClick={() => setPoint(profile?.point)}
-                  className='-ml-0.5 flex h-10 w-24 cursor-pointer items-center justify-center rounded bg-[#4a4e57]'
+                  className='-ml-0.5 flex h-10 w-24 cursor-pointer items-center justify-center rounded bg-[#4a4e57] md:bg-[#676a72] md:text-sm'
                 >
                   전액사용
                 </div>
@@ -285,7 +266,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
             </div>
           </div>
           <div className='pt-14 pb-6 text-lg font-medium'>결제 수단 선택</div>
-          <div className='flex space-x-8 py-8 text-lg'>
+          <div className='flex space-x-8 py-8 text-lg md:block md:space-y-4 md:space-x-0 md:text-base'>
             <div className='flex items-center space-x-3'>
               <div
                 onClick={() => handlePayMethod('kakaopay')}
@@ -402,7 +383,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           </div>
         </div>
 
-        <div className='mt-20 flex justify-center'>
+        <div className='mt-20 flex justify-center md:mt-4'>
           <div
             onClick={handlePayment}
             className='flex h-14 w-64 cursor-pointer items-center justify-center rounded bg-[#00e7ff] font-medium text-[#282e38] transition-all hover:opacity-90'
