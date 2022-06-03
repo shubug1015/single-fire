@@ -19,7 +19,7 @@ export default function Input({
 }: IProps) {
   return (
     <div className='flex h-20 items-center'>
-      <div className='w-44 font-medium opacity-60'>{label}</div>
+      <div className='w-44 font-medium opacity-60 md:w-24'>{label}</div>
       <input
         type={type}
         placeholder={label}

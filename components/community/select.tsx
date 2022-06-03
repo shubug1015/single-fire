@@ -12,7 +12,7 @@ interface IProps {
 export default function Select({ select, option, url, setSelect }: IProps) {
   return (
     <Menu as='div' className='relative inline-block text-left'>
-      <Menu.Button className='flex h-12 w-36 items-center justify-between rounded bg-[#373c46] px-3 shadow-[0_5px_5px_0_rgba(0,0,0,0.2)]'>
+      <Menu.Button className='flex h-12 w-36 items-center justify-between rounded bg-[#373c46] px-3 shadow-[0_5px_5px_0_rgba(0,0,0,0.2)] md:w-20'>
         <span>{select.label}</span>
 
         <svg

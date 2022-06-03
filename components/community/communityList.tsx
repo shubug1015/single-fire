@@ -16,7 +16,7 @@ export default function CommunityList({ notice, data, count }: IProps) {
 
   return (
     <Layout padding='pb-44'>
-      <div className='flex h-[3.75rem] items-center bg-[rgba(229,229,229,0.08)]'>
+      <div className='flex h-[3.75rem] items-center bg-[rgba(229,229,229,0.08)] md:hidden'>
         <div className='flex w-[8.5%] justify-center'>번호</div>
         <div className='flex w-[8.5%] justify-center'>주제</div>
         <div className='flex grow justify-center'>제목</div>

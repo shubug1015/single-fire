@@ -29,16 +29,16 @@ const MyCommunityList: NextPage<IProps> = ({ page }) => {
   return (
     <>
       <SEO title='마이페이지' />
-      <Layout padding='pt-20 pb-44'>
+      <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block md:space-x-0'>
           <Navigator />
 
-          <div className='grow space-y-10'>
+          <div className='grow space-y-10 md:mt-8'>
             <div className='space-y-6'>
               <div className='text-lg font-medium'>커뮤니티</div>
-              <div className='flex space-x-2'>
+              <div className='flex space-x-2 md:space-x-0'>
                 <div className='flex h-[4.5rem] w-[28rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-lg font-medium'>
                   구매한 커뮤니티 타이틀
                 </div>

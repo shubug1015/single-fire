@@ -7,8 +7,8 @@ interface IProps {
 
 export default function Banner({ title }: IProps) {
   return (
-    <div className='relative flex h-60 w-screen items-center justify-center'>
-      <div className='text-[2rem] font-bold'>{title}</div>
+    <div className='relative flex h-60 w-screen items-center justify-center md:h-20'>
+      <div className='text-[2rem] font-bold md:text-lg'>{title}</div>
 
       <div className='absolute top-0 left-0 -z-[1] h-full w-full'>
         <div className='relative h-full w-full'>

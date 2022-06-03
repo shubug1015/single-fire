@@ -7,10 +7,12 @@ const EditProfile: NextPage = () => {
   return (
     <>
       <SEO title='등급안내' />
-      <Layout padding='pt-20 pb-36'>
-        <div className='text-2xl font-bold'>등급 안내</div>
+      <Layout padding='pt-20 pb-36 md:pt-4 md:pb-8'>
+        <div className='text-2xl font-bold md:text-center md:text-lg md:font-medium'>
+          등급 안내
+        </div>
 
-        <div className='mt-10 flex divide-x divide-black'>
+        <div className='mt-10 flex divide-x divide-black md:mt-4 md:hidden'>
           <div className='w-[12.5rem] divide-y divide-black bg-[#4a4e57]'>
             <div className='h-[3.75rem] ' />
             <div className='flex h-40 items-center justify-center'>
@@ -87,6 +89,61 @@ const EditProfile: NextPage = () => {
               <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
                 커뮤니티 유료행사 1회 무료참여권
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='mt-4 hidden md:block'>
+          <div className='flex h-[10.688rem] justify-between bg-[#373d46] p-6'>
+            <div className=''>
+              <div className='text-xl font-medium'>불씨</div>
+              <div className='mt-[0.375rem] font-[#b1b1b1] text-xs'>
+                회원가입시 달성
+              </div>
+              <div className='mt-4 text-sm font-medium'>
+                1~3만원 포인트 적립
+              </div>
+            </div>
+            <div className='h-[3.75rem] rounded-full bg-[#2b3037] p-[1.125rem]'>
+              <div className='relative aspect-square w-6'>{gradeImg('1')}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className='mt-2 hidden md:block'>
+          <div className='flex h-[10.688rem] justify-between bg-[#373d46] p-6'>
+            <div className=''>
+              <div className='text-xl font-medium'>불꽃</div>
+              <div className='mt-[0.375rem] font-[#b1b1b1] text-xs'>
+                강의 1건이상 수강시 자동달성
+                <br />
+                유료 커뮤니티 2건 이상 결제시 자동달성
+              </div>
+              <div className='mt-4 text-sm font-medium'>
+                커뮤니티 무료 행사 참여
+                <br />
+                신청가능한 권한 부여
+              </div>
+            </div>
+            <div className='h-[3.75rem] rounded-full bg-[#2b3037] p-[1.125rem]'>
+              <div className='relative aspect-square w-6'>{gradeImg('2')}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className='mt-2 hidden md:block'>
+          <div className='flex h-[10.688rem] justify-between bg-[#373d46] p-6'>
+            <div className=''>
+              <div className='text-xl font-medium'>파이어</div>
+              <div className='mt-[0.375rem] font-[#b1b1b1] text-xs'>
+                강의 3건이상 수강시 달성
+              </div>
+              <div className='mt-4 text-sm font-medium'>
+                커뮤니티 유료행사 1회 무료참여권
+              </div>
+            </div>
+            <div className='h-[3.75rem] rounded-full bg-[#2b3037] p-[1.125rem]'>
+              <div className='relative aspect-square w-6'>{gradeImg('3')}</div>
             </div>
           </div>
         </div>

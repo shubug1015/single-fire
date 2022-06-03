@@ -33,7 +33,7 @@ export default function Community({
         <div
           className={cls(
             type === 'notice' ? 'mt-0.5 rounded-sm bg-[#4a4e57]' : '',
-            'flex h-[3.75rem] items-center transition-all hover:opacity-70'
+            'flex h-[3.75rem] items-center transition-all hover:opacity-70 md:hidden'
           )}
         >
           <div className='flex w-[8.5%] justify-center'>
@@ -84,6 +84,47 @@ export default function Community({
           </div>
 
           <div className='flex w-[10%] justify-center'>{view}</div>
+        </div>
+
+        <div className='hidden md:block'>
+          <div className='flex items-center'>
+            <div
+              className={cls(
+                type === 'notice' ? 'mt-0.5 rounded-sm bg-[#4a4e57]' : '',
+                'w-full p-4 transition-all hover:opacity-70'
+              )}
+            >
+              <div className='flex'>
+                <div
+                  className={cls(
+                    type === 'notice'
+                      ? 'font-bold text-[#ff8a00]'
+                      : 'text-[#cfcfcf]',
+                    'mr-2 text-xs'
+                  )}
+                >
+                  {subject}
+                </div>
+                <div
+                  className={cls(
+                    type === 'notice' ? 'font-medium text-[#ff8a00]' : '',
+                    'text-xs'
+                  )}
+                >
+                  {title}
+                </div>
+              </div>
+              <div className='mt-2 flex text-xs'>
+                <div>
+                  {name} {grade}&nbsp;&nbsp;
+                </div>
+                <div className='text-[#cfcfcf]'>
+                  |&nbsp;&nbsp;{trimDate(created, 5, 10)}&nbsp;&nbsp;|
+                </div>
+                <div className='text-[#cfcfcf]'>&nbsp;&nbsp;조회 {view}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </a>
     </Link>

@@ -66,18 +66,18 @@ const EditProfile: NextPage = () => {
   return (
     <>
       <SEO title='마이페이지' />
-      <Layout padding='pt-20 pb-44'>
+      <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block md:space-x-0'>
           <Navigator />
 
-          <div className='grow space-y-6'>
+          <div className='grow space-y-6 md:mt-8'>
             <div className='text-lg font-medium'>
               {!pwTabOpen ? '개인정보' : '비밀번호 변경'}
             </div>
 
-            <div className='divide-y divide-[#575b64] rounded-sm bg-[rgba(229,229,229,0.08)] p-10'>
+            <div className='divide-y divide-[#575b64] rounded-sm bg-[rgba(229,229,229,0.08)] p-10 md:p-4'>
               {!pwTabOpen ? (
                 <>
                   <Input

@@ -14,7 +14,7 @@ export default function CouponList({ data, totalItems }: IProps) {
   return (
     <div>
       <div className='space-y-0.5'>
-        <div className='flex h-[3.75rem] items-center rounded-sm bg-[#4a4e57]'>
+        <div className='flex h-[3.75rem] items-center rounded-sm bg-[#4a4e57] md:hidden'>
           <div className='flex w-[10%] justify-center'>번호</div>
           <div className='flex w-[50%] justify-center'>쿠폰명</div>
           <div className='flex w-[20%] justify-center'>할인금액</div>

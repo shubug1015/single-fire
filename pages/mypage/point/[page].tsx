@@ -32,13 +32,13 @@ const Point: NextPage<IProps> = ({ page }) => {
     <>
       <SEO title='마이페이지' />
 
-      <Layout padding='pt-20 pb-44'>
+      <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block md:space-x-0'>
           <Navigator />
 
-          <div className='grow space-y-10'>
+          <div className='grow space-y-10 md:mt-8'>
             <div className='space-y-6'>
               <div className='flex space-x-5'>
                 <Link href='/mypage/coupon/1'>
@@ -53,14 +53,14 @@ const Point: NextPage<IProps> = ({ page }) => {
               </div>
 
               <div className='flex justify-between space-x-4'>
-                <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
+                <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg md:pl-6 md:pr-6 md:text-sm'>
                   <div className='font-medium'>보유 포인트</div>
                   <div className='font-bold'>
                     {data?.point.toLocaleString()} P
                   </div>
                 </div>
 
-                <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg'>
+                <div className='flex h-[4.278rem] w-1/2 items-center justify-between rounded-sm bg-[rgba(229,229,229,0.08)] pl-12 pr-10 text-lg md:pl-6 md:pr-6 md:text-sm'>
                   <div className='font-medium'>사용한 포인트</div>
                   <div className='font-bold'>
                     {data?.used_point.toLocaleString()} P

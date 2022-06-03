@@ -34,14 +34,14 @@ const MyLectureList: NextPage<IProps> = ({ slug }) => {
   return (
     <>
       <SEO title='마이페이지' />
-      <Layout padding='pt-20 pb-44'>
+      <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block'>
           <Navigator />
 
-          <div className='grow space-y-6'>
-            <div className='flex space-x-5 text-lg font-medium'>
+          <div className='grow space-y-6 md:mt-8'>
+            <div className='flex space-x-5 text-lg font-medium md:text-sm'>
               <Link href='/mypage/lecture/ongoing/1'>
                 <a>
                   <div

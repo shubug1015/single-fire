@@ -31,13 +31,13 @@ const MyPurchaseList: NextPage<IProps> = ({ page }) => {
     <>
       <SEO title='마이페이지' />
 
-      <Layout padding='pt-20 pb-44'>
+      <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block md:space-x-0'>
           <Navigator />
 
-          <div className='grow space-y-6'>
+          <div className='grow space-y-6 md:mt-8'>
             <div className='flex space-x-5 text-lg font-medium'>
               <div>결제 내역</div>
               {/* <div className='text-[#afafaf]'>환불 내역</div> */}

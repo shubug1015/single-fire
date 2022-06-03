@@ -30,9 +30,9 @@ export default function Search() {
   };
 
   return (
-    <Layout padding='pt-28 pb-6'>
+    <Layout padding='pt-28 pb-6 md:pt-4'>
       <div className='flex justify-between'>
-        <div className='flex space-x-4'>
+        <div className='flex space-x-4 md:text-sm'>
           <Select
             select={searchType}
             option={[
@@ -56,7 +56,7 @@ export default function Search() {
               placeholder=''
               value={searchTerm}
               onChange={handleSearchTerm}
-              className='h-12 w-80 border border-[#c8c8c8] pl-3 text-black outline-none'
+              className='h-12 w-80 border border-[#c8c8c8] pl-3 text-black outline-none md:w-60'
             />
 
             <div
@@ -67,39 +67,41 @@ export default function Search() {
                   `/community/economy/${slugs[0]}/${orderType.value}/${searchType.value}/${searchTerm}`
                 )
               }
-              className='flex h-12 w-32 cursor-pointer items-center justify-center bg-black font-medium'
+              className='flex h-12 w-32 cursor-pointer items-center justify-center bg-black font-medium md:w-16'
             >
               검색
             </div>
           </div>
         </div>
 
-        <Select
-          select={orderType}
-          option={[
-            {
-              id: 0,
-              label: '최신순',
-              value: 'created',
-            },
-            {
-              id: 1,
-              label: '조회순',
-              value: 'view_num',
-            },
-            {
-              id: 2,
-              label: '좋아요순',
-              value: 'like_num',
-            },
-          ]}
-          url={(order: string) =>
-            router.push(
-              `/community/economy/${slugs[0]}/${order}/${searchType.value}/${searchTerm}`
-            )
-          }
-          setSelect={setOrderType}
-        />
+        <div className='md:hidden'>
+          <Select
+            select={orderType}
+            option={[
+              {
+                id: 0,
+                label: '최신순',
+                value: 'created',
+              },
+              {
+                id: 1,
+                label: '조회순',
+                value: 'view_num',
+              },
+              {
+                id: 2,
+                label: '좋아요순',
+                value: 'like_num',
+              },
+            ]}
+            url={(order: string) =>
+              router.push(
+                `/community/economy/${slugs[0]}/${order}/${searchType.value}/${searchTerm}`
+              )
+            }
+            setSelect={setOrderType}
+          />
+        </div>
       </div>
     </Layout>
   );

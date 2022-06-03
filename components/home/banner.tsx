@@ -101,7 +101,7 @@ export default function Banner({ data }: IProps) {
 
                 <Link href={i.url}>
                   <a>
-                    <div className='absolute top-1/2 right-0 h-[38.375rem] w-[55rem] -translate-y-1/2'>
+                    <div className='absolute top-1/2 right-0 h-[38.375rem] w-[55rem] -translate-y-1/2 md:h-60'>
                       <div className='relative h-full w-full rounded-md shadow-sm'>
                         <Image
                           src={i.img}

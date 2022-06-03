@@ -71,7 +71,7 @@ export default function Banner() {
   };
 
   return (
-    <div className='h-[35rem] w-screen bg-[#3d4147] bg-cover bg-center bg-no-repeat'>
+    <div className='h-[35rem] w-screen bg-[#3d4147] bg-cover bg-center bg-no-repeat md:h-60'>
       {data && (
         <Slider
           className='!flex h-full items-center'
@@ -91,7 +91,7 @@ export default function Banner() {
                 </div>
               </div>
 
-              <div className='relative mx-auto flex h-[35rem] max-w-[1180px] flex-col pt-36'>
+              <div className='relative mx-auto flex h-[35rem] max-w-[1180px] flex-col pt-36 md:h-60'>
                 <div className='z-[1] w-fit whitespace-pre-wrap text-[2.5rem] font-bold'>
                   {i.title}
                 </div>

@@ -62,7 +62,7 @@ export default function Navigator() {
   };
 
   return (
-    <div className='space-y-2'>
+    <div className='space-y-2 md:space-y-0 md:text-sm'>
       {navList.map((i) => (
         <div key={i.id}>
           {i.id !== 4 ? (
@@ -72,8 +72,8 @@ export default function Navigator() {
                   className={cls(
                     i.active
                       ? 'bg-[#00e7ff] text-[#282e38]'
-                      : 'bg-[rgba(229,229,229,0.08)]',
-                    'flex h-12 w-[13.625rem] items-center justify-center rounded-sm font-medium transition-all hover:opacity-70'
+                      : 'bg-[rgba(229,229,229,0.08)] md:bg-[#282e38]',
+                    'flex h-12 w-[13.625rem] items-center justify-center rounded-sm font-medium transition-all hover:opacity-70 md:h-[3.75rem] md:w-full md:justify-start md:border-b-2 md:border-b-[rgba(229,229,229,0.08)] md:pl-8'
                   )}
                 >
                   {i.label}
@@ -91,7 +91,7 @@ export default function Navigator() {
                           j.url.replace('/1', '').replace('/ongoing', '')
                           ? 'text-[#00e7ff]'
                           : 'text-[rgba(255,255,255,0.6)]',
-                        'flex h-12 w-[13.625rem] items-center justify-center rounded-sm font-medium transition-all hover:opacity-70'
+                        'flex h-12 w-[13.625rem] items-center justify-center rounded-sm font-medium transition-all hover:opacity-70 md:w-full md:justify-start md:border-b-2 md:border-b-[rgba(229,229,229,0.08)] md:pl-12'
                       )}
                     >
                       {j.label}
@@ -102,7 +102,7 @@ export default function Navigator() {
           ) : (
             <div
               onClick={handleLogout}
-              className='flex h-12 w-[13.625rem] cursor-pointer items-center justify-center rounded-sm bg-[rgba(229,229,229,0.08)] font-medium transition-all hover:opacity-70'
+              className='flex h-12 w-[13.625rem] cursor-pointer items-center justify-center rounded-sm bg-[rgba(229,229,229,0.08)] font-medium transition-all hover:opacity-70 md:h-[3.75rem] md:w-full md:justify-start md:border-b-2 md:border-b-[rgba(229,229,229,0.08)] md:bg-[#282e38] md:pl-8'
             >
               로그아웃
             </div>
