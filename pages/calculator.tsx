@@ -65,9 +65,9 @@ const Calculator: NextPage = () => {
   return (
     <>
       <SEO title='등급 안내' />
-      <Layout padding='py-[8.75rem]'>
+      <Layout padding='py-[8.75rem] md:py-24'>
         <div className='flex flex-col items-center'>
-          <div className='text-2xl font-medium'>
+          <div className='text-2xl font-medium md:text-center md:text-xl'>
             경제적 자유 얻고 파이어족 도전! 대체 얼마가 필요할까?
           </div>
 
@@ -77,15 +77,15 @@ const Calculator: NextPage = () => {
                 {list.map((i) => (
                   <div
                     key={i.id}
-                    className='w-[48.75rem] rounded-lg bg-[#373c46] py-7 px-10'
+                    className='w-[48.75rem] rounded-lg bg-[#373c46] py-7 px-10 md:w-full'
                   >
-                    <div className='flex items-center justify-between'>
+                    <div className='flex items-center justify-between md:flex-col md:items-start'>
                       <div className='font-medium'>
                         <span className='text-[#00e7ff]'>Q. </span>
                         {i.title}
                       </div>
 
-                      <div className='flex w-72'>
+                      <div className='flex w-72 md:mt-4'>
                         <input
                           type='tel'
                           placeholder=''
@@ -125,25 +125,35 @@ const Calculator: NextPage = () => {
             </>
           ) : (
             <>
-              <div className='mt-[3.75rem] flex h-64 w-[54rem] flex-col items-center justify-center space-y-8 bg-[#373c46]'>
-                <div className='flex items-center'>
+              <div className='mt-[3.75rem] flex h-64 w-[54rem] flex-col items-center justify-center space-y-8 bg-[#373c46] md:w-full'>
+                <div className='flex items-center md:flex-col'>
                   <div>필요한 파이어 자금은</div>
-                  <div className='mx-3 flex w-[28.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff]'>
-                    {result2.toLocaleString()}
+
+                  <div className='flex items-center md:mt-2 md:items-center'>
+                    <div className='mx-3 flex w-[28.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff] md:mx-0 md:w-fit md:border-transparent'>
+                      {result2.toLocaleString()}
+                    </div>
+                    <div className='ml-3 font-medium opacity-60 md:ml-2 md:mt-3'>
+                      원입니다.
+                    </div>
                   </div>
-                  <div className='ml-3 font-medium opacity-60'>원입니다.</div>
                 </div>
 
-                <div className='flex items-center'>
+                <div className='flex items-center md:flex-col'>
                   <div>파이어 후 연간 지출금액은 미래가치로</div>
-                  <div className='mx-3 flex w-[22.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff]'>
-                    {result1.toLocaleString()}
+
+                  <div className='flex items-center md:mt-2 md:items-center'>
+                    <div className='mx-3 flex w-[22.375rem] justify-center border-b border-[#575b64] text-[2rem] font-bold text-[#00e7ff] md:mx-0 md:w-fit md:border-transparent'>
+                      {result1.toLocaleString()}
+                    </div>
+                    <div className='ml-3 font-medium opacity-60 md:ml-2 md:mt-3'>
+                      원입니다.
+                    </div>
                   </div>
-                  <div className='ml-3 font-medium opacity-60'>원입니다.</div>
                 </div>
               </div>
 
-              <div className='flex space-x-4'>
+              <div className='flex space-x-4 md:flex-col md:space-x-0'>
                 <div
                   onClick={() => setResultTab(false)}
                   className='mt-[3.75rem] cursor-pointer rounded bg-[#4c515a] py-4 px-[6.25rem] font-medium transition-all hover:opacity-90'
@@ -153,7 +163,7 @@ const Calculator: NextPage = () => {
 
                 <Link href='/'>
                   <a>
-                    <div className='mt-[3.75rem] cursor-pointer rounded bg-[#00e7ff] py-4 px-[6.25rem] font-medium text-[#282e38] transition-all hover:opacity-90'>
+                    <div className='mt-[3.75rem] cursor-pointer rounded bg-[#00e7ff] py-4 px-[6.25rem] font-medium text-[#282e38] transition-all hover:opacity-90 md:mt-4'>
                       메인으로
                     </div>
                   </a>

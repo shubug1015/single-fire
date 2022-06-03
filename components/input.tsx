@@ -21,16 +21,16 @@ export default function Input({
 }: IProps) {
   return (
     <div className='flex w-full flex-col'>
-      <label className='font-medium'>{label}</label>
+      <label className='font-medium md:text-sm'>{label}</label>
 
-      <div className='mt-2 flex h-[3.75rem] w-full justify-between'>
+      <div className='mt-2 flex h-[3.75rem] w-full justify-between md:h-14'>
         <input
           type={type}
           placeholder={label}
           {...register}
           readOnly={readOnly}
           className={cls(
-            label === '전화번호' ? 'w-[calc(100%-8.5rem)]' : 'w-full',
+            label === '전화번호' ? 'grow' : 'w-full',
             error ? 'border-red-500' : 'border-[rgba(255,255,255,0.38)]',
             readOnly ? 'opacity-50' : '',
             'h-full rounded border bg-transparent pl-4 outline-none placeholder:text-sm'

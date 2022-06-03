@@ -3,7 +3,7 @@ export default function Loader() {
     <div className='fixed top-0 left-0 z-[9999] flex h-screen w-screen items-center justify-center bg-[rgba(0,0,0,0.5)]'>
       <svg
         role='status'
-        className='h-7 w-7 animate-spin fill-[#373c46] text-[#02cce2]'
+        className='h-7 w-7 animate-spin fill-[#373c46] text-[#02cce2] md:h-6 md:w-6'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'

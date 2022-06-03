@@ -86,11 +86,11 @@ const SignUp: NextPage = () => {
   return (
     <>
       <SEO title='회원가입' />
-      <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem]'>
-        <h1 className='text-2xl font-medium'>회원가입</h1>
+      <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem] md:my-12 md:max-w-[330px] md:py-10 md:px-6'>
+        <h1 className='text-2xl font-medium md:text-xl'>회원가입</h1>
 
         {/* Input 필드 */}
-        <div className='mt-12 w-full space-y-8'>
+        <div className='mt-12 w-full space-y-8 md:mt-8 md:space-y-4'>
           <Input
             type='text'
             label='이름'
@@ -182,7 +182,7 @@ const SignUp: NextPage = () => {
                 watch('phoneNum') && !errors?.phoneNum?.message
                   ? 'cursor-pointer transition-all hover:opacity-70'
                   : '',
-                'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm'
+                'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm md:ml-2 md:text-center'
               )}
             >
               {code.loading ? (
@@ -203,7 +203,10 @@ const SignUp: NextPage = () => {
                   />
                 </svg>
               ) : (
-                '인증번호 전송'
+                <span>
+                  인증번호 <br className='hidden md:block' />
+                  전송
+                </span>
               )}
             </div>
           </Input>
@@ -268,7 +271,7 @@ const SignUp: NextPage = () => {
         {/* Input 필드 */}
 
         {/* Checkbox 필드 */}
-        <div className='mt-6 w-full space-y-[0.875rem]'>
+        <div className='mt-6 w-full space-y-[0.875rem] md:text-sm'>
           <Checkbox
             register={register('serviceAgree', {
               required: '서비스 이용약관을 체크해주세요',
@@ -315,7 +318,7 @@ const SignUp: NextPage = () => {
         {/* 회원가입 버튼 */}
         <div
           onClick={handleSubmit(onValid, onInvalid)}
-          className='mt-12 flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90'
+          className='mt-12 flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90 md:h-14 md:text-base'
         >
           {loading ? (
             <svg

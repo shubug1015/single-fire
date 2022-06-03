@@ -13,11 +13,10 @@ export default function Footer() {
           <Link href='/'>
             <a>
               <svg
-                width='178'
-                height='20'
                 viewBox='0 0 178 20'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
+                className='w-44 md:w-36'
               >
                 <g clipPath='url(#clip0_1639_5043)'>
                   <path
@@ -71,7 +70,7 @@ export default function Footer() {
           </Link>
           {/* 로고 */}
 
-          <nav className='mt-10 flex space-x-7 font-medium'>
+          <nav className='mt-10 flex space-x-7 font-medium md:mt-6 md:space-x-3 md:text-sm'>
             <Link href='/terms-of-service'>
               <a className='text-[#c0c0c0]'>이용약관</a>
             </Link>
@@ -85,7 +84,7 @@ export default function Footer() {
             </Link>
           </nav>
 
-          <div className='mt-[3.75rem] space-y-2 text-[#c0c0c0]'>
+          <div className='mt-[3.75rem] space-y-2 text-[#c0c0c0] md:mt-8 md:text-sm'>
             <div>(주)행복한컴퍼니</div>
             <div>
               사업자 등록번호 : 716-87-02517ㅣ대표자 : 신동은ㅣ통신판매업신고 :

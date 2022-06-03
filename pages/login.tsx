@@ -47,12 +47,12 @@ const Login: NextPage = () => {
   return (
     <>
       <SEO title='로그인' />
-      <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem]'>
-        <h1 className='text-2xl font-medium'>로그인</h1>
+      <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem] md:my-12 md:max-w-[330px] md:py-10 md:px-6'>
+        <h1 className='text-2xl font-medium md:text-xl'>로그인</h1>
 
         <form onSubmit={handleSubmit(onValid, onInvalid)} className='w-full'>
           {/* Input 필드 */}
-          <div className='mt-12 w-full space-y-8'>
+          <div className='mt-12 w-full space-y-8 md:mt-8 md:space-y-4'>
             <Input
               type='text'
               label='아이디'
@@ -87,7 +87,7 @@ const Login: NextPage = () => {
             type='submit'
             className={cls(
               error ? 'mt-4' : 'mt-8',
-              'flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90'
+              'flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90 md:h-14 md:text-base'
             )}
           >
             {loading ? (
@@ -114,17 +114,17 @@ const Login: NextPage = () => {
           {/* 로그인 버튼 */}
         </form>
 
-        <div className='my-6 h-px w-full bg-[rgba(255,255,255,0.38)]' />
+        <div className='my-6 h-px w-full bg-[rgba(255,255,255,0.38)] md:my-4' />
 
         {/* 회원가입 버튼 */}
         <Link href='/signup'>
-          <a className='flex h-[3.688rem] w-full items-center justify-center rounded bg-[#4a4e57] text-lg font-medium transition-all hover:opacity-90'>
+          <a className='flex h-[3.688rem] w-full items-center justify-center rounded bg-[#4a4e57] text-lg font-medium transition-all hover:opacity-90 md:h-14 md:text-base'>
             회원가입
           </a>
         </Link>
         {/* 회원가입 버튼 */}
 
-        <div className='mt-10 flex items-center font-medium text-[#cfcfcf]'>
+        <div className='mt-10 flex items-center font-medium text-[#cfcfcf] md:text-sm'>
           <Link href='/find-id'>
             <a>아이디 찾기</a>
           </Link>
@@ -136,9 +136,9 @@ const Login: NextPage = () => {
           </Link>
         </div>
 
-        <div className='mt-20 w-full space-y-4'>
+        {/* <div className='mt-20 w-full space-y-4'>
           <KakaoBtn />
-        </div>
+        </div> */}
       </div>
     </>
   );
