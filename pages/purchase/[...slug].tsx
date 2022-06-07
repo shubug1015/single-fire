@@ -66,7 +66,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
 
   const handlePayment = () => {
     const { IMP } = window;
-    IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
+    IMP.init('imp24747186');
 
     const params = {
       pg: payMethod, // pg사
