@@ -66,7 +66,8 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
 
   const handlePayment = () => {
     const { IMP } = window;
-    IMP.init('imp24747186');
+    // IMP.init('imp24747186');
+    IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
 
     const params = {
       pg: payMethod, // pg사
@@ -219,7 +220,10 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 <div className='text-lg text-[#00e7ff]'>{coupon.name}</div>
 
                 <div className='mt-4 text-lg'>
-                  <span className='font-bold'>{coupon.price}</span>원 할인
+                  <span className='font-bold'>
+                    {coupon.price.toLocaleString()}
+                  </span>
+                  원 할인
                 </div>
               </div>
               {/* 모바일 */}
@@ -231,7 +235,10 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 <div className='flex justify-between'>
                   <div className='text-[#cfcfcf]'>할인금액</div>
                   <div>
-                    <span className='font-bold'>{coupon.price}</span> 원
+                    <span className='font-bold'>
+                      {coupon.price.toLocaleString()}
+                    </span>{' '}
+                    원
                   </div>
                 </div>
               </div>
@@ -288,24 +295,24 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
             </div>
 
             {/* <div className='flex items-center space-x-3'>
-                    <div
-                      onClick={() => handlePayMethod('naverpay')}
-                      className={cls(
-                        payMethod === 'naverpay'
-                          ? 'border-[#00e7ff]'
-                          : 'border-[rgba(255,255,255,0.6)]',
-                        'flex aspect-square w-4 items-center justify-center rounded-full border'
-                      )}
-                    >
-                      <div
-                        className={cls(
-                          payMethod === 'naverpay' ? 'bg-[#00e7ff]' : '',
-                          'flex aspect-square w-2 cursor-pointer items-center justify-center rounded-full transition-all'
-                        )}
-                      />
-                    </div>
-                    <div>네이버페이</div>
-                  </div> */}
+              <div
+                onClick={() => handlePayMethod('naverpay')}
+                className={cls(
+                  payMethod === 'naverpay'
+                    ? 'border-[#00e7ff]'
+                    : 'border-[rgba(255,255,255,0.6)]',
+                  'flex aspect-square w-4 items-center justify-center rounded-full border'
+                )}
+              >
+                <div
+                  className={cls(
+                    payMethod === 'naverpay' ? 'bg-[#00e7ff]' : '',
+                    'flex aspect-square w-2 cursor-pointer items-center justify-center rounded-full transition-all'
+                  )}
+                />
+              </div>
+              <div>네이버페이</div>
+            </div> */}
 
             <div className='flex items-center space-x-3'>
               <div

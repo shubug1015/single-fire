@@ -353,7 +353,7 @@ export const purchaseApi = {
   // 결제
   purchase: ({
     type,
-    payMethod,
+    method,
     lectureId,
     price,
     totalPrice,
@@ -366,14 +366,13 @@ export const purchaseApi = {
       '/payment/',
       {
         type,
-        method: payMethod,
+        method,
         lecture_pk: lectureId,
         price,
         payment: totalPrice,
         ...(point && point > 0 && { point }),
         ...(coupon && { coupon_pk: coupon }),
         payment_id: orderId,
-        token,
       },
       {
         headers: {
