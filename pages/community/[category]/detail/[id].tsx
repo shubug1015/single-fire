@@ -26,7 +26,6 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
     token ? `/community/${category}/${id}/` : null,
     () => communityApi.getDetail(category, id, token as string)
   );
-  console.log(data);
   const router = useRouter();
 
   const {

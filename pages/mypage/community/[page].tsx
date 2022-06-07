@@ -23,7 +23,6 @@ const MyCommunityList: NextPage<IProps> = ({ page }) => {
     () => usersApi.myCommunityList(page, token as string)
   );
   const router = useRouter();
-  console.log(data);
 
   if (error) {
     router.push('/');

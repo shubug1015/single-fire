@@ -115,7 +115,7 @@ const Post: NextPage<IProps> = ({ category }) => {
         },
         function (err: any, data: any) {
           if (err) {
-            console.log('Error! ', err);
+            console.log(err);
             return reject('There was an error uploading your image: ');
           }
           resolve(data.Location);
@@ -148,8 +148,6 @@ const Post: NextPage<IProps> = ({ category }) => {
       setEditorState(EditorState.createWithContent(state));
     }
   }, [data]);
-
-  // console.log();
   return (
     <Layout padding='pt-10 pb-44'>
       <div className='flex justify-between'>
