@@ -76,7 +76,7 @@ export default function Lecture({
 
           <div className='flex space-x-4 font-medium'>
             <div className='text-[rgba(255,255,255,0.6)]'>강의 현황</div>
-            <div>{category}</div>
+            <div>{category === 'ongoing' ? '수강중' : '수강완료'}</div>
           </div>
         </div>
       </div>
