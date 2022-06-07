@@ -2,17 +2,18 @@ import Layout from '@layouts/sectionLayout';
 import Pagebar from '@components/pagebar';
 import Community from './community';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface IProps {
   notice: any[];
   data: any[];
-  count: number;
+  totalItems: number;
 }
 
-export default function CommunityList({ notice, data, count }: IProps) {
+export default function CommunityList({ notice, data, totalItems }: IProps) {
   const router = useRouter();
   const { category, slug } = router.query;
-  const [page] = slug as string[];
+  const [currentPage, orderType, searchType, searchTerm] = slug as string[];
 
   return (
     <Layout padding='pb-44'>
@@ -44,7 +45,7 @@ export default function CommunityList({ notice, data, count }: IProps) {
           key={i.id}
           id={i.id}
           category={category as string}
-          num={(+page - 1) * 12 + index + 1}
+          num={(+currentPage - 1) * 12 + index + 1}
           subject={i.subject}
           title={i.title}
           created={i.created}
@@ -55,7 +56,28 @@ export default function CommunityList({ notice, data, count }: IProps) {
       ))}
 
       <div className='mt-24 flex justify-center'>
-        {/* <Pagebar count={count} /> */}
+        <Pagebar
+          totalItems={totalItems}
+          itemsPerPage={12}
+          currentPage={+currentPage}
+          url={(page: number) =>
+            router.push(
+              `/community/${category}/${page}/${orderType}/${searchType}/${
+                searchTerm || ''
+              }`
+            )
+          }
+        />
+      </div>
+
+      <div className='flex justify-end'>
+        <Link href={`/community/${category}/post`}>
+          <a>
+            <div className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38]'>
+              글쓰기
+            </div>
+          </a>
+        </Link>
       </div>
     </Layout>
   );

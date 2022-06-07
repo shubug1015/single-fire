@@ -44,7 +44,7 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
       <CommunityList
         notice={data?.notice}
         data={data?.results}
-        count={data?.count}
+        totalItems={data?.count}
       />
     </>
   );

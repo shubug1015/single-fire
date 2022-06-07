@@ -6,8 +6,8 @@ const TemrsOfService: NextPage = () => {
   return (
     <>
       <SEO title='이용약관' />
-      <Layout padding='py-20'>
-        <div className='rounded-lg bg-[#373c46] p-[3.75rem]'>
+      <Layout padding='py-20 md:py-12'>
+        <div className='rounded-lg bg-[#373c46] p-[3.75rem] md:p-4 md:text-sm'>
           <span className='font-bold'>이용약관</span>
           <br /> <br />본 약관은 2022년 4월 30일부터 적용됩니다.
           <br /> <br />제 1 조 목적

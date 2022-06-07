@@ -18,14 +18,14 @@ export default function Community() {
             </div>
 
             <div className='mt-6 text-[2.5rem] font-bold md:mt-4 md:text-center md:text-2xl'>
-              매일 내 포트폴리오를
+              돈 버는 경제공부
               <br />
-              확인해주는 곳이 있다? 🤔
+              경제전문가와 함께하세요!
             </div>
 
             <div className='mt-12 text-lg md:mt-6 md:text-center md:text-sm'>
-              장기투자를 위해서, <br className='hidden md:block' />
-              반드시 포트폴리오 관리는 필요합니다.
+              {/* <br className='hidden md:block' /> */}
+              시행착오 없이 한 번에 제대로 된 투자의 길로 안내합니다.
             </div>
 
             <div className='absolute top-0 left-0 -z-[1] h-full w-full'>

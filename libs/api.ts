@@ -248,7 +248,7 @@ export const communityApi = {
       )
       .then((res) => res.data),
 
-  detail: (category: string, id: string, token: string) =>
+  getDetail: (category: string, id: string, token: string) =>
     api
       .get(`/community/${category}/${id}/`, {
         headers: {
@@ -257,6 +257,63 @@ export const communityApi = {
         },
       })
       .then((res) => res.data),
+
+  writeDetail: (
+    category: string,
+    subject: string,
+    title: string,
+    content: string,
+    token: string
+  ) =>
+    api.post(
+      `/community/${category}/`,
+      {
+        subject,
+        title,
+        content,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+
+  editDetail: (
+    category: string,
+    id: string,
+    subject: string,
+    title: string,
+    content: string,
+    token: string
+  ) =>
+    api.put(
+      `/community/${category}/`,
+      {
+        post_pk: id,
+        subject,
+        title,
+        content,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+
+  deleteDetail: (category: string, id: string, token: string) =>
+    api.delete(`/community/${category}/`, {
+      data: {
+        post_pk: id,
+      },
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
 
   toggleLike: (id: string, token: string) =>
     api.post(

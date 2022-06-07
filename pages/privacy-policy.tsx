@@ -6,8 +6,8 @@ const TemrsOfService: NextPage = () => {
   return (
     <>
       <SEO title='개인정보 처리방침' />
-      <Layout padding='py-20'>
-        <div className='rounded-lg bg-[#373c46] p-[3.75rem]'>
+      <Layout padding='py-20 md:py-12'>
+        <div className='rounded-lg bg-[#373c46] p-[3.75rem] md:p-4 md:text-sm'>
           <span className='font-bold'>개인정보 처리방침</span>
           <br /> <br />
           <p>

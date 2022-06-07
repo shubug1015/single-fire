@@ -6,6 +6,7 @@ import Layout from '@layouts/sectionLayout';
 import { usersApi } from '@libs/api';
 import { useUser } from '@libs/client/useUser';
 import type { GetServerSidePropsContext, NextPage } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -22,6 +23,7 @@ const MyCommunityList: NextPage<IProps> = ({ page }) => {
     () => usersApi.myCommunityList(page, token as string)
   );
   const router = useRouter();
+  console.log(data);
 
   if (error) {
     router.push('/');
@@ -38,19 +40,29 @@ const MyCommunityList: NextPage<IProps> = ({ page }) => {
           <div className='grow space-y-10 md:mt-8'>
             <div className='space-y-6'>
               <div className='text-lg font-medium'>커뮤니티</div>
-              <div className='flex space-x-2 md:space-x-0'>
-                <div className='flex h-[4.5rem] w-[28rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-lg font-medium'>
-                  구매한 커뮤니티 타이틀
+              {data?.community.map((i: { [key: string]: any }) => (
+                <div className='flex space-x-2 md:space-x-0'>
+                  <div className='flex h-[4.5rem] w-[28rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-lg font-medium'>
+                    {i.resgitered_community.name}
+                  </div>
+
+                  <Link
+                    href={`/community/${i.resgitered_community.id}/1/created/title`}
+                  >
+                    <div className='flex aspect-square w-[4.5rem] cursor-pointer items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-2xl'>
+                      👉
+                    </div>
+                  </Link>
                 </div>
-                <div className='flex aspect-square w-[4.5rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-2xl'>
-                  👉
-                </div>
-              </div>
+              ))}
             </div>
 
             <div className='space-y-6'>
               <div className='text-lg font-medium'>게시글</div>
-              <CommunityList data={data?.results} totalItems={data?.count} />
+              <CommunityList
+                data={data?.posts.results}
+                totalItems={data?.posts.count}
+              />
             </div>
           </div>
         </div>

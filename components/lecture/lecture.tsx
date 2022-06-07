@@ -1,5 +1,7 @@
+import { cls } from '@libs/client/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface IProps {
   id: number;
@@ -16,9 +18,16 @@ export default function Lecture({
   tutor,
   name,
 }: IProps) {
+  const router = useRouter();
   return (
     <Link href={`/lecture/detail/${id}`}>
-      <a>
+      <a
+        className={cls(
+          router.pathname === '/'
+            ? 'transition-transform duration-300 hover:-translate-y-3'
+            : ''
+        )}
+      >
         <div className='relative h-60 w-[23.75rem] md:h-[6.375rem] md:w-40'>
           <Image
             src={thumbnail}

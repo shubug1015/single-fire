@@ -31,7 +31,7 @@ export default function Detail({
       .then(() => alert('링크가 복사되었습니다.'));
   };
   return (
-    <Layout padding='pt-24 md:pt-0'>
+    <Layout padding='pt-24 md:pt-6'>
       <div className='flex justify-between md:block'>
         {/* 썸네일 */}
         <div className='relative h-[30.625rem] w-[43.75rem] md:h-[16.25rem] md:w-full'>
@@ -66,7 +66,7 @@ export default function Detail({
           {/* 간략 설명 */}
 
           {/* 가격 */}
-          <div className='mt-6 flex h-20 w-full flex-col justify-center rounded bg-[#373c46] px-4'>
+          <div className='mt-6 flex h-20 w-full flex-col justify-center rounded bg-[rgba(0,184,204,0.4)] px-4'>
             <div className='flex justify-end text-sm font-medium text-[#cfcfcf] md:text-xs'>
               6개월 할부시
             </div>
@@ -102,9 +102,11 @@ export default function Detail({
 
                 {/* 6개월 할부시 1달 가격 */}
                 <div>
-                  <span className='text-xl'>월</span>{' '}
-                  {Math.round((price - discount) / 6).toLocaleString()}
-                  <span className='text-xl'>원</span>
+                  <span className='text-xl md:text-lg'>월</span>{' '}
+                  <span className='font-bold md:text-xl'>
+                    {Math.round((price - discount) / 6).toLocaleString()}
+                  </span>
+                  <span className='text-xl md:text-lg'>원</span>
                 </div>
                 {/* 6개월 할부시 1달 가격 */}
               </div>

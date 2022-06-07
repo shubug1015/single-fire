@@ -23,7 +23,6 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
       router.push('/login');
     }
   };
-  console.log(data);
   return (
     <>
       <SEO title='이벤트' />
@@ -33,20 +32,36 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
         </div>
 
         <div dangerouslySetInnerHTML={{ __html: data?.content }} />
+      </Layout>
 
-        {data?.coupon && (
-          <div onClick={getCoupon} className='cursor-pointer'>
-            쿠폰 받기
-          </div>
-        )}
+      <Layout bgColor='bg-[rgba(229,229,229,0.08)]' padding='py-20'>
+        <div className='flex justify-center space-x-4'>
+          {/* <div className='text-2xl font-medium'>
+            Sed sollicitudin erat ac eleifend accumsan. Donec finibus
+          </div> */}
 
-        {data?.url && (
-          <Link href={data?.url}>
-            <a>
-              <div>강의 신청하기</div>
-            </a>
-          </Link>
-        )}
+          {/* <div className='mt-3 font-medium'>
+            Sed sollicitudin erat ac eleifend accumsan. Donec finibus
+          </div> */}
+          {data?.coupon && (
+            <div
+              onClick={getCoupon}
+              className='flex h-14 w-[8.75rem] cursor-pointer items-center justify-center rounded bg-[rgba(229,229,229,0.08)] font-medium'
+            >
+              쿠폰 받기
+            </div>
+          )}
+
+          {data?.url && (
+            <Link href={data?.url}>
+              <a>
+                <div className='flex h-14 w-[8.75rem] items-center justify-center rounded bg-[#00e7ff] font-medium text-[#222222]'>
+                  신청하기
+                </div>
+              </a>
+            </Link>
+          )}
+        </div>
       </Layout>
     </>
   );

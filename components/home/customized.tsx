@@ -12,7 +12,7 @@ export default function Customized({ data }: IProps) {
         {/* 좌측 섹션 */}
         <div>
           <div className='text-xl font-bold md:text-sm'>
-            주식의 “주”자도 모르는 분을 위한,
+            투자의 “투”자도 모르는 분을 위한,
           </div>
 
           <div className='mt-2 text-[3.25rem] font-bold leading-[1.31] md:mt-0.5 md:text-2xl'>
@@ -22,25 +22,26 @@ export default function Customized({ data }: IProps) {
           </div>
 
           <div className='mt-[3.75rem] font-medium md:hidden'>
-            여러분의 수식어가 될 수 있습니다.
+            여러분의 수식어가 될 수 있습니다!
           </div>
 
           <div className='mt-6 flex space-x-2 font-medium md:hidden'>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
-              #유튜브 100만뷰의 신화
+              #유튜브 100만뷰의 주인공
             </div>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
-              #120억의 자산가
+              #100억 자산가
             </div>
           </div>
 
           <div className='mt-2 flex space-x-2 font-medium md:hidden'>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
-              #순수익 월 1200만원
+              #월 현금흐름 1000만원
             </div>
             <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>
-              #강남 건물주
+              #파이어족
             </div>
+            <div className='rounded-sm bg-[#ffffff29] py-0.5 px-2'>#건물주</div>
           </div>
         </div>
         {/* 좌측 섹션 */}

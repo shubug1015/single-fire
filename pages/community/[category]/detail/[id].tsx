@@ -6,6 +6,7 @@ import { communityApi } from '@libs/api';
 import { useUser } from '@libs/client/useUser';
 import { trimDate } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useSWR from 'swr';
@@ -23,8 +24,9 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
   const { token, profile } = useUser({ isPrivate: true });
   const { data, mutate } = useSWR(
     token ? `/community/${category}/${id}/` : null,
-    () => communityApi.detail(category, id, token as string)
+    () => communityApi.getDetail(category, id, token as string)
   );
+  console.log(data);
   const router = useRouter();
 
   const {
@@ -41,7 +43,7 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
     if (token) {
       try {
         await communityApi.toggleLike(id, token as string);
-        const updatedData = await communityApi.detail(
+        const updatedData = await communityApi.getDetail(
           category,
           id,
           token as string
@@ -61,7 +63,7 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
         await communityApi.writeReview(id, reply, token);
         setValue('reply', '');
         await communityApi.toggleLike(id, token as string);
-        const updatedData = await communityApi.detail(
+        const updatedData = await communityApi.getDetail(
           category,
           id,
           token as string
@@ -74,6 +76,17 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
+  };
+
+  const deleteDetail = async () => {
+    if (confirm('게시글을 삭제하시겠습니다?')) {
+      try {
+        await communityApi.deleteDetail(category, id, token as string);
+        router.back();
+      } catch {
+        alert('Error');
+      }
+    }
   };
   return (
     <>
@@ -94,6 +107,32 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
           </div>
         </div>
         {/* 좋아요 */}
+
+        {/* 수정 & 삭제 */}
+        {data?.is_mine && (
+          <div className='mt-24 flex justify-center space-x-4'>
+            <Link
+              href={{
+                pathname: `/community/${category}/post`,
+                query: { id },
+              }}
+            >
+              <a>
+                <div className='flex h-14 w-[8.75rem] cursor-pointer items-center justify-center rounded bg-[#00e7ff] font-medium text-[#222222]'>
+                  수정하기
+                </div>
+              </a>
+            </Link>
+
+            <div
+              onClick={deleteDetail}
+              className='flex h-14 w-[8.75rem] cursor-pointer items-center justify-center rounded bg-[rgba(229,229,229,0.08)] font-medium'
+            >
+              삭제하기
+            </div>
+          </div>
+        )}
+        {/* 수정 & 삭제 */}
 
         {/* 리뷰 */}
         <div className='mt-24 w-full space-y-4 md:mt-14'>

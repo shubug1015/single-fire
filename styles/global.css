@@ -25,7 +25,7 @@ a {
   box-sizing: border-box;
 }
 
-/* react-slick dots 커스텀 */
+/* react-slick */
 /* .slick-dots {
   margin-left: -236px !important;
 } */
@@ -40,4 +40,9 @@ a {
   background-color: #ffffff;
   width: 2.063rem !important;
   border-radius: 9999px;
+}
+
+/* wysiwyg */
+.toolbar {
+  color: black !important;
 }
