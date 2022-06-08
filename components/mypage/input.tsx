@@ -26,7 +26,7 @@ export default function Input({
           placeholder={label}
           {...register}
           readOnly={readOnly}
-          className='bg-transparent outline-none'
+          className='bg-transparent outline-none md:w-32'
         />
       </div>
 
