@@ -19,9 +19,9 @@ export default function Hero() {
 
       <div className='pt-48 pb-36 text-center text-white md:pt-16 md:pb-14'>
         <div className='text-6xl font-bold leading-[4.875rem] md:text-xl'>
-          무턱대고 투자했다 금리인상 여파로
+          금리 오르고 물가뛰고 주가는 떨어지고
           <br />
-          손실만 보고 계신가요?
+          어떻게 대처하면 좋을지 불안하신가요?
         </div>
         <button className='mt-14 rounded bg-[#282E38] px-14 py-5 text-xl md:mt-4 md:py-2 md:px-5 md:text-xs'>
           노현우 경제전문가와 함께하는 경제독서모임

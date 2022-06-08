@@ -138,17 +138,17 @@ const EditProfile: NextPage = () => {
                     readOnly
                   />
 
-                  <div className='flex h-20 items-center'>
+                  <div className='flex h-20 items-center md:text-sm'>
                     <div className='w-44 font-medium opacity-60'>비밀번호</div>
                     <div
                       onClick={() => setPwTabOpen(true)}
-                      className='cursor-pointer rounded bg-[#686e7a] px-4 py-2 transition-all hover:opacity-90'
+                      className='cursor-pointer rounded bg-[#686e7a] px-4 py-2 transition-all hover:opacity-90 md:text-xs'
                     >
                       비밀번호 변경
                     </div>
                   </div>
 
-                  <div className='flex h-20 items-center'>
+                  <div className='flex h-20 items-center md:text-sm'>
                     <div className='w-44 font-medium opacity-60'>
                       이벤트 정보
                     </div>
@@ -159,12 +159,12 @@ const EditProfile: NextPage = () => {
                       })}
                       className='mr-2.5 h-4 w-4 cursor-pointer appearance-none rounded-sm border bg-cover bg-center transition-all checked:border-none checked:bg-[url("/icons/check.png")]'
                     />
-                    <div>이벤트 수신 동의</div>
+                    <div className='md:text-xs'>이벤트 수신 동의</div>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className='flex h-20 items-center'>
+                  <div className='flex h-20 items-center md:text-sm'>
                     <div className='w-44 font-medium opacity-60'>
                       현재 비밀번호
                     </div>

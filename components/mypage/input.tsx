@@ -18,17 +18,21 @@ export default function Input({
   readOnly,
 }: IProps) {
   return (
-    <div className='flex h-20 items-center'>
-      <div className='w-44 font-medium opacity-60 md:w-24'>{label}</div>
-      <input
-        type={type}
-        placeholder={label}
-        {...register}
-        readOnly={readOnly}
-        className='bg-transparent outline-none'
-      />
+    <div className='h-20 pt-7 md:pt-8 md:text-sm'>
+      <div className='flex items-center'>
+        <div className='w-44 font-medium opacity-60 md:w-24'>{label}</div>
+        <input
+          type={type}
+          placeholder={label}
+          {...register}
+          readOnly={readOnly}
+          className='bg-transparent outline-none'
+        />
+      </div>
 
-      <div className='mt-2 text-sm text-red-500'>{error}</div>
+      <div className='flex items-center'>
+        <div className='mt-2 text-sm text-red-500'>{error}</div>
+      </div>
     </div>
   );
 }
