@@ -1,15 +1,15 @@
 import SEO from '@components/seo';
-import BeforeScroll from '@components/community/detail/beforeScroll';
-import Hero from '@components/community/detail/hero';
-import Review from '@components/community/detail/review';
-import WithPro from '@components/community/detail/withPro';
+// import BeforeScroll from '@components/community/detail/beforeScroll';
+// import Hero from '@components/community/detail/hero';
+// import Review from '@components/community/detail/review';
+// import WithPro from '@components/community/detail/withPro';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import Preview from '@components/community/detail/preview';
-import Faq from '@components/community/detail/faq';
-import Precaution from '@components/community/detail/precaution';
-import Point from '@components/community/detail/point';
-import Process from '@components/community/detail/process';
-import Professional from '@components/community/detail/professional';
+// import Preview from '@components/community/detail/preview';
+// import Faq from '@components/community/detail/faq';
+// import Precaution from '@components/community/detail/precaution';
+// import Point from '@components/community/detail/point';
+// import Process from '@components/community/detail/process';
+// import Professional from '@components/community/detail/professional';
 
 const CommunityDetail: NextPage = () => {
   const clsFilter = (
@@ -23,7 +23,7 @@ const CommunityDetail: NextPage = () => {
   return (
     <>
       <SEO title='커뮤니티' />
-      <Hero />
+      {/* <Hero />
       <Review clsFilter={clsFilter} />
       <BeforeScroll clsFilter={clsFilter} />
       <WithPro />
@@ -32,7 +32,7 @@ const CommunityDetail: NextPage = () => {
       <Process clsFilter={clsFilter} />
       <Preview clsFilter={clsFilter} />
       <Faq clsFilter={clsFilter} />
-      <Precaution />
+      <Precaution /> */}
     </>
   );
 };
