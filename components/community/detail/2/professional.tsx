@@ -1,7 +1,7 @@
 import Layout from '@layouts/sectionLayout';
 import TitleBtn from './titleBtn';
 import Image from 'next/image';
-import ProfessioanalProfile from 'public/test/professional-profile.png';
+import ProfessioanalProfile from 'public/test/2-professional-profile.jpg';
 import { cls } from '@libs/client/utils';
 
 interface IProps {
@@ -28,7 +28,7 @@ export default function Professional({ clsFilter }: IProps) {
         </div>
 
         <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-lg'>
-          한번 배우면 평생 쓸 수 있는 <br className='hidden md:block' />
+          한 번 배우면 남들보다 앞서가는 <br className='hidden md:block' />
           <span
             className={cls(
               clsFilter(
@@ -40,9 +40,9 @@ export default function Professional({ clsFilter }: IProps) {
               ''
             )}
           >
-            경제지식
-          </span>{' '}
-          전수하겠습니다
+            투자자
+          </span>
+          로 성장할 수 있습니다.
         </div>
         <div className='mt-20 flex space-x-10 md:block md:space-x-0'>
           <div className='relative h-[24.688rem] w-[39.063rem] md:h-64 md:w-full'>
@@ -59,16 +59,14 @@ export default function Professional({ clsFilter }: IProps) {
 
           <div className='rounded bg-[#373C46] p-10 text-left md:mt-2 md:p-6'>
             <div className='border-b-[0.125rem] border-b-[#505766] pb-8 text-[1.625rem] font-bold md:pb-4 md:text-xl'>
-              노현우 경제전문가
+              임동민 이코노미스트
             </div>
             <div className='mt-6 text-lg font-medium leading-[2.215rem] md:text-sm md:font-normal'>
-              • 연세대 국제금융 석사
+              • 현 교보증권 이코노미스트
               <br />
-              • 전 연합인포맥스 기획재정부·한국은행 출입기자
-              <br />
-              • 현 대형자산운용사 채권전략가
-              <br />• 거시경제, 금융시장에 대한 폭넓은 시야와 경험을 가진
-              경제전문가
+              • 비트코인, 이더리움 가치투자자
+              <br />• &lt;NFT 투자의 정석&gt;, &lt;앞으로 10년 세상을 바꿀
+              거대한 변화 7가지&gt; 저자
             </div>
           </div>
         </div>

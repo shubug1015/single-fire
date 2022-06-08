@@ -1,7 +1,7 @@
 import Layout from '@layouts/sectionLayout';
 import TitleBtn from './titleBtn';
 import Image from 'next/image';
-import ProfessioanalProfile from 'public/test/professional-profile.png';
+import ProfessioanalProfile from 'public/test/1-professional-profile.jpg';
 import { cls } from '@libs/client/utils';
 
 interface IProps {
@@ -28,7 +28,7 @@ export default function Professional({ clsFilter }: IProps) {
         </div>
 
         <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-lg'>
-          한번 배우면 평생 쓸 수 있는 <br className='hidden md:block' />
+          한번 배우면 평생 써먹을 수 있는 <br className='hidden md:block' />
           <span
             className={cls(
               clsFilter(
@@ -41,8 +41,8 @@ export default function Professional({ clsFilter }: IProps) {
             )}
           >
             경제지식
-          </span>{' '}
-          전수하겠습니다
+          </span>
+          을 함께 스터디합니다.
         </div>
         <div className='mt-20 flex space-x-10 md:block md:space-x-0'>
           <div className='relative h-[24.688rem] w-[39.063rem] md:h-64 md:w-full'>
@@ -67,8 +67,7 @@ export default function Professional({ clsFilter }: IProps) {
               • 전 연합인포맥스 기획재정부·한국은행 출입기자
               <br />
               • 현 대형자산운용사 채권전략가
-              <br />• 거시경제, 금융시장에 대한 폭넓은 시야와 경험을 가진
-              경제전문가
+              <br />• 거시경제, 금융시장에 대한 폭넓은 시야와 경험 보유
             </div>
           </div>
         </div>

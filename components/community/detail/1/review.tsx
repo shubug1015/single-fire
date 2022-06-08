@@ -21,10 +21,10 @@ export default function Review({ clsFilter }: IProps) {
           quality={100}
         />
       ),
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버A',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '혼자서는 쉽게 손이 가지 않을 경제도서를 매일 함께 읽는 것만으로도 값진 시간이었습니다. 인상깊었던 구절을 공유하고 생각을 기록하고 하면서 책 내용을 제대로 소화해낼 수 있었고요. 경제뉴스를 보는 시각이 더 넓어지고 더 깊이 이해하게 됐습니다. 투자 대가들의 고전과도 같은 책을 드디어 저도 섭렵하기 시작했다 생각하니 뿌듯합니다.',
     },
     {
       image: (
@@ -37,10 +37,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 1,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버B',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '여러 독서모임을 경험했지만 경제전문가와 함께 책읽고 소통하는 스터디는 처음이었습니다. 현재 시장 상황에 대한 귀한 인사이트를 직접 실시간으로 들을 수 있어 좋았고, 책에서 읽은 내용을 현실에 적용해보는 연습도 값진 경험이었습니다. 유튜브에서 단편적으로 듣던 경제지식에 체계가 잡힌 느낌입니다.',
     },
     {
       image: (
@@ -53,10 +53,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 2,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버C',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '책 읽는 습관을 들임과 동시에 경제를 보는 눈까지 얻을 수 있어서 정말 만족한 스터디였습니다! 멤버들과 오프라인으로 소통하는 기회도 가질 수 있었고 관심사가 비슷한 사람들과 친해질 수 있어 더 좋았어요. 매일 책 읽고 기록하고 공유하다보면 어느새 한 달, 두 달이 금방 지나가고 끝날 때가 되면 너무나 아쉬운 마음이 듭니다. 또 참여하고 싶어요!',
     },
   ];
 

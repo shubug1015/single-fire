@@ -13,10 +13,9 @@ export default function Point({ clsFilter }: IProps) {
     {
       id: 0,
       pointNum: '01',
-      title:
-        '혼자 읽기 어려운 경제 필독서를\n현업 경제전문가와 함께 스터디 진행',
+      title: '현업 전문가와 함께\n새로운 투자 지식을 쌓고 스터디하는 기회!',
       content:
-        '노현우 경제전문가와 함께 읽고 공부하면서\n실전에서 쓰이는 경제 지식을 투자에 활용할 수 있도록 학습합니다.',
+        '실제 시장에 투자하고 연구하는\n현업 이코노미스트의 깊이 있는 인사이트를\n가까이서 배우고 소통할 수 있습니다.',
       image: (
         <Image
           src={Point1}
@@ -33,9 +32,9 @@ export default function Point({ clsFilter }: IProps) {
       id: 1,
       pointNum: '02',
       title:
-        '단순하게 읽고 끝내는 독서가 아닌\n자기것으로 소화할 수 있게 스터디 진행',
+        '투자 스킬에 국한하지 않고\n개념, 역사, 시장을 제대로 배울 수 있는 기회',
       content:
-        '읽고 끝낸다면 내것이 될 수 없습니다.\n커뮤니티 구성원들과 챌린지를 진행하면서 내 것이 될 수 있도록 해야합니다.',
+        '단편적인 정보가 아닌 제대로 된 기초를 쌓는 기회는\n밀머스가 아닌 다른 곳에서는 찾아보기 어렵습니다!',
       image: (
         <Image
           src={Point2}
@@ -51,9 +50,9 @@ export default function Point({ clsFilter }: IProps) {
     {
       id: 3,
       pointNum: '03',
-      title: '지적수준이 높은 스터디모임과\n함께 토론하고 소통하며 스터디 진행',
+      title: '수준 높은 스터디 멤버들과\n함께 학습하고 토론하며 스터디 진행',
       content:
-        '구성원의 지적수준이 매우 높을 뿐더러\n같이 책을 읽고 글을쓰며 서로에게 피드백을 주는 양방향적인 질높은 독서모임을 제공합니다.',
+        '관심사가 비슷한 또래와 함께 책 읽고 소통하며\n내 시야를 넓혀나가는 차별화된 성장의 기회를 제공합니다!',
       image: (
         <Image
           src={Point3}
@@ -70,7 +69,7 @@ export default function Point({ clsFilter }: IProps) {
 
   return (
     <div className='bg-black pt-[6.25rem] pb-[7.5rem] md:py-10'>
-      <div className='mx-auto w-full max-w-[1528px] text-center font-bold text-white'>
+      <div className='mx-auto w-full max-w-[1528px] text-center font-bold text-white md:max-w-[330px]'>
         <div
           className={cls(
             clsFilter(
@@ -85,7 +84,7 @@ export default function Point({ clsFilter }: IProps) {
           Point
         </div>
         <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-sm'>
-          전문가와 함께라면 왜 좋은걸까요?
+          전문가와 함께 경제를 공부하면 왜 좋을까요?
         </div>
         <div className='mt-2.5 text-4xl leading-normal md:mb-10 md:mt-[0.125rem] md:text-lg'>
           <span
@@ -101,7 +100,7 @@ export default function Point({ clsFilter }: IProps) {
           >
             밀머스 스터디
           </span>
-          만 가질 수 있는{' '}
+          에서만 경험할 수 있는 <br className='hidden md:block' />
           <span
             className={cls(
               clsFilter(

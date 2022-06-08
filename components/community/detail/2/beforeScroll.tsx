@@ -10,24 +10,25 @@ export default function BeforeScroll({ clsFilter }: IProps) {
       id: 0,
       icon: '📈',
       content:
-        '금리인상, 인플레이션 등\n경제뉴스가 쏟아지지만 투자에\n제대로 활용하지 못하시는 분',
+        '남들은 코인 투자로 큰 돈을 벌었다는데 무서워서 막연한 호기심만 가지고 있는 분',
     },
     {
       id: 1,
       icon: '💧',
       content:
-        '어렴풋이 들은 투자정보로\n어렵게 모은 종잣돈을 투자했지만\n실패하신분',
+        '새로 열리는 세상을 남들보다 빠르게 경험하고 싶은데 혼자선 자신이 없는 분',
     },
     {
       id: 2,
       icon: '💰',
-      content: '투자를 진행하면서\n투자리스크를 최대한 낮추고\n싶으신분',
+      content:
+        '내 미래를 바꿀 수 있는 새로운 자산에 투자하기 전에 제대로 공부하고 싶은 분',
     },
   ];
 
   return (
     <div className='bg-[#373C46] py-[7.5rem] text-white md:py-10'>
-      <div className='mx-auto w-full max-w-[1340px] text-center'>
+      <div className='mx-auto w-full max-w-[1340px] text-center md:max-w-[330px]'>
         <div
           className={cls(
             clsFilter(
@@ -42,7 +43,8 @@ export default function BeforeScroll({ clsFilter }: IProps) {
           &nbsp;스크롤 하기 전에!&nbsp;
         </div>
         <div className='mt-3 text-4xl font-bold leading-normal md:mt-2 md:text-lg'>
-          이런 상황을 겪은 분이라면 <br className='hidden md:block' />
+          이제 막 새로운 투자에 눈뜬
+          <br className='hidden md:block' />
           <span
             className={cls(
               clsFilter(
@@ -54,12 +56,13 @@ export default function BeforeScroll({ clsFilter }: IProps) {
               ''
             )}
           >
-            정말 효과적인 내용
+            {' '}
+            이런 분
           </span>
-          일 것입니다.
+          들, 적극 환영합니다!
         </div>
 
-        <div className='mt-20 grid grid-cols-3 gap-x-10 text-left md:mt-8 md:grid-cols-1'>
+        <div className='mt-20 grid grid-cols-3 gap-x-10 text-left md:mt-8 md:gap-x-[17rem] md:overflow-scroll'>
           {beforeScrollList.map((beforeScroll) => (
             <div
               key={beforeScroll.id}

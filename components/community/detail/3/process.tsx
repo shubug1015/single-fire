@@ -39,7 +39,7 @@ export default function Process({ clsFilter }: IProps) {
         />
       ),
       content:
-        '리스트에 있는 책을 2주에 한 권씩 차례로 함께 읽고 궁금한 점을 경제 전문가에게 질문',
+        '리스트에 있는 매주 수행할 미션을 확인하고 가이드에 따라 하나씩 도전',
     },
     {
       id: 2,
@@ -53,7 +53,7 @@ export default function Process({ clsFilter }: IProps) {
         />
       ),
       content:
-        '멤버들은 매일 게시판에 들어와 출석체크를 하고 자신이 읽은 파트에 대한 글 작성',
+        '멤버들이 매일 게시판에 들어와 출석체크를 하고 정해진 미션의 기록을 남기는 방식',
     },
     {
       id: 3,
@@ -67,7 +67,7 @@ export default function Process({ clsFilter }: IProps) {
         />
       ),
       content:
-        '4주에 한 번씩 경제전문가가 주최하는 온/오프라인 세미나에 참석해 경제 특강을 듣고 멤버들과 소통',
+        '2주에 한 번씩 전문가가 주최하는 온/오프라인 세미나에 참석해 특강을 듣고 멤버들과 소통',
     },
     {
       id: 4,
@@ -81,12 +81,12 @@ export default function Process({ clsFilter }: IProps) {
         />
       ),
       content:
-        '전체 챌린지는 3개월마다 한번씩 새로 리셋되며, 멤버들은 1개월 혹은 3개월 기간을 택해 멤버가 될 수 있다.',
+        '전체 챌린지는 3개월마다 한 번씩 새로 리셋되며, 멤버들은 1개월 혹은 3개월 기간을 택해 멤버로 활동',
     },
   ];
   return (
     <div className='bg-[#2c2f34] pt-[6.25rem] pb-[7.5rem] md:py-10'>
-      <div className='mx-auto w-full max-w-[1322px] text-center font-bold text-white'>
+      <div className='mx-auto w-full max-w-[1322px] text-center font-bold text-white md:max-w-[330px]'>
         {/* <TitleBtn title='Process' /> */}
         <div
           className={cls(
@@ -103,18 +103,7 @@ export default function Process({ clsFilter }: IProps) {
         </div>
 
         <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-sm'>
-          시간은 최대한 아끼고,{' '}
-          <span
-            className={clsFilter(
-              'text-[#00e7ff]',
-              'text-[#a966ff]',
-              'text-[#a2ff69]',
-              'text-[#ff8a00]'
-            )}
-          >
-            핵심
-          </span>
-          만 깊게 배울수 있도록
+          성장하고 꿈을 이뤄가는 삶을 살고 싶은 분들을 위한
         </div>
         <div className='mt-2.5 text-5xl leading-normal md:mt-[0.125rem] md:text-lg'>
           <span
@@ -125,9 +114,9 @@ export default function Process({ clsFilter }: IProps) {
               'text-[#ff8a00]'
             )}
           >
-            경제 독서모임 운영방식
+            스터디 모임 운영방식
           </span>
-          을 소개합니다
+          을 소개합니다.
         </div>
 
         <div className='mt-[6.25rem] space-y-4 md:mt-10 md:space-y-2'>
@@ -146,9 +135,9 @@ export default function Process({ clsFilter }: IProps) {
 
         <div className='mt-4 rounded bg-black py-8 md:mt-2 md:p-6'>
           <div className='text-xl font-medium text-white md:text-sm'>
-            <span className='h-2 w-2'>🎁</span> 매달 챌린지를 성공적으로
-            마무리한 멤버에게 밀머스에서 제작한 고급 책갈피 굿즈를 선물로
-            배송드립니다.
+            <span className='h-2 w-2'>🎁</span> *매달 챌린지를 성공적으로
+            마무리한 멤버에게 밀머스에서 제작한 멤버 전용 굿즈를 선물로
+            배송드립니다!
           </div>
         </div>
       </div>

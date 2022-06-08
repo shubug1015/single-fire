@@ -17,11 +17,11 @@ export default function WithPro() {
         </div>
       </div>
       <div className='py-44 text-center text-5xl font-bold leading-[4.8rem] text-white md:py-10 md:text-base'>
-        이 모든 상황은 전문가와 <br className='hidden md:block' />
-        함께하지 않았기 때문입니다.
+        개념을 공부하고 투자하기 전 <br className='hidden md:block' />
+        기초를 탄탄히 쌓고 싶다면
         <br />
-        경제전문가와 함께하면 <br className='hidden md:block' />
-        쉽고, 빠르게, 제대로 할 수 있습니다.
+        투자전문가와 함께 <br className='hidden md:block' />
+        쉽고, 재미있게, 제대로 시작해보세요!
       </div>
     </div>
   );

@@ -10,24 +10,25 @@ export default function BeforeScroll({ clsFilter }: IProps) {
       id: 0,
       icon: '📈',
       content:
-        '금리인상, 인플레이션 등\n경제뉴스가 쏟아지지만 투자에\n제대로 활용하지 못하시는 분',
+        '꿈꾸는 것들은 많은데 구체적이고 명확한 목표를 세우는 데 어려움을 느끼는 분',
     },
     {
       id: 1,
       icon: '💧',
       content:
-        '어렴풋이 들은 투자정보로\n어렵게 모은 종잣돈을 투자했지만\n실패하신분',
+        '꾸준히 반복실행하는 법을 몰라 항상 이야기한 것을 지키지 못하고 좌절하는 분',
     },
     {
       id: 2,
       icon: '💰',
-      content: '투자를 진행하면서\n투자리스크를 최대한 낮추고\n싶으신분',
+      content:
+        '목표기간 내 빠르게 성장하고 싶은데 혼자서는 스스로를 잘 컨트롤하지 못하는 분',
     },
   ];
 
   return (
     <div className='bg-[#373C46] py-[7.5rem] text-white md:py-10'>
-      <div className='mx-auto w-full max-w-[1340px] text-center'>
+      <div className='mx-auto w-full max-w-[1340px] text-center md:max-w-[330px]'>
         <div
           className={cls(
             clsFilter(
@@ -54,12 +55,12 @@ export default function BeforeScroll({ clsFilter }: IProps) {
               ''
             )}
           >
-            정말 효과적인 내용
+            독서모임 참여
           </span>
-          일 것입니다.
+          를 적극 권합니다.
         </div>
 
-        <div className='mt-20 grid grid-cols-3 gap-x-10 text-left md:mt-8 md:grid-cols-1'>
+        <div className='mt-20 grid grid-cols-3 gap-x-10 text-left md:mt-8 md:gap-x-[17rem] md:overflow-scroll'>
           {beforeScrollList.map((beforeScroll) => (
             <div
               key={beforeScroll.id}

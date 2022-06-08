@@ -1,7 +1,7 @@
 import Layout from '@layouts/sectionLayout';
 import TitleBtn from './titleBtn';
 import Image from 'next/image';
-import ProfessioanalProfile from 'public/test/professional-profile.png';
+import ProfessioanalProfile from 'public/test/3-professional-profile.jpg';
 import { cls } from '@libs/client/utils';
 
 interface IProps {
@@ -28,7 +28,7 @@ export default function Professional({ clsFilter }: IProps) {
         </div>
 
         <div className='mt-6 text-4xl leading-normal md:mt-2 md:text-lg'>
-          한번 배우면 평생 쓸 수 있는 <br className='hidden md:block' />
+          한번 배우면 평생 써먹을 수 있는 <br className='hidden md:block' />
           <span
             className={cls(
               clsFilter(
@@ -40,9 +40,9 @@ export default function Professional({ clsFilter }: IProps) {
               ''
             )}
           >
-            경제지식
-          </span>{' '}
-          전수하겠습니다
+            성장의 비법
+          </span>
+          을 함께 스터디합니다.
         </div>
         <div className='mt-20 flex space-x-10 md:block md:space-x-0'>
           <div className='relative h-[24.688rem] w-[39.063rem] md:h-64 md:w-full'>
@@ -59,16 +59,17 @@ export default function Professional({ clsFilter }: IProps) {
 
           <div className='rounded bg-[#373C46] p-10 text-left md:mt-2 md:p-6'>
             <div className='border-b-[0.125rem] border-b-[#505766] pb-8 text-[1.625rem] font-bold md:pb-4 md:text-xl'>
-              노현우 경제전문가
+              신희은 경제전문가
             </div>
             <div className='mt-6 text-lg font-medium leading-[2.215rem] md:text-sm md:font-normal'>
-              • 연세대 국제금융 석사
+              • 10년차 경제전문기자 (기획재정부, 한국은행, 한국거래소 등 출입)
               <br />
-              • 전 연합인포맥스 기획재정부·한국은행 출입기자
+              • 구독자 15만 경제 유튜브 &lt;싱글파이어&gt; 기획자
               <br />
-              • 현 대형자산운용사 채권전략가
-              <br />• 거시경제, 금융시장에 대한 폭넓은 시야와 경험을 가진
-              경제전문가
+              • &lt;100억 젊은 부자들이 온다&gt; 베스트셀러 저자
+              <br />• 경제/투자 교육 플랫폼 창업가
+              <br />• ‘젊은 부자가 되는 가장 빠른 길’, ‘지치지 않고 실행하는
+              비결’ 등 강연 다수
             </div>
           </div>
         </div>

@@ -21,10 +21,10 @@ export default function Review({ clsFilter }: IProps) {
           quality={100}
         />
       ),
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버A',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '혼자하면 오래하지 못했을 도전을 희은님과 멤버들과 함께해서 오래, 재밌게 할 수 있었습니다. 한 달, 두 달 참여하다보면 어느덧 목표가 습관이 되고 성과가 조금씩 쌓이는 걸 눈으로 확인할 수 있어요!',
     },
     {
       image: (
@@ -37,10 +37,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 1,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버B',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '실행력이 뛰어난 사람들과 함께하면 하루하루 도전이 훨씬 더 활기차고 즐겁다는 걸 느낍니다. “이번엔 해야지”가 아니라 작고 빠르게 벌써 뭔가를 하고 있는 사람들끼리의 탄탄한 연대를 느낄 수 있어요!',
     },
     {
       image: (
@@ -53,10 +53,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 2,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버C',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '내 현실에 맞는 작은 꿈이 아니라 큰 꿈을 갖는 법, 구체적이고 세세한 목표를 세우는 법, 그걸 작고 빠르게 실행해 현실로 구현해내는 법에 대한 세세한 노하우를 직접 배워갈 수 있는 스터디입니다. 절대 시간과 비용이 아깝지 않아요!',
     },
   ];
 

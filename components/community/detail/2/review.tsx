@@ -21,10 +21,10 @@ export default function Review({ clsFilter }: IProps) {
           quality={100}
         />
       ),
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버A',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        'NFT의 개념과 투자 가능한 방법에 대해 책과 세미나로 배울 수 있어 좋은 기회였습니다. 책은 이해가 쉽도록 잘 설명돼 있었고 저자의 부연설명을 실제로 들으며 이해할 수 있어 NFT에 대한 이해가 생긴 것 같아 뿌듯합니다.',
     },
     {
       image: (
@@ -37,10 +37,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 1,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버B',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '새로운 개념이라 아직 낯설지만 개념부터 현실에서의 구현까지 스터디를 잘 따라가다보면 기본적인 틀을 잡을 수 있는 시간입니다. 특히 세미나 중 특강으로 현업 종사자들의 실질적인 이야기를 두루 들을 수 있어 좋았습니다. 아직 투자엔 초보지만 앞으로 더 관심을 가져야겠다는 생강이 들어요.',
     },
     {
       image: (
@@ -53,10 +53,10 @@ export default function Review({ clsFilter }: IProps) {
         />
       ),
       id: 2,
-      name: '홍길동',
-      community: '독서모임 n기',
+      name: '멤버C',
+      community: '독서모임 1기',
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sedvolutpat lobortis feugiat. Integer mollis, nulla vitae faucibus varius, sem eros mattis nibh, eu ultricies tortor neque id diam. Praesent interdum laoreet purus, vel porta nisi iaculis sed. Nuncaliquam consequat condimentum. Morbi pretium ornare lectus. Proinaliquam pulvinar vehicula. Donec ac sem sed massa auctor venenatisvel quis dolor. Etiam a vestibulum dolor. Duis et tellus pharetra, lacinia risus vitae, porta nulla. Nam viverra malesuada mattis. Pellentesque quis sagittis mi, vitae finibus urna.',
+        '단순히 여기에 투자해라, 식의 스터디가 아니라 책을 읽고 개념과 원리를 배우고 앞으로의 투자 가능성을 이야기 나눠볼 수 있어서 좋았습니다. 궁금했던 부분을 직접 물어보고 전문가의 답변을 직접 들어볼 수 있어 더 좋았습니다!',
     },
   ];
 
