@@ -1,15 +1,15 @@
 import SEO from '@components/seo';
-import BeforeScroll from '@components/community/detail/beforeScroll';
-import Hero from '@components/community/detail/hero';
-import Review from '@components/community/detail/review';
-import WithPro from '@components/community/detail/withPro';
+import BeforeScroll from '@components/community/detail/3/beforeScroll';
+import Hero from '@components/community/detail/3/hero';
+import Review from '@components/community/detail/3/review';
+import WithPro from '@components/community/detail/3/withPro';
 import type { GetServerSidePropsContext, NextPage } from 'next';
-import Preview from '@components/community/detail/preview';
-import Faq from '@components/community/detail/faq';
-import Precaution from '@components/community/detail/precaution';
-import Point from '@components/community/detail/point';
-import Process from '@components/community/detail/process';
-import Professional from '@components/community/detail/professional';
+import Preview from '@components/community/detail/3/preview';
+import Faq from '@components/community/detail/3/faq';
+import Precaution from '@components/community/detail/3/precaution';
+import Point from '@components/community/detail/3/point';
+import Process from '@components/community/detail/3/process';
+import Professional from '@components/community/detail/3/professional';
 
 const CommunityDetail: NextPage = () => {
   const clsFilter = (
