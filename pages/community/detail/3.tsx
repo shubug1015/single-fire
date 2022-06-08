@@ -11,21 +11,14 @@ import Point from '@components/community/detail/point';
 import Process from '@components/community/detail/process';
 import Professional from '@components/community/detail/professional';
 
-interface IProps {
-  id: string;
-}
-
-const CommunityDetail: NextPage<IProps> = ({ id }) => {
+const CommunityDetail: NextPage = () => {
   const clsFilter = (
     cls1: string,
     cls2: string,
     cls3: string,
     cls4: string
   ) => {
-    if (id === '1') return cls1;
-    if (id === '2') return cls2;
-    if (id === '3') return cls3;
-    return cls4;
+    return cls3;
   };
   return (
     <>
@@ -42,14 +35,6 @@ const CommunityDetail: NextPage<IProps> = ({ id }) => {
       <Precaution />
     </>
   );
-};
-
-export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return {
-    props: {
-      id: ctx.params?.id,
-    },
-  };
 };
 
 export default CommunityDetail;

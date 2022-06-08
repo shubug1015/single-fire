@@ -94,7 +94,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
               allow='autoplay; fullscreen; picture-in-picture'
               allowFullScreen
               title={videoTitle}
-              className='absolute top-0 left-0 h-full w-full'
+              className='absolute top-0 left-0 aspect-video w-full'
             ></iframe>
           </div>
 
