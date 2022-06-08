@@ -2,6 +2,7 @@ import { boot, loadScript } from '@components/channelService';
 import Footer from '@components/footer';
 import Header from '@components/header';
 import Loader from '@components/loader';
+import { pageview } from '@libs/client/ga';
 import { useRouter } from 'next/router';
 // import { tokenAtom } from '@libs/client/atom';
 // import axios from 'axios';
@@ -16,6 +17,8 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  // 로더
   useEffect(() => {
     router.events.on('routeChangeStart', () => setIsLoading(true));
     router.events.on('routeChangeComplete', () => setIsLoading(false));
@@ -33,27 +36,16 @@ export default function Layout({ children }: LayoutProps) {
     });
   }, []);
 
-  // const router = useRouter();
-  // const [prevToken, setPrevToken] = useRecoilState(tokenAtom);
-
-  // const getToken = async () => {
-  //   try {
-  //     const {
-  //       data: { token },
-  //     } = await axios.get('/api/user');
-
-  //     // 토큰값이 이전과 변경이 있을때만 setState
-  //     if (prevToken !== token) {
-  //       setPrevToken(token);
-  //     }
-  //   } catch {
-  //     alert('Error');
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getToken();
-  // }, [router]);
+  // GA
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
   return (
     <div className='w-screen'>
       <Header />

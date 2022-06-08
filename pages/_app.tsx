@@ -6,7 +6,6 @@ import { SWRConfig } from 'swr';
 import axios from 'axios';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // const API_URL = 'https://api.xn--o22bp6a0zk.com';
   return (
     <SWRConfig
       value={{
