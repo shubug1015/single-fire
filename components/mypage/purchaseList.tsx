@@ -23,7 +23,7 @@ export default function PurchaseList({ data, totalItems }: IProps) {
             title={i.lecture.name || i.community.name}
             date={i.created}
             price={i.lecture.price || i.community.price}
-            discount={i.lecture.discount || i.discount}
+            discount={i.discount}
             payment={i.method}
           />
         ))}
