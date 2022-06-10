@@ -34,7 +34,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
   const data = tmpData && (type === 'lecture' ? tmpData : tmpData[+id - 1]);
   const router = useRouter();
 
-  const [payMethod, setPayMethod] = useState<string | null>(null);
+  const [payMethod, setPayMethod] = useState<string | null>('uplus');
   const [couponPopup, setCouponPopup] = useState(false);
   const [coupon, setCoupon] = useState({
     id: null,
@@ -280,7 +280,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           </div>
           <div className='pt-14 pb-6 text-lg font-medium'>결제 수단 선택</div>
           <div className='flex space-x-8 py-8 text-lg md:block md:space-y-4 md:space-x-0 md:text-base'>
-            <div className='flex items-center space-x-3'>
+            {/* <div className='flex items-center space-x-3'>
               <div
                 onClick={() => handlePayMethod('kakaopay')}
                 className={cls(
@@ -298,7 +298,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 />
               </div>
               <div>카카오페이</div>
-            </div>
+            </div> */}
 
             {/* <div className='flex items-center space-x-3'>
               <div
@@ -340,7 +340,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               <div>신용카드</div>
             </div>
 
-            <div className='flex items-center space-x-3'>
+            {/* <div className='flex items-center space-x-3'>
               <div
                 onClick={() => handlePayMethod('danal')}
                 className={cls(
@@ -358,7 +358,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 />
               </div>
               <div>휴대폰결제</div>
-            </div>
+            </div> */}
           </div>
           <div className='pt-14 pb-6 text-lg font-medium'>결제 금액</div>
           <div className='space-y-4 py-8 text-lg'>

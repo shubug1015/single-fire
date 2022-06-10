@@ -9,6 +9,7 @@ body {
   background-color: #282e38;
   color: #ffffff;
   padding-top: 160px;
+  /* word-break: keep-all; */
 }
 
 @media screen and (max-width: 768px) {

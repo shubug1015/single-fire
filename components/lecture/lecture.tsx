@@ -38,11 +38,11 @@ export default function Lecture({
           />
         </div>
 
-        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1] md:mt-2 md:mb-0 md:text-[0.688rem]'>
+        <div className='mt-4 mb-1.5 text-sm font-medium text-[#b1b1b1] md:mt-2 md:mb-0 md:w-40 md:text-[0.688rem]'>
           {category} ˙ {tutor.name}
         </div>
 
-        <div className='text-lg font-medium md:text-[0.812rem] md:leading-5'>
+        <div className='text-lg font-medium md:w-40 md:text-[0.812rem] md:leading-5'>
           {name}
         </div>
       </a>
