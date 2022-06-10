@@ -95,7 +95,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           type,
           method: payMethod,
           id: data?.id,
-          price: data?.price - data?.discount,
+          price: data?.price,
           totalPrice,
           point,
           coupon: coupon.id,
