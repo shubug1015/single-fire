@@ -1,6 +1,6 @@
 import SEO from '@components/seo';
 import type { NextPage } from 'next';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { usersApi } from '@libs/api';
 import useMutation from '@libs/client/useMutation';
 import { FieldErrors, useForm } from 'react-hook-form';
@@ -9,6 +9,7 @@ import { cls } from '@libs/client/utils';
 import Checkbox from '@components/checkbox';
 import axios from 'axios';
 import { useUser } from '@libs/client/useUser';
+import { useRouter } from 'next/router';
 
 interface IForm {
   name: string;
@@ -28,6 +29,10 @@ const SignUp: NextPage = () => {
   const { mutate } = useUser({
     isPrivate: false,
   });
+  const router = useRouter();
+  // sns 로그인 query
+  const { type, id, name, phone_number } = router.query;
+
   const [signup, { loading }] = useMutation(usersApi.signupNextApi);
   const [code, setCode] = useState({
     loading: false,
@@ -41,19 +46,38 @@ const SignUp: NextPage = () => {
     setError,
     watch,
     getValues,
+    setValue,
   } = useForm<IForm>({
     mode: 'onChange',
   });
-  const onValid = async (data: IForm) => {
-    const req = {
-      name: data.name,
-      nickname: data.nickname,
-      phoneNum: data.phoneNum,
-      username: data.username,
-      password: data.password,
-      adAgree: data.adAgree,
-    };
-
+  const onValid = async ({
+    name,
+    nickname,
+    phoneNum,
+    username,
+    password,
+    adAgree,
+  }: IForm) => {
+    const req = type
+      ? // sns 회원가입
+        {
+          type,
+          id,
+          name,
+          nickname,
+          phoneNum,
+          adAgree,
+        }
+      : // 일반 회원가입
+        {
+          type: 'normal',
+          name,
+          nickname,
+          phoneNum,
+          username,
+          password,
+          adAgree,
+        };
     await signup({ req });
     const {
       data: { token, profile },
@@ -83,6 +107,14 @@ const SignUp: NextPage = () => {
       setCode((prev) => ({ ...prev, loading: false }));
     }
   };
+
+  useEffect(() => {
+    if (type === 'kakao' || type === 'naver' || type === 'google') {
+      name && setValue('name', name as string);
+      phone_number &&
+        setValue('phoneNum', (phone_number as string).replaceAll('-', ''));
+    }
+  }, []);
   return (
     <>
       <SEO title='회원가입' />
@@ -91,22 +123,24 @@ const SignUp: NextPage = () => {
 
         {/* Input 필드 */}
         <div className='mt-12 w-full space-y-8 md:mt-8 md:space-y-4'>
-          <Input
-            type='text'
-            label='이름'
-            register={register('name', {
-              required: '이름을 입력해주세요',
-              minLength: {
-                message: '이름은 2글자 이상이어야 합니다',
-                value: 2,
-              },
-              maxLength: {
-                message: '이름은 5글자 이하여야 합니다',
-                value: 5,
-              },
-            })}
-            error={errors?.name?.message}
-          />
+          {!type && (
+            <Input
+              type='text'
+              label='이름'
+              register={register('name', {
+                required: '이름을 입력해주세요',
+                minLength: {
+                  message: '이름은 2글자 이상이어야 합니다',
+                  value: 2,
+                },
+                maxLength: {
+                  message: '이름은 5글자 이하여야 합니다',
+                  value: 5,
+                },
+              })}
+              error={errors?.name?.message}
+            />
+          )}
 
           <Input
             type='text'
@@ -125,32 +159,34 @@ const SignUp: NextPage = () => {
             error={errors?.nickname?.message}
           />
 
-          <Input
-            type='text'
-            label='아이디'
-            register={register('username', {
-              required: '아이디를 입력해주세요',
-              minLength: {
-                message: '아이디는 4글자 이상이어야 합니다',
-                value: 4,
-              },
-              maxLength: {
-                message: '아이디는 12글자 이하여야 합니다',
-                value: 12,
-              },
-              validate: {
-                unavailable: async (value) => {
-                  const { data } = await usersApi.checkId(value);
-                  if (data === 'available') {
-                    return true;
-                  } else {
-                    return '사용중인 아이디입니다';
-                  }
+          {!type && (
+            <Input
+              type='text'
+              label='아이디'
+              register={register('username', {
+                required: '아이디를 입력해주세요',
+                minLength: {
+                  message: '아이디는 4글자 이상이어야 합니다',
+                  value: 4,
                 },
-              },
-            })}
-            error={errors?.username?.message}
-          />
+                maxLength: {
+                  message: '아이디는 12글자 이하여야 합니다',
+                  value: 12,
+                },
+                validate: {
+                  unavailable: async (value) => {
+                    const { data } = await usersApi.checkId(value);
+                    if (data === 'available') {
+                      return true;
+                    } else {
+                      return '사용중인 아이디입니다';
+                    }
+                  },
+                },
+              })}
+              error={errors?.username?.message}
+            />
+          )}
 
           <Input
             type='tel'
@@ -235,38 +271,43 @@ const SignUp: NextPage = () => {
             readOnly={!code.sended}
           />
 
-          <Input
-            type='password'
-            label='비밀번호'
-            register={register('password', {
-              required: '비밀번호를 입력해주세요',
-              validate: {
-                notPw: (value) => {
-                  const regPw =
-                    /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-                  if (regPw.test(value)) {
-                    return true;
-                  } else {
-                    return '비밀번호는 8자리 이상 / 1개 이상의 문자, 숫자, 특수문자가 포함되어야 합니다';
-                  }
+          {!type && (
+            <Input
+              type='password'
+              label='비밀번호'
+              register={register('password', {
+                required: '비밀번호를 입력해주세요',
+                validate: {
+                  notPw: (value) => {
+                    const regPw =
+                      /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+                    if (regPw.test(value)) {
+                      return true;
+                    } else {
+                      return '비밀번호는 8자리 이상 / 1개 이상의 문자, 숫자, 특수문자가 포함되어야 합니다';
+                    }
+                  },
                 },
-              },
-            })}
-            error={errors?.password?.message}
-          />
+              })}
+              error={errors?.password?.message}
+            />
+          )}
 
-          <Input
-            type='password'
-            label='비밀번호 확인'
-            register={register('passwordCheck', {
-              required: '비밀번호를 입력해주세요',
-              validate: {
-                notPwCheck: (value) =>
-                  value === watch('password') || '비밀번호가 일치하지 않습니다',
-              },
-            })}
-            error={errors?.passwordCheck?.message}
-          />
+          {!type && (
+            <Input
+              type='password'
+              label='비밀번호 확인'
+              register={register('passwordCheck', {
+                required: '비밀번호를 입력해주세요',
+                validate: {
+                  notPwCheck: (value) =>
+                    value === watch('password') ||
+                    '비밀번호가 일치하지 않습니다',
+                },
+              })}
+              error={errors?.passwordCheck?.message}
+            />
+          )}
         </div>
         {/* Input 필드 */}
 

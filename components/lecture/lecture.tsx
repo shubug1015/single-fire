@@ -24,7 +24,7 @@ export default function Lecture({
       <a
         className={cls(
           router.pathname === '/'
-            ? 'transition-transform duration-300 hover:-translate-y-3'
+            ? 'transition-transform duration-300 hover:-translate-y-3 md:-translate-y-0'
             : ''
         )}
       >

@@ -1,6 +1,6 @@
 import SEO from '@components/seo';
 import Layout from '@layouts/sectionLayout';
-import { lecturesApi, purchaseApi } from '@libs/api';
+import { communityApi, lecturesApi, purchaseApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Image from 'next/image';
@@ -25,7 +25,11 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
     isPrivate: true,
   });
   const [type, id] = slug;
-  const { data } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
+  const { data: tmpData } =
+    type === 'lecture'
+      ? useSWR(`/lectures/${id}`, () => lecturesApi.detail(id))
+      : useSWR('/community', () => communityApi.communityList());
+  const data = tmpData && (type === 'lecture' ? tmpData : tmpData[+id - 1]);
   const router = useRouter();
 
   const [payMethod, setPayMethod] = useState<string | null>(null);

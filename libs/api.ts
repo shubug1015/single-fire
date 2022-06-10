@@ -42,13 +42,32 @@ export const usersApi = {
   signupNextApi: (req: IProps) => axios.post('/api/signup', req),
 
   // 회원가입
-  signup: ({ name, nickname, phoneNum, username, password, adAgree }: IProps) =>
+  signup: ({
+    type,
+    name,
+    nickname,
+    phoneNum,
+    username,
+    password,
+    adAgree,
+  }: IProps) =>
     api.post('/users/signup/', {
+      signup_method: type,
       name,
       nickname,
       phone_number: phoneNum,
       username,
       password,
+      ad_agree: adAgree,
+    }),
+  // sns 회원가입
+  snsSignup: ({ type, id, name, phoneNum, nickname, adAgree }: IProps) =>
+    api.post('/users/signup/', {
+      signup_method: type,
+      sns_id: id,
+      name,
+      nickname,
+      phone_number: phoneNum,
       ad_agree: adAgree,
     }),
 
@@ -61,12 +80,30 @@ export const usersApi = {
       username,
       password,
     }),
-  // 카카오 로그인
-  kakaoLogin: ({ id }: IProps) =>
+  // sns 로그인
+  snsLogin: ({ type, id }: IProps) =>
     api.post('/users/login/', {
-      login_method: 'kakao',
-      kakao_id: id,
+      login_method: type,
+      sns_id: id,
     }),
+  // // 카카오 로그인
+  // kakaoLogin: ({ id }: IProps) =>
+  //   api.post('/users/login/', {
+  //     login_method: 'kakao',
+  //     kakao_id: id,
+  //   }),
+  // // 네이버 로그인
+  // naverLogin: ({ id }: IProps) =>
+  //   api.post('/users/login/', {
+  //     login_method: 'naver',
+  //     naver_id: id,
+  //   }),
+  // // 구글 로그인
+  // googleLogin: ({ id }: IProps) =>
+  //   api.post('/users/login/', {
+  //     login_method: 'google',
+  //     google_id: id,
+  //   }),
   // 로그아웃(NextJS api)
   logoutNextApi: () => axios.post('/api/logout'),
 

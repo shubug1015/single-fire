@@ -25,8 +25,16 @@ class CustomDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'
             rel='stylesheet'
           />
+          {/* 네이버 로그인 */}
+          <script src='https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js'></script>
           {/* 카카오 로그인 */}
           <script src='https://developers.kakao.com/sdk/js/kakao.min.js'></script>
+          {/* 구글 로그인 */}
+          <script
+            src='https://accounts.google.com/gsi/client'
+            async
+            defer
+          ></script>
           {/* jQuery */}
           <script
             type='text/javascript'

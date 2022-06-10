@@ -108,6 +108,7 @@ export default function Banner({ data }: IProps) {
                           alt='Banner Image'
                           layout='fill'
                           objectFit='cover'
+                          className='rounded-md md:rounded'
                         />
                       </div>
                     </div>

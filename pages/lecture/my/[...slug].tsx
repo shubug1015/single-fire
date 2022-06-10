@@ -28,6 +28,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
   const currentVideo = data?.index.flatMap((i: any) =>
     i.video.filter((j: any) => j.order === +order)
   )[0];
+  console.log(currentVideo);
   const videoUrl = currentVideo?.url;
   const videoTitle = currentVideo?.title;
   const lastChapter = data?.index[data?.index.length - 1].video;
@@ -87,15 +88,24 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
         </div>
 
         <div className='mt-10 flex space-x-5'>
-          <div className='relative aspect-video w-3/4'>
-            <iframe
-              src={videoUrl}
-              frameBorder='0'
-              allow='autoplay; fullscreen; picture-in-picture'
-              allowFullScreen
-              title={videoTitle}
-              className='absolute top-0 left-0 aspect-video w-full'
-            ></iframe>
+          <div className='w-3/4'>
+            <div className='relative aspect-video w-full'>
+              <iframe
+                src={videoUrl}
+                frameBorder='0'
+                allow='autoplay; fullscreen; picture-in-picture'
+                allowFullScreen
+                title={videoTitle}
+                className='absolute top-0 left-0 aspect-video w-full'
+              ></iframe>
+            </div>
+
+            {currentVideo?.text?.length > 0 && (
+              <div className='mt-8 flex w-full rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48'>
+                <div>💡</div>
+                <div>{currentVideo?.text}</div>
+              </div>
+            )}
           </div>
 
           <div className='grow space-y-4 font-medium'>
@@ -184,17 +194,6 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
                 </AnimatePresence>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className='mt-8 flex w-3/4 space-x-7 rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48'>
-          <div>💡</div>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            egestas auctor sapien ac tristique. Sed commodo pretium neque vitae
-            venenatis. Nam sagittis mauris velit, nec tempor risus lobortis a.
-            Phasellus faucibus eros a arcu hendrerit, quis aliquet sapien
-            congue. Nulla elementum quis magna sed porttitor.
           </div>
         </div>
 

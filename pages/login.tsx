@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { FieldErrors, useForm } from 'react-hook-form';
 import { useUser } from '@libs/client/useUser';
 import axios from 'axios';
+import NaverBtn from '@components/login/naverBtn';
+import GoogleBtn from '@components/login/googleBtn';
 
 interface IForm {
   username: string;
@@ -136,9 +138,11 @@ const Login: NextPage = () => {
           </Link>
         </div>
 
-        {/* <div className='mt-20 w-full space-y-4'>
+        <div className='mt-20 w-full space-y-4'>
+          <NaverBtn />
           <KakaoBtn />
-        </div> */}
+          {/* <GoogleBtn /> */}
+        </div>
       </div>
     </>
   );
