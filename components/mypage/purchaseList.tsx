@@ -17,13 +17,13 @@ export default function PurchaseList({ data, totalItems }: IProps) {
           <Purchase
             key={i.id}
             state={i.refund}
-            type='강의'
-            category={i.lecture.category}
-            tutor={i.lecture.tutor.name}
-            title={i.lecture.name}
+            type={i.lecture.category ? '강의' : '커뮤니티'}
+            category={i.lecture.category || ''}
+            tutor={i.lecture?.tutor?.name || ''}
+            title={i.lecture.name || i.community.name}
             date={i.created}
-            price={i.lecture.price}
-            discount={i.lecture.discount}
+            price={i.lecture.price || i.community.price}
+            discount={i.lecture.discount || i.community.discount}
             payment={i.method}
           />
         ))}
