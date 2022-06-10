@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 
 declare global {
@@ -15,7 +16,7 @@ export default function GoogleBtn() {
     const handleCredentialResponse = (res: any) => {
       const { credential } = res;
       const data = jwt_decode(credential);
-      console.log(data);
+      // console.log(data);
     };
 
     google.accounts.id.initialize({

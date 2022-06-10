@@ -28,7 +28,6 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
   const currentVideo = data?.index.flatMap((i: any) =>
     i.video.filter((j: any) => j.order === +order)
   )[0];
-  console.log(currentVideo);
   const videoUrl = currentVideo?.url;
   const videoTitle = currentVideo?.title;
   const lastChapter = data?.index[data?.index.length - 1].video;

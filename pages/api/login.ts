@@ -21,11 +21,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
     // sns 로그인
     else {
-      console.log(req.body);
       const {
         data: { msg, access_token },
       } = await usersApi.snsLogin(req.body);
-      console.log(msg, access_token);
       if (msg) {
         return res.status(200).json({ ok: true, msg });
       }

@@ -48,7 +48,6 @@ const Post: NextPage<IProps> = ({ category }) => {
   const [editorState, setEditorState] = useState<EditorState>(
     EditorState.createEmpty()
   );
-  console.log(data);
   const {
     register,
     handleSubmit,
