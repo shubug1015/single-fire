@@ -25,10 +25,12 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
     isPrivate: true,
   });
   const [type, id] = slug;
-  const { data: tmpData } =
+  const { data: tmpData } = useSWR(
+    type === 'lecture' ? `/lectures/${id}` : '/community',
     type === 'lecture'
-      ? useSWR(`/lectures/${id}`, () => lecturesApi.detail(id))
-      : useSWR('/community', () => communityApi.communityList());
+      ? () => lecturesApi.detail(id)
+      : () => communityApi.communityList()
+  );
   const data = tmpData && (type === 'lecture' ? tmpData : tmpData[+id - 1]);
   const router = useRouter();
 
