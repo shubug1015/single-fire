@@ -59,7 +59,7 @@ export default function Community({
           <div
             className={cls(
               type === 'notice' ? 'font-bold text-[#ff8a00]' : '',
-              'flex w-[8.5%] justify-center'
+              'flex w-40 justify-center'
             )}
           >
             {subject}
