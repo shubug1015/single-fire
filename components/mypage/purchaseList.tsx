@@ -10,7 +10,6 @@ interface IProps {
 export default function PurchaseList({ data, totalItems }: IProps) {
   const router = useRouter();
   const currentPage = router.query.page as string;
-  console.log(data);
   return (
     <div>
       <div className='space-y-2'>
