@@ -104,7 +104,7 @@ export default function Footer() {
 
         {/* 우측 섹션 */}
         <div className='flex gap-x-4 md:mt-8'>
-          <Link href='/'>
+          <Link href='https://www.instagram.com/millmosch/'>
             <a>
               <div className='relative h-8 w-8'>
                 <Image
@@ -118,7 +118,7 @@ export default function Footer() {
               </div>
             </a>
           </Link>
-          <Link href='/'>
+          <Link href='https://www.facebook.com/profile.php?id=100026515401018'>
             <a>
               <div className='relative h-8 w-8'>
                 <Image
@@ -132,7 +132,7 @@ export default function Footer() {
               </div>
             </a>
           </Link>
-          <Link href='/'>
+          <Link href='https://www.youtube.com/channel/UCtviINBLHWqdb2ouvw_I1LQ'>
             <a>
               <div className='relative h-8 w-8'>
                 <Image
@@ -146,7 +146,7 @@ export default function Footer() {
               </div>
             </a>
           </Link>
-          <Link href='/'>
+          <Link href='https://blog.naver.com/millmus'>
             <a>
               <div className='relative h-8 w-8'>
                 <Image
