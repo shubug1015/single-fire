@@ -138,11 +138,11 @@ const Login: NextPage = () => {
           </Link>
         </div>
 
-        <div className='mt-20 w-full space-y-4'>
+        {/* <div className='mt-20 w-full space-y-4'>
           <NaverBtn />
           <KakaoBtn />
-          {/* <GoogleBtn /> */}
-        </div>
+          <GoogleBtn />
+        </div> */}
       </div>
     </>
   );
