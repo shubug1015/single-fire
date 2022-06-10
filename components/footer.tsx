@@ -84,7 +84,7 @@ export default function Footer() {
             </Link>
 
             <Link href='/privacy-policy'>
-              <a>개인정보처리방침</a>
+              <a className='text-[#c0c0c0]'>개인정보처리방침</a>
             </Link>
           </nav>
 
