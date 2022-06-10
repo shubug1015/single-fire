@@ -7,8 +7,8 @@ const TemrsOfService: NextPage = () => {
     <>
       <SEO title='이용약관' />
       <Layout padding='py-20 md:py-12'>
-        <div className='rounded-lg bg-[#373c46] p-[3.75rem] md:p-4 md:text-sm'>
-          <span className='font-bold'>이용약관</span>
+        <div className='rounded-lg bg-[#373c46] p-[3.75rem] text-[#cfcfcf] md:p-4 md:text-xs'>
+          <span className='font-bold text-white'>이용약관</span>
           <br /> <br />본 약관은 2022년 4월 30일부터 적용됩니다.
           <br /> <br />제 1 조 목적
           <br /> <br />이 약관은 주식회사 행복한컴퍼니(이하 “회사”)가 제공하는

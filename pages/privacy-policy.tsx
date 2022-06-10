@@ -7,8 +7,8 @@ const TemrsOfService: NextPage = () => {
     <>
       <SEO title='개인정보 처리방침' />
       <Layout padding='py-20 md:py-12'>
-        <div className='rounded-lg bg-[#373c46] p-[3.75rem] md:p-4 md:text-sm'>
-          <span className='font-bold'>개인정보 처리방침</span>
+        <div className='rounded-lg bg-[#373c46] p-[3.75rem] text-[#cfcfcf] md:p-4 md:text-xs'>
+          <span className='font-bold text-white'>개인정보 처리방침</span>
           <br /> <br />
           <p>
             <span>본 방침은 2022년 4월 30일부터 적용됩니다.</span>

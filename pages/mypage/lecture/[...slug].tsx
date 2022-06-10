@@ -37,7 +37,7 @@ const MyLectureList: NextPage<IProps> = ({ slug }) => {
       <Layout padding='pt-20 pb-44 md:pt-4'>
         <Header />
 
-        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block'>
+        <div className='mt-[4.5rem] flex space-x-10 md:mt-0 md:block md:space-x-0'>
           <Navigator />
 
           <div className='grow space-y-6 md:mt-8'>

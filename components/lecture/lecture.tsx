@@ -42,7 +42,9 @@ export default function Lecture({
           {category} ˙ {tutor.name}
         </div>
 
-        <div className='text-lg font-medium md:text-[0.812rem]'>{name}</div>
+        <div className='text-lg font-medium md:text-[0.812rem] md:leading-5'>
+          {name}
+        </div>
       </a>
     </Link>
   );

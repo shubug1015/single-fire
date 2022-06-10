@@ -134,7 +134,7 @@ export default function Faq({ clsFilter }: IProps) {
           혼자 도전하는 것보다
         </div>
         <div className='mt-[0.625rem] text-5xl font-bold leading-normal text-white md:mt-[0.125rem] md:text-lg'>
-          함꼐하면 더 오래, 더 멀리 갈 수 있습니다!
+          함께하면 더 오래, 더 멀리 갈 수 있습니다!
         </div>
         <div className='md:flex md:justify-center'>
           <div className='relative mt-[120px] h-[358px] w-[1174px] md:mt-10 md:h-[105px] md:w-[343px]'>

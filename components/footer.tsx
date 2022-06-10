@@ -1,12 +1,16 @@
 import Layout from '@layouts/sectionLayout';
-// import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 // import Logo from '@public/logo.png';
+import InstaIcon from '@public/icons/instagram.png';
+import FBIcon from '@public/icons/Facebook.png';
+import BlogIcon from '@public/icons/naverblog.png';
+import YoutubeIcon from '@public/icons/youtube.png';
 
 export default function Footer() {
   return (
     <Layout bgColor='bg-[#14161a]' padding='pt-[6.5rem] pb-[7.5rem] md:py-10'>
-      <div className='flex justify-between'>
+      <div className='flex justify-between md:block'>
         {/* 좌측 섹션 */}
         <div>
           {/* 로고 */}
@@ -84,7 +88,7 @@ export default function Footer() {
             </Link>
           </nav>
 
-          <div className='mt-[3.75rem] space-y-2 text-[#c0c0c0] md:mt-8 md:text-sm'>
+          <div className='mt-[3.75rem] space-y-2 text-[#cfcfcf] md:mt-8 md:text-sm'>
             <div>(주)행복한컴퍼니</div>
             <div>
               사업자 등록번호 : 716-87-02517ㅣ대표자 : 신동은ㅣ통신판매업신고 :
@@ -99,17 +103,64 @@ export default function Footer() {
         {/* 좌측 섹션 */}
 
         {/* 우측 섹션 */}
-        {/* <div className='font-medium'>
-          <div>고객센터</div>
-
+        <div className='flex gap-x-4 md:mt-8'>
           <Link href='/'>
             <a>
-              <div className='mt-5 rounded-sm bg-white py-3 px-[3.75rem] text-sm text-black'>
-                고객센터 채널톡
+              <div className='relative h-8 w-8'>
+                <Image
+                  src={InstaIcon}
+                  alt='Instagram Icon'
+                  layout='fill'
+                  objectFit='cover'
+                  placeholder='blur'
+                  quality={100}
+                />
               </div>
             </a>
           </Link>
-        </div> */}
+          <Link href='/'>
+            <a>
+              <div className='relative h-8 w-8'>
+                <Image
+                  src={FBIcon}
+                  alt='Instagram Icon'
+                  layout='fill'
+                  objectFit='cover'
+                  placeholder='blur'
+                  quality={100}
+                />
+              </div>
+            </a>
+          </Link>
+          <Link href='/'>
+            <a>
+              <div className='relative h-8 w-8'>
+                <Image
+                  src={YoutubeIcon}
+                  alt='Instagram Icon'
+                  layout='fill'
+                  objectFit='cover'
+                  placeholder='blur'
+                  quality={100}
+                />
+              </div>
+            </a>
+          </Link>
+          <Link href='/'>
+            <a>
+              <div className='relative h-8 w-8'>
+                <Image
+                  src={BlogIcon}
+                  alt='Instagram Icon'
+                  layout='fill'
+                  objectFit='cover'
+                  placeholder='blur'
+                  quality={100}
+                />
+              </div>
+            </a>
+          </Link>
+        </div>
         {/* 우측 섹션 */}
       </div>
     </Layout>

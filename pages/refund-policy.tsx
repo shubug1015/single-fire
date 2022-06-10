@@ -7,8 +7,8 @@ const TemrsOfService: NextPage = () => {
     <>
       <SEO title='환불규정' />
       <Layout padding='py-20 md:py-12'>
-        <div className='rounded-lg bg-[#373c46] p-[3.75rem] md:p-4 md:text-sm'>
-          <span className='font-bold'>[주의사항 및 환불규정]</span>
+        <div className='rounded-lg bg-[#373c46] p-[3.75rem] text-[#cfcfcf] md:p-4 md:text-xs'>
+          <span className='font-bold text-white'>[주의사항 및 환불규정]</span>
           <br />
           <br />
           * 온라인 강의 구매시점부터 6개월 동안 수강이 가능합니다.

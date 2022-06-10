@@ -32,9 +32,9 @@ export default function Purchase({
   const closeRefundPopup = () => setRefundPopup(false);
   return (
     <>
-      <div className='flex w-full flex-col space-y-6 rounded bg-[#4a4e57] p-8'>
+      <div className='flex w-full flex-col space-y-6 rounded bg-[#4a4e57] p-8 md:p-6'>
         <div className='flex w-full items-center justify-between'>
-          <div className='text-lg font-bold'>
+          <div className='text-lg font-bold md:text-base'>
             {state ? '결제취소' : '결제완료'}
           </div>
 
@@ -83,16 +83,16 @@ export default function Purchase({
           </div>
         </div>
 
-        <div className='flex w-full divide-x divide-[rgba(255,255,255,0.16)]'>
-          <div className='w-2/3 space-y-1.5 pr-8'>
+        <div className='flex w-full divide-x divide-[rgba(255,255,255,0.16)] md:block md:divide-y md:divide-x-0'>
+          <div className='w-2/3 space-y-1.5 pr-8 md:w-full md:pr-0'>
             <div className='text-sm font-medium text-[#00e7ff]'>{type}</div>
             <div className='text-sm font-medium text-[#b1b1b1]'>
               {category} ˙ {tutor}
             </div>
-            <div className='text-lg font-medium'>{title}</div>
+            <div className='text-lg font-medium md:pb-5'>{title}</div>
           </div>
 
-          <div className='space-y-1.5 pl-8 text-sm'>
+          <div className='space-y-1.5 pl-8 text-sm md:pl-0 md:pt-5'>
             <div className='flex'>
               <div className='w-24 opacity-80'>결제 날짜</div>
               <div>{trimDate(date, 0, 10)}</div>
