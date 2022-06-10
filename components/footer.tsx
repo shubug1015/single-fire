@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 // import Logo from '@public/logo.png';
 import InstaIcon from '@public/icons/instagram.png';
-import FBIcon from '@public/icons/Facebook.png';
+import FBIcon from '@public/icons/facebook.png';
 import BlogIcon from '@public/icons/naverblog.png';
 import YoutubeIcon from '@public/icons/youtube.png';
 
