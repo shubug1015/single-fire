@@ -391,7 +391,7 @@ export const purchaseApi = {
   purchase: ({
     type,
     method,
-    lectureId,
+    id,
     price,
     totalPrice,
     point,
@@ -404,7 +404,7 @@ export const purchaseApi = {
       {
         type,
         method,
-        lecture_pk: lectureId,
+        ...(type === 'lecture' ? { lecture_pk: id } : { community_pk: id }),
         price,
         payment: totalPrice,
         ...(point && point > 0 && { point }),

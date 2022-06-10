@@ -94,7 +94,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         await purchaseApi.purchase({
           type,
           method: payMethod,
-          lectureId: data?.id,
+          id: data?.id,
           price: data?.price - data?.discount,
           totalPrice,
           point,
