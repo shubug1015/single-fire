@@ -41,16 +41,14 @@ const MyCommunityList: NextPage<IProps> = ({ page }) => {
               <div className='text-lg font-medium'>커뮤니티</div>
               {data?.community.map((i: { [key: string]: any }) => (
                 <div
-                  key={i.resgitered_community.id}
+                  key={i.community.id}
                   className='flex space-x-2 md:space-x-0'
                 >
                   <div className='flex h-[4.5rem] w-[28rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-lg font-medium'>
-                    {i.resgitered_community.name}
+                    {i.community.name}
                   </div>
 
-                  <Link
-                    href={`/community/${i.resgitered_community.id}/1/created/title`}
-                  >
+                  <Link href={`/community/${i.community.id}/1/created/title`}>
                     <div className='flex aspect-square w-[4.5rem] cursor-pointer items-center rounded-sm bg-[rgba(229,229,229,0.08)] px-6 text-2xl'>
                       👉
                     </div>
