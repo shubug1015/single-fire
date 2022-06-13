@@ -86,6 +86,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         /^(\d{2,3})(\d{3,4})(\d{4})$/,
         `$1-$2-$3`
       ), // 전화번호
+      m_redirect_url: `https://www.xn--o22bp6a0zk.com/purchase/finish?name=${data?.name}&pay_method=${payMethod}&price=${data?.price}&discount=${totalDiscount}&point=${point}&total_price=${totalPrice}`, // 모바일 redirect url
     };
 
     const callback = async (res: any) => {
@@ -107,11 +108,11 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           pathname: '/purchase/finish',
           query: {
             name: res.name,
-            payMethod,
+            pay_method: payMethod,
             price: data?.price,
             discount: totalDiscount,
             point,
-            totalPrice,
+            total_price: totalPrice,
           },
         });
       } else {

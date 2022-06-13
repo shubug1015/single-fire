@@ -10,8 +10,10 @@ import Precaution from '@components/community/detail/3/precaution';
 import Point from '@components/community/detail/3/point';
 import Process from '@components/community/detail/3/process';
 import Professional from '@components/community/detail/3/professional';
+import { useUser } from '@libs/client/useUser';
 
 const CommunityDetail: NextPage = () => {
+  const { token } = useUser({ isPrivate: true });
   const clsFilter = (
     cls1: string,
     cls2: string,

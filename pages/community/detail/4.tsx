@@ -1,4 +1,5 @@
 import SEO from '@components/seo';
+import { useUser } from '@libs/client/useUser';
 // import BeforeScroll from '@components/community/detail/beforeScroll';
 // import Hero from '@components/community/detail/hero';
 // import Review from '@components/community/detail/review';
@@ -12,6 +13,7 @@ import type { GetServerSidePropsContext, NextPage } from 'next';
 // import Professional from '@components/community/detail/professional';
 
 const CommunityDetail: NextPage = () => {
+  const { token } = useUser({ isPrivate: true });
   const clsFilter = (
     cls1: string,
     cls2: string,

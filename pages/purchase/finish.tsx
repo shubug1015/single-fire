@@ -8,7 +8,8 @@ const Finish: NextPage = () => {
   useUser({ isPrivate: true });
 
   const router = useRouter();
-  const { name, payMethod, price, discount, point, totalPrice } = router.query;
+  const { name, pay_method, price, discount, point, total_price } =
+    router.query;
   return (
     <Layout padding='pt-24 pb-48'>
       <div className='flex justify-center text-[2.5rem] font-bold'>
@@ -34,7 +35,7 @@ const Finish: NextPage = () => {
 
       <div className='flex items-center border-b-2 border-[#4a4e57] py-14 text-lg'>
         <div className='flex w-1/6 justify-center'>{name}</div>
-        <div className='flex w-1/6 justify-center'>{payMethod}</div>
+        <div className='flex w-1/6 justify-center'>{pay_method}</div>
         <div className='flex w-1/6 justify-center'>
           {price && (+price).toLocaleString()}
         </div>
@@ -45,7 +46,7 @@ const Finish: NextPage = () => {
           {point ? (+point).toLocaleString() : '-'}
         </div>
         <div className='flex w-1/6 justify-center'>
-          {totalPrice && (+totalPrice).toLocaleString()}
+          {total_price && (+total_price).toLocaleString()}
         </div>
       </div>
 
