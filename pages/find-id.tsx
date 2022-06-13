@@ -102,7 +102,7 @@ const FindId: NextPage = () => {
                   watch('phoneNum') && !errors?.phoneNum?.message
                     ? 'cursor-pointer transition-all hover:opacity-70'
                     : '',
-                  'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm'
+                  'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm md:whitespace-pre-wrap md:text-center'
                 )}
               >
                 {code.loading ? (
@@ -123,7 +123,7 @@ const FindId: NextPage = () => {
                     />
                   </svg>
                 ) : (
-                  '인증번호 전송'
+                  '인증번호\n전송'
                 )}
               </div>
             </Input>

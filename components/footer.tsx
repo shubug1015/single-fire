@@ -88,7 +88,7 @@ export default function Footer() {
             </Link>
           </nav>
 
-          <div className='mt-[3.75rem] space-y-2 text-[#cfcfcf] md:mt-8 md:text-sm'>
+          <div className='mt-[3.75rem] space-y-2 text-[#9e9e9e] md:mt-8 md:text-sm'>
             <div>(주)행복한컴퍼니</div>
             <div>
               사업자 등록번호 : 716-87-02517ㅣ대표자 : 신동은ㅣ통신판매업신고 :
@@ -105,7 +105,7 @@ export default function Footer() {
         {/* 우측 섹션 */}
         <div className='flex gap-x-4 md:mt-8'>
           <Link href='https://www.instagram.com/millmosch/'>
-            <a>
+            <a target='_blank'>
               <div className='relative h-8 w-8'>
                 <Image
                   src={InstaIcon}
@@ -119,7 +119,7 @@ export default function Footer() {
             </a>
           </Link>
           <Link href='https://www.facebook.com/profile.php?id=100026515401018'>
-            <a>
+            <a target='_blank'>
               <div className='relative h-8 w-8'>
                 <Image
                   src={FBIcon}
@@ -133,7 +133,7 @@ export default function Footer() {
             </a>
           </Link>
           <Link href='https://www.youtube.com/channel/UCtviINBLHWqdb2ouvw_I1LQ'>
-            <a>
+            <a target='_blank'>
               <div className='relative h-8 w-8'>
                 <Image
                   src={YoutubeIcon}
@@ -147,7 +147,7 @@ export default function Footer() {
             </a>
           </Link>
           <Link href='https://blog.naver.com/millmus'>
-            <a>
+            <a target='_blank'>
               <div className='relative h-8 w-8'>
                 <Image
                   src={BlogIcon}

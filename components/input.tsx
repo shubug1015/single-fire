@@ -30,7 +30,7 @@ export default function Input({
           {...register}
           readOnly={readOnly}
           className={cls(
-            label === '전화번호' ? 'grow' : 'w-full',
+            label === '전화번호' ? 'grow md:w-48' : 'w-full',
             error ? 'border-red-500' : 'border-[rgba(255,255,255,0.38)]',
             readOnly ? 'opacity-50' : '',
             'h-full rounded border bg-transparent pl-4 outline-none placeholder:text-sm'

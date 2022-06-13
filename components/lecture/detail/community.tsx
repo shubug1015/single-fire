@@ -14,8 +14,8 @@ interface IProps {
 export default function Community({ tutor, lecture_community }: IProps) {
   return (
     <Layout bgColor='#282e38' padding='pb-80'>
-      <div className='flex w-full space-x-5 md:block md:bg-[#373c46]'>
-        <div className='w-[30rem] rounded bg-[#373c46] p-10'>
+      <div className='flex w-full space-x-5 md:block md:space-x-0 md:bg-[#373c46]'>
+        <div className='w-[30rem] rounded bg-[#373c46] p-10 md:w-full md:p-6'>
           <div className='font-bold'>강사소개</div>
 
           <div className='mt-10 text-xl font-medium'>{tutor.name}</div>
@@ -33,7 +33,7 @@ export default function Community({ tutor, lecture_community }: IProps) {
           </div>
         </div>
 
-        <div className='flex w-[42.625rem] flex-col justify-between rounded bg-[#373c46] p-10 md:w-full'>
+        <div className='flex w-[42.625rem] flex-col justify-between rounded bg-[#373c46] p-10 md:mt-4 md:w-full md:p-6'>
           <div>
             <div className='font-bold'>커뮤니티</div>
 
@@ -45,10 +45,10 @@ export default function Community({ tutor, lecture_community }: IProps) {
           </div>
 
           {lecture_community.lecture && (
-            <div className='flex justify-end'>
+            <div className='flex justify-end md:justify-center'>
               <div
                 onClick={() => window.open(lecture_community.url)}
-                className='flex h-14 w-48 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90'
+                className='flex h-14 w-48 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-[#282e38] transition-all hover:opacity-90 md:mt-8 md:h-12'
               >
                 커뮤니티 바로가기 →
               </div>

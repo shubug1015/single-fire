@@ -117,8 +117,8 @@ export default function Detail({
           {/* 할인 기간 */}
           {discount > 0 && (
             <div className='mt-3 text-sm font-medium text-[#cfcfcf] md:text-xs'>
-              *할인기간: ~ {discount_period.split('-')[1]}/
-              {discount_period.split('-')[2]}
+              <span className='font-bold'>*얼리버드</span>: ~{' '}
+              {discount_period.split('-')[1]}/{discount_period.split('-')[2]}
             </div>
           )}
           {/* 할인 기간 */}
@@ -145,7 +145,7 @@ export default function Detail({
 
             <Link href={`/purchase/lecture/${id}`}>
               <a className='ml-3 flex grow cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-all hover:opacity-90'>
-                구매하기
+                신청하기
               </a>
             </Link>
           </div>

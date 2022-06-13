@@ -41,7 +41,7 @@ const EditProfile: NextPage = () => {
                 회원가입시 달성
               </div>
               <div className='flex h-40 items-center justify-center bg-[#373c46]'>
-                1~3만원 포인트 적립
+                2만원 포인트 적립
               </div>
             </div>
 
@@ -63,7 +63,7 @@ const EditProfile: NextPage = () => {
                 유료 커뮤니티 2건 이상 결제시 자동달성
               </div>
               <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
-                커뮤니티 무료 행사 참여
+                커뮤니티 유료행사 우선참여권
                 <br />
                 신청가능한 권한 부여
               </div>
@@ -84,11 +84,8 @@ const EditProfile: NextPage = () => {
               <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
                 강의 3건이상 수강시 달성
                 <br />
-                커뮤니티 유료행사 1회 무료참여권
               </div>
-              <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
-                커뮤니티 유료행사 1회 무료참여권
-              </div>
+              <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'></div>
             </div>
           </div>
         </div>
@@ -100,9 +97,7 @@ const EditProfile: NextPage = () => {
               <div className='mt-[0.375rem] font-[#b1b1b1] text-xs'>
                 회원가입시 달성
               </div>
-              <div className='mt-4 text-sm font-medium'>
-                1~3만원 포인트 적립
-              </div>
+              <div className='mt-4 text-sm font-medium'>2만원 포인트 적립</div>
             </div>
             <div className='h-[3.75rem] rounded-full bg-[#2b3037] p-[1.125rem]'>
               <div className='relative aspect-square w-6'>{gradeImg('1')}</div>
@@ -120,7 +115,7 @@ const EditProfile: NextPage = () => {
                 유료 커뮤니티 2건 이상 결제시 자동달성
               </div>
               <div className='mt-4 text-sm font-medium'>
-                커뮤니티 무료 행사 참여
+                커뮤니티 유료행사 우선참여권
                 <br />
                 신청가능한 권한 부여
               </div>
@@ -138,9 +133,9 @@ const EditProfile: NextPage = () => {
               <div className='mt-[0.375rem] font-[#b1b1b1] text-xs'>
                 강의 3건이상 수강시 달성
               </div>
-              <div className='mt-4 text-sm font-medium'>
+              {/* <div className='mt-4 text-sm font-medium'>
                 커뮤니티 유료행사 1회 무료참여권
-              </div>
+              </div> */}
             </div>
             <div className='h-[3.75rem] rounded-full bg-[#2b3037] p-[1.125rem]'>
               <div className='relative aspect-square w-6'>{gradeImg('3')}</div>

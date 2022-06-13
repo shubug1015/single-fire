@@ -286,7 +286,7 @@ const TemrsOfService: NextPage = () => {
             <br />
             <span>– 전산 시스템 구축 및 유지: 가비아</span>
             <br />
-            <span>– 결제 및 에스크로 서비스: NICE페이먼츠</span>
+            <span>– 결제 및 에스크로 서비스: 토스페이먼츠</span>
             <br />
             <span>
               ※ 수탁자에 공유되는 정보는 당해 목적을 달성하기 위하여 필요한
@@ -424,13 +424,11 @@ const TemrsOfService: NextPage = () => {
             <br />
             <span>개인정보 보호책임자</span>
             <br />
-            <span>– 성명 : 강용수</span>
-            <br />
-            <span>– 직책 : 대표</span>
+            <span>– 성명 : 신동은</span>
             <br />
             <span>– 직급 : 대표</span>
             <br />
-            <span>– 연락처 : foryourfreedom@kakao.com</span>
+            <span>– 연락처 : foryourfreedom2023@naver.com</span>
             <br />
             <span></span>
             <br />

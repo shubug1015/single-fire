@@ -16,7 +16,7 @@ const Finish: NextPage = () => {
       </div>
 
       <div className='mt-4 flex justify-center font-light'>
-        결제 영수증은 마이 페이지 ▷ 수강 신청 내역 ▷{' '}
+        결제 영수증은 마이페이지 ▷ 수강 신청 내역 ▷{' '}
         <span className='text-[#ff8a00]'>결제발급서</span>에서 확인이
         가능합니다.
       </div>

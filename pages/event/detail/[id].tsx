@@ -27,7 +27,7 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
     <>
       <SEO title='이벤트' />
       <Layout padding='pt-32 pb-44'>
-        <div className='mb-16 text-center text-5xl font-bold'>
+        <div className='mb-16 text-center text-5xl font-bold md:text-2xl'>
           {data?.title}
         </div>
 

@@ -10,13 +10,13 @@ export default function Event({ id, thumbnail }: IProps) {
   return (
     <Link href={`/event/detail/${id}`}>
       <a>
-        <div className='relative h-80 w-full rounded-sm bg-[rgba(229,229,229,0.08)]'>
+        <div className='relative h-80 w-full rounded-sm bg-[rgba(229,229,229,0.08)] md:h-[90px]'>
           <Image
             src={thumbnail}
             alt='Event Thumbnail'
             layout='fill'
             objectFit='cover'
-            className='rounded-sm'
+            className='rounded-sm md:h-20'
           />
         </div>
       </a>

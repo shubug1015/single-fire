@@ -56,22 +56,26 @@ export default function Review({ id, review }: IProps) {
     <Layout padding='pb-80'>
       <div className='w-full space-y-4'>
         {review.map((i) => (
-          <div key={i.id} className='w-full rounded bg-[#373c46] p-10'>
+          <div key={i.id} className='w-full rounded bg-[#373c46] p-10 md:p-6'>
             <div className='flex items-center'>
-              <div className='text-lg font-medium'>{i.user.nickname}</div>
+              <div className='text-lg font-medium md:text-base'>
+                {i.user.nickname}
+              </div>
               <div className='relative ml-1 aspect-square h-5 w-5'>
                 {gradeImg(i.user.grade)}
               </div>
             </div>
 
-            <div className='opacity-60'>{trimDate(i.created, 0, 10)}</div>
+            <div className='opacity-60 md:text-sm'>
+              {trimDate(i.created, 0, 10)}
+            </div>
 
-            <div className='mt-7 text-lg'>{i.text}</div>
+            <div className='mt-7 text-lg md:text-base'>{i.text}</div>
           </div>
         ))}
 
         {myData?.token && (
-          <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10'>
+          <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10 md:block md:p-6'>
             <div className='flex items-center'>
               <div>{myData?.profile?.name}</div>
               <div className='relative ml-1 aspect-square h-4 w-4'>
@@ -80,8 +84,8 @@ export default function Review({ id, review }: IProps) {
             </div>
 
             <div className='grow'>
-              <div className='flex'>
-                <div className='ml-14 h-24 rounded-l-sm bg-[#282e38] p-4'>
+              <div className='flex md:mt-4'>
+                <div className='ml-14 h-24 rounded-l-sm bg-[#282e38] p-4 md:ml-0 md:h-32 md:text-sm'>
                   {myData?.profile?.nickname} |
                 </div>
                 <textarea
@@ -92,7 +96,7 @@ export default function Review({ id, review }: IProps) {
                       value: 10,
                     },
                   })}
-                  className='h-24 grow rounded-r-sm bg-[#282e38] py-4 outline-none'
+                  className='h-24 grow rounded-r-sm bg-[#282e38] py-4 outline-none md:h-32'
                 />
               </div>
 
@@ -103,7 +107,7 @@ export default function Review({ id, review }: IProps) {
 
             <div
               onClick={handleSubmit(onValid, onInvalid)}
-              className='ml-4 flex h-10 w-24 cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] transition-all hover:opacity-90'
+              className='ml-4 flex h-10 w-24 cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] transition-all hover:opacity-90 md:mt-4 md:ml-0'
             >
               저장
             </div>

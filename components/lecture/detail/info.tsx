@@ -51,9 +51,9 @@ export default function Info({ data }: IProps) {
         </div>
       ))}
 
-      <div className='mt-4 rounded bg-[#373c46] p-10'>
+      <div className='mt-4 rounded bg-[#373c46] p-10 md:p-6'>
         <div className='font-bold'>[이용안내 및 환불규정]</div>
-        <div className='mt-10 leading-7'>
+        <div className='mt-10 leading-7 md:text-sm'>
           * 온라인 강의 구매시점부터 6개월 동안 수강이 가능합니다.
           <br />* 온라인 강의 결제를 완료한 회원은 로그인 후 우측 상단
           마이페이지를 클릭하고 내강의실에서 강의 목록을 확인, 수강할 수

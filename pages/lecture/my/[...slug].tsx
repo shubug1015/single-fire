@@ -81,13 +81,13 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
     <>
       <SEO title={data?.name} />
 
-      <div className='px-12 pt-24 pb-36'>
-        <div className='border-b-2 border-[rgba(229,229,229,0.08)] pb-6 text-[1.75rem] font-bold'>
+      <div className='px-12 pt-24 pb-36 md:pt-6'>
+        <div className='border-b-2 border-[rgba(229,229,229,0.08)] pb-6 text-[1.75rem] font-bold md:text-lg md:font-medium'>
           {data?.name}
         </div>
 
-        <div className='mt-10 flex space-x-5'>
-          <div className='w-3/4'>
+        <div className='mt-10 flex space-x-5 md:mt-6 md:block md:space-x-0'>
+          <div className='w-3/4 md:w-full'>
             <div className='relative aspect-video w-full'>
               <iframe
                 src={videoUrl}
@@ -107,7 +107,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
             )}
           </div>
 
-          <div className='grow space-y-4 font-medium'>
+          <div className='grow space-y-4 font-medium md:mt-4'>
             {data?.index.map((i: any, chapterId: number) => (
               <div key={i.id}>
                 <div
@@ -118,9 +118,9 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
                       )
                     )
                   }
-                  className='flex h-[4.5rem] cursor-pointer items-center justify-between rounded bg-[#4a4e57] px-6 text-lg'
+                  className='flex h-[4.5rem] cursor-pointer items-center justify-between rounded bg-[#4a4e57] px-6 text-lg md:h-16 md:px-4'
                 >
-                  <div>{i.title}</div>
+                  <div className='md:text-base'>{i.title}</div>
 
                   {chapterOpen && chapterOpen[chapterId] ? (
                     <svg
@@ -180,7 +180,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
                                 i.video.length === index + 1
                                   ? 'rounded-b-md'
                                   : '',
-                                'flex h-[4.5rem] items-center bg-[#373c46] px-6 text-lg transition-all hover:opacity-70'
+                                'flex h-[4.5rem] items-center bg-[#373c46] px-6 text-lg transition-all hover:opacity-70 md:h-16 md:px-4 md:text-sm'
                               )}
                             >
                               {j.title}
@@ -196,7 +196,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
           </div>
         </div>
 
-        <div className='mt-14 flex flex-col items-center space-y-8'>
+        <div className='mt-14 flex flex-col items-center space-y-8 md:mt-8'>
           <div className='text-sm font-medium text-[#cfcfcf]'>
             *진도율 체크를 위해 수강완료 버튼을 반드시 클릭하세요.
           </div>
