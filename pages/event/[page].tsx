@@ -12,8 +12,10 @@ const Event: NextPage<{ page: string }> = ({ page }) => {
   return (
     <>
       <SEO title='이벤트' />
-      <Layout padding='pt-24 pb-44 md:py-12'>
-        <div className='mb-14 text-2xl font-bold'>이벤트</div>
+      <Layout padding='pt-24 pb-44 md:py-10'>
+        <div className='mb-14 text-2xl font-bold md:mb-6 md:text-xl'>
+          이벤트
+        </div>
         <EventList data={data?.results} totalItems={data?.count} />
       </Layout>
     </>

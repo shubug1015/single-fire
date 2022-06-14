@@ -13,7 +13,7 @@ export default function EventList({ data, totalItems }: IProps) {
   const currentPage = router.query.page as string;
   return (
     <div>
-      <div className='space-y-6'>
+      <div className='space-y-6 md:space-y-2'>
         {data?.map((i) => (
           <div key={i.id}>
             <Event id={i.id} thumbnail={i.thumbnail} />
