@@ -12,11 +12,11 @@ const Finish: NextPage = () => {
     router.query;
   return (
     <Layout padding='pt-24 pb-48'>
-      <div className='flex justify-center text-[2.5rem] font-bold'>
+      <div className='flex justify-center text-[2.5rem] font-bold md:text-3xl'>
         결제가 완료되었습니다.
       </div>
 
-      <div className='mt-4 flex justify-center font-light'>
+      <div className='mt-4 flex justify-center font-light md:block'>
         결제 영수증은 마이페이지 ▷ 수강 신청 내역 ▷{' '}
         <span className='text-[#ff8a00]'>결제발급서</span>에서 확인이
         가능합니다.
