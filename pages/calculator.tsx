@@ -27,10 +27,6 @@ const Calculator: NextPage = () => {
   });
   const onValid = (data: IForm) => {
     setResultTab(true);
-    setValue('input1', '');
-    setValue('input2', '');
-    setValue('input3', '');
-    setValue('input4', '');
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);
@@ -160,7 +156,13 @@ const Calculator: NextPage = () => {
 
               <div className='flex space-x-4 md:flex-col md:space-x-0'>
                 <div
-                  onClick={() => setResultTab(false)}
+                  onClick={() => {
+                    setValue('input1', '');
+                    setValue('input2', '');
+                    setValue('input3', '');
+                    setValue('input4', '');
+                    setResultTab(false);
+                  }}
                   className='mt-[3.75rem] cursor-pointer rounded bg-[#4c515a] py-4 px-[6.25rem] font-medium transition-all hover:opacity-90'
                 >
                   다시하기

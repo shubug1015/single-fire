@@ -16,7 +16,6 @@ export default function CommunityList({ notice, data, totalItems }: IProps) {
   const router = useRouter();
   const { category, slug } = router.query;
   const [currentPage, orderType, searchType, searchTerm] = slug as string[];
-
   return (
     <Layout padding='pb-44'>
       <div className='flex h-[3.75rem] items-center bg-[rgba(229,229,229,0.08)] md:hidden'>

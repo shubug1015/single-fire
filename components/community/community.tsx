@@ -1,3 +1,4 @@
+import { gradeImg } from '@components/grade';
 import { trimDate } from '@libs/client/utils';
 import { cls } from '@libs/client/utils';
 import Link from 'next/link';
@@ -74,9 +75,13 @@ export default function Community({
             {title}
           </div>
 
-          <div className='flex w-[10%] justify-center'>
+          <div className='flex w-[10%] items-center justify-center'>
             {name}
-            {grade}
+            {grade && (
+              <div className='relative ml-1 aspect-square h-5 w-5'>
+                {gradeImg(grade)}
+              </div>
+            )}
           </div>
 
           <div className='flex w-[10%] justify-center'>
@@ -115,8 +120,13 @@ export default function Community({
                 </div>
               </div>
               <div className='mt-2 flex text-xs'>
-                <div>
-                  {name} {grade}&nbsp;&nbsp;
+                <div className='flex items-center'>
+                  {name}{' '}
+                  {grade && (
+                    <div className='relative ml-1 aspect-square h-3 w-3'>
+                      {gradeImg(grade)}
+                    </div>
+                  )}
                 </div>
                 <div className='text-[#cfcfcf]'>
                   |&nbsp;&nbsp;{trimDate(created, 5, 10)}&nbsp;&nbsp;|

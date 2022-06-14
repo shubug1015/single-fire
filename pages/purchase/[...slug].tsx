@@ -72,8 +72,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
 
   const handlePayment = () => {
     const { IMP } = window;
-    IMP.init('imp24747186');
-    // IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
+    IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
 
     const params = {
       pg: payMethod, // pg사
@@ -86,35 +85,47 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         /^(\d{2,3})(\d{3,4})(\d{4})$/,
         `$1-$2-$3`
       ), // 전화번호
-      m_redirect_url: `https://www.xn--o22bp6a0zk.com/purchase/mobile?type=${type}&id=${data?.id}&name=${data?.name}&pay_method=${payMethod}&price=${data?.price}&discount=${totalDiscount}&point=${point}&coupon=${coupon.id}&total_price=${totalPrice}&order_id=${orderId}`, // 모바일 redirect url
+      custom_data: {
+        type,
+        id: data?.id,
+        price: data?.price,
+        total_price: totalPrice,
+        point,
+        coupon: coupon.id,
+        token,
+      }, // 커스텀 데이터
+      // m_redirect_url: `http://localhost:3000/purchase/finish`, // 모바일 redirect url
+      m_redirect_url: `https://www.xn--o22bp6a0zk.com/purchase/finish`, // 모바일 redirect url
     };
 
     const callback = async (res: any) => {
-      const { success, merchant_uid, error_msg, imp_uid, error_code } = res;
+      const { success, imp_uid, merchant_uid, error_msg, error_code } = res;
       if (success) {
-        await purchaseApi.purchase({
-          type,
-          method: payMethod,
-          id: data?.id,
-          price: data?.price,
-          totalPrice,
-          point,
-          coupon: coupon.id,
-          orderId,
-          token,
-        });
-
-        router.push({
-          pathname: '/purchase/finish',
-          query: {
-            name: res.name,
-            pay_method: payMethod,
-            price: data?.price,
-            discount: totalDiscount,
-            point,
-            total_price: totalPrice,
-          },
-        });
+        // await purchaseApi.purchase({
+        //   type,
+        //   method: payMethod,
+        //   id: data?.id,
+        //   price: data?.price,
+        //   totalPrice,
+        //   point,
+        //   coupon: coupon.id,
+        //   orderId,
+        //   token,
+        // });
+        router.push(
+          `/purchase/finish?imp_uid=${imp_uid}&merchant_uid=${merchant_uid}&imp_success=true`
+        );
+        // router.push({
+        //   pathname: `/purchase/finish?imp_uid=${imp_uid}&merchant_uid=${merchant_uid}&imp_success=true`,
+        //   query: {
+        //     name: res.name,
+        //     pay_method: payMethod,
+        //     price: data?.price,
+        //     discount: totalDiscount,
+        //     point,
+        //     total_price: totalPrice,
+        //   },
+        // });
       } else {
         console.log('error', error_code, error_msg);
       }
