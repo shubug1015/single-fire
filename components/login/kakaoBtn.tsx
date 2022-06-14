@@ -69,7 +69,7 @@ export default function KakaoBtn() {
   return (
     <div
       onClick={kakaoLogin}
-      className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#fee500] font-medium text-[#222222] transition-all hover:opacity-90'
+      className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#fee500] text-sm font-medium text-[#222222] transition-all hover:opacity-90'
     >
       kakao 로그인
     </div>

@@ -71,7 +71,7 @@ export default function NaverBtn() {
       <div id='naverIdLogin' className='hidden' />
       <div
         onClick={handleNaverLogin}
-        className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#03CF5D] font-medium transition-all hover:opacity-90'
+        className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#03CF5D] text-sm font-medium transition-all hover:opacity-90'
       >
         NAVER 로그인
       </div>
