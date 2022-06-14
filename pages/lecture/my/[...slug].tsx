@@ -104,6 +104,19 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
                 <div>{currentVideo?.text}</div>
               </div>
             )}
+
+            <div className='mt-14 flex flex-col items-center space-y-8 md:mt-8'>
+              <div className='text-sm font-medium text-[#cfcfcf]'>
+                *진도율 체크를 위해 수강완료 버튼을 반드시 클릭하세요.
+              </div>
+
+              <div
+                onClick={finishLecture}
+                className='flex h-16 w-96 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-opacity hover:opacity-90'
+              >
+                수강완료
+              </div>
+            </div>
           </div>
 
           <div className='grow space-y-4 font-medium md:mt-4'>
@@ -195,7 +208,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
           </div>
         </div>
 
-        <div className='mt-14 flex flex-col items-center space-y-8 md:mt-8'>
+        {/* <div className='mt-14 flex flex-col items-center space-y-8 md:mt-8'>
           <div className='text-sm font-medium text-[#cfcfcf]'>
             *진도율 체크를 위해 수강완료 버튼을 반드시 클릭하세요.
           </div>
@@ -206,7 +219,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
           >
             수강완료
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
