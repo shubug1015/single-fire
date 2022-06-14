@@ -7,7 +7,7 @@ interface SEOProps {
 export default function SEO({ title }: SEOProps) {
   return (
     <Head>
-      <title>{title} | 밀레니엄 머니스쿨</title>
+      <title>{title} | 밀레니얼 머니스쿨</title>
     </Head>
   );
 }

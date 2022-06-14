@@ -63,9 +63,7 @@ const EditProfile: NextPage = () => {
                 유료 커뮤니티 2건 이상 결제시 자동달성
               </div>
               <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
-                커뮤니티 유료행사 우선참여권
-                <br />
-                신청가능한 권한 부여
+                커뮤니티 무료행사 우선참여권
               </div>
             </div>
 
@@ -85,7 +83,9 @@ const EditProfile: NextPage = () => {
                 강의 3건이상 수강시 달성
                 <br />
               </div>
-              <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'></div>
+              <div className='flex h-40 items-center justify-center bg-[#373c46] text-center'>
+              커뮤니티 유료행사 우선참여권
+              </div>
             </div>
           </div>
         </div>
