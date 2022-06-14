@@ -12,7 +12,7 @@ export default function KakaoBtn() {
   const { mutate } = useSWR('/api/user');
   const router = useRouter();
 
-  const APP_KEY = 'a78245cc3114147dd84f65c96e04e5c3';
+  const APP_KEY = 'dfbc77dacaac43d8eb6a6689cc2c0b40';
 
   const kakaoLogin = () => {
     const { Kakao } = window;
@@ -69,7 +69,7 @@ export default function KakaoBtn() {
   return (
     <div
       onClick={kakaoLogin}
-      className='flex h-[3.688rem] cursor-pointer items-center justify-center rounded bg-[#fee500] text-lg font-medium text-[#222222] transition-all hover:opacity-90'
+      className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#fee500] font-medium text-[#222222] transition-all hover:opacity-90'
     >
       kakao 로그인
     </div>

@@ -17,8 +17,8 @@ export default function NaverBtn() {
     const { naver } = window;
 
     const naverLogin = new naver.LoginWithNaverId({
-      clientId: 'kwfOzQiJp1UVpGvKPS5r', // ClientID
-      callbackUrl: 'http://localhost:3000/naver', // Callback URL
+      clientId: 'I6pJeLVhB5VGJCWDEYyp', // ClientID
+      callbackUrl: 'https://www.xn--o22bp6a0zk.com/naver', // Callback URL
       isPopup: true, // 팝업 형태로 인증 여부
       loginButton: {
         color: 'green', // 색상
@@ -71,7 +71,7 @@ export default function NaverBtn() {
       <div id='naverIdLogin' className='hidden' />
       <div
         onClick={handleNaverLogin}
-        className='flex h-[3.688rem] cursor-pointer items-center justify-center rounded bg-[#03CF5D] text-lg font-medium transition-all hover:opacity-90'
+        className='flex h-10 cursor-pointer items-center justify-center rounded bg-[#03CF5D] font-medium transition-all hover:opacity-90'
       >
         NAVER 로그인
       </div>

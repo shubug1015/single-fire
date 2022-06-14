@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import useSWR from 'swr';
 
 declare global {
   interface Window {
@@ -10,37 +11,58 @@ declare global {
 }
 
 export default function GoogleBtn() {
+  const { mutate } = useSWR('/api/user');
+  const router = useRouter();
+
   const login = () => {
     const { google } = window;
 
-    const handleCredentialResponse = (res: any) => {
+    const handleCredentialResponse = async (res: any) => {
       const { credential } = res;
-      const data = jwt_decode(credential);
-      // console.log(data);
+      const data = jwt_decode(credential) as { [key: string]: any };
+      const {
+        data: { msg },
+      } = await axios.post('/api/login', {
+        type: 'google',
+        id: data.sub + '',
+      });
+      // sns 로그인이 처음인 사용자
+      if (msg && msg === 'need to signup') {
+        router.push(
+          {
+            pathname: '/signup',
+            query: {
+              type: 'google',
+              id: data.sub + '',
+              name: data.name,
+              // phone_number: profile.mobile,
+            },
+          },
+          '/signup'
+        );
+      }
+      // sns 로그인을 했던 사용자
+      else {
+        const {
+          data: { token, profile },
+        } = await axios.get('/api/user');
+        mutate({ ok: true, token, profile });
+      }
     };
 
     google.accounts.id.initialize({
       client_id:
-        '137899663311-v5r7pknrvjjca9tmtkl0i4jsocg4e122.apps.googleusercontent.com',
+        '785668148402-iro2k5tes1khiami8lb88fasre89r3dl.apps.googleusercontent.com',
       callback: handleCredentialResponse,
     });
 
     google.accounts.id.renderButton(document.querySelector('#googleLogin'), {
       size: 'large',
       text: 'Google 로그인',
-      width: 400,
+      width: 330,
     });
     // google.accounts.id.prompt();
   };
-
-  //   const handleGoogleLogin = () => {
-  //     // login();
-  //     console.log('b');
-  //     const loginBtn: any = document.querySelector('#googleLogin');
-  //     console.log(loginBtn);
-  //     // console.log(loginBtn.querySelector('iframe').contentWindow.document);
-  //     loginBtn.click();
-  //   };
 
   useEffect(() => {
     login();
@@ -49,12 +71,6 @@ export default function GoogleBtn() {
   return (
     <>
       <div id='googleLogin' />
-      {/* <div
-        onClick={handleGoogleLogin}
-        className='flex h-[3.688rem] cursor-pointer items-center justify-center rounded bg-white text-lg font-medium text-[#141414] transition-all hover:opacity-90'
-      >
-        Google 로그인
-      </div> */}
     </>
   );
 }

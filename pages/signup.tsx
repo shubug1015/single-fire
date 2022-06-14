@@ -118,7 +118,7 @@ const SignUp: NextPage = () => {
   return (
     <>
       <SEO title='회원가입' />
-      <div className='mx-auto my-28 flex max-w-[43.75rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem] md:my-12 md:max-w-[330px] md:py-10 md:px-6'>
+      <div className='mx-auto my-28 flex max-w-[32.5rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem] md:my-12 md:max-w-[330px] md:bg-transparent md:p-0'>
         <h1 className='text-2xl font-medium md:text-xl'>회원가입</h1>
 
         {/* Input 필드 */}

@@ -6,8 +6,8 @@ const Naver: NextPage = () => {
     const { naver } = window;
 
     const naverLogin = new naver.LoginWithNaverId({
-      clientId: 'kwfOzQiJp1UVpGvKPS5r', // ClientID
-      callbackUrl: 'http://localhost:3000/naver', // Callback URL
+      clientId: 'I6pJeLVhB5VGJCWDEYyp', // ClientID
+      callbackUrl: 'https://www.xn--o22bp6a0zk.com/naver', // Callback URL
       isPopup: false, // 팝업 형태로 인증 여부
       callbackHandle: false,
     });
