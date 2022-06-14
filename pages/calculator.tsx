@@ -21,11 +21,16 @@ const Calculator: NextPage = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<IForm>({
     mode: 'onSubmit',
   });
   const onValid = (data: IForm) => {
     setResultTab(true);
+    setValue('input1', '');
+    setValue('input2', '');
+    setValue('input3', '');
+    setValue('input4', '');
   };
   const onInvalid = (errors: FieldErrors) => {
     console.log(errors);

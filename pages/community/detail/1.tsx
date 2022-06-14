@@ -3,17 +3,15 @@ import BeforeScroll from '@components/community/detail/1/beforeScroll';
 import Hero from '@components/community/detail/1/hero';
 import Review from '@components/community/detail/1/review';
 import WithPro from '@components/community/detail/1/withPro';
-import type { GetServerSidePropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import Preview from '@components/community/detail/1/preview';
 import Faq from '@components/community/detail/1/faq';
 import Precaution from '@components/community/detail/1/precaution';
 import Point from '@components/community/detail/1/point';
 import Process from '@components/community/detail/1/process';
 import Professional from '@components/community/detail/1/professional';
-import { useUser } from '@libs/client/useUser';
 
 const CommunityDetail: NextPage = () => {
-  const { token } = useUser({ isPrivate: true });
   const clsFilter = (
     cls1: string,
     cls2: string,

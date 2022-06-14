@@ -10,6 +10,7 @@ import useSWR from 'swr';
 import { communityApi } from '@libs/api';
 
 const Community: NextPage = () => {
+  const { data: myData } = useSWR('/api/user');
   const { data } = useSWR('/community', () => communityApi.communityList());
   const imgList = [Ecomony, Nft, Stock, Coin];
   return (
@@ -46,7 +47,13 @@ const Community: NextPage = () => {
                 {i.text}
               </div>
 
-              <Link href={`/community/${i.id}/1/created/title`}>
+              <Link
+                href={
+                  myData?.token
+                    ? `/community/${i.id}/1/created/title`
+                    : `/community/detail/${i.id}`
+                }
+              >
                 <a className='w-full'>
                   <div className='mt-5 flex h-14 w-full items-center justify-center rounded-xl bg-[#00e7ff] font-medium text-[#282e38] transition-all hover:opacity-90'>
                     입장하기

@@ -1,9 +1,12 @@
+import { useUser } from '@libs/client/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 // import { useRouter } from 'next/router';
 import PrecautionBg from 'public/test/precaution-bg.png';
+import useSWR from 'swr';
 
 export default function Precaution() {
+  const { data } = useSWR('/api/user');
   // const router = useRouter();
   // const id = router.query.id;
   return (
@@ -31,7 +34,11 @@ export default function Precaution() {
           <br />
           제대로 책읽고 글쓰고 성장하실 분만 신청하세요!
         </div>
-        <Link href={`/purchase/community/1`}>
+        <Link
+          href={
+            data?.token && data?.profile ? `/purchase/community/1` : '/login'
+          }
+        >
           <a className='flex justify-center'>
             <div className='mt-[6.25rem] rounded-full bg-white px-[6.25rem] py-5 text-[1.375rem] leading-normal text-black md:mt-12 md:px-10 md:py-3 md:text-xs'>
               독서모임 참가하러가기

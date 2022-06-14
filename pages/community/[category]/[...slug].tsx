@@ -7,7 +7,8 @@ import Search from '@components/community/search';
 import { useUser } from '@libs/client/useUser';
 import useSWR from 'swr';
 // import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
+import cookies from 'next-cookies';
 
 interface IProps {
   params: { category: string; slug: string[] };
@@ -15,10 +16,10 @@ interface IProps {
 
 const CommunityCategory: NextPage<IProps> = ({ params }) => {
   const { token } = useUser({ isPrivate: true });
-  const router = useRouter();
+  // const router = useRouter();
   const { category, slug } = params;
   const [page, orderType, searchType, searchTerm] = slug;
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     token
       ? `/community/${category}/${page}/${orderType}/${searchType}/${searchTerm}`
       : null,
@@ -29,13 +30,13 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
         orderType,
         searchType,
         searchTerm,
-        token,
+        token: token,
       })
   );
 
-  if (data?.msg === 'need to register' || error) {
-    router.replace(`/community/detail/${category}`);
-  }
+  // if (data?.msg === 'need to register' || error) {
+  //   router.replace(`/community/detail/${category}`);
+  // }
   return (
     <>
       <SEO title='커뮤니티' />
@@ -51,11 +52,35 @@ const CommunityCategory: NextPage<IProps> = ({ params }) => {
 };
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  return {
-    props: {
-      params: ctx.params,
-    },
-  };
+  const { token } = cookies(ctx);
+
+  const category = ctx.params?.category;
+  const [page, orderType, searchType, searchTerm] = ctx.params
+    ?.slug as string[];
+
+  const data = await communityApi.communityBoard({
+    category,
+    page,
+    orderType,
+    searchType,
+    searchTerm,
+    token,
+  });
+
+  if (data?.msg === 'need to register') {
+    return {
+      redirect: {
+        destination: `/community/detail/${category}`,
+        permanent: false,
+      },
+    };
+  } else {
+    return {
+      props: {
+        params: ctx.params,
+      },
+    };
+  }
 };
 
 export default CommunityCategory;
