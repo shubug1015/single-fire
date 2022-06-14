@@ -51,10 +51,10 @@ const Finish: NextPage = () => {
       </div>
 
       <div className='mt-20 flex justify-center'>
-        <Link href='/'>
+        <Link href='/mypage/lecture/ongoing/1'>
           <a>
             <div className='flex h-14 w-64 items-center justify-center rounded bg-[#00e7ff] font-medium text-[#282e38] transition-all hover:opacity-90'>
-              메인으로
+              강의 보러가기
             </div>
           </a>
         </Link>
