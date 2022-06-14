@@ -65,7 +65,7 @@ export default function Header() {
         {/* 헤더 상단 */}
         <div className='flex h-[6.25rem] items-center justify-between md:h-14'>
           {/* 좌측 메뉴 */}
-          <nav className='flex items-center text-lg font-medium'>
+          <nav className='flex items-center text-lg font-medium md:text-sm'>
             {/* 로고 */}
             <Link href='/'>
               <a>
@@ -135,7 +135,7 @@ export default function Header() {
                     router.pathname === '/lecture/[category]/[page]'
                     ? 'text-[#00e7ff]'
                     : '',
-                  'ml-20 mr-10 md:ml-5 md:mr-3 md:whitespace-nowrap md:text-sm'
+                  'ml-20 mr-10 md:ml-5 md:mr-3 md:whitespace-nowrap'
                 )}
               >
                 클래스
@@ -150,7 +150,7 @@ export default function Header() {
                   router.pathname === '/community' ||
                     router.pathname === '/community/[category]/[...slug]'
                     ? 'text-[#00e7ff]'
-                    : 'md:whitespace-nowrap md:text-sm'
+                    : 'md:whitespace-nowrap'
                 )}
               >
                 커뮤니티
