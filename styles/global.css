@@ -48,6 +48,10 @@ a {
   color: black !important;
 }
 
+.wysiwyg p {
+  word-break: break-word;
+}
+
 /* wysiwyg 이미지 비율 최적화 */
 .wysiwyg img {
   @apply !h-auto;
