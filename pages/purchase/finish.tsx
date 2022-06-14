@@ -24,7 +24,7 @@ const Finish: NextPage = () => {
 
       <div className='mt-14 text-lg font-medium'>결제 상품 정보</div>
 
-      <div className='mt-6 flex h-[3.75rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] text-lg font-medium text-[rgba(255,255,255,0.6)]'>
+      <div className='mt-6 flex h-[3.75rem] items-center rounded-sm bg-[rgba(229,229,229,0.08)] text-lg font-medium text-[rgba(255,255,255,0.6)] md:hidden'>
         <div className='flex w-1/6 justify-center'>상품명</div>
         <div className='flex w-1/6 justify-center'>결제 방법</div>
         <div className='flex w-1/6 justify-center'>상품 금액</div>
@@ -33,7 +33,7 @@ const Finish: NextPage = () => {
         <div className='flex w-1/6 justify-center'>총 결제 금액</div>
       </div>
 
-      <div className='flex items-center border-b-2 border-[#4a4e57] py-14 text-lg'>
+      <div className='flex items-center border-b-2 border-[#4a4e57] py-14 text-lg md:hidden'>
         <div className='flex w-1/6 justify-center'>{name}</div>
         <div className='flex w-1/6 justify-center'>{pay_method}</div>
         <div className='flex w-1/6 justify-center'>
@@ -47,6 +47,41 @@ const Finish: NextPage = () => {
         </div>
         <div className='flex w-1/6 justify-center'>
           {total_price && (+total_price).toLocaleString()}
+        </div>
+      </div>
+
+      <div className='mt-6 hidden h-full space-y-2 border-b-2 border-t-2 border-[#4a4e57] py-8 text-lg font-medium text-[rgba(255,255,255,0.6)] md:block'>
+        <div className='flex justify-start'>
+          <div className='w-32'>상품명</div>
+          <div className='w-48 text-white'>{name}</div>
+        </div>
+        <div className='flex justify-start'>
+          <div className='w-32'>결제 방법</div>
+          <div className='w-48 text-white'>{pay_method}</div>
+        </div>
+        <div className='flex justify-start'>
+          <div className='w-32'>상품 금액</div>
+          <div className='w-48 text-white'>
+            {price && (+price).toLocaleString()}
+          </div>
+        </div>
+        <div className='flex justify-start'>
+          <div className='w-32'>할인 금액</div>
+          <div className='w-48 text-white'>
+            {discount && (+discount).toLocaleString()}
+          </div>
+        </div>
+        <div className='flex justify-start'>
+          <div className='w-32'>포인트 사용</div>
+          <div className='w-48 text-white'>
+            {point ? (+point).toLocaleString() : '-'}
+          </div>
+        </div>
+        <div className='flex justify-start'>
+          <div className='w-32'>총 결제 금액</div>
+          <div className='w-48 text-white'>
+            {total_price && (+total_price).toLocaleString()}
+          </div>
         </div>
       </div>
 

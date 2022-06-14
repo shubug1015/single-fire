@@ -81,11 +81,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
     <>
       <SEO title={data?.name} />
 
-      <div className='px-12 pt-24 pb-36 md:pt-6'>
-        <div className='border-b-2 border-[rgba(229,229,229,0.08)] pb-6 text-[1.75rem] font-bold md:text-lg md:font-medium'>
-          {data?.name}
-        </div>
-
+      <div className='px-12 pb-36 md:pt-6'>
         <div className='mt-10 flex space-x-5 md:mt-6 md:block md:space-x-0'>
           <div className='w-3/4 md:w-full'>
             <div className='relative aspect-video w-full'>
@@ -98,9 +94,12 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
                 className='absolute top-0 left-0 aspect-video w-full'
               ></iframe>
             </div>
+            <div className='border-b-2 border-[rgba(229,229,229,0.08)] py-6 text-[1.75rem] font-bold md:text-lg md:font-medium'>
+              {data?.name}
+            </div>
 
             {currentVideo?.text?.length > 0 && (
-              <div className='mt-8 flex w-full rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48'>
+              <div className='mt-8 flex w-full rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48 md:p-4'>
                 <div>💡</div>
                 <div>{currentVideo?.text}</div>
               </div>

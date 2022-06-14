@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import useSWR from 'swr';
 import { communityApi } from '@libs/api';
+import { cls } from '@libs/client/utils';
 
 const Community: NextPage = () => {
   const { data: myData } = useSWR('/api/user');
@@ -20,7 +21,14 @@ const Community: NextPage = () => {
         {data?.map((i: { [key: string]: any }, index: number) => (
           <div key={i.id}>
             <div className='flex flex-col items-center bg-[#373c46] pt-12 pb-44 md:pb-32'>
-              <div className='rounded-full border border-[#00e7ff] py-2 px-4 text-sm text-[#00e7ff]'>
+              <div
+                className={cls(
+                  i.type === '정기상품'
+                    ? 'border-[#00e7ff] text-[#00e7ff]'
+                    : 'border-[#ff8a00] text-[#ff8a00]',
+                  'rounded-full border py-2 px-4 text-sm'
+                )}
+              >
                 {i.type}
               </div>
 
