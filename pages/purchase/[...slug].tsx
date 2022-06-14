@@ -72,8 +72,8 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
 
   const handlePayment = () => {
     const { IMP } = window;
-    // IMP.init('imp24747186');
-    IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
+    IMP.init('imp24747186');
+    // IMP.init(process.env.NEXT_PUBLIC_MERCHANT_ID);
 
     const params = {
       pg: payMethod, // pg사
@@ -183,7 +183,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               <div className='flex grow'>{data?.name}</div>
               <div className='flex w-1/5 justify-center'>-</div>
               <div className='flex w-1/5 justify-center'>
-                {data?.price.toLocaleString()} 원
+                {data?.price?.toLocaleString()} 원
               </div>
             </div>
             {/* 상품정보 Data */}
@@ -197,7 +197,9 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               </div>
               <div className='mt-1 flex justify-between'>
                 <div className='text-sm text-[#cfcfcf]'>상품금액</div>
-                <div className='text-sm'>{data?.price.toLocaleString()} 원</div>
+                <div className='text-sm'>
+                  {data?.price?.toLocaleString()} 원
+                </div>
               </div>
             </div>
             {/* 상품정보 Data 모바일*/}
@@ -228,7 +230,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
 
                 <div className='mt-4 text-lg'>
                   <span className='font-bold'>
-                    {coupon.price.toLocaleString()}
+                    {coupon.price?.toLocaleString()}
                   </span>
                   원 할인
                 </div>
@@ -243,7 +245,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                   <div className='text-[#cfcfcf]'>할인금액</div>
                   <div>
                     <span className='font-bold'>
-                      {coupon.price.toLocaleString()}
+                      {coupon.price?.toLocaleString()}
                     </span>{' '}
                     원
                   </div>
@@ -365,22 +367,22 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           <div className='space-y-4 py-8 text-lg'>
             <div className='flex items-center'>
               <div className='w-40'>상품 금액</div>
-              <div>{data?.price.toLocaleString()}</div>
+              <div>{data?.price?.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center'>
               <div className='w-40'>할인 금액</div>
-              <div>-{totalDiscount.toLocaleString()}</div>
+              <div>-{totalDiscount?.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center opacity-60'>
               <div className='w-40'>이벤트</div>
-              <div>-{data?.discount.toLocaleString()}</div>
+              <div>-{data?.discount?.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center opacity-60'>
               <div className='w-40'>쿠폰</div>
-              <div>-{coupon.price.toLocaleString()}</div>
+              <div>-{coupon.price?.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center opacity-60'>
@@ -392,7 +394,8 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
             <div className='w-40 text-lg'>총 결제 예상금액</div>
 
             <div className='flex text-lg'>
-              <span className='font-bold'>{totalPrice.toLocaleString()}</span>원
+              <span className='font-bold'>{totalPrice?.toLocaleString()}</span>
+              원
             </div>
           </div>
         </div>
@@ -440,7 +443,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 >
                   <div className='flex w-3/4 pl-4'>{i.name}</div>
                   <div className='flex grow justify-center'>
-                    {i.price.toLocaleString()}원
+                    {i.price?.toLocaleString()}원
                   </div>
                 </div>
               ))}

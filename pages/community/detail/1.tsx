@@ -10,8 +10,22 @@ import Precaution from '@components/community/detail/1/precaution';
 import Point from '@components/community/detail/1/point';
 import Process from '@components/community/detail/1/process';
 import Professional from '@components/community/detail/1/professional';
+import useSWR from 'swr';
+import { purchaseApi } from '@libs/api';
+import { useRouter } from 'next/router';
 
 const CommunityDetail: NextPage = () => {
+  const { data: myData } = useSWR('/api/user');
+  const { data } = useSWR(
+    myData?.token ? `/payment/check/community/1` : null,
+    () => purchaseApi.check('community', 1, myData?.token)
+  );
+  const router = useRouter();
+
+  if (data === 'already purchased') {
+    router.back();
+  }
+
   const clsFilter = (
     cls1: string,
     cls2: string,
@@ -20,6 +34,7 @@ const CommunityDetail: NextPage = () => {
   ) => {
     return cls1;
   };
+
   return (
     <>
       <SEO title='커뮤니티' />

@@ -47,3 +47,8 @@ a {
 .toolbar {
   color: black !important;
 }
+
+/* wysiwyg 이미지 비율 최적화 */
+.wysiwyg img {
+  @apply !h-auto;
+}

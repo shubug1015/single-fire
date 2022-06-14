@@ -57,7 +57,9 @@ const Community: NextPage = () => {
 
               <Link
                 href={
-                  myData?.token
+                  index === 3
+                    ? '/community/4/1/created/title'
+                    : myData?.token
                     ? `/community/${i.id}/1/created/title`
                     : `/community/detail/${i.id}`
                 }

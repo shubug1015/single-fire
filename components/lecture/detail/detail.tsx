@@ -1,7 +1,9 @@
 import Layout from '@layouts/sectionLayout';
+import { purchaseApi } from '@libs/api';
 import { cls } from '@libs/client/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 interface IProps {
   id: number;
@@ -24,6 +26,12 @@ export default function Detail({
   discount,
   discount_period,
 }: IProps) {
+  const { data: myData } = useSWR('/api/user');
+  const { data } = useSWR(
+    myData?.token ? `/payment/check/lecture/${id}` : null,
+    () => purchaseApi.check('lecture', id, myData?.token)
+  );
+
   const copyUrl = () => {
     const url = window.location.href;
     navigator.clipboard
@@ -143,11 +151,20 @@ export default function Detail({
               </svg>
             </div>
 
-            <Link href={`/purchase/lecture/${id}`}>
-              <a className='ml-3 flex grow cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-all hover:opacity-90'>
+            {data === 'already purchased' ? (
+              <div
+                onClick={() => alert('이미 구매한 강의입니다.')}
+                className='ml-3 flex grow cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-all hover:opacity-90'
+              >
                 신청하기
-              </a>
-            </Link>
+              </div>
+            ) : (
+              <Link href={`/purchase/lecture/${id}`}>
+                <a className='ml-3 flex grow cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-all hover:opacity-90'>
+                  신청하기
+                </a>
+              </Link>
+            )}
           </div>
           {/* 복사 & 구매 버튼 */}
         </div>

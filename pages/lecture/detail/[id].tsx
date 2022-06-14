@@ -12,7 +12,11 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 const LectureDetail: NextPage<{ id: string }> = ({ id }) => {
-  const { data } = useSWR(`/lectures/${id}`, () => lecturesApi.detail(id));
+  const { data: myData } = useSWR('/api/user');
+  const { data } = useSWR(
+    myData?.token ? `/lectures/${id}/logged` : `/lectures/${id}/unlogged`,
+    () => lecturesApi.detail(id, myData?.token)
+  );
   const [section, setSection] = useState('강의정보');
   const sectionList = [
     {

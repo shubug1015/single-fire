@@ -31,7 +31,10 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
           {data?.title}
         </div>
 
-        <div dangerouslySetInnerHTML={{ __html: data?.content }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: data?.content }}
+          className='wysiwyg'
+        />
       </Layout>
 
       <Layout bgColor='bg-[rgba(229,229,229,0.08)]' padding='py-20'>

@@ -8,6 +8,7 @@ import { trimDate } from '@libs/client/utils';
 import type { GetServerSidePropsContext, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { FieldErrors, useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
@@ -27,12 +28,15 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
     () => communityApi.getDetail(category, id, token as string)
   );
   const router = useRouter();
-
+  const [isEditing, setIsEditing] = useState<{
+    id: number | null;
+    value: boolean;
+  }>({ id: null, value: false });
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
+    // setError,
     setValue,
   } = useForm<IForm>({
     mode: 'onSubmit',
@@ -57,20 +61,37 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
   };
 
   const onValid = async ({ reply }: IForm) => {
-    if (token) {
-      try {
-        await communityApi.writeReview(id, reply, token);
-        setValue('reply', '');
-        await communityApi.toggleLike(id, token as string);
+    try {
+      // 리뷰 수정 진행중 true
+      if (isEditing.value) {
+        await communityApi.editReview(
+          isEditing.id as number,
+          reply,
+          token as string
+        );
         const updatedData = await communityApi.getDetail(
           category,
           id,
           token as string
         );
         mutate(updatedData);
-      } catch {
-        alert('Error');
+        setIsEditing({ id: null, value: false });
+        setValue('reply', '');
       }
+      // 리뷰 수정 진행중 false
+      else {
+        await communityApi.writeReview(id, reply, token as string);
+        // await communityApi.toggleLike(id, token as string);
+        const updatedData = await communityApi.getDetail(
+          category,
+          id,
+          token as string
+        );
+        mutate(updatedData);
+        setValue('reply', '');
+      }
+    } catch {
+      alert('Error');
     }
   };
   const onInvalid = (errors: FieldErrors) => {
@@ -87,13 +108,37 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
       }
     }
   };
+
+  const deleteReview = async (reviewId: number) => {
+    if (confirm('수강후기를 삭제하시겠습니까?')) {
+      try {
+        await communityApi.deleteReview(reviewId, token as string);
+        const updatedData = await communityApi.getDetail(
+          category,
+          id,
+          token as string
+        );
+        mutate(updatedData);
+        setValue('reply', '');
+      } catch {
+        alert('Error');
+      }
+    }
+  };
+
+  if (data?.msg === 'need to register') {
+    router.replace(`/community/detail/${category}`);
+  }
   return (
     <>
       <SEO title={data?.title} />
       <Detail {...data} />
       <Layout padding='pt-20 pb-36'>
         {/* 내용 */}
-        <div dangerouslySetInnerHTML={{ __html: data?.content }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: data?.content }}
+          className='wysiwyg'
+        />
         {/* 내용 */}
 
         {/* 좋아요 */}
@@ -135,22 +180,83 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
 
         {/* 리뷰 */}
         <div className='mt-24 w-full space-y-4 md:mt-14'>
-          {data?.reply.map((i: { [key: string]: any }) => (
+          {data?.reply?.map((i: { [key: string]: any }) => (
             <div key={i.id} className='w-full rounded bg-[#373c46] p-10 md:p-6'>
-              <div className='flex items-center'>
-                <div className='text-lg font-medium'>{i.user.nickname}</div>
-                <div className='relative ml-1 aspect-square h-5 w-5'>
-                  {gradeImg(i.user.grade)}
+              <div className='flex justify-between'>
+                <div className='flex items-center'>
+                  <div className='text-lg font-medium'>{i.user.nickname}</div>
+                  <div className='relative ml-1 aspect-square h-5 w-5'>
+                    {gradeImg(i.user.grade)}
+                  </div>
                 </div>
+
+                {i.is_mine && (
+                  <div className='flex items-center space-x-2 text-sm opacity-70'>
+                    {isEditing.value ? (
+                      // 리뷰 수정 진행중 true
+                      <div
+                        onClick={() => {
+                          setIsEditing({ id: null, value: false });
+                          setValue('reply', '');
+                        }}
+                        className='cursor-pointer'
+                      >
+                        취소
+                      </div>
+                    ) : (
+                      // 리뷰 수정 진행중 false
+                      <>
+                        <div
+                          onClick={() => {
+                            setIsEditing({ id: i.id, value: true });
+                            setValue('reply', i.text);
+                          }}
+                          className='cursor-pointer'
+                        >
+                          수정
+                        </div>
+                        <div className='text-[0.625rem]'>|</div>
+                        <div
+                          onClick={() => deleteReview(i.id)}
+                          className='cursor-pointer'
+                        >
+                          삭제
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className='opacity-60'>{trimDate(i.created, 0, 10)}</div>
 
-              <div className='mt-7 text-lg md:mt-4'>{i.text}</div>
+              {i.is_mine && i.id === isEditing.id && isEditing.value ? (
+                <div className='mt-7 flex w-full'>
+                  <textarea
+                    {...register('reply', {
+                      required: '댓글을 입력해주세요',
+                      minLength: {
+                        message: '10자 이상의 댓글을 남겨주세요',
+                        value: 10,
+                      },
+                    })}
+                    className='h-24 grow rounded-r-sm bg-[#282e38] p-4 outline-none md:h-32'
+                  />
+                  <div
+                    onClick={handleSubmit(onValid, onInvalid)}
+                    className='ml-4 flex h-10 w-24 cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] transition-all hover:opacity-90 md:mt-4 md:ml-0'
+                  >
+                    저장
+                  </div>
+                </div>
+              ) : (
+                <div className='mt-7 text-lg md:mt-4'>{i.text}</div>
+              )}
             </div>
           ))}
 
-          {token && (
+          {/* 리뷰 작성창 */}
+          {token && !isEditing.value && (
             <div className='flex w-full items-start rounded bg-[#373c46] py-6 px-10 md:block md:p-4'>
               <div className='flex items-center'>
                 <div>{profile?.name}</div>
@@ -166,9 +272,9 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
                   </div>
                   <textarea
                     {...register('reply', {
-                      required: '리뷰를 입력해주세요',
+                      required: '댓글을 입력해주세요',
                       minLength: {
-                        message: '10자 이상의 리뷰를 남겨주세요',
+                        message: '10자 이상의 댓글을 남겨주세요',
                         value: 10,
                       },
                     })}
@@ -189,6 +295,7 @@ const CommunityDetail: NextPage<IProps> = ({ category, id }) => {
               </div>
             </div>
           )}
+          {/* 리뷰 작성창 */}
         </div>
         {/* 리뷰 */}
       </Layout>

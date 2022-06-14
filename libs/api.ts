@@ -213,7 +213,17 @@ export const lecturesApi = {
       .then((res) => res.data),
 
   // 강의 상세
-  detail: (id: string) => api.get(`/lectures/${id}/`).then((res) => res.data),
+  detail: (id: string, token?: string | null) =>
+    api
+      .get(`/lectures/${id}/`, {
+        ...(token && {
+          headers: {
+            Authorization: token,
+            'Content-Type': 'application/json',
+          },
+        }),
+      })
+      .then((res) => res.data),
 
   // 강의 상세 리뷰쓰기
   writeReview: (id: string, text: string, token: string) =>
@@ -230,6 +240,34 @@ export const lecturesApi = {
         },
       }
     ),
+
+  // 강의 상세 리뷰 수정
+  editReview: (id: number, text: string, token: string) =>
+    api.put(
+      `/lectures/review/`,
+      {
+        lecture_review_pk: id,
+        text,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+
+  // 강의 상세 리뷰 삭제
+  deleteReview: (id: number, token: string) =>
+    api.delete(`/lectures/review/`, {
+      data: {
+        lecture_review_pk: id,
+      },
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
 
   // 강사 리스트
   tutorList: (page: string) =>
@@ -277,10 +315,12 @@ export const communityApi = {
           searchTerm || ''
         }`,
         {
-          headers: {
-            Authorization: token,
-            'Content-Type': 'application/json',
-          },
+          ...(token && {
+            headers: {
+              Authorization: token,
+              'Content-Type': 'application/json',
+            },
+          }),
         }
       )
       .then((res) => res.data),
@@ -375,6 +415,34 @@ export const communityApi = {
         },
       }
     ),
+
+  // 강의 상세 리뷰 수정
+  editReview: (id: number, text: string, token: string) =>
+    api.put(
+      `/community/post/reply/`,
+      {
+        reply_pk: id,
+        text,
+      },
+      {
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    ),
+
+  // 강의 상세 리뷰 삭제
+  deleteReview: (id: number, token: string) =>
+    api.delete(`/community/post/reply/`, {
+      data: {
+        reply_pk: id,
+      },
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    }),
 };
 
 export const purchaseApi = {
@@ -386,6 +454,21 @@ export const purchaseApi = {
         'Content-Type': 'application/json',
       },
     }),
+
+  // 결제했던 정보 체크
+  check: (type: string, id: number, token: string) =>
+    api
+      .get('/payment/check/', {
+        params: {
+          type,
+          ...(type === 'lecture' ? { lecture_pk: id } : { community_pk: id }),
+        },
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data),
 
   // 결제
   purchase: ({

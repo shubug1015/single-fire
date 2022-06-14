@@ -3,6 +3,7 @@ import Pagebar from '@components/pagebar';
 import Community from './community';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 interface IProps {
   notice: any[];
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 export default function CommunityList({ notice, data, totalItems }: IProps) {
+  const { data: myData } = useSWR('/api/user');
   const router = useRouter();
   const { category, slug } = router.query;
   const [currentPage, orderType, searchType, searchTerm] = slug as string[];
@@ -70,15 +72,17 @@ export default function CommunityList({ notice, data, totalItems }: IProps) {
         />
       </div>
 
-      <div className='flex justify-end'>
-        <Link href={`/community/${category}/post`}>
-          <a>
-            <div className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38]'>
-              글쓰기
-            </div>
-          </a>
-        </Link>
-      </div>
+      {myData?.token && (
+        <div className='flex justify-end'>
+          <Link href={`/community/${category}/post`}>
+            <a>
+              <div className='flex h-[2.625rem] w-[6.25rem] items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38]'>
+                글쓰기
+              </div>
+            </a>
+          </Link>
+        </div>
+      )}
     </Layout>
   );
 }
