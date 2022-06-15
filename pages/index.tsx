@@ -2,10 +2,12 @@ import Banner from '@components/home/banner';
 import Best from '@components/home/best';
 import Community from '@components/home/community';
 import Customized from '@components/home/customized';
+import Popup from '@components/home/popup';
 import Top3 from '@components/home/top3';
 import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
 import type { NextPage } from 'next';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 // interface IFallback {
@@ -14,6 +16,19 @@ import useSWR from 'swr';
 
 const Home: NextPage = () => {
   const { data } = useSWR('/cms/main', () => lecturesApi.mainLectureList());
+  const [popup, setPopup] = useState(false);
+
+  const closePopup = () => {
+    setPopup(false);
+    sessionStorage.setItem('popup', 'false');
+  };
+
+  useEffect(() => {
+    const popupState = sessionStorage.getItem('popup');
+    if (!popupState) {
+      setPopup(true);
+    }
+  }, []);
   return (
     <>
       <SEO title='홈' />
@@ -30,6 +45,8 @@ const Home: NextPage = () => {
         coin={data?.coin_class.map((i: { [key: string]: any }) => i.lecture)}
       />
       <Community />
+
+      {popup && <Popup closePopup={closePopup} />}
     </>
   );
 };
