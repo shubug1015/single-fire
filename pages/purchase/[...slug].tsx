@@ -24,7 +24,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
   const { token, profile } = useUser({
     isPrivate: true,
   });
-  const [type, id] = slug;
+  const [type, id, priceType] = slug;
   const { data: tmpData } = useSWR(
     type === 'lecture' ? `/lectures/${id}` : '/community',
     type === 'lecture'
@@ -52,8 +52,12 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
     '0'
   )}-${date.getTime()}`;
   const totalDiscount = data?.discount + +point + coupon.price;
-  const totalPrice =
-    data?.price - totalDiscount < 0 ? 0 : data?.price - totalDiscount;
+  const price = priceType
+    ? priceType === '1'
+      ? data?.price
+      : data?.price2
+    : data?.price;
+  const totalPrice = price - totalDiscount < 0 ? 0 : price - totalDiscount;
 
   const handlePayMethod = (method: string) => {
     setPayMethod(method);
@@ -88,7 +92,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
       custom_data: {
         type,
         id: data?.id,
-        price: data?.price,
+        price,
         total_price: totalPrice,
         point,
         coupon: coupon.id,
@@ -105,7 +109,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         //   type,
         //   method: payMethod,
         //   id: data?.id,
-        //   price: data?.price,
+        //   price: price,
         //   totalPrice,
         //   point,
         //   coupon: coupon.id,
@@ -120,7 +124,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         //   query: {
         //     name: res.name,
         //     pay_method: payMethod,
-        //     price: data?.price,
+        //     price: price,
         //     discount: totalDiscount,
         //     point,
         //     total_price: totalPrice,
@@ -192,9 +196,11 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
                 </div>
               </div>
               <div className='flex grow'>{data?.name}</div>
-              <div className='flex w-1/5 justify-center'>-</div>
               <div className='flex w-1/5 justify-center'>
-                {data?.price?.toLocaleString()} 원
+                {priceType ? (priceType === '1' ? '1개월' : '3개월') : '-'}
+              </div>
+              <div className='flex w-1/5 justify-center'>
+                {price?.toLocaleString()} 원
               </div>
             </div>
             {/* 상품정보 Data */}
@@ -204,13 +210,13 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
               <div className='flex grow text-base'>{data?.name}</div>
               <div className='mt-4 flex justify-between'>
                 <div className='text-sm text-[#cfcfcf]'>옵션</div>
-                <div className=''>-</div>
+                <div className=''>
+                  {priceType ? (priceType === '1' ? '1개월' : '3개월') : '-'}
+                </div>
               </div>
               <div className='mt-1 flex justify-between'>
                 <div className='text-sm text-[#cfcfcf]'>상품금액</div>
-                <div className='text-sm'>
-                  {data?.price?.toLocaleString()} 원
-                </div>
+                <div className='text-sm'>{price?.toLocaleString()} 원</div>
               </div>
             </div>
             {/* 상품정보 Data 모바일*/}
@@ -378,7 +384,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           <div className='space-y-4 py-8 text-lg'>
             <div className='flex items-center'>
               <div className='w-40'>상품 금액</div>
-              <div>{data?.price?.toLocaleString()}</div>
+              <div>{price?.toLocaleString()}</div>
             </div>
 
             <div className='flex items-center'>

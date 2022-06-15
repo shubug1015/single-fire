@@ -34,17 +34,36 @@ export default function Precaution() {
           <br />
           제대로 책읽고 글쓰고 성장하실 분만 신청하세요!
         </div>
-        <Link
-          href={
-            data?.token && data?.profile ? `/purchase/community/1` : '/login'
-          }
-        >
-          <a className='flex justify-center'>
-            <div className='mt-[6.25rem] rounded-full bg-white px-[6.25rem] py-5 text-[1.375rem] leading-normal text-black md:mt-12 md:px-10 md:py-3 md:text-xs'>
-              독서모임 참가하러가기
-            </div>
-          </a>
-        </Link>
+
+        <div className='mt-[6.25rem] flex justify-center space-x-4 md:mt-12 md:flex-col md:items-center md:space-y-2 md:space-x-0'>
+          <Link
+            href={
+              data?.token && data?.profile
+                ? `/purchase/community/1/1`
+                : '/login'
+            }
+          >
+            <a className='flex justify-center'>
+              <div className='rounded-full bg-white px-16 py-5 text-[1.375rem] leading-normal text-black md:px-8 md:py-3 md:text-xs'>
+                독서모임 참가하러가기(1개월)
+              </div>
+            </a>
+          </Link>
+
+          <Link
+            href={
+              data?.token && data?.profile
+                ? `/purchase/community/1/2`
+                : '/login'
+            }
+          >
+            <a className='flex justify-center'>
+              <div className='rounded-full bg-white px-16 py-5 text-[1.375rem] leading-normal text-black  md:px-8 md:py-3 md:text-xs'>
+                독서모임 참가하러가기(3개월)
+              </div>
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );
