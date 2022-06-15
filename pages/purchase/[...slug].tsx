@@ -424,7 +424,7 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
           >
             결제하기
           </div> */}
-          <div className='flex h-14 w-64 cursor-pointer items-center justify-center rounded bg-[#373c46] font-medium text-white transition-all hover:opacity-90'>
+          <div className='flex h-14 w-64 cursor-not-allowed items-center justify-center rounded bg-[#373c46] font-medium text-white'>
             결제 준비중입니다.
           </div>
         </div>
