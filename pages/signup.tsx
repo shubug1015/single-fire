@@ -218,7 +218,7 @@ const SignUp: NextPage = () => {
                 watch('phoneNum') && !errors?.phoneNum?.message
                   ? 'cursor-pointer transition-all hover:opacity-70'
                   : '',
-                'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm md:ml-2 md:text-center'
+                'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm md:ml-2 md:w-28 md:text-center'
               )}
             >
               {code.loading ? (
@@ -239,10 +239,7 @@ const SignUp: NextPage = () => {
                   />
                 </svg>
               ) : (
-                <span>
-                  인증번호 <br className='hidden md:block' />
-                  전송
-                </span>
+                '인증번호 전송'
               )}
             </div>
           </Input>

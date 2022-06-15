@@ -79,15 +79,15 @@ const ResetPw: NextPage = () => {
   return (
     <>
       <SEO title='비밀번호 찾기' />
-      <div className='mx-auto my-28 flex max-w-[32.5rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem]'>
-        <h1 className='text-2xl font-medium'>비밀번호 찾기</h1>
-        <h2 className='mt-3 font-medium text-[#cfcfcf]'>
+      <div className='mx-auto my-28 flex max-w-[32.5rem] flex-col items-center rounded-lg bg-[#373c46] p-[3.75rem] md:my-12 md:max-w-[330px] md:bg-transparent md:p-0'>
+        <h1 className='text-2xl font-medium md:text-xl'>비밀번호 찾기</h1>
+        <h2 className='mt-3 font-medium text-[#cfcfcf] md:text-center'>
           회원 가입 시 등록한 정보로 비밀번호를 찾을 수 있습니다.
         </h2>
 
         <form onSubmit={handleSubmit(onValid, onInvalid)} className='w-full'>
           {/* Input 필드 */}
-          <div className='mt-12 w-full space-y-8'>
+          <div className='mt-12 w-full space-y-8 md:mt-8 md:space-y-4'>
             <Input
               type='text'
               label='아이디'
@@ -135,7 +135,7 @@ const ResetPw: NextPage = () => {
                     !errors?.phoneNum?.message
                     ? 'cursor-pointer transition-all hover:opacity-70'
                     : '',
-                  'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm'
+                  'ml-4 flex h-full w-[7.5rem] items-center justify-center rounded border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.12)] text-sm md:ml-2 md:w-28 md:text-center'
                 )}
               >
                 {code.loading ? (
@@ -193,7 +193,7 @@ const ResetPw: NextPage = () => {
           {/* 비밀번호 찾기 버튼 */}
           <button
             type='submit'
-            className='mt-8 flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90'
+            className='mt-8 flex h-[3.688rem] w-full cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-lg font-medium text-[#282e38] transition-all hover:opacity-90 md:h-14 md:text-base'
           >
             비밀번호 찾기
           </button>
@@ -204,7 +204,7 @@ const ResetPw: NextPage = () => {
 
         {/* 회원가입 버튼 */}
         <Link href='/signup'>
-          <a className='flex h-[3.688rem] w-full items-center justify-center rounded bg-[#4a4e57] text-lg font-medium transition-all hover:opacity-90'>
+          <a className='flex h-[3.688rem] w-full items-center justify-center rounded bg-[#4a4e57] text-lg font-medium transition-all hover:opacity-90 md:h-14 md:text-base'>
             회원가입
           </a>
         </Link>

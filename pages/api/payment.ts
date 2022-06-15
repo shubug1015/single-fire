@@ -31,7 +31,6 @@ export default async function payment(
 
     // 결제 검증하기
     // const { amount, status } = paymentData;
-    // console.log(paymentData);
     return res.json(paymentData);
   } catch (e) {
     console.log(e);
