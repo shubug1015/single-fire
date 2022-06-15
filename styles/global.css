@@ -48,11 +48,12 @@ a {
   color: black !important;
 }
 
+/* wysiwyg 줄바꿈 */
 .wysiwyg p {
   word-break: break-word;
 }
 
 /* wysiwyg 이미지 비율 최적화 */
 .wysiwyg img {
-  @apply !h-auto;
+  height: auto !important;
 }

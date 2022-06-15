@@ -418,11 +418,14 @@ const Purchase: NextPage<IProps> = ({ slug }) => {
         </div>
 
         <div className='mt-20 flex justify-center md:mt-4'>
-          <div
+          {/* <div
             onClick={handlePayment}
             className='flex h-14 w-64 cursor-pointer items-center justify-center rounded bg-[#00e7ff] font-medium text-[#282e38] transition-all hover:opacity-90'
           >
             결제하기
+          </div> */}
+          <div className='flex h-14 w-64 cursor-pointer items-center justify-center rounded bg-[#373c46] font-medium text-white transition-all hover:opacity-90'>
+            결제 준비중입니다.
           </div>
         </div>
       </Layout>
