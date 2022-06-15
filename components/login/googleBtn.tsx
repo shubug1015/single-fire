@@ -50,13 +50,13 @@ export default function GoogleBtn() {
       }
     };
 
-    google.accounts.id.initialize({
+    google?.accounts.id.initialize({
       client_id:
         '785668148402-iro2k5tes1khiami8lb88fasre89r3dl.apps.googleusercontent.com',
       callback: handleCredentialResponse,
     });
 
-    google.accounts.id.renderButton(document.querySelector('#googleLogin'), {
+    google?.accounts.id.renderButton(document.querySelector('#googleLogin'), {
       size: 'large',
       text: 'Google 로그인',
       width: 330,
