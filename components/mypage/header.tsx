@@ -55,27 +55,39 @@ export default function Header() {
           </div>
         </div>
 
-        <div className='flex h-36 grow items-center justify-between divide-x divide-[rgba(255,255,255,0.16)] rounded-sm bg-[rgba(229,229,229,0.08)] md:mt-2'>
-          <div className='flex w-1/3 flex-col items-center space-y-4'>
-            <div className='text-sm'>강의</div>
-            <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.profile?.registered_lecture} 개
-            </div>
-          </div>
+        <div className='flex h-36 grow items-center justify-between divide-x divide-[rgba(255,255,255,0.16)] rounded-sm bg-[rgba(229,229,229,0.08)] md:mt-2 md:h-24'>
+          <Link href='/mypage/lecture/ongoing/1'>
+            <a className='w-1/3'>
+              <div className='flex w-full flex-col items-center space-y-4 md:space-y-2'>
+                <div className='text-sm'>강의</div>
+                <div className='text-xl font-bold text-[#00e7ff]'>
+                  {data?.profile?.registered_lecture} 개
+                </div>
+              </div>
+            </a>
+          </Link>
 
-          <div className='flex w-1/3 flex-col items-center space-y-4'>
-            <div className='text-sm'>쿠폰</div>
-            <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.profile?.coupon.length} 개
-            </div>
-          </div>
+          <Link href='/mypage/coupon/1'>
+            <a className='w-1/3'>
+              <div className='flex w-full flex-col items-center space-y-4 md:space-y-2'>
+                <div className='text-sm'>쿠폰</div>
+                <div className='text-xl font-bold text-[#00e7ff]'>
+                  {data?.profile?.coupon.length} 개
+                </div>
+              </div>
+            </a>
+          </Link>
 
-          <div className='flex w-1/3 flex-col items-center space-y-4'>
-            <div className='text-sm'>포인트</div>
-            <div className='text-xl font-bold text-[#00e7ff]'>
-              {data?.profile?.point} P
-            </div>
-          </div>
+          <Link href='/mypage/point/1'>
+            <a className='w-1/3'>
+              <div className='flex w-full flex-col items-center space-y-4 md:space-y-2'>
+                <div className='text-sm'>포인트</div>
+                <div className='text-xl font-bold text-[#00e7ff]'>
+                  {data?.profile?.point} P
+                </div>
+              </div>
+            </a>
+          </Link>
         </div>
       </div>
     </>

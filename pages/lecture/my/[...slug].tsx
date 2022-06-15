@@ -101,7 +101,7 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
             {currentVideo?.text?.length > 0 && (
               <div className='mt-8 flex w-full rounded-sm bg-[#1e2126] pt-10 pb-20 pl-12 pr-48 md:p-4'>
                 <div>💡</div>
-                <div>{currentVideo?.text}</div>
+                <div className='break-all'>{currentVideo?.text}</div>
               </div>
             )}
 
@@ -112,14 +112,14 @@ const MyLectureDetail: NextPage<IProps> = ({ slug }) => {
 
               <div
                 onClick={finishLecture}
-                className='flex h-16 w-96 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-opacity hover:opacity-90'
+                className='flex h-16 w-96 cursor-pointer items-center justify-center rounded bg-[#00e7ff] text-xl font-bold text-[#282e38] transition-opacity hover:opacity-90 md:h-14 md:w-full md:text-base'
               >
                 수강완료
               </div>
             </div>
           </div>
 
-          <div className='grow space-y-4 font-medium md:mt-4'>
+          <div className='grow space-y-4 font-medium md:mt-6'>
             {data?.index.map((i: any, chapterId: number) => (
               <div key={i.id}>
                 <div
