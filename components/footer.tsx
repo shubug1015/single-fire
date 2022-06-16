@@ -103,7 +103,7 @@ export default function Footer() {
 
         {/* 우측 섹션 */}
         <div className='flex gap-x-4 md:mt-8'>
-          <Link href='https://www.instagram.com/millmosch/'>
+          <Link href='https://www.instagram.com/millennial_moneyschool/'>
             <a target='_blank'>
               <div className='relative h-8 w-8'>
                 <Image
