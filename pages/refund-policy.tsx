@@ -5,7 +5,10 @@ import Layout from '@layouts/sectionLayout';
 const TemrsOfService: NextPage = () => {
   return (
     <>
-      <SEO title='환불규정' />
+      <SEO
+        title='환불규정'
+        description='밀레니얼 머니스쿨 환불규정 페이지 입니다.'
+      />
       <Layout padding='py-20 md:py-12'>
         <div className='rounded-lg bg-[#373c46] p-[3.75rem] text-[#cfcfcf] md:p-4 md:text-xs'>
           <span className='font-bold text-white'>[주의사항 및 환불규정]</span>

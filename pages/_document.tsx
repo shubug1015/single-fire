@@ -7,7 +7,21 @@ class CustomDocument extends Document {
         <Head>
           {/* 캐노니컬 tag */}
           <link rel='canonical' href='https://xn--o22bp6a0zk.com/' />
-          {/* opengraph image */}
+          {/* SEO */}
+          <title>밀레니얼머니스쿨 - 밀머스, 경제적자유를 꿈꾸는 공간</title>
+          <meta
+            name='description'
+            content='아직도 직장에서 스트레스 받고 계시나요? 아직도 투자에 ㅌ자도 모르시나요? 밀레니얼 머니스쿨은 그런분들을 위해 준비했습니다. 이제는 평생 직장이 아닌 경제적 자유를 위해 준비해야합니다. 여러분의 새로운 도전의 날개가 되어드리겠습니다.'
+          />
+          {/* opengraph */}
+          <meta
+            property='og:title'
+            content='밀레니얼머니스쿨 - 밀머스, 경제적자유를 꿈꾸는 공간'
+          />
+          <meta
+            property='og:description'
+            content='아직도 직장에서 스트레스 받고 계시나요? 아직도 투자에 ㅌ자도 모르시나요? 밀레니얼 머니스쿨은 그런분들을 위해 준비했습니다. 이제는 평생 직장이 아닌 경제적 자유를 위해 준비해야합니다. 여러분의 새로운 도전의 날개가 되어드리겠습니다.'
+          />
           <meta
             property='og:image'
             content='https://www.xn--o22bp6a0zk.com/og-image.png'

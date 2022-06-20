@@ -18,7 +18,10 @@ const Tutor: NextPage<{ page: string }> = ({ page }) => {
   }
   return (
     <>
-      <SEO title='강사소개' />
+      <SEO
+        title='강사소개'
+        description='밀레니얼 머니스쿨을 빛내주시는 강사분들이 소개되어있는 강사소개 페이지입니다.'
+      />
       <Banner />
       <TutorList
         title='강사소개'

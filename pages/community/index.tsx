@@ -16,7 +16,10 @@ const Community: NextPage = () => {
   const imgList = [Ecomony, Nft, Stock, Coin];
   return (
     <>
-      <SEO title='커뮤니티' />
+      <SEO
+        title='커뮤니티'
+        description='더이상 일방적인 강의는 그만, 실제 멘토와 함께 투자에 대한 질문과 응답하는 양방향적인  커뮤니티로 스터디하세요! 커뮤니티를 통해 경제적 자유로 가는 길에 부스터를 다시길 바랍니다.'
+      />
       <div className='grid w-screen grid-cols-4 md:grid-cols-1'>
         {data?.map((i: { [key: string]: any }, index: number) => (
           <div key={i.id}>

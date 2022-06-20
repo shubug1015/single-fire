@@ -34,7 +34,10 @@ const Lectures: NextPage<IProps> = ({ category, page }) => {
   }
   return (
     <>
-      <SEO title='클래스' />
+      <SEO
+        title={`${categoryReq} 클래스`}
+        description={`밀레니얼 머니스쿨 ${categoryReq} 강의를 볼수있는 ${categoryReq} CLASS 페이지 입니다.`}
+      />
       {/* <CategoryBanner /> */}
       <Banner />
       <Navigator />

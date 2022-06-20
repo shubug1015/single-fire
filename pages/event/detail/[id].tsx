@@ -25,7 +25,10 @@ const EventDetail: NextPage<{ id: string }> = ({ id }) => {
   };
   return (
     <>
-      <SEO title='이벤트' />
+      <SEO
+        title='이벤트'
+        description='경제적 자유를 꿈꾸는 파이어족을 위해 밀레니얼 머니스쿨만의 이벤트를 소개해드립니다.'
+      />
       <Layout padding='pt-32 pb-44 md:py-12'>
         <div className='mb-16 text-center text-5xl font-bold md:text-2xl'>
           {data?.title}

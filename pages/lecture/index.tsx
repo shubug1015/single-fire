@@ -18,7 +18,10 @@ const Lecture: NextPage = () => {
   }
   return (
     <>
-      <SEO title='BEST 클래스' />
+      <SEO
+        title='BEST 클래스'
+        description='밀레니얼 머니스쿨을 찾아주시는 예비파이어족들이 가장 선호하는 강의만 모아놓은 BEST CLASS 페이지 입니다.'
+      />
       <Banner />
       <Navigator />
       <Best {...data} />
