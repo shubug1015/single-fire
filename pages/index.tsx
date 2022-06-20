@@ -4,7 +4,7 @@ import Community from '@components/home/community';
 import Customized from '@components/home/customized';
 import Popup from '@components/home/popup';
 import Top3 from '@components/home/top3';
-import SEO from '@components/seo';
+// import SEO from '@components/seo';
 import { lecturesApi } from '@libs/api';
 import type { NextPage } from 'next';
 import Head from 'next/head';
