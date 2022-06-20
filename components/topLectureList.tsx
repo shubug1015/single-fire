@@ -12,9 +12,9 @@ export default function TopLectureList({ title, data, url }: IProps) {
     <div>
       {/* 제목 & 더보기 */}
       <div className='flex w-full items-center justify-between'>
-        <div className='text-2xl font-bold md:whitespace-pre-wrap md:text-lg'>
+        <h1 className='text-2xl font-bold md:whitespace-pre-wrap md:text-lg'>
           {title}
-        </div>
+        </h1>
 
         <Link href={url}>
           <a className='flex items-center'>

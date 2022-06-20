@@ -5,6 +5,25 @@ class CustomDocument extends Document {
     return (
       <Html lang='ko'>
         <Head>
+          {/* 캐노니컬 tag */}
+          <link rel='canonical' href='https://xn--o22bp6a0zk.com/' />
+          {/* opengraph image */}
+          <meta
+            property='og:image'
+            content='https://www.xn--o22bp6a0zk.com/og-image.png'
+          />
+          {/* 네이버 SEO */}
+          <meta
+            name='naver-site-verification'
+            content='36fd579c1e887428fa96c92606f33cc04e64076b'
+          />
+          {/* AMP */}
+          <script
+            async
+            custom-element='amp-ad'
+            src='https://cdn.ampproject.org/v0/amp-ad-0.1.js'
+          />
+          {/* GA & GTM */}
           <script
             async
             src='https://www.googletagmanager.com/gtag/js?id=G-4X9J001FZC'
