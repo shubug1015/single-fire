@@ -17,12 +17,6 @@ class CustomDocument extends Document {
             name='naver-site-verification'
             content='36fd579c1e887428fa96c92606f33cc04e64076b'
           />
-          {/* AMP */}
-          <script
-            async
-            custom-element='amp-ad'
-            src='https://cdn.ampproject.org/v0/amp-ad-0.1.js'
-          />
           {/* GA & GTM */}
           <script
             async
