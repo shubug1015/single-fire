@@ -174,7 +174,7 @@ const Post: NextPage<IProps> = ({ category }) => {
           {...register('title', {
             required: '제목을 입력해주세요',
           })}
-          className='bg-transparent text-[1.625rem] outline-none md:text-xl'
+          className='w-full bg-transparent text-[1.625rem] outline-none md:text-xl'
         />
       </div>
 
