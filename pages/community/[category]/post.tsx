@@ -149,19 +149,19 @@ const Post: NextPage<IProps> = ({ category }) => {
   }, [data]);
   return (
     <Layout padding='pt-10 pb-44 md:pb-20'>
-      <div className='flex justify-between md:space-x-4'>
+      <div className='flex justify-between'>
         <input
           type='text'
           placeholder='주제를 입력하세요.'
           {...register('subject', {
             required: '주제를 입력해주세요',
           })}
-          className='bg-transparent outline-none md:grow md:text-sm'
+          className='bg-transparent outline-none md:w-60 md:text-sm'
         />
 
         <div
           onClick={handleSubmit(onValid, onInvalid)}
-          className='flex h-[2.625rem] w-[6.25rem] cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38]'
+          className='flex h-[2.625rem] w-[6.25rem] cursor-pointer items-center justify-center rounded-sm bg-[#00e7ff] text-sm font-medium text-[#282e38] md:w-20'
         >
           발행
         </div>
