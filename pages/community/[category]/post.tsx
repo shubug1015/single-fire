@@ -149,14 +149,14 @@ const Post: NextPage<IProps> = ({ category }) => {
   }, [data]);
   return (
     <Layout padding='pt-10 pb-44 md:pb-20'>
-      <div className='flex justify-between'>
+      <div className='flex justify-between md:space-x-4'>
         <input
           type='text'
           placeholder='주제를 입력하세요.'
           {...register('subject', {
             required: '주제를 입력해주세요',
           })}
-          className='bg-transparent outline-none md:text-sm'
+          className='bg-transparent outline-none md:grow md:text-sm'
         />
 
         <div
