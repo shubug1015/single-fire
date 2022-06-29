@@ -148,7 +148,7 @@ const Post: NextPage<IProps> = ({ category }) => {
     }
   }, [data]);
   return (
-    <Layout padding='pt-10 pb-44'>
+    <Layout padding='pt-10 pb-44 md:pb-20'>
       <div className='flex justify-between'>
         <input
           type='text'
@@ -156,7 +156,7 @@ const Post: NextPage<IProps> = ({ category }) => {
           {...register('subject', {
             required: '주제를 입력해주세요',
           })}
-          className='bg-transparent outline-none'
+          className='bg-transparent outline-none md:text-sm'
         />
 
         <div
@@ -167,18 +167,18 @@ const Post: NextPage<IProps> = ({ category }) => {
         </div>
       </div>
 
-      <div className='mt-10'>
+      <div className='mt-10 md:mt-6'>
         <input
           type='text'
           placeholder='제목을 입력하세요.'
           {...register('title', {
             required: '제목을 입력해주세요',
           })}
-          className='bg-transparent text-[1.625rem] outline-none'
+          className='bg-transparent text-[1.625rem] outline-none md:text-xl'
         />
       </div>
 
-      <div className='mt-12'>
+      <div className='mt-12 md:mt-8'>
         <Editor
           editorState={editorState}
           onEditorStateChange={onEditorStateChange}
