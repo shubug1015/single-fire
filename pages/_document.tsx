@@ -1,4 +1,4 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import Document, {Head, Html, Main, NextScript} from 'next/document';
 
 class CustomDocument extends Document {
   render(): JSX.Element {
@@ -6,7 +6,7 @@ class CustomDocument extends Document {
       <Html lang='ko'>
         <Head>
           {/* 캐노니컬 tag */}
-          <link rel='canonical' href='https://xn--o22bp6a0zk.com/' />
+          <link rel='canonical' href='https://xn--o22bp6a0zk.com/'/>
           {/* opengraph image */}
           <meta
             property='og:image'
@@ -58,10 +58,29 @@ class CustomDocument extends Document {
             type='text/javascript'
             src='https://cdn.iamport.kr/js/iamport.payment-1.1.8.js'
           ></script>
+          {/* Meta Pixel Code */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `!function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=‘2.0’;
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,‘script’,
+      ‘https://connect.facebook.net/en_US/fbevents.js’);
+      fbq(‘init’, ‘365160599083944’);
+      fbq(‘track’, ‘PageView’);`,
+            }}/>
+          <noscript dangerouslySetInnerHTML={{
+            __html: `<img height=“1” width=“1" style=“display:none”
+src=“https://www.facebook.com/tr?id=365160599083944&ev=PageView&noscript=1”
+  />`,
+          }}/>
         </Head>
         <body>
-          <Main />
-          <NextScript />
+        <Main/>
+        <NextScript/>
         </body>
       </Html>
     );
